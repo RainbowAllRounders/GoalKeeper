@@ -1,4 +1,4 @@
 package com.allrounders.goalkeeper.service;
 
-public class MemberServiceImpl {
+public class MemberServiceImpl implements MemberService{
 }
