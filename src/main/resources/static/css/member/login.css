@@ -1,0 +1,75 @@
+@font-face {
+    font-family: 'jalnan';
+    src: url(../../font/JalnanGothic/JalnanGothicTTF.ttf);
+}
+*{
+    font-family: 'jalnan';
+    margin: 0px;
+    text-decoration: none;
+}
+#container{
+    background-image: url('./../../images/Login\ -\ 재원.png');
+    height: 110vh;
+    background-size: cover;
+}
+h1{
+    font-size: 30px;
+}
+h2{
+    font-size: 20px;
+    color: #464646;
+}
+#content{
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+#login_hello{
+    line-height: 3;
+    margin-bottom: 50px;
+}
+#login_box{
+background-color: #FFE37F;
+height: 720px;
+width: 720px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+line-height: 5.0;
+border-radius: 25px;
+padding: 0px;
+border: none;
+}
+#header{
+width: 100%;
+height: 80px;
+}
+#signup_btn{
+color: #2A9AD9;
+text-decoration:none;
+}
+#login_btn{
+border: none;
+background-color: #FF5065;
+border-radius: 25px;
+width: 210px;
+height: 55px;
+text-decoration: none;
+position: relative;
+left: 35%;
+}
+
+.addr_password{
+    border: none;
+    width: 380px;
+    height: 55px;
+    border-radius: 25px;
+    color: grey;
+    padding-left: 20px;
+    font-size: 15px;
+    background-color: #FAFFC8;
+}
+#password{
+    margin-bottom: 50px;
+}
