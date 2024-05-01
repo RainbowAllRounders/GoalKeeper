@@ -1,0 +1,94 @@
+#goalAddWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.shadowBox {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25),
+    0 2px 10px -3px rgba(0,0,0,0.25),
+    0 4px 10px -3px rgba(0,0,0,0.25),
+    0 10px 20px -3px rgba(0,0,0,0.25),
+    0 8px 20px -3px rgba(0,0,0,0.25);
+}
+
+#goalAddBox {
+    width: 1200px;
+    height: 800px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    padding: 20px 50px 50px 50px;
+}
+
+/* 헤더 ---------------------------------------- */
+#goalAddHeader {
+    width: 1100px;
+    height: 80px;
+    border-bottom: 1px solid rgb(176, 176, 176);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#goalAddHeaderText {
+    font-size: 30px;
+}
+
+.flame {
+    width: 50px;
+    height: 50px;
+}
+
+/* 본문 ---------------------------------------- */
+.goalInputWrapper {
+    width: 1100px;
+}
+
+#goalAddContainer {
+    width: 1100px;
+}
+
+#goalAddContainer > input {
+    border: none;
+    background-color: #D9D9D9;
+}
+
+.goalAddMenu {
+    display: inline-block;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+}
+
+.goalMaxText {
+    font-size: 15px;
+    color: #444444;
+}
+
+.goalInputs {
+    display: inline-block;
+}
+
+.goalGuide {
+    font-size: 10px;
+    color: rgba(70, 70, 70, 0.5);
+}
+
+#goalHashTagInput {
+    display: inline-block;
+}
+
+/* 등록 버튼 ---------------------------------------- */
+#goalAddBtn {
+    width: 150px;
+    height: 50px;
+    background-color: #FFC933;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    display: block;
+}
