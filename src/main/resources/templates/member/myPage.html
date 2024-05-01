@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalKeeper - My Page</title>
+
+    <style>
+        * {box-sizing: border-box; margin: 0; padding: 0;}
+
+        header, footer {
+            background-color: #b0b0b0;
+            text-align: center;
+            padding: 20px;
+        }
+        header { border-bottom: 1px solid #b0b0bb; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000;}
+        footer { border-top: 1px solid #b0b0bb; }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 90vh; */
+            margin-top: 62px;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgba(255, 201, 51, 0.1);
+            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05),
+                        -3px 0 4px rgba(0, 0, 0, 0.05),
+                        0 5px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+
+            width: 900px;
+            min-height: 80vh;
+            padding: 40px;
+            
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: repeat(6, auto);
+            gap: 20px;
+            grid-template-areas:
+                '. a .'
+                'b . e'
+                'c d e'
+                'f f f'
+                '. g h'
+                'i j k';
+        }
+
+        .profile {
+            grid-area: a;
+            background-color: white;
+            height: 220px;
+            width: 220px;
+            text-align: center;
+        }
+        .img_box {
+            width: 100px;
+            height: 100px;
+            background: url(../images/profile.png);
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 1px solid #000;
+            margin: 1em auto 1em;
+        }
+        .user_email { color: #b0b0b0;}
+
+
+        .point_box{ grid-area: b;}
+        .point_title {
+            display: inline-block;
+            position: relative;
+        }
+        .point_title .icon {position: absolute; top:-7px;right: -35px; background: url(../images/coin_pouch.svg)no-repeat center; width: 31px; height: 31px; display: inline-block;}
+        .cur_point {
+            grid-area: c;
+            background-color: white;
+            height: 150px;
+            width: 220px;
+        }
+        .rank_point {
+            grid-area: d;
+            background-color: white;
+            height: 150px;
+            width: 220px;
+        }
+        .my_rank {
+            grid-area: e;
+            background-color: #FFC933;
+        }
+        .game_banner {
+            grid-area: f;
+            background-color: rgba(255, 80, 101, 0.8);
+        }
+        .mission_title {
+            grid-area: g;
+        }
+        .full_btn {
+            grid-area: h;
+        }
+        .first_mission {
+            grid-area: i;
+            background-color: white;
+            height: 150px;
+            width: 220px;
+        }
+        .second_mission {
+            grid-area: j;
+            background-color: white;
+            height: 150px;
+            width: 220px;
+        }
+        .third_mission {
+            grid-area: k;
+            background-color: white;
+            height: 150px;
+            width: 220px;
+        }
+        .shadow {
+            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05),
+                        -3px 0 4px rgba(0, 0, 0, 0.05),
+                        0 5px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+        }
+
+
+        .profile {position: relative;}
+        .profile .click_btn {position: absolute; bottom: -8px; right: -8px; background: url(../images/pencil.svg)no-repeat center #f1f1f1; width: 35px; height: 35px; border-radius: 50%; border: none; box-shadow: 2px 2px 3px rgba(0,0,0,0.2);}
+    </style>
+
+    <script>
+
+    </script>
+</head>
+<body>
+    <!-- header ------------------------------------- -->
+    <header>
+        헤더
+    </header>
+    
+    <!-- main content ------------------------------------- -->
+    <main>
+        <section class="container">
+
+            <div class="shadow profile">
+                <!-- <img class="profile_img" src="profile.png" alt="프로필 사진"> -->
+                <div class="img_box"></div>
+                <h2 class="user_nickname">카넬로</h2>
+                <p class="user_email">suhyeon35@naver.com</p>
+                <button class="click_btn"></button>
+            </div>
+
+        
+            <div class="point_box">
+                <p class="point_title">내 포인트<span class="icon"></span></p>
+            </div>
+
+            <div class="shadow cur_point">
+                보유 포인트<br>
+                <img src="../images/coin.svg">
+            </div>
+
+            <div class="shadow rank_point">
+                월간 랭크 포인트<br>
+                <img src="../images/crown.svg">
+            </div>
+
+            <div class="shadow my_rank">
+                <p>RANK</p>
+            </div>
+           
+
+            <div class="shadow game_banner">
+                <h4>포인트가 부족해..<img src="../images/ghost.svg"></h4>
+                <h2>역시 그럴땐 미니게임!</h2>
+                <img src="../images/joystick.svg">
+            </div>
+
+           
+            <p class="mission_title">내 미션<img src="../images/Flame.svg"></p>
+            <img class="full_btn" src="../images/next_btn.svg">
+            <div class="shadow first_mission">
+                최애곡 1번 이상 공유
+            </div>
+            <div class="shadow second_mission">
+                하루 양치 3번
+            </div>
+            <div class="shadow third_mission">
+                주 3회 헬스 인증
+            </div>
+        
+    
+        </section>
+    </main>
+
+    <!-- footer ------------------------------------ -->
+    <footer>
+        푸터
+    </footer>
+</body>
+</html>
