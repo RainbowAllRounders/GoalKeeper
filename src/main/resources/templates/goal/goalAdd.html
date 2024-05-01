@@ -22,16 +22,19 @@
             <div class="goalInputWrapper">
 
                 <div class="goalAddContainer">
-                    <div class="goalAddMenu">미션명</div>
+                    <div class="goalAddMenu">
+                        미션명
+                        <div class="goalMaxText">(최대 10자)</div>
+                    </div>
                     <div class="goalInputs" id="goalTitleInput">
-                        <input type="text">
+                        <input type="text" maxlength="10">
                     </div>
                 </div>
 
                 <div class="goalAddContainer">
                     <div class="goalAddMenu">인증횟수</div>
                     <div class="goalInputs">
-                        <div id="goalTimesInput"><input type="text"></div>
+                        <div id="goalTimesInput"><input type="number" min="1" max="100" maxlength="3"></div>
                         <div id="times">회</div>
                         <div class="goalGuide">1~100 범위의 숫자를 입력해주세요.</div>
                     </div>
@@ -85,7 +88,7 @@
                         <div class="goalMaxText">(최대 100명)</div>
                     </div>
                     <div class="goalInputs" id="goalPeopleInput">
-                        <input type="text">
+                        <input type="number" min="1" max="100">
                     </div>
                     <div id="peopleCount">&nbsp; 명</div>
 
