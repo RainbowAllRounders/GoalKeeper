@@ -30,8 +30,9 @@
 
                 <div class="goalAddContainer">
                     <div class="goalAddMenu">인증횟수</div>
-                    <div class="goalInputs" id="goalTimesInput">
-                        <input type="text">회
+                    <div class="goalInputs">
+                        <div id="goalTimesInput"><input type="text"></div>
+                        <div id="times">회</div>
                         <div class="goalGuide">1~100 범위의 숫자를 입력해주세요.</div>
                     </div>
                 </div>
@@ -55,7 +56,7 @@
                             <div class="goalTag goalInputs"># <input type="text"></div>
                             <div class="goalTag goalInputs"># <input type="text"></div>
                             <div id="tagPlusBtn">
-                                <img src="" alt="해시태그 추가">
+                                <img src="../../static/images/plusBtn.png" alt="해시태그 추가">
                             </div>
                         </div>
                         <div class="goalGuide">한 태그당 6글자까지, 태그는 3개까지 가능합니다.</div>
@@ -69,25 +70,34 @@
                         <div id="goalPeriod">진행 기간</div>
                     </div>
                     <div class="goalInputs" id="goalPeriodInput">
-                        <div class="">
-                            <input type="date">~<input type="date">
+                        <div class="dateWrapper">
+                            <input type="date">
+                        </div>
+                        &nbsp; ~ &nbsp;
+                        <div class="dateWrapper">
+                            <input type="date">
                         </div>
                     </div>
                 </div>
 
                 <div class="goalAddContainer">
+
                     <div class="goalAddMenu">
                         <div id="goalPeople">모집 인원</div>
                         <div class="goalMaxText">(최대 100명)</div>
                     </div>
-                    <div class="goalInputs" id="goalDescriptionInput">
-                        <input type="text"> 명
+                    <div class="goalInputs" id="goalPeopleInput">
+                        <input type="text">
                     </div>
-                    <div class="goalAddMenu">
+                    <div id="peopleCount">&nbsp; 명</div>
+
+                    <div class="goalAddMenu" id="imgWrapper">
                         <div id="goalAddImg">첨부 이미지</div>
                     </div>
-                    <div class="goalInputs" id="goalDescriptionInput">
-                        <input type="file">
+                    <div class="goalInputs" id="goalImgInput">
+                        <div id="goalImgWrapper">
+                            <input type="file" accept=".jpg, .jpeg, .png">
+                        </div>
                         <div class="goalGuide">
                             20MB 이하의 jpg, jpeg, png 파일만 가능합니다.
                         </div>
