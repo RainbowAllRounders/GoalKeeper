@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'jalnan';
+    src: url(../font/JalnanGothic/JalnanGothicTTF.ttf);
+}
+*{
+    font-family: 'jalnan';
+    margin: 0px;
+    text-decoration: none;
+}
+#container{
+    background-image: url('../../images/Join\ -\ 재원.png');
+    background-size: cover;
+    height: 110vh;
+}
+h1{
+    font-size: 40px;
+}
+h2{
+    font-size: 20px;
+}
+#content{
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+#join_msg{
+    width: 600px;
+    height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align:left;
+}
+#join_signup{
+    width: 580px;
+    height: 560px;
+    background-color: #FFE37F;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+.addr_password{
+    border: none;
+    width: 380px;
+    height: 55px;
+    border-radius: 25px;
+    margin: 10px;
+    padding-left: 20px;
+    background-color: #FAFFC8;
+}
+#signup_btn{
+    border: none;
+    background-color: #FF5065;
+    border-radius: 25px;
+    width: 210px;
+    height: 55px;
+    text-decoration: none;
+    margin-top: 10px;
+}
