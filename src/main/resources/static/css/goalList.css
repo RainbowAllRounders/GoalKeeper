@@ -17,7 +17,7 @@
 
 /* 필터와 검색창 라인 ---------------------------------------- */
 #goalListHeader {
-    width: 90%;
+    width: 75%;
     display: flex;
     justify-content: space-between;
     height: 100px;
@@ -79,7 +79,7 @@
 #goalListContainer {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 75%;
     margin-bottom: 50px;
 }
 
