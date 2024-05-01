@@ -1,7 +1,9 @@
 #goalAddWrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+    background-color: #F1F1F1;
+    border-radius: 0;
 }
 
 .shadowBox {
@@ -13,6 +15,7 @@
 }
 
 #goalAddBox {
+    background-color: white;
     box-sizing: border-box;
     width: 1200px;
     height: 850px;
