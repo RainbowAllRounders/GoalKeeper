@@ -15,7 +15,7 @@
 #goalAddBox {
     box-sizing: border-box;
     width: 1200px;
-    height: 950px;
+    height: 850px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
