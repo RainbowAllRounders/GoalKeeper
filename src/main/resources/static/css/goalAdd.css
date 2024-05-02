@@ -4,6 +4,7 @@
     justify-content: center; 
     background-color: #F1F1F1;
     border-radius: 0;
+    margin: 0;
 }
 
 .shadowBox {
@@ -18,24 +19,24 @@
     background-color: white;
     box-sizing: border-box;
     width: 1000px;
-    height: 820px;
+    height: 750px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 40px 0;
-    padding: 20px 50px 50px 50px;
+    padding: 20px 50px 0 50px;
 }
 
 /* 헤더 ---------------------------------------- */
 #goalAddHeader {
     width: 900px;
-    height: 80px;
+    /* height: 80px; */
+    padding: 20px;
     border-bottom: 1px solid rgb(176, 176, 176);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
 }
 
 #goalAddHeaderText {
@@ -56,7 +57,8 @@
     width: 900px;
      display: flex;
      align-items: center;
-     margin-bottom: 20px;
+     margin-bottom: 5px;
+     margin-top: 0;
 }
 
 .goalAddContainer > input {
@@ -66,7 +68,9 @@
 }
 
 .goalAddMenu {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-size: 16px;
     width: 150px;
     height: 40px;
@@ -84,7 +88,7 @@
 .goalGuide {
     font-size: 10px;
     color: rgba(70, 70, 70, 0.5);
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 input {
@@ -96,6 +100,7 @@ input {
 
 div:has(input) {
     border-radius: 20px;
+    margin-top: 10px;
 }
 
 /* 미션명 ---------------------------------------- */
@@ -197,6 +202,7 @@ div:has(input) {
     box-sizing: border-box;
     width: 150px;
     padding: 15px;
+    margin-top: 0;
 }
 
 #goalPeopleInput > input {
@@ -243,5 +249,6 @@ input[type=file]::file-selector-button {
     border-radius: 30px;
     font-size: 16px;
     display: block;
-    margin-top: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
