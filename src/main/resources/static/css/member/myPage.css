@@ -1,0 +1,285 @@
+* { box-sizing: border-box; }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1200px;
+    margin-top: 84px;
+    padding: 20px;
+}
+
+.container {
+    background-color: rgba(255, 201, 51, 0.1);
+    box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05), -3px 0 4px rgba(0, 0, 0, 0.05),
+        0 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+
+    width: 900px;
+    min-height: 80vh;
+    /* height: 1200px; */
+    padding: 80px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, auto);
+    gap: 20px;
+    grid-template-areas:
+        ". a ."
+        "b . e"
+        "c d e"
+        "f f f"
+        "g . h"
+        "i j k";
+
+    position: relative;
+}
+
+.shadow {
+    box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05), -3px 0 4px rgba(0, 0, 0, 0.05),
+        0 5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+}
+
+
+.profile {
+    grid-area: a;
+    background-color: white;
+    height: 220px;
+    width: 220px;
+    text-align: center;
+
+    position: relative;
+}
+.img_box {
+    width: 100px;
+    height: 100px;
+    background: url(../../../static/images/Flame.svg) no-repeat center;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 0.1px solid #b0b0b0;
+    margin: 1em auto 1em;
+}
+.user_email {
+    color: #b0b0b0;
+    margin-top: 15px;
+    font-size: 0.7em;
+}
+.profile .modal_open {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    background: url(../../../static/images/pencil.svg) no-repeat center #f1f1f1;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.modal_open:hover {
+    transform: scale(1.1);
+}
+
+
+.point_area {
+    grid-area: b;
+    height: 32px;
+}
+.point_title {
+    display: inline-block;
+    position: relative;
+    bottom: -50%;
+}
+.point_title .icon {
+    position: absolute;
+    top: -9px;
+    right: -35px;
+    background: url(../../../static/images/coin_pouch.svg) no-repeat center;
+    width: 31px;
+    height: 31px;
+    display: inline-block;
+}
+
+.point_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+
+    width: 100%;
+    margin-top: 15px;
+}
+
+.cur_point {
+    grid-area: c;
+    background-color: white;
+    text-align: center;
+    height: 150px;
+    width: 220px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.cur_point .coin_icon {
+    background: url(../../../static/images/coin.svg) no-repeat center;
+    width: 30px;
+    height: 30px;
+}
+
+.rank_point {
+    grid-area: d;
+    background-color: white;
+    text-align: center;
+    height: 150px;
+    width: 220px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.rank_point .crown_icon {
+    background: url(../../../static/images/crown.svg) no-repeat center;
+    /* position: absolute; */
+    width: 30px;
+    height: 30px;
+}
+.my_rank {
+    grid-area: e;
+    background-color: #ffc933;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.my_rank > p {
+    font-size: 1.5rem;
+    color: white;
+}
+.my_rank .rank_icon {
+    background: url(../../../static/images/laurel_wreath.svg) no-repeat center;
+    background-size: contain;
+    width: 150px;
+    height: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rank_icon > p {
+    font-size: 2rem;
+    color: #464646;
+    margin-top: -15px;
+}
+
+
+.game_banner {
+    grid-area: f;
+    background-color: rgba(255, 80, 101, 0.8);
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+}
+.game_banner .joystick_icon {
+    background: url(../../../static/images/joystick.svg) no-repeat;
+    width: 125px;
+    height: 125px;
+    margin-left: 5%;
+}
+.sure {
+    margin-left: 10%;
+    font-size: 2.5rem;
+    color: white;
+}
+.ghost_icon {
+    background: url(../../../static/images/ghost.svg) no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+.left_area {
+    display: flex;
+    flex-direction: column;
+    /* justify-self: center;
+            align-items: center; */
+    line-height: 50px;
+    width: 450px;
+    margin: 0 36px;
+}
+.left_area > h4 {
+    font-size: 1.3rem;
+}
+
+
+.mission_title {
+    grid-area: g;
+    position: relative;
+    margin-top: 15%;
+}
+.flame_icon {
+    background: url(../../../static/images/Flame.svg) no-repeat center;
+    position: absolute;
+    top: -14px;
+    width: 39px;
+    height: 41px;
+    display: inline-block;
+}
+.full_btn {
+    grid-area: h;
+    display: inline;
+    background: none;
+    border: none;
+    color: #b0b0b0;
+    cursor: pointer;
+    font-size: 0.5em;
+
+    margin-top: 15%;
+    width: 50px;
+    margin-left: 75%;
+
+    /* border: 1px solid #000; */
+}
+.full_btn:hover {
+    color: #464646;
+}
+
+.mymission_title {
+    text-align: center;
+    margin-top: 15%;
+}
+.first_mission {
+    grid-area: i;
+    background-color: white;
+    height: 150px;
+}
+.second_mission {
+    grid-area: j;
+    background-color: white;
+    height: 150px;
+}
+.third_mission {
+    grid-area: k;
+    background-color: white;
+    height: 150px;
+}
+
+
+.unregister_btn {
+    background: none;
+    border: none;
+    color: #d5d5d5;
+    cursor: pointer;
+    font-size: 0.5em;
+    text-decoration: underline;
+    /* border: 1px solid #000; */
+
+    position: absolute;
+    right: 10px;
+    bottom: -30px;
+}
+.unregister_btn:hover {
+    color: #b0b0b0;
+}
+
+
+
