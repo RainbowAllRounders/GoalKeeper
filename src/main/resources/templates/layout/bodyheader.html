@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <!-- navbar -> header, header삭제 -->
+<div class="header" th:fragment="bodyheader">
+    <div class="navlogo"></div>
+    <div class="navtabs">
+        <div class="tab">
+            <div class="penicon"></div>
+            <p>미션 등록하기</p>
+        </div>
+        <div class="tab">
+            <div class="fireicon"></div>
+            <p>미션 참여하기</p>
+        </div>
+        <div class="tab">
+            <div class="gameicon"></div>
+            <p>미니게임</p>
+        </div>
+    </div>
+    <div class="navprofile">
+        <div class="alarmcom ">
+            <div class="alarm"></div>
+            <div class="reddot"></div>
+        </div>
+        <!-- class에 profile속성 추가하면 profile로 변경 -->
+        <div class="loginbtn">
+            <p>로그인</p>
+        </div>
+        <div class="dropdown">
+            <div class="drop">마이페이지</div>
+            <div class="drop">내 미션</div>
+            <div class="drop">로그아웃</div>
+        </div>
+        <div class="alarmbox">
+            <div class="alarmElem">---미션이 시작됩니다.</div>
+            <div class="alarmElem">---미션이 종료됩니다.</div>
+            <div class="alarmElem">---미션이 시작됩니다.</div>
+        </div>
+    </div>
+</div>
