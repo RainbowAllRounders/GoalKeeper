@@ -31,8 +31,8 @@ h2{
 }
 #login_box{
 background-color: #FFE37F;
-height: 720px;
-width: 720px;
+height: 600px;
+width: 600px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -53,17 +53,16 @@ text-decoration:none;
 border: none;
 background-color: #FF5065;
 border-radius: 25px;
-width: 210px;
-height: 55px;
+width: 190px;
+height: 45px;
 text-decoration: none;
 position: relative;
 left: 35%;
 }
-
 .addr_password{
     border: none;
-    width: 380px;
-    height: 55px;
+    width: 320px;
+    height: 45px;
     border-radius: 25px;
     color: grey;
     padding-left: 20px;
