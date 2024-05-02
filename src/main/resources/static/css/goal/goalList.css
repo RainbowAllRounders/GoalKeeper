@@ -142,8 +142,24 @@
 }
 
 .statusTag {
+    width: 55px;
     background-color: black;
     color: white;
+}
+
+/* 완료 태그 */
+.complete {
+    background-color: #3ADC67;
+}
+
+/* 진행 중 태그 */
+.proceeding {
+    background-color: #506CFF;
+}
+
+/* 모집 중 태그 */
+.recruiting {
+    background-color: black;
 }
 
 .hashtag {
