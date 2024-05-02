@@ -4,138 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - My Page</title>
-
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <link rel="stylesheet" href="../../static/css/member/myPage.css">
+    
     <style>
-        * {box-sizing: border-box; margin: 0; padding: 0;}
-
         header, footer {
             background-color: #b0b0b0;
             text-align: center;
             padding: 20px;
         }
-        header { border-bottom: 1px solid #b0b0bb; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000;}
+        header { border-bottom: 1px solid #b0b0bb; position: fixed; width: 100%; height: 84px; top: 0; left: 0; z-index: 1000;}
         footer { border-top: 1px solid #b0b0bb; }
 
-        main {
+
+        /* 모달 */
+        .modifyModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 700px;
+            height: 450px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 1rem;
+
+            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05), -3px 0 4px rgba(0, 0, 0, 0.05), 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+        .modal_title > h2 {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 9%;
+        }
+        
+        
+        .info_area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5%;
+            
+        }
+        .modal_right_area {
+            display: flex;
+            flex-direction: column;
+            line-height:2rem;
+        }
+        
+        .info_field {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            background-color: #EDEBEB;
+            border-radius: 0.5rem;
+            width: 400px;
+            height: 45px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05), -3px 0 4px rgba(0, 0, 0, 0.05), 0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+        .info_field > input {
+            background: none;
+            border: none;
+            margin-right: 10%;
+        }
+        .info_field > span {
+            margin-right: 10%;
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+        }
+        .info_field > label {
+            margin-left: 5%;
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+        }
+        .modify_btn {
+            background: url(../../static/images/pencil.svg) no-repeat center;
+            width: 35px;
+            height: 35px;
+            border: none;
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .empty {
+            width: 35px;
+            height: 35px;
+            border: none;
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        .profile_img {
+            width: 160px;
+            height: 160px;
+            background: url(../../static/images/Flame.svg) no-repeat center;
+            border-radius: 50%;
+            border: 0.1px solid #b0b0b0;
+            margin: 1em;
+        }
+
+        .actions {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* height: 90vh; */
-            margin-top: 62px;
-            padding: 20px;
+            gap: 50px;
+            padding: 20px 0;
+            /* margin-top: auto; */
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);          
         }
-
-        .container {
-            background-color: rgba(255, 201, 51, 0.1);
-            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05),
-                        -3px 0 4px rgba(0, 0, 0, 0.05),
-                        0 5px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-
-            width: 900px;
-            min-height: 80vh;
-            padding: 40px;
-            
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: repeat(6, auto);
-            gap: 20px;
-            grid-template-areas:
-                '. a .'
-                'b . e'
-                'c d e'
-                'f f f'
-                '. g h'
-                'i j k';
+        .save_btn, .cancel_btn {
+            padding: 10px 25px;
+            font-size: 1rem; 
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            /* transition: background-color 0.3s;  */
         }
-
-        .profile {
-            grid-area: a;
-            background-color: white;
-            height: 220px;
-            width: 220px;
-            text-align: center;
+        .save_btn {
+            background-color: #FFBB00;
         }
-        .img_box {
-            width: 100px;
-            height: 100px;
-            background: url(../../static/images/profile.png);
-            border-radius: 50%;
-            margin-right: 10px;
-            border: 1px solid #000;
-            margin: 1em auto 1em;
+        .cancel_btn {
+            background-color: #2A9AD9;
         }
-        .user_email { color: #b0b0b0;}
-
-
-        .point_box{ grid-area: b;}
-        .point_title {
-            display: inline-block;
-            position: relative;
+        .save_btn:hover, .cancel_btn:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        .point_title .icon {position: absolute; top:-7px;right: -35px; background: url(../../static/images/coin_pouch.svg)no-repeat center; width: 31px; height: 31px; display: inline-block;}
-        .cur_point {
-            grid-area: c;
-            background-color: white;
-            height: 150px;
-            width: 220px;
-        }
-        .rank_point {
-            grid-area: d;
-            background-color: white;
-            height: 150px;
-            width: 220px;
-        }
-        .my_rank {
-            grid-area: e;
-            background-color: #FFC933;
-        }
-        .game_banner {
-            grid-area: f;
-            background-color: rgba(255, 80, 101, 0.8);
-        }
-        .mission_title {
-            grid-area: g;
-        }
-        .full_btn {
-            grid-area: h;
-        }
-        .first_mission {
-            grid-area: i;
-            background-color: white;
-            height: 150px;
-            width: 220px;
-        }
-        .second_mission {
-            grid-area: j;
-            background-color: white;
-            height: 150px;
-            width: 220px;
-        }
-        .third_mission {
-            grid-area: k;
-            background-color: white;
-            height: 150px;
-            width: 220px;
-        }
-        .shadow {
-            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05),
-                        -3px 0 4px rgba(0, 0, 0, 0.05),
-                        0 5px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 1rem;
-        }
-
-
-        .profile {position: relative;}
-        .profile .click_btn {position: absolute; bottom: -8px; right: -8px; background: url(../../static/images/pencil.svg)no-repeat center #f1f1f1; width: 35px; height: 35px; border-radius: 50%; border: none; box-shadow: 2px 2px 3px rgba(0,0,0,0.2);}
+        
     </style>
 
     <script>
-
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.querySelector('.modifyModal');
+            var openBtn = document.querySelector('.modal_open');
+            var closeBtn = document.querySelector('.cancel_btn');
+            var saveBtn = document.querySelector('.save_btn');
+        
+            openBtn.onclick = function() { modal.style.display = "block"; };
+            closeBtn.onclick = function() { modal.style.display = "none"; };
+            saveBtn.onclick = function() { modal.style.display = "none"; };
+        });
     </script>
 </head>
+
 <body>
-    <!-- header ------------------------------------- -->
+    <!-- header ------------------------------------------- -->
     <header>
         헤더
     </header>
@@ -145,59 +171,114 @@
         <section class="container">
 
             <div class="shadow profile">
-                <!-- <img class="profile_img" src="profile.png" alt="프로필 사진"> -->
                 <div class="img_box"></div>
                 <h2 class="user_nickname">카넬로</h2>
                 <p class="user_email">suhyeon35@naver.com</p>
-                <button class="click_btn"></button>
+                <button class="modal_open"></button>
             </div>
 
         
-            <div class="point_box">
+            <div class="point_area">
                 <p class="point_title">내 포인트<span class="icon"></span></p>
             </div>
 
             <div class="shadow cur_point">
-                보유 포인트<br>
-                <img src="../../static/images/coin.svg">
+                <p>보유 포인트</p>
+                <div class="point_box">
+                    <div class="coin_icon"></div>
+                    <p>47,684p</p>
+                </div>
             </div>
 
             <div class="shadow rank_point">
-                월간 랭크 포인트<br>
-                <img src="../../static/images/crown.svg">
+                <p>월간 랭크 포인트</p>
+                <div class="point_box">
+                    <div class="crown_icon"></div>
+                    <p>124,664p</p>
+                </div>
             </div>
 
             <div class="shadow my_rank">
                 <p>RANK</p>
+                <div class="rank_icon"><p>18</p></div>
+                <!-- TODO: 100위부터는 99+ 로 처리할 것 -->
             </div>
            
 
             <div class="shadow game_banner">
-                <h4>포인트가 부족해..<img src="../../static/images/ghost.svg"></h4>
-                <h2>역시 그럴땐 미니게임!</h2>
-                <img src="../../static/images/joystick.svg">
+                <!-- TODO: 클릭이벤트 미니게임메인 페이지 이동 -->
+                <div class="left_area">
+                    <h4>포인트가 부족해.. <span class="ghost_icon"></span></h4>
+                    <h2 class="sure">역시 그럴땐 미니게임!</h2>
+                </div>
+                <div class="joystick_icon"></div>
             </div>
 
            
-            <p class="mission_title">내 미션<img src="../../static/images/Flame.svg"></p>
-            <img class="full_btn" src="../../static/images/next_btn.svg">
+            <p class="mission_title">내 미션<span class="flame_icon"></span></p>
+            <button class="full_btn">전체 보기</button>
+            <!-- TODO: 내미션보러가기 페이지 이동 -->
             <div class="shadow first_mission">
-                최애곡 1번 이상 공유
+                <p class="mymission_title">최애곡 1번 이상 공유</p>
             </div>
             <div class="shadow second_mission">
-                하루 양치 3번
+                <p class="mymission_title">하루 양치 3번</p>
             </div>
             <div class="shadow third_mission">
-                주 3회 헬스 인증
+                <p class="mymission_title">주 3회 헬스 인증</p>
             </div>
-        
-    
+            <!-- TODO: 미션추가/완료될때마다 동적 div 생성되도록 -->
+
+            <button class="unregister_btn">회원 탈퇴</button>
+
         </section>
     </main>
 
-    <!-- footer ------------------------------------ -->
+    <!-- footer ------------------------------------------- -->
     <footer>
         푸터
     </footer>
+
+    <!-- modify modal ------------------------------------- -->
+    <div class="modifyModal">
+        <div class="modal_content">
+            <div class="modal_title"><h2>내 정보 수정</h2></div>
+
+            <!-- 수정 영역 -->
+            <div class="info_area">
+                <div class="info-field modal_left_area">
+                    <div class="profile_img"></div>
+                    <div class="img_modify_btn"></div>
+                </div>
+
+                <div class="modal_right_area">
+                    <div class="info_field modify_nickname">
+                        <label>닉네임</label>
+                        <input type="text" id="nickname" value="카넬로">
+                        <div class="modify_btn"></div>
+                    </div>
+
+                    <div class="info_field modify_pw">
+                        <label>비밀번호</label>
+                        <input type="password" id="password" value="abc123">
+                        <div class="modify_btn"></div>
+                    </div>
+
+                    <div class="info_field">
+                        <label>이메일 주소</label>
+                        <span>suhyeon35@naver.com</span>
+                        <div class="empty"></div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- 저장/취소 버튼 -->
+            <div class="actions">
+                <button class="save_btn">저장</button>
+                <button class="cancel_btn">취소</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
