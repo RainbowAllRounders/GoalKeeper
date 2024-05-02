@@ -177,13 +177,13 @@ div:has(input) {
     display: inline-block;
 }
 
-#tagPlusBtn {
+.tagPlusBtn {
     display: inline;
 }
 
-#tagPlusBtn > img {
-    width: 40px;
-    height: 40px;
+.tagPlusBtn > img {
+    width: 30px;
+    height: 30px;
     margin-top: 10px;
 }
 
