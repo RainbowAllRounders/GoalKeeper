@@ -1,0 +1,235 @@
+*{
+    margin: 0;
+}
+.body{
+    position: relative;
+}
+
+.header{
+    width: 100%;
+    position: fixed;
+    background-color: rgba(241, 241, 241, 0.8);
+    /* background-color: yellow; */
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 16px;
+}
+
+.header>.navlogo{
+    margin: 0px 32px;
+    background: url(../images/header/GoalKeeperLogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* border: 1px solid red; */
+    width: 200px;
+    height: 44px;
+}
+
+.header>.navtabs{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    height: 44px;
+}
+
+.header>.navtabs>.tab{
+    margin: 4px 12px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: start;
+    width: 120px;
+    height: 30px;
+    /* border: 1px solid red; */
+}
+
+.header>.navtabs>.tab>.penicon{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Penicon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab>.fireicon{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Fireicon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab>.gameicon{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Gameicon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header>.navtabs>.tab>p{
+    font-size: 12px;
+}
+
+/* 위 오 아 왼 */
+.header>.navprofile{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 32px 0px 92px;
+    width: 140px;
+    height: 44px;
+    /* border: 1px solid red; */
+}
+
+.header>.navprofile>.alarmcom{
+    display: flex;
+    flex-flow: row;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.header>.navprofile>.alarmcom>.alarm{
+    width: 24px;
+    height: 24px;
+    background: url(../images/header/Alarmicon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header>.navprofile>.alarmcom>.reddot{
+    width: 4px;
+    height: 4px;
+    background: url(../images/header/reddoticon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header>.navprofile>.profile{
+    margin-left: 20px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;
+    background: url(../images/header/profile.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.header>.navprofile>.loginbtn{
+    margin-left: 20px;
+    width: 64px;
+    height: 28px;
+    border-radius: 44px;
+    border: 1px solid #000000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header>.navprofile>.loginbtn>p{
+    font-size: 12px;
+}
+
+.header>.navprofile>.loginbtn:hover{
+    border: 1px solid #ff5065;
+}
+
+.header>.navprofile>.loginbtn:hover>p{
+    color: #ff5065;
+}
+
+
+.header>.navprofile>.dropdown{
+    position: absolute;
+    top: 70px;
+    left: 1360px;
+    width: fit-content;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px #AAAAAA;
+    display: none;
+}
+
+.header>.navprofile>.dropdown>.drop{
+    width: 80px;
+    height: 30px;
+    font-family: "Nanum Gothic";
+    font-size: 12px;
+    font-weight: 400;
+    color: #464646;
+    font-style: normal;
+    text-align: center;
+    line-height: 26px;
+}
+
+.header>.navprofile>.dropdown>.drop:hover{
+    background-color: #eaeaea;
+    cursor: pointer;
+}
+
+.header>.navprofile>.profile:hover ~ .dropdown{
+    display: block;
+}
+
+.header>.navprofile>.alarmbox{
+    position: absolute;
+    top: 70px;
+    left: 1150px;
+    width: fit-content;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px #AAAAAA;
+    display: none;
+}
+
+.header>.navprofile>.alarmbox>.alarmElem{
+    width: 200px;
+    height: 40px;
+    font-family: "Nanum Gothic";
+    font-size: 12px;
+    font-weight: 400;
+    color: #464646;
+    font-style: normal;
+    text-align: center;
+    line-height: 26px;
+}
+
+.header>.navprofile>.alarmcom:hover ~ .alarmbox{
+    display: block;
+}
+
+.header>.navlogo:hover{
+    cursor: pointer;
+}
+.header>.navprofile>.loginbtn:hover{
+    cursor: pointer;
+}
+.header>.navtabs>.tab:hover{
+    cursor: pointer;
+}
+
+.header>.navprofile>.alarmcom:hover{
+    cursor: pointer;
+}
+
+.header>.navprofile>.profile:hover{
+    cursor: pointer;
+}
