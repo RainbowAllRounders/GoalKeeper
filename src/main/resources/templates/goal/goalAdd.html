@@ -1,116 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 등록하기</title>
     <link rel="stylesheet" href="../../static/css/default.css">
     <link rel="stylesheet" href="../../static/css/goal/goalAdd.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
-<th:block th:replace="~{layout/header :: header}"></th:block>
-<main>
-    <div id="goalAddWrapper">
-        <div class="shadowBox" id="goalAddBox">
+    <th:block th:replace="~{layout/header :: header}"></th:block>
+    <main>
+        <div id="goalAddWrapper">
+            <div class="shadowBox" id="goalAddBox">
 
-            <div id="goalAddHeader">
-                <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
-                <div id="goalAddHeaderText">미션 등록</div>
-                <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
-            </div>
-
-            <div class="goalInputWrapper">
-
-                <div class="goalAddContainer">
-                    <div class="goalAddMenu">
-                        미션명
-                        <div class="goalMaxText">(최대 10자)</div>
-                    </div>
-                    <div class="goalInputs" id="goalTitleInput">
-                        <input type="text" maxlength="10">
-                    </div>
+                <div id="goalAddHeader">
+                    <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
+                    <div id="goalAddHeaderText">미션 등록</div>
+                    <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
                 </div>
 
-                <div class="goalAddContainer" style="margin-bottom: 20px;">
-                    <div class="goalAddMenu">인증횟수</div>
-                    <div class="goalInputs">
-                        <div id="goalTimesInput"><input type="number" min="1" max="100" maxlength="3"></div>
-                        <div id="times">회</div>
-                        <div class="goalGuide">1~100 범위의 숫자를 입력해주세요.</div>
-                    </div>
-                </div>
+                <div class="goalInputWrapper">
 
-                <div class="goalAddContainer">
-                    <div class="goalAddMenu">
-                        <div id="goalDescription">미션 설명</div>
-                        <div class="goalMaxText">(최대 100자)</div>
+                    <div class="goalAddContainer">
+                        <div class="goalAddMenu">
+                            미션명
+                            <div class="goalMaxText">(최대 10자)</div>
+                        </div>
+                        <div class="goalInputs" id="goalTitleInput">
+                            <input type="text" maxlength="10">
+                        </div>
                     </div>
-                    <textarea name="goalDescriptionText" class="goalInputs" id="goalDescriptionText" cols="30" rows="10" maxlength="100"></textarea>
-                </div>
 
-                <div class="goalAddContainer">
-                    <div class="goalAddMenu">
-                        <div id="goalHashTag">해시태그</div>
+                    <div class="goalAddContainer" style="margin-bottom: 20px;">
+                        <div class="goalAddMenu">인증횟수</div>
+                        <div class="goalInputs">
+                            <div id="goalTimesInput">
+                                <input type="number" min="1" max="100" maxlength="3">
+                            </div>
+                            <div id="times">회</div>
+                            <div class="goalGuide">1~100 범위의 숫자를 입력해주세요.</div>
+                        </div>
                     </div>
-                    <div id="goalHashTagInput">
-                        <div class="goalHashTag">
-                            <div class="goalTag goalInputs"># <input type="text" maxlength="6"></div>
-                            <div class="goalTag goalInputs"># <input type="text" maxlength="6"></div>
-                            <div id="tagPlusBtn">
-                                <img src="../../static/images/plusBtn.png" alt="해시태그 추가">
+
+                    <div class="goalAddContainer">
+                        <div class="goalAddMenu">
+                            <div id="goalDescription">미션 설명</div>
+                            <div class="goalMaxText">(최대 100자)</div>
+                        </div>
+                        <textarea name="goalDescriptionText" class="goalInputs" id="goalDescriptionText" cols="30"
+                            rows="10" maxlength="100"></textarea>
+                    </div>
+
+                    <div class="goalAddContainer">
+                        <div class="goalAddMenu">
+                            <div id="goalHashTag">해시태그</div>
+                        </div>
+                        <div id="goalHashTagInput">
+                            <div class="goalHashTag">
+                                <div class="goalTag goalInputs"># <input type="text" maxlength="6"></div>
+                                <div class="goalTag goalInputs"># <input type="text" maxlength="6"></div>
+                                <div class="tagPlusBtn">
+                                    <img src="../../static/images/plusBtn.png" alt="해시태그 추가">
+                                </div>
+                            </div>
+                            <div class="goalGuide">한 태그당 6글자까지, 태그는 3개까지 가능합니다.</div>
+                        </div>
+                    </div>
+
+                    <div class="goalAddContainer">
+                        <div class="goalAddMenu">
+                            <div id="goalPeriod">진행 기간</div>
+                        </div>
+                        <div class="goalInputs" id="goalPeriodInput">
+                            <div class="dateWrapper">
+                                <input type="date">
+                            </div>
+                            &nbsp; ~ &nbsp;
+                            <div class="dateWrapper">
+                                <input type="date">
                             </div>
                         </div>
-                        <div class="goalGuide">한 태그당 6글자까지, 태그는 3개까지 가능합니다.</div>
                     </div>
-                </div>
 
+                    <div class="goalAddContainer">
 
-
-                <div class="goalAddContainer">
-                    <div class="goalAddMenu">
-                        <div id="goalPeriod">진행 기간</div>
-                    </div>
-                    <div class="goalInputs" id="goalPeriodInput">
-                        <div class="dateWrapper">
-                            <input type="date">
+                        <div class="goalAddMenu">
+                            <div id="goalPeople">모집 인원</div>
+                            <div class="goalMaxText">(최대 100명)</div>
                         </div>
-                        &nbsp; ~ &nbsp;
-                        <div class="dateWrapper">
-                            <input type="date">
+                        <div class="goalInputs" id="goalPeopleInput">
+                            <input type="number" min="1" max="100">
                         </div>
-                    </div>
-                </div>
+                        <div id="peopleCount">&nbsp; 명</div>
 
-                <div class="goalAddContainer">
-
-                    <div class="goalAddMenu">
-                        <div id="goalPeople">모집 인원</div>
-                        <div class="goalMaxText">(최대 100명)</div>
-                    </div>
-                    <div class="goalInputs" id="goalPeopleInput">
-                        <input type="number" min="1" max="100">
-                    </div>
-                    <div id="peopleCount">&nbsp; 명</div>
-
-                    <div class="goalAddMenu" id="imgWrapper">
-                        <div id="goalAddImg">첨부 이미지</div>
-                    </div>
-                    <div class="goalInputs" id="goalImgInput">
-                        <div id="goalImgWrapper">
-                            <input type="file" accept=".jpg, .jpeg, .png">
+                        <div class="goalAddMenu" id="imgWrapper">
+                            <div id="goalAddImg">첨부 이미지</div>
                         </div>
-                        <div class="goalGuide">
-                            20MB 이하의 jpg, jpeg, png 파일만 가능합니다.
+                        <div class="goalInputs" id="goalImgInput">
+                            <div id="goalImgWrapper">
+                                <input type="file" accept=".jpg, .jpeg, .png">
+                            </div>
+                            <div class="goalGuide">
+                                20MB 이하의 jpg, jpeg, png 파일만 가능합니다.
+                            </div>
                         </div>
                     </div>
                 </div>
+                <button type="submit" id="goalAddBtn">등 록</button>
+
             </div>
-            <button type="submit" id="goalAddBtn">등 록</button>
-
         </div>
-    </div>
-</main>
-<th:block th:replace="~{layout/footer :: footer}"></th:block>
+    </main>
+    <th:block th:replace="~{layout/footer :: footer}"></th:block>
+    <script src="../../static/js/goal/goalAdd.js"></script>
 </body>
+
 </html>
