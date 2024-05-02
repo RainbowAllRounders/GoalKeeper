@@ -228,3 +228,10 @@
     justify-content: center;
     align-items: center;
 }
+
+#seeMoreBtn:hover {
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+}
