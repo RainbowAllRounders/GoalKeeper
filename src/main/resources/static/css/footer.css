@@ -1,0 +1,64 @@
+.footer{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer>.footerele {
+    margin: 12px 0px;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 90%;
+    border-top: 1px solid #aaaaaa;
+}
+
+.footer>.footerele>.footer-logo {
+    color: #444444;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.footer>.footerele>.copyright {
+    color: #444444;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.footer>.footerele>.box-sns {
+    width: 64px;
+    gap: 16px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.footer>.footerele>.box-sns>.Notion {
+    width: 24px;
+    height: 24px;
+    background: url(../images/footer/icon-notion.png) no-repeat 50% 50%;
+    background-size: contain;
+    border: none;
+}
+
+.footer>.footerele>.box-sns>.Github {
+    width: 24px;
+    height: 24px;
+    background: url(../images/footer/icon-github.png) no-repeat 50% 50%;
+    background-size: contain;
+    border: none;
+}
+
+.footer>.footerele>.box-sns>.Notion:hover {
+    cursor: pointer;
+}
+
+.ooter>.footerele>.box-sns>.Github:hover {
+    cursor: pointer;
+}
