@@ -1,0 +1,158 @@
+body {
+    background-color: #F1F1F1;
+}
+
+.join, .quit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 23%;
+    left: 25%;
+    background-color: #FFBB00;
+    border-radius: 25px;
+    width: 165px; 
+    height: 40px;
+    color: #000000;
+}
+
+.join, .quit > span {
+    margin-top: 5px;
+}
+
+.join:active {
+    z-index: 1;
+}
+
+#like {
+    position: absolute;
+    left: 85%;
+    top: 3%;
+}
+
+#like > img {
+    width: 45px;
+    height: 40px;
+}
+
+.like_count {
+    top: 7.5%;
+    font-weight: 700;
+}
+
+#container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.auth_count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    text-align: center;
+    width: 165px;
+    height: 35px;
+    background-color: #FF5065;
+    border-radius: 44px;
+    margin: 0 auto;
+}
+
+.title, .content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #444444;
+    margin-top: 50px;
+}
+
+.main_img {
+    display: flex;
+    margin-left: 11%;
+    margin-top: 3%;
+}
+
+.main_img > img {
+    margin-left: 10%;
+    width: 800px;
+    height: 475px;
+}
+
+.main_img > ul {
+    margin-top: 1%;
+    margin-left: 50px;
+}
+
+.main_img > ul > li {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    font-size: 15px;
+    margin-bottom: 15%;
+}
+
+.main_img > ul > li > span {
+    margin-top: 1%;
+}
+
+.cur_count {
+    margin-left: 30%;
+}
+
+.total_count {
+    font-size: 10px !important;
+    color: #b1b6bc;
+    margin-left: 27%;
+}
+
+.progress_bar_border {
+    border: 1px solid #FC79AE;
+    width: 800px;
+    border-radius: 20px;
+    margin-left: 19.8%;
+}
+
+.progress_bar_border > .fill{
+    display: flex;
+    justify-content: end;
+    margin: 2px 2px 2px 2px;
+    background-color: #f485b1;
+    width: 600px;
+    border-radius: 20px;
+    color: #F1F1F1;
+    font-size: 10px;
+}
+
+.progress_bar_border > .fill > span {
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+.hashtag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    height: 35px;
+    border: 1px solid #000000;
+    font-size: 20px;
+    border-radius: 25px;
+    margin-top: 1%;
+    margin-left: 19.8%;
+}
+
+.hashtag > span {
+    margin-top: 2%;
+}
+
+.auth {
+    background-color: cadetblue;
+}
+
+
+
+.content {
+    font-size: 20px;
+}
