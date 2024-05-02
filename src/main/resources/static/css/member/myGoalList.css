@@ -49,6 +49,11 @@
     color: black;
 }
 
+/* 내 미션 목록 제목 ---------------------------------------- */
+#myGoalTitle {
+    font-size: 20px;
+}
+
 /* 검색창 ---------------------------------------- */
 #searchBox {
     box-sizing: border-box;
@@ -92,6 +97,11 @@
     margin-bottom: 40px;
     box-sizing: border-box;
     margin: 0 17px 40px 17px;
+}
+
+/* 실패한 goalCard ---------------------------------------- */
+.fail {
+    opacity: 0.5;
 }
 
 /* goalCard 이미지 윗 부분 ---------------------------------------- */
@@ -143,7 +153,6 @@
 
 .statusTag {
     width: 55px;
-    background-color: black;
     color: white;
 }
 
@@ -175,8 +184,34 @@
 /* goalCard 이미지 부분 ---------------------------------------- */
 .imgWrapper {
     height: 180px;
-    background-image: url(../images/스껄.jpg);
+    background-image: url(../../images/스껄.jpg);
     background-size: cover;
+}
+
+/* 실패한 goalCard 이미지 부분 ---------------------------------------- */
+.failImgWrapper {
+    height: 180px;
+    position: relative;
+    z-index: 1;
+}
+
+.failImgWrapper::after {
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: url("../../images/스껄.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5;
+  }
+
+#failImg {
+    width: 275px;
+    height: 180px;
+    opacity: 1;
 }
 
 /* goalCard 이미지 아랫 부분 ---------------------------------------- */

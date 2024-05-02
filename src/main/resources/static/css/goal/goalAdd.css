@@ -184,6 +184,7 @@ div:has(input) {
 #tagPlusBtn > img {
     width: 40px;
     height: 40px;
+    margin-top: 10px;
 }
 
 /* 진행 기간 ---------------------------------------- */
@@ -251,4 +252,9 @@ input[type=file]::file-selector-button {
     display: block;
     margin-top: 20px;
     margin-bottom: 30px;
+}
+
+#goalAddBtn:hover {
+    background-color: #FF5065;
+    color: white;
 }
