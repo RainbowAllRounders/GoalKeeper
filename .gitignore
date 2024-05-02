@@ -439,4 +439,10 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+*.lock
+
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,windows,macos,intellij,intellij+all,intellij+iml,visualstudiocode,eclipse
+
+build/
+.idea/
+.gradle/
