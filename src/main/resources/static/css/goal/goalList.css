@@ -18,7 +18,7 @@
 
 /* 필터와 검색창 라인 ---------------------------------------- */
 #goalListHeader {
-    width: 1300px;
+    width: 1250px;
     display: flex;
     justify-content: space-between;
     height: 100px;
@@ -80,7 +80,7 @@
 #goalListContainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 1300px;
 }
 
@@ -91,6 +91,7 @@
     border-radius: 30px;
     margin-bottom: 40px;
     box-sizing: border-box;
+    margin: 0 17px 40px 17px;
 }
 
 /* goalCard 이미지 윗 부분 ---------------------------------------- */
@@ -141,8 +142,24 @@
 }
 
 .statusTag {
+    width: 55px;
     background-color: black;
     color: white;
+}
+
+/* 완료 태그 */
+.complete {
+    background-color: #3ADC67;
+}
+
+/* 진행 중 태그 */
+.proceeding {
+    background-color: #506CFF;
+}
+
+/* 모집 중 태그 */
+.recruiting {
+    background-color: black;
 }
 
 .hashtag {
@@ -168,7 +185,6 @@
     flex-direction: column;
     padding: 10px 15px 10px 15px;
     font-size: 10px;
-    flex-wrap: wrap;
 }
 
 .progressBar {
