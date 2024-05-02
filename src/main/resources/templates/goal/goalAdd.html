@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 등록하기</title>
     <link rel="stylesheet" href="../../static/css/default.css">
-    <link rel="stylesheet" href="../../static/css/goalAdd.css">
+    <link rel="stylesheet" href="../../static/css/goal/goalAdd.css">
 </head>
 
 <body>
+<th:block th:replace="~{layout/header :: header}"></th:block>
+<main>
     <div id="goalAddWrapper">
         <div class="shadowBox" id="goalAddBox">
 
@@ -109,6 +110,7 @@
 
         </div>
     </div>
+</main>
+<th:block th:replace="~{layout/footer :: footer}"></th:block>
 </body>
-
 </html>
