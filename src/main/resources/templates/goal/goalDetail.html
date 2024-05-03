@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -7,24 +7,19 @@
     <title>미션 상세페이지</title>
     <link rel="stylesheet" href="../../static/css/default.css">
     <link rel="stylesheet" href="../../static/css/goalDetail.css">
-    <script src="js/scripe.js"></script>
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 </head>
 <body>
 
 <div id="container">
 
+    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
+
     <div id="like">
         <img src="../../static/images/redHeart.png" alt="좋아요" class="like_img">
-        <div class="like_count">&nbsp;&nbsp;999+</div>
-    </div>
-
-    <div class="join_quit">
-        <div class="join">
-            <span>참여하기</span>
-        </div>
-        <p class="quit">
-            <span>나가기</span>
-        </p>
+        <div class="like_count">&nbsp;999+</div>
     </div>
 
     <div class="main">
@@ -36,6 +31,12 @@
         <div class="content">
             평일 미라클 모닝 인증 미션이고, 인증은 매일 해야 합니다.<br>
             일어난 시간에 캡쳐하거나, 시계 사진으로 인증하시면 됩니다.
+        </div>
+
+        <div id="join_quit">
+            <div id="join">
+                <span>참여하기</span>
+            </div>
         </div>
 
         <div class="main_img">
@@ -68,11 +69,30 @@
 
     </div>
 
-    <div class="auth">
-        <p>인증하기</p>
-        <img src="../../static/images/인증사진.png" alt="">
+    <div class="auth_file">
+        <label for="file" class="auth_btn">
+            <span>인증하기</span>
+        </label>
+        <input type="file" name="file" id="file">
     </div>
+
+
+    <div class="auth_imgs">
+        <div class="prev_next_btn">
+            <img src="../../static/images/grey_prev.png" class="prev_btn">
+            <img src="../../static/images/grey_next.png" class="next_btn">
+        </div>
+    
+        <div class="auth_img">
+            <img src="../../static/images/인증사진.png">
+            <img src="../../static/images/축구게임.png" class="one">
+            <img src="../../static/images/스껄.jpg" class="two">
+            <img src="../../static/images/profile.png" class="three">
+        </div>
+    </div>
+
 </div>
 
+<script src="../../static/js/goal/goalDetail.js"></script>
 </body>
 </html>
