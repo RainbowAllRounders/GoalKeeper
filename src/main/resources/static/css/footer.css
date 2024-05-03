@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 .footer{
+    position: relative;
+    transform: translateY(0%);
+    /*margin: 16px 0px 0px 0px;*/
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
 }
 .footer>.footerele {
-    margin: 12px 0px;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
+    margin: 0px 0px;
+    padding: 40px 20px;
+
+    /*position: absolute;*/
+    /*bottom: 0;*/
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -25,6 +31,7 @@
 }
 
 .footer>.footerele>.copyright {
+    font-family: 'Nanum Gothic';
     color: #444444;
     font-size: 14px;
     font-weight: 400;
