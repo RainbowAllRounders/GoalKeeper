@@ -6,6 +6,7 @@
 	<title>main</title>
 	<link rel="stylesheet" th:href="@{/css/goalmain/goalmain.css}">
 	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/footer.css}">
 	<link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
 <body>
@@ -227,6 +228,8 @@
 	</div>
 </div>
 <div class="upbtn" id="upbtn"></div>
+
+<th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
 <script th:src="@{/js/main/main.js}"></script>
 </body>
 </html>
