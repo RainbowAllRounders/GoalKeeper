@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px 16px;
+    overflow: visible;
 }
 
 .header>.navlogo{
@@ -28,6 +29,7 @@
 }
 
 .header>.navtabs{
+    background-color: transparent;
     display: flex;
     flex-flow: row;
     align-items: center;
@@ -37,6 +39,7 @@
 }
 
 .header>.navtabs>.tab{
+    background-color: transparent;
     margin: 4px 12px;
     display: flex;
     flex-flow: row;
@@ -72,17 +75,38 @@
     background-repeat: no-repeat;
 }
 
+.header>.navtabs>.tab>.penicon:hover{
+    background: url(../images/header/Penicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab>.fireicon:hover{
+    background: url(../images/header/Fireicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab>.gameicon:hover{
+    background: url(../images/header/Gameicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .header>.navtabs>.tab>p{
     font-size: 12px;
+    background-color: transparent;
+}
+.header>.navtabs>.tab>p:hover{
+    color: #ff5065;
 }
 
 /* 위 오 아 왼 */
 .header>.navprofile{
+    background-color: transparent;
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    margin: 0px 32px 0px 92px;
+    margin: 0px 60px 0px 92px;
     width: 140px;
     height: 44px;
     /* border: 1px solid red; */
@@ -93,6 +117,7 @@
     flex-flow: row;
     align-items: start;
     justify-content: space-between;
+    background-color: transparent;
 }
 
 .header>.navprofile>.alarmcom>.alarm{
@@ -119,11 +144,11 @@
     background: url(../images/header/profile.png);
     background-size: contain;
     background-repeat: no-repeat;
-
 }
 
 .header>.navprofile>.loginbtn{
     margin-left: 20px;
+    margin-right: 35px;
     width: 64px;
     height: 28px;
     border-radius: 44px;
@@ -132,13 +157,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background-color: transparent;
 }
 
 .header>.navprofile>.loginbtn>p{
+    background-color: transparent;
     font-size: 12px;
 }
 
 .header>.navprofile>.loginbtn:hover{
+    cursor: pointer;
     border: 1px solid #ff5065;
 }
 
@@ -198,6 +227,7 @@
     background-color: #ffffff;
     box-shadow: 0 0 4px #AAAAAA;
     display: none;
+    z-index: 1;
 }
 
 .header>.navprofile>.alarmbox>.alarmElem{
@@ -210,6 +240,7 @@
     font-style: normal;
     text-align: center;
     line-height: 26px;
+    background-color: transparent;
 }
 
 .header>.navprofile>.alarmcom:hover ~ .alarmbox{
@@ -232,4 +263,14 @@
 
 .header>.navprofile>.profile:hover{
     cursor: pointer;
+}
+
+.line{
+    position: absolute;
+    border-bottom: 1px solid #b0b0b0;
+    /*height: 1px;*/
+    width: 90%;
+    bottom: -1px;
+    transform: translateX(-50%);
+    left: 49%;
 }
