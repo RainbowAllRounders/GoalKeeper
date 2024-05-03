@@ -2,32 +2,14 @@ body {
     background-color: #F1F1F1;
 }
 
-.join, .quit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 23%;
-    left: 25%;
-    background-color: #FFBB00;
-    border-radius: 25px;
-    width: 165px; 
-    height: 40px;
-    color: #000000;
-}
-
-.join, .quit > span {
-    margin-top: 5px;
-}
-
-.join:active {
-    z-index: 1;
+.like_img:hover {
+    cursor: pointer;
 }
 
 #like {
     position: absolute;
-    left: 85%;
-    top: 3%;
+    left: 78%;
+    top: 12%;
 }
 
 #like > img {
@@ -41,10 +23,14 @@ body {
 }
 
 #container {
+    padding-top: 84px;
     width: 85%;
     margin: 0 auto;
 }
 
+.main {
+    margin-top: 40px;
+}
 .auth_count {
     display: flex;
     align-items: center;
@@ -68,10 +54,30 @@ body {
     margin-top: 50px;
 }
 
+.content {
+    margin-bottom: 2%;
+}
+
+#join_quit:hover {
+    cursor: pointer;
+}
+
+#join, #quit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFBB00;
+    border-radius: 25px;
+    width: 165px;
+    height: 40px;
+    color: #000000;
+    margin-left: 10%;
+}
+
+
 .main_img {
     display: flex;
-    margin-left: 11%;
-    margin-top: 3%;
+    margin-top: 1%;
 }
 
 .main_img > img {
@@ -107,11 +113,15 @@ body {
     margin-left: 27%;
 }
 
+.prev_next_btn:hover {
+    cursor: pointer;
+}
+
 .progress_bar_border {
     border: 1px solid #FC79AE;
     width: 800px;
     border-radius: 20px;
-    margin-left: 19.8%;
+    margin-left: 10%;
 }
 
 .progress_bar_border > .fill{
@@ -140,18 +150,77 @@ body {
     font-size: 20px;
     border-radius: 25px;
     margin-top: 1%;
-    margin-left: 19.8%;
+    margin-left: 10%;
 }
 
 .hashtag > span {
     margin-top: 2%;
 }
 
-.auth {
-    background-color: cadetblue;
+.prev_next_btn {
+    position: relative;
 }
 
+.prev_btn {
+    position: absolute;
+    right: 88%;
+}
 
+.next_btn {
+    position: absolute;
+    left: 88%;
+}
+
+.auth_file {
+    display: flex;
+    flex-direction: column;
+    margin-left: 75%;
+}
+
+.auth_btn {
+    width: 165px;
+    height: 40px;
+    background-color: #FFBB00;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth_imgs {
+    position: relative;
+    bottom: 40px;
+}
+.auth_imgs > .prev_next_btn {
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    margin-top: 3%;
+}
+
+.auth_img > img:hover {
+    cursor: pointer;
+}
+
+.auth_img > img {
+    position: relative;
+    left: 16.5%;
+}
+
+.auth_img > .one, .two, .three{
+    margin-top: 2%;
+    width: 160px;
+    height: 160px;
+    margin-left: 7%;
+}
+
+#file {
+    display: none;
+}
 
 .content {
     font-size: 20px;
