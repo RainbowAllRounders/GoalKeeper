@@ -26,17 +26,24 @@ public class MemberGoal {
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
+    // startAlarmDate = Goal의 startDate
+    // 시작일 하루 알림
     @Future
     @Column(nullable = false)
     private LocalDate startAlarmDate;
 
+    // endAlarmDate = Goal의 endDate
+    // 끝나기 하루 전, 끝나는 날 총 2번 알림
     @Future
     @Column(nullable = false)
     private LocalDate endAlarmDate;
 
+    // 알람 확인 여부
     @ColumnDefault("false")
     private Boolean isChecked;
 
-    @ColumnDefault("false")
-    private Boolean isSuccess;
+    // is_success 컬럼 값 구할 때 사용
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "authImgId")
+    private AuthImg authImg;
 }
