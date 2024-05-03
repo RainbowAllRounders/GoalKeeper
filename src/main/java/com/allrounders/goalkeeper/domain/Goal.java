@@ -29,12 +29,12 @@ public class Goal {
     private Integer maxPeople;
 
     // cur_people 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "memberGoal")
+    @OneToMany(mappedBy = "member")
     @JoinColumn(name = "memberGoalId")
     private MemberGoal memberGoal;
 
     // like_count 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "like")
+    @OneToMany(mappedBy = "member")
     @JoinColumn(name = "likeId")
     private Likes like;
 
