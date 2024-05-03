@@ -49,7 +49,7 @@
     width: 472px;
     height: 100px;
     align-items: center;
-    background: url(../images/main/GoalKeeperLogo.png);
+    background: url(../../images/intro/GoalKeeperLogo.png);
     background-size: contain;
  }
 
@@ -83,7 +83,7 @@
  }
 
  .container>.Intro_goalCard>.card{
-   background: url(../images/main/IntroCard1.png);
+   background: url(../../images/intro/IntroCard1.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 580px;
@@ -112,7 +112,7 @@
  .container>.Intro_btn>a>.btnlogo{
    width: 178px;
    height: 40px;
-   background: url(../images/main/GoalKeeperLogo.png);
+   background: url(../../images/intro/GoalKeeperLogo.png);
    background-size: contain;
    background-repeat: no-repeat;
  }
@@ -123,7 +123,7 @@
  }
 
  .container>.Intro_btn:hover .btnlogo{
-   background: url(../images/main/GoalKeeperLogo_white.png);
+   background: url(../../images/intro/GoalKeeperLogo_white.png);
    background-size: contain;
  }
 

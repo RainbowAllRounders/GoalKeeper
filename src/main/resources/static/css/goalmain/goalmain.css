@@ -1,0 +1,508 @@
+*{
+    margin-top: 0px;
+    background-color: #F1F1F1;
+    overflow-y: scroll;
+}
+
+
+.container{
+    margin-top: 84px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.upbtn{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 28px;
+    background: url(../../images/main/upbtn.png);
+    background-size: contain;
+    width: 56px;
+    height: 56px;
+}
+.upbtn:hover{
+    cursor: pointer;
+}
+
+/*
+<div class="banner">
+    <div class="bannerlogo"></div>
+    <div class="bannerelplain">
+        <p>목표를 지키는 최고의 수비수,
+            <span>GoalKeeper</span>와 함께라면 넘지 못할 골대는 없습니다.
+        </p>
+    </div>
+</div>
+*/
+
+.banner{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffc933;
+    margin-bottom: 40px;
+}
+
+.banner>.bannerlogo{
+    margin-top: 52px;
+    margin-bottom: 8px;
+    width: 350px;
+    height: 80px;
+    background: url(../../images/main/GoalKeeperLogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.banner>.bannerelplain>p{
+    font-family: "Nanum Gothic";
+    font-size: 16px;
+    font-weight: 500;
+    color: #444444;
+    font-style: normal;
+    text-align: center;
+    line-height: 26px;
+    background-color: #ffc933;
+    padding-bottom: 56px;
+}
+
+/*
+div class="hotgoal">
+    <div class="hotgoal_top">
+        <div class="hotgoallogo">
+        </div>
+        <div class="goalmission">
+        <p>미션 전체 보기</p>
+        </div>
+    </div>
+    <div class="hotgoal_bottom"></div>
+
+</div>
+*/
+
+.hotgoal{
+    width: 85%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotgoal>.hotgoal_top{
+    margin: 36px 0px 44px 0px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+.hotgoal>.hotgoal_top>.hotgoallogo{
+    background: url(../../images/main/hotgoal.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 300px;
+    height:60px;
+    /* border: 1px solid blue; */
+}
+
+.hotgoal_bottom{
+    margin-bottom: 44px;
+    width: 85%;
+    overflow: scroll;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+}
+
+.hotgoal_bottom>.goalcard_1{
+    margin: 16px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid violet; */
+    border-radius: 30px;
+    background-color: #FFFFFF;
+    background-color: inherit;
+    box-shadow: 4px 4px 8px 4px  #AAAAAA;
+}
+
+
+.hotgoal_bottom>.goalcard_1>.cardtop{
+    margin: 20px 12px 4px 12px;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+
+/*
+<!-- cardTop_Left -->
+<div class="cardtopL">
+    <div class="cardex">
+        <div class="authcount">
+            <p>1회 인증</p>
+        </div>
+        <div class="status">
+            <p>진행중</p>
+        </div>
+    </div>
+    <div class="goaltitle"></div>
+    <div class="hashtag"></div>
+</div>
+<!-- cardTop_Right -->
+<div class="cardtopR">
+    <div class="likeicon"></div>
+    <div class="likecount"><p>999+</p></div>
+</div>
+*/
+
+
+.hotgoal_bottom>.goalcard_1>.cardtop>.cardtopL{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+}
+
+.cardtopL>.cardex{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 1px solid blue; */
+}
+
+.cardtopL>.cardex>.authcount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff5065;
+    border-radius: 44px;
+    padding: 5px 0px;
+    margin: 4px;
+    width: 76px;
+}
+
+.cardtopL>.cardex>.authcount>p{
+    font-size: 10px;
+    background-color:transparent;
+    color: #FFFFFF;
+}
+
+.cardtopL>.cardex>.status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    border-radius: 44px;
+    padding: 5px 0px;
+    margin: 4px;
+    width: 76px;
+}
+.cardtopL>.cardex>.status>p{
+    font-size: 10px;
+    background-color:transparent;
+    color: #FFFFFF;
+}
+
+.cardtopL>.goaltitle{
+    padding: 4px;
+}
+
+.cardtopL>.goaltitle>p{
+    padding: 8px 2px;
+    font-size: 20px;
+}
+
+.cardtopL>.hashtags{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.cardtopL>.hashtags>.hashtag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    margin: 4px;
+    border-radius: 44px;
+    border: 1px solid black;
+}
+
+.cardtopL>.hashtags>.hashtag>p{
+    font-size: 10px;
+}
+
+.cardtopR{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 12px;
+}
+
+.cardtopR>.likeicon{
+    background: url(../../images/main/Heart.png) no-repeat;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+}
+
+.cardtopR>.likecount{
+    margin: 2px;
+}
+
+.cardtopR>.likecount>p{
+    font-size: 12px;
+}
+
+.hotgoal_bottom>.goalcard_1>.goalimg{
+    background: url(../../images/main/goalimg.png) no-repeat;
+    background-size: contain;
+    height: 194px;
+    width: 100%;
+}
+
+.hotgoal_bottom>.goalcard_1>.progress{
+    margin: 12px 0px;
+    background: url(../../images/main/progress.png) no-repeat;
+    background-size: contain;
+    height: 22px;
+    width: 95%;
+}
+
+.hotgoal_bottom>.goalcard_1>.cardbottom{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0px 12px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+.hotgoal_bottom>.goalcard_1>.cardbottom>*{
+    font-size: 10px;
+}
+
+.cardbottomL{
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.cardbottomL>.king,
+.cardbottomL>.pnum,
+.cardbottomR>.point,
+.cardbottomR>.term{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+}
+
+.cardicon{
+    margin-right: 8px;
+}
+
+.hotgoal>.goalmission{
+    margin: 8px;
+    border: 1px solid #b0b0b0;
+    border-radius: 44px;
+    margin-bottom: 180px;
+}
+
+.hotgoal>.goalmission:hover{
+    cursor: pointer;
+    border: 1px solid #ff5065;
+}
+
+.hotgoal>.goalmission:hover>p{
+    color: #ff5065;
+}
+
+.hotgoal>.goalmission>p{
+    font-size: 24px;
+    font-weight: 100;
+    margin: 20px 50px;
+    color: #b0b0b0;
+}
+
+.rankscroll{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rankscroll>.ranklogo{
+    background: url(../../images/main/ranklogo.png) no-repeat;
+    background-size: contain;
+
+    width: 555px;
+    height: 75px;
+}
+
+.rankscroll>.rankarrow{
+    width: 190px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rankscroll>.rankarrow>.arrow{
+    width: 150px;
+    height: 150px;
+    background: url(../../images/main/arrow.png) no-repeat;
+    background-size: contain;
+
+    animation: motion 0.25s /* 속도 */
+    linear 0s   /* 처음부터 끝까지 일정 속도로 진행 */
+    infinite alternate; /* 무한 반복 */
+
+}
+@keyframes motion {
+    0% {margin-top: -40px;} /* 처음 위치 */
+    100% {margin-top: 40px;} /* 마지막 위치 */
+}
+
+.rankpage{
+    width: 100%;
+    height: 100vh;
+    background-color: #ffc933;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rankpage>.rank_t{
+    background: url(../../images/main/ranklogo_gray.png) no-repeat;
+    background-size: cover;
+    margin: 60px;
+    margin-bottom: 30px;
+    width: 800px;
+    height: 150px;
+}
+
+.rankpage>.dansang_group{
+    background-color: transparent;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.rankpage>.dansang_group>.rankpeopleprofile{
+    position: relative;
+    top: 108px;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    background-color: transparent;
+    overflow: visible;
+}
+
+.rankpage>.dansang_group>.rankpeopleprofile>._1st{
+    position: relative;
+    top: -80px;
+    margin: 0px 60px;
+    background: url(../../images/header/profile.png) no-repeat;
+    background-size: contain;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+.rankpage>.dansang_group>.rankpeopleprofile>._2st{
+    background: url(../../images/header/profile.png) no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.rankpage>.dansang_group>.rankpeopleprofile>._3st{
+    background: url(../../images/header/profile.png) no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.rankpage>.dansang_group>.dansang{
+    background: url(../../images/main/dansang.png) no-repeat;
+    background-size: contain;
+    width: 700px;
+    height: 320px;
+}
+
+/*
+<div class="rankpeoples">
+    <div class="rankpeople">
+        <div class="nicname"><p>zl존 조원진</p></div>
+        <div class="point"><p>20493 point</p></div>
+*/
+
+.rankpage>.dansang_group>.rankpeoples{
+    position: relative;
+    top: -20px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+
+}
+
+.rankpage>.dansang_group>.rankpeoples>.rankpeople{
+    margin: 0px 14px;
+    width: 220px;
+    background-color:inherit;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rankpage>.dansang_group>.rankpeoples>.rankpeople>.nicname{
+    margin-bottom: 12px;
+    background-color:inherit;
+    text-align: center;
+}
+
+.rankpeople>.nicname{
+    font-size: 28px;
+    color: #444444;
+    width: 100%;
+}
+.rankpeople>.point{
+    padding: 10px 18px;
+    border-radius: 44px;
+    background-color: #ffffff;
+
+    font-size: 16px;
+    color: #ff5065;
+    /* width: 100%; */
+}

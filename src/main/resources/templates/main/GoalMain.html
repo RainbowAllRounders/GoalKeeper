@@ -4,11 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>main</title>
-	<link rel="stylesheet" href="./css/defalut.css" />
-<!--	<link rel="stylesheet" href="./css/main.css" />-->
+	<link rel="stylesheet" th:href="@{/css/goalmain/goalmain.css}">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
 <body>
-<div class="header" id="header">header</div>
+<!--<div class="header" id="header">-->
+	<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
+<!--</div>-->
 <div class="container">
 	<!-- banner -->
 	<div class="banner">
