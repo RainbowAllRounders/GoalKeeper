@@ -111,6 +111,7 @@ div:has(input) {
     padding: 15px;
     background-color: #D9D9D9;
     display: inline-block;
+    height: 50px;
 }
 
 #goalTitleInput > input {
@@ -151,6 +152,7 @@ div:has(input) {
     border-radius: 20px;
     outline: none;
     font-size: 16px;
+    resize: none;
 }
 
 /* 해시태그 ---------------------------------------- */
@@ -159,13 +161,13 @@ div:has(input) {
     box-sizing: border-box;
     background-color: #D9D9D9;
     padding: 10px;
-    width: 160px;
+    width: 125px;
     height: 40px;
     margin-right: 10px;
 }
 
 .goalTag > input {
-    width: 100px;
+    width: 65px;
 }
 
 .goalHashTag {

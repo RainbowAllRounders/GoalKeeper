@@ -1,10 +1,13 @@
+body {
+    background-color: #F1F1F1;
+}
+
 #goalListWrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F1F1F1;
     padding-bottom: 40px;
 }
 
@@ -175,7 +178,7 @@
 /* goalCard 이미지 부분 ---------------------------------------- */
 .imgWrapper {
     height: 180px;
-    background-image: url(../images/스껄.jpg);
+    background-image: url(../../images/스껄.jpg);
     background-size: cover;
 }
 
