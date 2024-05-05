@@ -10,10 +10,27 @@ const tagPlusBtn = document.querySelector('.tagPlusBtn');
 const goalHashTag = document.querySelector('.goalHashTag');
 
 // 진행 기간
+const startDateInput = document.querySelector('#startDateInput input[type="date"]');
+const endDateInput = document.querySelector('#endDateInput input[type="date"]');
 
 // 모집 인원
 const goalPeopleInput = document.getElementById('goalPeopleInput');
 const goalPeople = goalPeopleInput.querySelector('input');
+
+// 현재 날짜 yyyy-mm-dd 형식 리턴 함수
+function calcDate() {
+    // 오늘 날짜
+    const today = new Date();
+    // 년도
+    const year = today.getFullYear();
+    // 월
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    // 일
+    const day = today.getDate().toString().padStart(2, '0');
+    // yyyy-mm-dd
+    const yyyy_mm_dd = `${year}-${month}-${day}`;
+    return yyyy_mm_dd;
+}
 
 window.addEventListener('load', function () {
 
@@ -53,6 +70,48 @@ window.addEventListener('load', function () {
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
+        }
+    });
+
+    // 시작일 제한
+    startDateInput.addEventListener('input', function() {
+        const today = new Date(calcDate());
+        const selectedStartDate = new Date(startDateInput.value);
+        
+        if(selectedStartDate <= today) {
+            swal({
+                title: '입력 날짜 오류',
+                text: '현재 날짜 이후의 시작일을 선택하세요.',
+                type: 'error',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#FF5065'
+            });
+            startDateInput.value = '';
+        }
+    });
+
+    // 종료일 제한
+    endDateInput.addEventListener('input', function() {
+        const selectedStartDate = new Date(startDateInput.value);
+        const selectedEndDate = new Date(endDateInput.value);
+        if(!startDateInput.value) {
+            swal({
+                title: '입력 날짜 오류',
+                text: '시작일을 먼저 입력해주세요.',
+                type: 'error',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#FF5065'
+            });
+            endDateInput.value = '';
+        } else if(selectedEndDate <= selectedStartDate) {
+            swal({
+                title: '입력 날짜 오류',
+                text: '시작일 이후의 날짜를 선택하세요.',
+                type: 'error',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#FF5065'
+            });
+            endDateInput.value = '';
         }
     });
 
