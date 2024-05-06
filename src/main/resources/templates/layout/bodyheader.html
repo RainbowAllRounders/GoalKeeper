@@ -4,22 +4,27 @@
 <div class="header" th:fragment="bodyheader">
     <div class="navlogo"></div>
     <div class="navtabs">
-        <div class="tab">
+        <div class="tab tab1">
+			<!-- tab1 클릭하면 class="penicon_pink"-->
             <div class="penicon"></div>
+			<!-- tab1 클릭하면 class="pink"-->
             <p>미션 등록하기</p>
         </div>
-        <div class="tab">
+        <div class="tab tab2">
             <div class="fireicon"></div>
             <p>미션 참여하기</p>
         </div>
-        <div class="tab">
+        <div class="tab tab3">
             <div class="gameicon"></div>
             <p>미니게임</p>
         </div>
     </div>
     <div class="navprofile">
-        <div class="alarmcom ">
-            <div class="alarm"></div>
+		<!--로그인후 -> messagecom -->
+        <div class="messagecom">
+			<!-- 클릭하면 message_open -->
+            <div class="message"></div>
+	        <!-- 클릭하면 reddot속성없앰 -->
             <div class="reddot"></div>
         </div>
         <!-- class에 profile속성 추가하면 profile로 변경 -->
@@ -31,12 +36,12 @@
             <div class="drop">내 미션</div>
             <div class="drop">로그아웃</div>
         </div>
-        <div class="alarmbox">
+        <div class="messagebox">
             <div class="alarmElem">---미션이 시작됩니다.</div>
             <div class="alarmElem">---미션이 종료됩니다.</div>
             <div class="alarmElem">---미션이 시작됩니다.</div>
         </div>
     </div>
-	<div class="line">
-	</div>
+	<div class="line"></div>
+	<div class="upbtn" id="upbtn" th:style = " 'background: url(/images/header/upbtn.png) no-repeat center / contain' "></div>
 </div>

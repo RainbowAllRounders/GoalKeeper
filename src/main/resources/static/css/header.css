@@ -75,27 +75,59 @@
     background-repeat: no-repeat;
 }
 
-.header>.navtabs>.tab>.penicon:hover{
+.header>.navtabs>.tab>p{
+    font-size: 12px;
+    background-color: transparent;
+}
+
+/*마우스 올렸을떄*/
+.header>.navtabs>.tab1:hover .penicon{
     background: url(../images/header/Penicon_pink.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
-.header>.navtabs>.tab>.fireicon:hover{
+.header>.navtabs>.tab2:hover .fireicon{
     background: url(../images/header/Fireicon_pink.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
-.header>.navtabs>.tab>.gameicon:hover{
+.header>.navtabs>.tab3:hover .gameicon{
     background: url(../images/header/Gameicon_pink.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-.header>.navtabs>.tab>p{
-    font-size: 12px;
-    background-color: transparent;
+.header>.navtabs>.tab:hover p{
+    color: #ff5065;
 }
-.header>.navtabs>.tab>p:hover{
+
+/*클릭했을때*/
+.header>.navtabs>.tab1>.penicon_pink{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Penicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab2>.fireicon_pink{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Fireicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.header>.navtabs>.tab3>.gameicon_pink{
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+    background: url(../images/header/Gameicon_pink.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header>.navtabs>.tab>.pink{
     color: #ff5065;
 }
 
@@ -112,7 +144,7 @@
     /* border: 1px solid red; */
 }
 
-.header>.navprofile>.alarmcom{
+.header>.navprofile>.messagecom{
     display: flex;
     flex-flow: row;
     align-items: start;
@@ -120,7 +152,11 @@
     background-color: transparent;
 }
 
-.header>.navprofile>.alarmcom>.alarm{
+.header>.navprofile>.messagecom:hover{
+    cursor: pointer;
+}
+
+.header>.navprofile>.messagecom>.message{
     width: 24px;
     height: 24px;
     background: url(../images/header/Alarmicon.png);
@@ -128,7 +164,15 @@
     background-repeat: no-repeat;
 }
 
-.header>.navprofile>.alarmcom>.reddot{
+.header>.navprofile>.messagecom>.message_open{
+    width: 24px;
+    height: 24px;
+    background: url(../images/header/Alarmopen.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.header>.navprofile>.messagecom>.reddot{
     width: 4px;
     height: 4px;
     background: url(../images/header/reddoticon.png);
@@ -177,11 +221,12 @@
 
 
 .header>.navprofile>.dropdown{
+    z-index: 2000;
     position: absolute;
     top: 70px;
     left: 1360px;
     width: fit-content;
-    padding: 12px;
+    padding: 16px;
     border-radius: 10px;
     display: flex;
     flex-flow: column;
@@ -193,27 +238,22 @@
 }
 
 .header>.navprofile>.dropdown>.drop{
+    background-color: transparent;
     width: 80px;
     height: 30px;
     font-family: "Nanum Gothic";
     font-size: 12px;
     font-weight: 400;
-    color: #464646;
     font-style: normal;
     text-align: center;
     line-height: 26px;
 }
-
 .header>.navprofile>.dropdown>.drop:hover{
-    background-color: #eaeaea;
     cursor: pointer;
+    background-color: #f1f1f1;
 }
 
-.header>.navprofile>.profile:hover ~ .dropdown{
-    display: block;
-}
-
-.header>.navprofile>.alarmbox{
+.header>.navprofile>.messagebox{
     position: absolute;
     top: 70px;
     left: 1150px;
@@ -230,7 +270,7 @@
     z-index: 1;
 }
 
-.header>.navprofile>.alarmbox>.alarmElem{
+.header>.navprofile>.messagebox>.alarmElem{
     width: 200px;
     height: 40px;
     font-family: "Nanum Gothic";
@@ -241,10 +281,6 @@
     text-align: center;
     line-height: 26px;
     background-color: transparent;
-}
-
-.header>.navprofile>.alarmcom:hover ~ .alarmbox{
-    display: block;
 }
 
 .header>.navlogo:hover{
@@ -273,4 +309,17 @@
     bottom: -1px;
     transform: translateX(-50%);
     left: 49%;
+}
+
+.upbtn{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    margin: 28px;
+    width: 56px;
+    height: 56px;
+    z-index: 1000;
+}
+.upbtn:hover{
+    cursor: pointer;
 }
