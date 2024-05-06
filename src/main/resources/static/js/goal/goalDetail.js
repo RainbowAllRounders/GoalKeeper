@@ -1,14 +1,14 @@
 // 참여하기 나가기
 const condition = document.getElementById('join');
-// const condition = document.querySelector('#join');
-console.log(condition);
 
+// 좋아요 이미지
+const likeImg = document.querySelector('.like_img');
 
 window.addEventListener('load', function () {
     condition.addEventListener('click', function() {
 
         if(condition.id === 'join') {
-            console.log('참여신청 완료')
+
             swal({
                 title : '참여신청 완료',
                 text : '골키퍼들과 끝까지 미션을 완수하세요!',
@@ -16,23 +16,80 @@ window.addEventListener('load', function () {
                 timer : 1500,
                 showConfirmButton: false
             });
-    
+
             condition.id = 'quit';
             condition.querySelector('span').textContent = '참여취소'
         } else if(condition.id === 'quit') {
-                console.log('참여신청 취소')
-                swal({
-                    title : '참여신청 취소',
-                    text : '더 좋은 미션에서 만나요!',
-                    type : 'info',
-                    timer : 1500,
-                    showConfirmButton: false
-                });
-        
-                condition.id = 'join'
-                condition.querySelector('span').textContent = '참여하기';
-            }
-    
+
+            swal({
+                title : '참여신청 취소',
+                text : '더 좋은 미션에서 만나요!',
+                type : 'info',
+                timer : 1500,
+                showConfirmButton: false
+            });
+
+            condition.id = 'join'
+            condition.querySelector('span').textContent = '참여하기';
+        }
+
     });
-    
+
+
+// 좋아요 이미지를 클릭할 때마다 실행될 함수 정의
+    likeImg.addEventListener('click', function() {
+        // 현재 이미지의 alt 속성 값이 '좋아요'인 경우
+        if (likeImg.alt === '좋아요') {
+            // 이미지를 grayHeart.png로 변경하고 alt 속성 값을 '좋아요 취소'로 변경
+            likeImg.src = '../../static/images/grayHeart.png';
+            likeImg.alt = '좋아요 취소';
+        } else { // 그렇지 않은 경우 (즉, alt 속성 값이 '좋아요 취소'인 경우)
+            // 이미지를 redHeart.png로 변경하고 alt 속성 값을 '좋아요'로 변경
+            likeImg.src = '../../static/images/redHeart.png';
+            likeImg.alt = '좋아요';
+        }
+    });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const authBtn = document.querySelector('.auth_btn');
+    const authImgContainer = document.querySelector('.auth_img');
+    let isFirstClick = true;
+
+    authBtn.addEventListener('click', function() {
+        // 파일 입력(input type="file") 엘리먼트 생성
+        const fileInput = document.createElement('input');
+        fileInput.setAttribute('type', 'file');
+        fileInput.setAttribute('accept', 'image/*'); // 이미지 파일만 허용
+
+        // 파일 입력에 변화가 있을 때 실행될 이벤트 리스너 추가
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0]; // 선택한 파일 가져오기
+            const imageURL = URL.createObjectURL(file); // 파일의 URL 생성
+
+            // 새로운 이미지 엘리먼트 생성
+            const newImg = document.createElement('img');
+            newImg.setAttribute('src', imageURL); // 이미지 URL 설정
+            newImg.style.width = '160px'; // 가로 크기 160px로 설정
+            newImg.style.height = '160px'; // 세로 크기 160px로 설정
+            newImg.style.marginLeft = '20px'; // 왼쪽 마진 20px 추가
+            newImg.style.marginTop = '40px'; // 위쪽 마진 20px 추가
+
+            // 인증 이미지 컨테이너를 비우고 새로운 이미지 추가
+            if (isFirstClick) {
+                authImgContainer.innerHTML = '';
+                isFirstClick = false;
+            }
+            authImgContainer.appendChild(newImg);
+
+            // 파일 입력 창 닫기
+            fileInput.remove();
+        });
+
+        // 파일 입력 엘리먼트를 클릭하여 파일 선택
+        fileInput.click();
+    });
+});
+
+
+

@@ -2,6 +2,10 @@ body {
     background-color: #F1F1F1;
 }
 
+li {
+    list-style: none;
+}
+
 .like_img:hover {
     cursor: pointer;
 }
@@ -113,9 +117,7 @@ body {
     margin-left: 27%;
 }
 
-.prev_next_btn:hover {
-    cursor: pointer;
-}
+
 
 .progress_bar_border {
     border: 1px solid #FC79AE;
@@ -157,8 +159,8 @@ body {
     margin-top: 2%;
 }
 
-.prev_next_btn {
-    position: relative;
+.prev_next_btn:hover {
+    cursor: pointer;
 }
 
 .prev_btn {
