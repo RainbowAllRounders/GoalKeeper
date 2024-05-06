@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,14 +30,12 @@ public class Goal {
     private Integer maxPeople;
 
     // cur_people 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "member")
-    @JoinColumn(name = "memberGoalId")
-    private MemberGoal memberGoal;
+    @OneToMany(mappedBy = "goal")
+    private List<MemberGoal> memberGoals;
 
     // like_count 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "member")
-    @JoinColumn(name = "likeId")
-    private Likes like;
+    @OneToMany(mappedBy = "goal")
+    private List<Likes> likes;
 
     @ColumnDefault("0")
     private Integer authCount;
