@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 등록하기</title>
-    <link rel="stylesheet" href="../../static/css/default.css">
-    <link rel="stylesheet" href="../../static/css/goal/goalAdd.css">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/goal/goalAdd.css}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
-    <th:block th:replace="~{layout/header :: header}"></th:block>
-    <main>
+    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
         <div id="goalAddWrapper">
             <div class="shadowBox" id="goalAddBox">
 
@@ -115,7 +114,6 @@
 
             </div>
         </div>
-    </main>
     <th:block th:replace="~{layout/footer :: footer}"></th:block>
     <script src="../../static/js/goal/goalAdd.js"></script>
 </body>
