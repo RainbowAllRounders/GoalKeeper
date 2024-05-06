@@ -1,3 +1,6 @@
+// 미션명
+const goalTitleInput = document.getElementById('goalTitleInput');
+
 // 인증횟수
 const goalTimesInput = document.getElementById('goalTimesInput');
 const goalTimes = goalTimesInput.querySelector('input');
@@ -16,6 +19,9 @@ const endDateInput = document.querySelector('#endDateInput input[type="date"]');
 // 모집 인원
 const goalPeopleInput = document.getElementById('goalPeopleInput');
 const goalPeople = goalPeopleInput.querySelector('input');
+
+// 등록 버튼
+const goalAddBtn = document.getElementById('goalAddBtn');
 
 // 현재 날짜 yyyy-mm-dd 형식 리턴 함수
 function calcDate() {
@@ -61,8 +67,8 @@ window.addEventListener('load', function () {
         goalHashTag.appendChild(newGoalTag);
     });
 
-    goalDescriptionText.addEventListener('input', function() {
-        if(goalDescriptionText.value.length > 100) {
+    goalDescriptionText.addEventListener('input', function () {
+        if (goalDescriptionText.value.length > 100) {
             swal({
                 title: '입력값 오류',
                 text: '최대 100자까지 입력할 수 있습니다.',
@@ -74,11 +80,11 @@ window.addEventListener('load', function () {
     });
 
     // 시작일 제한
-    startDateInput.addEventListener('input', function() {
+    startDateInput.addEventListener('input', function () {
         const today = new Date(calcDate());
         const selectedStartDate = new Date(startDateInput.value);
-        
-        if(selectedStartDate <= today) {
+
+        if (selectedStartDate <= today) {
             swal({
                 title: '입력 날짜 오류',
                 text: '현재 날짜 이후의 시작일을 선택하세요.',
@@ -91,10 +97,10 @@ window.addEventListener('load', function () {
     });
 
     // 종료일 제한
-    endDateInput.addEventListener('input', function() {
+    endDateInput.addEventListener('input', function () {
         const selectedStartDate = new Date(startDateInput.value);
         const selectedEndDate = new Date(endDateInput.value);
-        if(!startDateInput.value) {
+        if (!startDateInput.value) {
             swal({
                 title: '입력 날짜 오류',
                 text: '시작일을 먼저 입력해주세요.',
@@ -103,7 +109,7 @@ window.addEventListener('load', function () {
                 confirmButtonColor: '#FF5065'
             });
             endDateInput.value = '';
-        } else if(selectedEndDate <= selectedStartDate) {
+        } else if (selectedEndDate <= selectedStartDate) {
             swal({
                 title: '입력 날짜 오류',
                 text: '시작일 이후의 날짜를 선택하세요.',
@@ -129,6 +135,26 @@ window.addEventListener('load', function () {
             });
 
             goalPeople.value = '';
+        }
+    });
+
+    // 등록 버튼 눌렀을 때 필수 입력값이 하나라도 입력되지 않았을 경우
+    goalAddBtn.addEventListener('click', function () {
+        const goalTitle = goalTitleInput.querySelector('input').value.trim();
+        const goalTimesValue = goalTimes.value.trim();
+        const goalDescription = goalDescriptionText.value.trim();
+        const startDate = startDateInput.value.trim();
+        const endDate = endDateInput.value.trim();
+        const goalPeopleValue = goalPeople.value.trim();
+
+        if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
+            swal({
+                title: '입력 오류',
+                text: '모든 입력값을 입력해주세요.',
+                type: 'error',
+                confirmButtonText: '확인',
+                confirmButtonColor: '#FF5065'
+            });
         }
     });
 });
