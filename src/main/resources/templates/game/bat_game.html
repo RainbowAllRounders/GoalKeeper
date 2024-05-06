@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GoalKeeper - 한탕게임</title>
-    <!-- <link rel="stylesheet" href="../../static/css/default.css"> -->
     <link rel="stylesheet" href="../../static/css/game/bat_game.css" />
+    <!-- <link rel="stylesheet" th:href="@{/css/header.css}"> -->
+    <link rel="stylesheet" href="../../static/css/default.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    
   </head>
   <body>
     <header>
@@ -19,24 +24,82 @@
           <div class="game_btn" id="bat_game">한탕 게임</div>
         </div>
         <div id="bat_game_img">
-            <div class="track">
-              <div class="snail" id="snail1">@y</div>
-            </div>
-            <div class="track">
-              <div class="snail" id="snail2">@y</div>
-            </div>
-            <div class="track">
-              <div class="snail" id="snail3">@y</div>
-            </div>
-            <div class="track">
-              <div class="snail" id="snail4">@y</div>
-            </div>
-            <div class="track">
-              <div class="snail" id="snail5">@y</div>
-            </div>
+          <div class="track">
+            <div class="snail" id="snail1">@y</div>
+          </div>
+          <div class="track">
+            <div class="snail" id="snail2">@y</div>
+          </div>
+          <div class="track">
+            <div class="snail" id="snail3">@y</div>
+          </div>
+          <div class="track">
+            <div class="snail" id="snail4">@y</div>
+          </div>
+          <div class="track">
+            <div class="snail" id="snail5">@y</div>
+          </div>
           <div id="bat_start_btn">START</div>
         </div>
+              <!-- 포인트 배팅 모달 -->
+      <div class="battingModal">
+        <div class="modal_title">
+          <h2>당신의 달팽이에게 배팅하세요</h2>
+        </div>
+        <div class="modal_content">
+          <!-- 수정 영역 -->
+          <div class="num_area">
+            <div class="num_">
+              <div class="num1">1번</div>
+              <input class="num1" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num2">2번</div>
+              <input class="num2" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num3">3번</div>
+              <input class="num3" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num4">4번</div>
+              <input class="num4" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num5">5번</div>
+              <input class="num5" type="radio" name="num_check" />
+            </div>
+          </div>
+          <div class="bat_point">
+            <div class="bat_">
+            <div class="P100">100P</div>
+            <input class="P100" type="radio" name="point_check" value="100" />
+          </div>
+          <div class="bat_">
+            <div class="P500">500P</div>
+            <input class="P500" type="radio" name="point_check" value="500"/>
+          </div>
+          <div class="bat_">
+            <div class="P1000">1000P</div>
+            <input class="P1000" type="radio" name="point_check" value="1000"/>
+          </div>
+          <div class="bat_">
+            <div class="P3000">3000P</div>
+            <input class="P3000" type="radio" name="point_check" value="3000"/>
+          </div>
+          </div>
+
+          <!-- 저장/취소 버튼 -->
+          <div class="actions">
+            <button class="run_btn">RUN!</button>
+          </div>
+        </div>
       </div>
+
+      </div>
+      <footer>
+        <!-- 푸터 -->
+      </footer>
       <p id="result"></p>
     </div>
     <script src="../../static/js/game/bat_game.js"></script>
