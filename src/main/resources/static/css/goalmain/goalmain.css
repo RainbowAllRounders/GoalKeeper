@@ -14,31 +14,6 @@
     justify-content: flex-start;
 }
 
-.upbtn{
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    margin: 28px;
-    background: url(../../images/main/upbtn.png);
-    background-size: contain;
-    width: 56px;
-    height: 56px;
-}
-.upbtn:hover{
-    cursor: pointer;
-}
-
-/*
-<div class="banner">
-    <div class="bannerlogo"></div>
-    <div class="bannerelplain">
-        <p>목표를 지키는 최고의 수비수,
-            <span>GoalKeeper</span>와 함께라면 넘지 못할 골대는 없습니다.
-        </p>
-    </div>
-</div>
-*/
-
 .banner{
     width: 100%;
     display: flex;
@@ -70,20 +45,6 @@
     background-color: #ffc933;
     padding-bottom: 56px;
 }
-
-/*
-div class="hotgoal">
-    <div class="hotgoal_top">
-        <div class="hotgoallogo">
-        </div>
-        <div class="goalmission">
-        <p>미션 전체 보기</p>
-        </div>
-    </div>
-    <div class="hotgoal_bottom"></div>
-
-</div>
-*/
 
 .hotgoal{
     width: 85%;
@@ -145,29 +106,6 @@ div class="hotgoal">
     align-items: flex-start;
     justify-content: space-between;
 }
-
-
-
-/*
-<!-- cardTop_Left -->
-<div class="cardtopL">
-    <div class="cardex">
-        <div class="authcount">
-            <p>1회 인증</p>
-        </div>
-        <div class="status">
-            <p>진행중</p>
-        </div>
-    </div>
-    <div class="goaltitle"></div>
-    <div class="hashtag"></div>
-</div>
-<!-- cardTop_Right -->
-<div class="cardtopR">
-    <div class="likeicon"></div>
-    <div class="likecount"><p>999+</p></div>
-</div>
-*/
 
 
 .hotgoal_bottom>.goalcard_1>.cardtop>.cardtopL{
@@ -260,6 +198,7 @@ div class="hotgoal">
 .cardtopR>.likeicon{
     background: url(../../images/main/Heart.png) no-repeat;
     background-size: contain;
+    background-size: contain;
     width: 24px;
     height: 24px;
     margin: 4px;
@@ -320,6 +259,29 @@ div class="hotgoal">
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 6px;
+}
+.king>.cardicon{
+    background: url(../../images/main/Crown.png) no-repeat center / contain;
+    width: 16px;
+    height: 16px;
+}
+.pnum>.cardicon{
+    background: url(../../images/main/Group-person.png) no-repeat center / contain;
+    width: 14px;
+    height: 15px;
+    margin-left: 1px;
+}
+.point>.cardicon{
+    background: url(../../images/main/point.png) no-repeat center / contain;
+    width: 14px;
+    height: 14px;
+    margin-left: 0.7px;
+    margin-right: 8.5px;
+}
+.term>.cardicon{
+    background: url(../../images/main/Alarm.png) no-repeat center / contain;
+    width: 16px;
+    height: 16px;
 }
 
 .cardicon{
@@ -458,13 +420,6 @@ div class="hotgoal">
     width: 700px;
     height: 320px;
 }
-
-/*
-<div class="rankpeoples">
-    <div class="rankpeople">
-        <div class="nicname"><p>zl존 조원진</p></div>
-        <div class="point"><p>20493 point</p></div>
-*/
 
 .rankpage>.dansang_group>.rankpeoples{
     position: relative;
