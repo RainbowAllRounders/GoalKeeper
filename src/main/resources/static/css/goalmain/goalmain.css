@@ -195,14 +195,30 @@
     margin-left: 12px;
 }
 
-.cardtopR>.likeicon{
+.cardtopR>.like_F{
     background: url(../../images/main/Heart.png) no-repeat;
-    background-size: contain;
     background-size: contain;
     width: 24px;
     height: 24px;
     margin: 4px;
 }
+
+.cardtopR>.like_T{
+    background: url(../../images/main/redHeart.png) no-repeat;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+}
+
+.cardtopR>.like_T:hover{
+    cursor: pointer;
+}
+.cardtopR>.like_F:hover{
+    cursor: pointer;
+}
+
+
 
 .cardtopR>.likecount{
     margin: 2px;
