@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper</title>
-    <link rel="stylesheet" href="../../static/css/goalmain/Intro.css" />
-    <link rel="stylesheet" href="../../static/css/default.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+	<link rel="stylesheet" th:href="@{/css/goalmain/intro.css}">
+	<link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
 <body>
     <div class="container">
@@ -15,21 +16,33 @@
                 GoalKeeper와 함께라면 넘지 못할 골대는 없습니다.
             </p>
         </div>
-        <div class="Intro_goalCard" id="cardslider">
-            <div class="card "></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-            <div class="card"></div>
-        </div>
+
+	    <!-- Slider main container -->
+	    <div class="swiper">
+		    <!-- Additional required wrapper -->
+		    <div class="swiper-wrapper">
+			    <!-- Slides -->
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드1.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드2.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드3.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드4.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드5.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드6.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드7.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드8.png) no-repeat center / contain' "></div>
+			    <div class="swiper-slide" th:style = " 'background: url(/images/intro/미션카드9.png) no-repeat center / contain' "></div>
+
+		    </div>
+	    </div>
+
+		<!--메인이동버튼-->
         <div class="Intro_btn">
-            <a href="#"><div class="btnlogo"></div></a>
-            
+	        <div class="btnlogo"></div>
         </div>
     </div>
-    <script src="./js/Intro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/main/intro.js}"></script>
+
 </body>
 </html>
