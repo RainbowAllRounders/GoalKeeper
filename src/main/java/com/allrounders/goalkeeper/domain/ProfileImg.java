@@ -3,7 +3,6 @@ package com.allrounders.goalkeeper.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 
@@ -36,6 +35,5 @@ public class ProfileImg {
     private Long imgSize;
 
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
-    @UpdateTimestamp  // 값이 수정될 때 자동으로 현재 시간이 들어감
     private LocalDate updateDate;
 }

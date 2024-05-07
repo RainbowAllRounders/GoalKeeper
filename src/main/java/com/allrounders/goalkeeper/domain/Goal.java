@@ -1,11 +1,11 @@
 package com.allrounders.goalkeeper.domain;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 

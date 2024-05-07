@@ -1,8 +1,8 @@
 package com.allrounders.goalkeeper.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 
 @Entity
 @Getter

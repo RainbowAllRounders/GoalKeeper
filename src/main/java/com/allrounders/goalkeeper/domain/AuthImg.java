@@ -1,10 +1,9 @@
 package com.allrounders.goalkeeper.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -39,7 +38,7 @@ public class AuthImg {
     @Column(nullable = false)
     private Long imgSize;
 
-    @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
-    @UpdateTimestamp  // 값이 수정될 때 자동으로 현재 시간이 들어감
+    // 값이 입력될 때 자동으로 현재 시간이 들어감
+    @CreationTimestamp
     private LocalDate updateDate;
 }
