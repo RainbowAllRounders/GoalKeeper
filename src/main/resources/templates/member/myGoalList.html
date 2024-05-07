@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 내 미션 목록</title>
-    <!-- 타임리프
-        <link rel="stylesheet" th:href="@{/css/default.css}">
-        <link rel="stylesheet" th:href="@{/css/member/myGoalList.css}"> 
-    -->
-    <link rel="stylesheet" href="../../static/css/default.css">
-    <link rel="stylesheet" href="../../static/css/member/myGoalList.css">
+    <link rel="stylesheet" th:href="@{/css/member/myGoalList.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
 
 <body>
+<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     <div id="goalListWrapper">
 
         <!-- 필터와 검색창 -->
@@ -359,7 +358,10 @@
         <div id="seeMoreBtn">더보기</div>
 
     </div>
-    <script src="../../static/js/member/myGoalList.js"></script>
+    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
+    <script th:src="@{/js/goal/goalAdd.js}"></script>
+    <script th:src="@{/js/main/header.js}"></script>
+    <script th:src="@{/js/member/myGoalList.js}"></script>
 </body>
 
 </html>
