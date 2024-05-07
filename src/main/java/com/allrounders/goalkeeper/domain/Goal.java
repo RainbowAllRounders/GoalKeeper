@@ -56,4 +56,22 @@ public class Goal {
 
     @OneToOne(mappedBy = "goal")
     private GoalImg goalImg;
+
+    // 매핑 편의 메소드 ----------------------------------------
+
+    public void addMemberGoal(MemberGoal memberGoal) {
+        memberGoalList.add(memberGoal);
+        memberGoal.setGoal(this);
+    }
+
+    public void addLike(Likes like) {
+        likeList.add(like);
+        like.setGoal(this);
+    }
+
+    public void setGoalImg(GoalImg goalImg) {
+        this.goalImg = goalImg;
+        goalImg.setGoal(this);
+    }
+
 }
