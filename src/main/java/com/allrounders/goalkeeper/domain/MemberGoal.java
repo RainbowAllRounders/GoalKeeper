@@ -26,6 +26,9 @@ public class MemberGoal {
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
+    @ColumnDefault("true")
+    private Boolean role;
+
     // startAlarmDate = Goal의 startDate
     // 시작일 하루 알림
     @Future
