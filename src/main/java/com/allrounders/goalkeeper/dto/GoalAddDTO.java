@@ -1,5 +1,8 @@
 package com.allrounders.goalkeeper.dto;
 
+import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.domain.Likes;
+import com.allrounders.goalkeeper.domain.MemberGoal;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,13 +12,13 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoalAddDTO {
-    private Integer goalId;
 
     @NotBlank
     private String title;
@@ -43,4 +46,30 @@ public class GoalAddDTO {
 
     @NotNull
     private LocalDate createDate;
+
+    public static Goal dtoToEntity(GoalAddDTO goalAddDTO) {
+
+        List<MemberGoal> memberGoalList = goalAddDTO.getMemberGoalDTOList().stream()
+                .map(MemberGoalDTO::dtoToEntity)
+                .collect(Collectors.toList());
+
+        List<Likes> likeList = goalAddDTO.getLikeDTOList().stream()
+                .map(LikesDTO::dtoToEntity)
+                .collect(Collectors.toList());
+
+        Goal goal = Goal.builder()
+                .title(goalAddDTO.getTitle())
+                .content(goalAddDTO.getContent())
+                .maxPeople(goalAddDTO.getMaxPeople())
+                .memberGoalList(memberGoalList)
+                .likeList(likeList)
+                .complete(goalAddDTO.getComplete())
+                .startDate(goalAddDTO.getStartDate())
+                .endDate(goalAddDTO.getEndDate())
+                .createDate(goalAddDTO.getCreateDate())
+                .build();
+
+        return goal;
+    }
+
 }
