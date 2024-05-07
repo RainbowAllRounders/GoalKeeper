@@ -29,10 +29,11 @@
         <main>
             <section class="container">
 
+
                 <div class="shadow profile">
                     <div class="img_box"></div>
-                    <h2 class="user_nickname">이앤톤</h2>
-                    <p class="user_email">suhyeon35@naver.com</p>
+                    <h2 class="user_nickname" th:text="${member.nickname}"></h2>
+                    <p class="user_email" th:text="${member.email}"></p>
                     <button class="modal_open"></button>
                 </div>
 
@@ -116,17 +117,17 @@
                     <div class="modal_right_area">
                         <div class="info_field modify_nickname">
                             <label>닉네임</label>
-                            <input type="text" id="nickname" maxlength="6" value="이앤톤">
+                            <input type="text" id="nickname" maxlength="6" th:value="${member.nickname}">
                         </div>
 
                         <div class="info_field modify_pw">
                             <label>비밀번호</label>
-                            <input type="password" id="password" maxlength="10" value="abc123">
+                            <input type="password" id="password" maxlength="10" th:value="${member.password}">
                         </div>
 
                         <div class="info_field">
                             <label>이메일 주소</label>
-                            <span>suhyeon35@naver.com</span>
+                            <span th:text="${member.email}"></span>
                         </div>
 
                     </div>
@@ -140,6 +141,6 @@
         </div>
     
     <script th:src="@{/js/member/myPage.js}"></script>
-        
+
 </body>
 </html>

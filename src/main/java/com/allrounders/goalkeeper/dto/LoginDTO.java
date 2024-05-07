@@ -9,16 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberDTO {
-
-    private Integer member_id;
+public class LoginDTO {
 
     private String email;
-
     private String password;
 
-    private String nickname;
-
-    private Integer cur_point;
 
 }
