@@ -1,9 +1,9 @@
 package com.allrounders.goalkeeper.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.*;
 
 @Entity
 @Getter
