@@ -16,15 +16,28 @@ import lombok.NoArgsConstructor;
 public class MemberGoalDTO {
 
     @NotNull
-    private Goal goal;
+    private GoalAddDTO goalAddDTO;
 
     @NotNull
-    private Member member;
+    private GoalJoinMemberDTO memberDTO;
+
+    @NotNull
+    private Boolean role;
 
     public static MemberGoal dtoToEntity(MemberGoalDTO memberGoalDTO) {
+        Goal goal = Goal.builder()
+                .title(memberGoalDTO.getGoalAddDTO().getTitle())
+                .content(memberGoalDTO.getGoalAddDTO().getContent())
+                .build();
+
+        Member member = Member.builder()
+                .memberId(memberGoalDTO.getMemberDTO().getMemberId())
+                .nickname(memberGoalDTO.getMemberDTO().getNickname())
+                .build();
+
         MemberGoal memberGoal = MemberGoal.builder()
-                .goal(memberGoalDTO.goal)
-                .member(memberGoalDTO.member)
+                .goal(goal)
+                .member(member)
                 .build();
 
         return memberGoal;

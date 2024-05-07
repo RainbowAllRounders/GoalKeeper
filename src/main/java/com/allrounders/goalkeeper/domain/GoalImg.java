@@ -40,4 +40,11 @@ public class GoalImg {
 
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate updateDate;
+
+    // 매핑 편의 메소드 ----------------------------------------
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+        goal.setGoalImg(this);
+    }
 }
