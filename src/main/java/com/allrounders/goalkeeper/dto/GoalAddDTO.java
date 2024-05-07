@@ -1,7 +1,5 @@
 package com.allrounders.goalkeeper.dto;
 
-import com.allrounders.goalkeeper.domain.Likes;
-import com.allrounders.goalkeeper.domain.MemberGoal;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,12 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoalDTO {
+public class GoalAddDTO {
     private Integer goalId;
 
     @NotBlank
@@ -27,12 +26,11 @@ public class GoalDTO {
     @NotNull
     private Integer maxPeople;
 
-    private MemberGoal memberGoalId;
-
-    private Likes likeId;
+    @NotNull
+    private List<MemberGoalDTO> memberGoalDTOList;
 
     @NotNull
-    private Integer authCount;
+    private List<LikesDTO> likeDTOList;
 
     @NotBlank
     private String complete;
