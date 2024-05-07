@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Getter
@@ -31,11 +30,11 @@ public class Goal {
 
     // cur_people 컬럼 값 구할 때 사용
     @OneToMany(mappedBy = "goal")
-    private List<MemberGoal> memberGoals;
+    private MemberGoal memberGoal;
 
     // like_count 컬럼 값 구할 때 사용
     @OneToMany(mappedBy = "goal")
-    private List<Likes> likes;
+    private Likes like;
 
     @ColumnDefault("0")
     private Integer authCount;

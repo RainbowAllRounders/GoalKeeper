@@ -41,5 +41,5 @@ public class GoalImg {
 
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     @UpdateTimestamp  // 값이 수정될 때 자동으로 현재 시간이 들어감
-    private LocalDate update_date;
+    private LocalDate updateDate;
 }
