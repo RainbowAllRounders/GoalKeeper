@@ -1,10 +1,10 @@
 package com.allrounders.goalkeeper.domain;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -16,10 +16,10 @@ import java.time.LocalDate;
 public class ProfileImg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer profile_id;
+    private Integer profileId;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")   // foreign key (member_id) references Member (member_id)
+    @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
     @Column(nullable = false)
@@ -37,5 +37,5 @@ public class ProfileImg {
 
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     @UpdateTimestamp  // 값이 수정될 때 자동으로 현재 시간이 들어감
-    private LocalDate update_date;
+    private LocalDate updateDate;
 }
