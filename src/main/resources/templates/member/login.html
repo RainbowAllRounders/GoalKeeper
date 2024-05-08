@@ -8,6 +8,7 @@
     
 </head>
 <body>
+<form action="/login" method="post">
     <div id="container">
         <nav id="header">
             <a href=""><img src="../../static/images/헤더 로고.png"></a>
@@ -27,5 +28,16 @@
         </div>
         </div>
     </div>
+</form>
+
+<script>
+    function storeEmail() {
+        var email = document.getElementById('email').value;
+        sessionStorage.setItem('email', email);
+    }
+</script>
+
+<!--<p th:if="${error}" th:text="${error}"></p>-->
+
 </body>
 </html>
