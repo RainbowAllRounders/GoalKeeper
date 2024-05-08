@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 목록</title>
-    <!-- 타임리프
-        <link rel="stylesheet" th:href="@{/css/default.css}">
-        <link rel="stylesheet" th:href="@{/css/member/goal/goalList.css}"> 
-    -->
-    <link rel="stylesheet" href="../../static/css/default.css">
-    <link rel="stylesheet" href="../../static/css/goal/goalList.css">
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/goal/goalList.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
 </head>
 
 <body>
+    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     <div id="goalListWrapper">
 
         <!-- 필터와 검색창 -->
@@ -28,7 +27,7 @@
 
             <div id="searchBox">
                 <input type="text">
-                <img src="../../static/images/magnifier.png" alt="돋보기" id="magnifier">
+                <img th:src="@{/images/magnifier.png}" alt="돋보기" id="magnifier">
             </div>
         </div>
 
@@ -54,7 +53,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/grayHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/grayHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -62,25 +61,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -107,7 +106,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/redHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -115,25 +114,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -160,7 +159,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/redHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -168,25 +167,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -213,7 +212,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/redHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -221,25 +220,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -266,7 +265,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/redHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -274,25 +273,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -319,7 +318,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img id="heart" src="../../static/images/redHeart.png" alt="하트">
+                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
                         <div class="likeCount">999+</div>
                     </div>
                 </div>
@@ -327,25 +326,25 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" src="../../static/images/progressBar.png" alt="프로그래스바">
+                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
                     <div>
                         <div class="nicknameBox">
-                            <img src="../../static/images/crown.png" alt="">
+                            <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
                         </div>
                         <div class="pointBox">
-                            <img src="../../static/images/point.png" alt="">
+                            <img th:src="@{/images/point.png}" alt="포인트">
                             <div>참여 -500</div>/
                             <div>달성 +1000</div>
                         </div>
                     </div>
                     <div>
                         <div class="peopleCountBox">
-                            <img src="../../static/images/group-person.png" alt="">
+                            <img th:src="@{/images/group-person.png}" alt="사람들">
                             9/20
                         </div>
                         <div class="periodBox">
-                            <img src="../../static/images/alarm.png" alt="">
+                            <img th:src="@{/images/alarm.png}" alt="기간">
                             2024. 04. 24 ~ 2024. 04. 28
                         </div>
                     </div>
@@ -357,7 +356,9 @@
         <div id="seeMoreBtn">더보기</div>
 
     </div>
-    <script src="../../static/js/goal/goalList.js"></script>
+    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
+    <script th:src="@{/js/goal/goalList.js}"></script>
+    <script th:src="@{/js/main/header.js}"></script>
 </body>
 
 </html>
