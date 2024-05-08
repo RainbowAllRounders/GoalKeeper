@@ -46,7 +46,7 @@
                     <p>보유 포인트</p>
                     <div class="point_box">
                         <div class="coin_icon"></div>
-                        <p>47,684p</p>
+                        <p><span th:text="${member.cur_point}"></span> </p>
                     </div>
                 </div>
 
@@ -141,6 +141,9 @@
         </div>
     
     <script th:src="@{/js/member/myPage.js}"></script>
+
+
+
 
 </body>
 </html>

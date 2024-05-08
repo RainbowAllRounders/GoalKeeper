@@ -49,6 +49,8 @@ dependencies {
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 	implementation 'net.coobird:thumbnailator:0.4.16'
 
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	annotationProcessor(
 			"com.querydsl:querydsl-apt:5.0.0:jakarta",
 

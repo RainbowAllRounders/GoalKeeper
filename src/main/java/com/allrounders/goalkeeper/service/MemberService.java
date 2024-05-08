@@ -1,9 +1,9 @@
 package com.allrounders.goalkeeper.service;
 
-import com.allrounders.goalkeeper.domain.Member;
 
+import com.allrounders.goalkeeper.domain.Member;
 
 public interface MemberService {
 
-    Member getMyInfo();
+    Member getMemberByEmail(String email);
 }
