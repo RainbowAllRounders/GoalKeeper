@@ -26,4 +26,11 @@ public class Likes {
 
     @ColumnDefault("false")
     private Boolean isLiked;
+
+    // 매핑 편의 메소드 ----------------------------------------
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+        goal.getLikeList().add(this);
+    }
 }

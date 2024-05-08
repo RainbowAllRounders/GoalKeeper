@@ -7,6 +7,8 @@
     <title>GoalKeeper - 미션 등록하기</title>
     <link rel="stylesheet" th:href="@{/css/default.css}">
     <link rel="stylesheet" th:href="@{/css/goal/goalAdd.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
@@ -18,9 +20,9 @@
             <div class="shadowBox" id="goalAddBox">
 
                 <div id="goalAddHeader">
-                    <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
+                    <img class="flame" th:src="@{/images/Flame.png}" alt="불꽃">
                     <div id="goalAddHeaderText">미션 등록</div>
-                    <img class="flame" src="../../static/images/Flame.png" alt="불꽃">
+                    <img class="flame" th:src="@{/images/Flame.png}" alt="불꽃">
                 </div>
 
                 <div class="goalInputWrapper">
@@ -64,7 +66,7 @@
                                 <div class="goalTag goalInputs"># <input type="text" maxlength="4"></div>
                                 <div class="goalTag goalInputs"># <input type="text" maxlength="4"></div>
                                 <div class="tagPlusBtn">
-                                    <img src="../../static/images/plusBtn.png" alt="해시태그 추가">
+                                    <img th:src="@{/images/plusBtn.png}" alt="해시태그 추가">
                                 </div>
                             </div>
                             <div class="goalGuide">한 태그당 6글자까지, 태그는 3개까지 가능합니다.</div>
@@ -114,8 +116,9 @@
 
             </div>
         </div>
-    <th:block th:replace="~{layout/footer :: footer}"></th:block>
-    <script src="../../static/js/goal/goalAdd.js"></script>
+    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
+    <script th:src="@{/js/goal/goalAdd.js}"></script>
+    <script th:src="@{/js/main/header.js}"></script>
 </body>
 
 </html>

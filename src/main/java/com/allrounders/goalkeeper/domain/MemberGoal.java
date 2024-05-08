@@ -26,6 +26,9 @@ public class MemberGoal {
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
+    @ColumnDefault("true")
+    private Boolean role;
+
     // startAlarmDate = Goal의 startDate
     // 시작일 하루 알림
     @Future
@@ -46,4 +49,12 @@ public class MemberGoal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "authImgId")
     private AuthImg authImg;
+
+    // 매핑 편의 메소드 ----------------------------------------
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+        goal.getMemberGoalList().add(this);
+    }
+
 }
