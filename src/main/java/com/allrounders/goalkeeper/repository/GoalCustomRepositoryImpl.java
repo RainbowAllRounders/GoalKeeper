@@ -20,10 +20,10 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository{
     private final JPAQueryFactory jpaQueryFactory;
 
     @Override
-    public Page<Goal> findAllOrderByCreatedDateDesc(Pageable pageable) {
+    public Page<Goal> findAllOrderByGoalIdDesc(Pageable pageable) {
 
         JPAQuery<Goal> query = jpaQueryFactory.selectFrom(goal)
-                .orderBy(goal.createDate.desc())
+                .orderBy(goal.goalId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
