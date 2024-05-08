@@ -4,7 +4,9 @@ import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class MemberService {
 
@@ -15,8 +17,9 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    Member getMemberByEmail(String email) {
-        return null;
+
+    public Member myInfo(String email) {
+        return memberRepository.findByEmail(email);
     }
 }
 

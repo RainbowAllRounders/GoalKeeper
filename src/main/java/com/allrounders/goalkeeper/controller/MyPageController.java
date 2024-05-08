@@ -1,7 +1,7 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.dto.MyPageDTO;
+import com.allrounders.goalkeeper.dto.MyPageInfoDTO;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -30,20 +30,14 @@ public class MyPageController {
 //            return "redirect:/login";
 //        }
 
-        Member member = memberService.getMemberByEmail(email);
+        Member member = memberService.myInfo(email);
 
         if (member == null) {
             // model.addAttribute("error", "No member found with the provided email.");
             return "member/login";
         }
 
-        MyPageDTO dto = MyPageDTO.builder()
-                .email(member.getEmail())
-                .nickname(member.getNickname())
-                .password(member.getPassword())
-                .cur_point(member.getCurPoint())
-                .build();
-
+        MyPageInfoDTO dto = MyPageInfoDTO.fromMember(member);
         model.addAttribute("member", dto);
 
         return "member/myPage";
