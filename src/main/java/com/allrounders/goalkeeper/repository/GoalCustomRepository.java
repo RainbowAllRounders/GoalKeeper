@@ -5,5 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface GoalCustomRepository {
-    Page<Goal> findAllOrderByCreatedDateDesc(Pageable pageable);
+    Page<Goal> findAllOrderByGoalIdDesc(Pageable pageable);
 }

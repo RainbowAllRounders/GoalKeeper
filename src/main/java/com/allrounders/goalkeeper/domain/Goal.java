@@ -57,6 +57,9 @@ public class Goal {
     @OneToOne(mappedBy = "goal")
     private GoalImg goalImg;
 
+    @OneToMany(mappedBy = "goal")
+    private List<Hashtag> hashtagList;
+
     // 매핑 편의 메소드 ----------------------------------------
 
     public void addMemberGoal(MemberGoal memberGoal) {
@@ -74,4 +77,8 @@ public class Goal {
         goalImg.setGoal(this);
     }
 
+    public void addHashTag(Hashtag hashtag) {
+        hashtagList.add(hashtag);
+        hashtag.setGoal(this);
+    }
 }
