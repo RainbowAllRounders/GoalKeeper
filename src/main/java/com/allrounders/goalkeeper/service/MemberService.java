@@ -21,6 +21,13 @@ public class MemberService {
     public Member myInfo(String email) {
         return memberRepository.findByEmail(email);
     }
+  
+//    //Repository에서 정의한 메서드 구현
+//    //DB에 존재하면 true, 아닐경우 false를 반환
+//    public boolean existByEmail(String email) {
+//        return memberRepository.existsByEmail(email);
+//    }
+
 }
 
 
