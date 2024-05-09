@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class Ranks {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rankId;
+    private Long rankId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)

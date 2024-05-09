@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class OXGame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer oxId;
+    private Long oxId;
 
     @Column(nullable = false)
     private String question;

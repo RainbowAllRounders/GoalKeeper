@@ -15,7 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoalListDTO {
-    private Integer goalId;
+    @NotNull
+    private Long goalId;
 
     @NotBlank
     private String title;

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class ProfileImg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer profileId;
+    private Long profileId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
