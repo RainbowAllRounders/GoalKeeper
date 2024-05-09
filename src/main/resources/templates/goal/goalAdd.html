@@ -16,6 +16,7 @@
 
 <body>
     <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
+    <form action="/goal/add" method="post" enctype="multipart/form-data">
         <div id="goalAddWrapper">
             <div class="shadowBox" id="goalAddBox">
 
@@ -116,6 +117,7 @@
 
             </div>
         </div>
+    </form>
     <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
     <script th:src="@{/js/goal/goalAdd.js}"></script>
     <script th:src="@{/js/main/header.js}"></script>
