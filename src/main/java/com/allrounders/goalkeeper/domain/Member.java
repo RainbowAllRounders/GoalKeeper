@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer memberId;
+    private Long memberId;
 
     @Column(nullable = false, unique = true)
     private String email;

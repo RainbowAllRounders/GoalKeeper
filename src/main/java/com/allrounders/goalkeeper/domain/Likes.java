@@ -14,7 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer likeId;
+    private Long likeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)

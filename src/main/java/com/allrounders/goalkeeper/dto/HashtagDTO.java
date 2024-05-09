@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HashtagDTO {
-    private Integer tagId;
+    private Long tagId;
 
     @NotNull
     private GoalAddDTO goalAddDTO;

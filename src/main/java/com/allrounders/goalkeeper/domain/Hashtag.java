@@ -13,7 +13,7 @@ import lombok.*;
 public class Hashtag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tagId;
+    private Long tagId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)
