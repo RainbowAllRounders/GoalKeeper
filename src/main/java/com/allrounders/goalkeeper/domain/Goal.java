@@ -54,11 +54,11 @@ public class Goal {
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate createDate;
 
-    @OneToOne(mappedBy = "goal")
-    private GoalImg goalImg;
-
     @OneToMany(mappedBy = "goal")
     private List<Hashtag> hashtagList;
+
+//    @Column(nullable = false)
+//    private String imgPath;
 
     // 매핑 편의 메소드 ----------------------------------------
 
@@ -70,11 +70,6 @@ public class Goal {
     public void addLike(Likes like) {
         likeList.add(like);
         like.setGoal(this);
-    }
-
-    public void setGoalImg(GoalImg goalImg) {
-        this.goalImg = goalImg;
-        goalImg.setGoal(this);
     }
 
     public void addHashTag(Hashtag hashtag) {
