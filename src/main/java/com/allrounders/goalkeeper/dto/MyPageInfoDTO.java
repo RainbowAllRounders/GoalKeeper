@@ -20,12 +20,19 @@ public class MyPageInfoDTO {
 
     private Integer cur_point;
 
+    private Integer rank_point;
+
+    private Integer rankinkg;
+
+
     public static MyPageInfoDTO fromMember(Member member) {
         return MyPageInfoDTO.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())
                 .password(member.getPassword())
                 .cur_point(member.getCurPoint())
+                .rank_point(member.getRankPoint())
+                .rankinkg(member.getRanking())
                 .build();
     }
 

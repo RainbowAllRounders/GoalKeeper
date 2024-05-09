@@ -53,13 +53,13 @@
                     <p>월간 랭크 포인트</p>
                     <div class="point_box">
                         <div class="crown_icon"></div>
-                        <p>124,664p</p>
+                        <p><span th:text="${member.rank_point}"></span></p>
                     </div>
                 </div>
 
                 <div class="shadow my_rank">
                     <p>RANK</p>
-                    <div class="rank_icon"><p>18</p></div>
+                    <div class="rank_icon"><p><span th:text="${member.ranks}"></span></p></div>
                     <!-- TODO: 100위부터는 99+ 로 처리할 것 -->
                 </div>
             
