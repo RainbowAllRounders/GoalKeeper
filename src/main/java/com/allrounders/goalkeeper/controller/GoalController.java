@@ -22,24 +22,33 @@ public class GoalController {
 //    @PostMapping("/add")
 //    public String addGoal(@Valid GoalAddDTO goalAddDTO,
 //                          BindingResult bindingResult,
-//                          RedirectAttributes redirectAttributes) {
+//                          Model model) {
 //
 //        if(bindingResult.hasErrors()) {
 //            log.info("미션 등록 오류");
-//            redirectAttributes.addFlashAttribute("errors", bindingResult);
-//            return "redirect:/goal/goalAdd.html";
+//            model.addAttribute("fail", "미션 등록 오류");
+//            return "redirect:/goal/add";
 //        }
 //
 //        log.info("goalAddDTO: " + goalAddDTO);
 //
-//        Integer goalId = goalService.goalAdd(goalAddDTO);
-//        redirectAttributes.addFlashAttribute("result", goalId);
-//
-//        return "redirect:/goal/goalList.html";
+//        goalService.goalAdd(goalAddDTO);
+//        model.addAttribute("success", "미션 등록 성공");
+//        return "redirect:/goal/list";
 //    }
-
-    @GetMapping("/list")
-    public String goalList() {
-        return "goal/goalList.html";
-    }
+//
+//    @GetMapping("/list")
+//    public String goalList(Pageable pageable,
+//                           BindingResult bindingResult,
+//                           Model model) {
+//
+//        if(bindingResult.hasErrors()) {
+//            log.info("미션 목록 조회 오류");
+//            model.addAttribute("fail", "미션 목록 조회 오류");
+//            return "redirect:/";
+//        }
+//        Page<Goal> goalList = goalService.goalList(pageable);
+//        model.addAttribute("goalList", goalList);
+//        return "goal/goalList.html";
+//    }
 }
