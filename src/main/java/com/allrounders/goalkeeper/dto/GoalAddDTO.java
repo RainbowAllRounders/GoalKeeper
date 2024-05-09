@@ -1,8 +1,7 @@
 package com.allrounders.goalkeeper.dto;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.domain.Likes;
-import com.allrounders.goalkeeper.domain.MemberGoal;
+import com.allrounders.goalkeeper.domain.Hashtag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -47,26 +46,23 @@ public class GoalAddDTO {
     @NotNull
     private LocalDate createDate;
 
+    private List<HashtagDTO> hashtagDTOList;
+
     public static Goal dtoToEntity(GoalAddDTO goalAddDTO) {
 
-        List<MemberGoal> memberGoalList = goalAddDTO.getMemberGoalDTOList().stream()
-                .map(MemberGoalDTO::dtoToEntity)
-                .collect(Collectors.toList());
-
-        List<Likes> likeList = goalAddDTO.getLikeDTOList().stream()
-                .map(LikesDTO::dtoToEntity)
+        List<Hashtag> hashtagList = goalAddDTO.getHashtagDTOList().stream()
+                .map(HashtagDTO::dtoToEntity)
                 .collect(Collectors.toList());
 
         Goal goal = Goal.builder()
                 .title(goalAddDTO.getTitle())
                 .content(goalAddDTO.getContent())
                 .maxPeople(goalAddDTO.getMaxPeople())
-                .memberGoalList(memberGoalList)
-                .likeList(likeList)
                 .complete(goalAddDTO.getComplete())
                 .startDate(goalAddDTO.getStartDate())
                 .endDate(goalAddDTO.getEndDate())
                 .createDate(goalAddDTO.getCreateDate())
+                .hashtagList(hashtagList)
                 .build();
 
         return goal;
