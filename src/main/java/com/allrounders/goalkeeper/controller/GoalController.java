@@ -16,7 +16,7 @@ public class GoalController {
 
     @GetMapping("/add")
     public String addGoalGet() {
-        return "goal/goalAdd.html";
+        return "goal/goalAdd";
     }
 
 //    @PostMapping("/add")
@@ -49,6 +49,6 @@ public class GoalController {
 //        }
 //        Page<Goal> goalList = goalService.goalList(pageable);
 //        model.addAttribute("goalList", goalList);
-//        return "goal/goalList.html";
+//        return "goal/goalList";
 //    }
 }
