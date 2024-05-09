@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class GoalJoinMemberDTO {
 
     @NotNull
-    private Integer memberId;
+    private Long memberId;
 
     @NotBlank
     private String nickname;

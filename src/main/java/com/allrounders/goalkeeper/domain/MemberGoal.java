@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class MemberGoal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer memberGoalId;
+    private Long memberGoalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)

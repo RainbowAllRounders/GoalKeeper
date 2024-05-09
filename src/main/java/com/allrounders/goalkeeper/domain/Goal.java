@@ -18,7 +18,7 @@ import java.util.List;
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer goalId;
+    private Long goalId;
 
     @Column(length = 20, nullable = false)
     private String title;

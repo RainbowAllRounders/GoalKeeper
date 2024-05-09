@@ -28,16 +28,6 @@ public class AuthImg {
     @Column(nullable = false)
     private String imgPath;
 
-    @Column(nullable = false)
-    private String imgName;
-
-    @Column(nullable = false)
-    private String imgType;
-
-    // 20MB를 포용하기 위해 Long 타입 사용
-    @Column(nullable = false)
-    private Long imgSize;
-
     // 값이 입력될 때 자동으로 현재 시간이 들어감
     @CreationTimestamp
     private LocalDate updateDate;
