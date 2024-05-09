@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
         <!-- header ------------------------------------------- -->
         <header>
             <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
@@ -110,7 +109,7 @@
                     <div class="modal_left_area">
                         <div class="profile_img"></div>
                         <div class="modify_btn">
-                            <input type="file" class="fileInput" style="display: none;">
+                            <input type="file" accept=".jpg, .jpeg, .png" class="fileInput" style="display: none;">
                         </div>
                     </div>
 
@@ -141,9 +140,6 @@
         </div>
     
     <script th:src="@{/js/member/myPage.js}"></script>
-
-
-
 
 </body>
 </html>
