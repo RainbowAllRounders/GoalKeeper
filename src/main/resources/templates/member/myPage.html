@@ -23,7 +23,7 @@
         <header>
             <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
         </header>
-        
+
         <!-- main content ------------------------------------- -->
         <main>
             <section class="container">
@@ -36,7 +36,7 @@
                     <button class="modal_open"></button>
                 </div>
 
-            
+
                 <div class="point_area">
                     <p class="point_title">내 포인트<span class="icon"></span></p>
                 </div>
@@ -59,10 +59,10 @@
 
                 <div class="shadow my_rank">
                     <p>RANK</p>
-                    <div class="rank_icon"><p><span th:text="${member.ranks}"></span></p></div>
+                    <div class="rank_icon"><p><span th:text="${member.ranking}"></span></p></div>
                     <!-- TODO: 100위부터는 99+ 로 처리할 것 -->
                 </div>
-            
+
 
                 <div class="shadow game_banner">
                     <!-- TODO: 클릭이벤트 미니게임메인 페이지 이동 -->
@@ -73,7 +73,7 @@
                     <div class="joystick_icon"></div>
                 </div>
 
-            
+
                 <p class="mission_title">내 미션<span class="flame_icon"></span></p>
                 <button class="full_btn">전체 보기</button>
                 <!-- TODO: 내미션보러가기 페이지 이동 -->

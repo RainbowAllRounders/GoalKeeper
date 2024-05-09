@@ -165,3 +165,12 @@ $().ready(function () {
         }
     });
 });
+
+
+// 5. 내 랭크 100위 이상일 경우 99+ 처리
+const rankingElement = document.querySelector('.my_rank > .rank_icon > p');
+const ranking = parseInt(rankingElement.textContent);
+
+if (ranking >= 100) {
+    rankingElement.textContent = '99+';
+}
