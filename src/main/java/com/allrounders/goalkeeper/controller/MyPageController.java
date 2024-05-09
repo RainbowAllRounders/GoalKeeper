@@ -2,17 +2,18 @@ package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.MyPageInfoDTO;
+import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/member")
 @Controller
+@RequestMapping("/member")
 @RequiredArgsConstructor
 public class MyPageController {
 
@@ -25,10 +26,10 @@ public class MyPageController {
         // TODO: 우선 임의로 값 넣음. 추후 session 정보로 불러오는 로직 확인
         String email = "suhyeon1@naver.com";
 
-//        if (email == null) {
-//            System.out.println("Email is not present in the session.");
-//            return "redirect:/login";
-//        }
+        // if (email == null) {
+        //     System.out.println("Email is not present in the session.");
+        //     return "redirect:/login";
+        // }
 
         Member member = memberService.myInfo(email);
 
@@ -44,5 +45,14 @@ public class MyPageController {
     }
 
 
+    @ResponseBody
+    @PutMapping("/updateMyInfo")
+    public ResponseEntity<?> updateMyInfo(@RequestBody MyPageModifyDTO modifyDTO, HttpSession session) {
+        // String email = (String) session.getAttribute("email");
+        // TODO: 우선 임의로 값 넣음. 추후 session 정보로 불러오는 로직 확인
+        String email = "suhyeon1@naver.com";
+
+        return memberService.updateMyInfo(email, modifyDTO);
+    }
 
 }
