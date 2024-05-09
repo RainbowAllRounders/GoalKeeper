@@ -5,10 +5,12 @@ import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +45,18 @@ public class MemberService {
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void updateDailyRank() {
+        List<Member> members = memberRepository.findAllOrderedByRankPoints();
+
+        int rank = 1;
+        for (Member member : members) {
+            member.updateRank(rank++);
+            memberRepository.save(member);
+        }
+
     }
 
 

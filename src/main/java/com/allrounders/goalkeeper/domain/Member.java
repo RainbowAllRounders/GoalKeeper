@@ -3,7 +3,6 @@ package com.allrounders.goalkeeper.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Entity
@@ -23,22 +22,19 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 10, nullable = false)
+    @Column(length = 10, nullable = false, unique = true)
     private String nickname;
 
     @ColumnDefault("1000")
     private Integer curPoint;
 
     @Column
-    private Integer todayPoint;
-
-    @Column
     private Integer rankPoint;
 
-    @Column
-    private Integer ranks;
+    @Column(nullable = false)
+    private Integer ranking;
 
-    @Column
+    @Column(length = 255)
     private String imgPath;
 
 
@@ -55,6 +51,10 @@ public class Member {
         } else {
             throw new IllegalStateException();
         }
+    }
+
+    public void updateRank(Integer ranking) {
+        this.ranking = ranking;
     }
 
 }
