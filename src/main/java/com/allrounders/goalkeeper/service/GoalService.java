@@ -21,15 +21,25 @@ public class GoalService {
     private final MemberGoalRepository memberGoalRepository;
 
     public void goalAdd(GoalAddDTO goalAddDTO, HttpSession session) {
+
         Long memberId = (Long)session.getAttribute("memberId");
+
         Goal goal = GoalAddDTO.dtoToEntity(goalAddDTO);
         Long goalId = goalRepository.save(goal).getGoalId();
 
-        LocalDate startDate = goalRepository.findByGoalId(goalId).getStartDate();
-        LocalDate endDate = goalRepository.findByGoalId(goalId).getEndDate();
+        Goal findGoal = validationGoalId(goalId);
 
-        MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startDate, endDate, false);
+        LocalDate startAlarmDate = findGoal.getStartDate();
+        LocalDate endAlarmDate = findGoal.getEndDate();
+
+        MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
+    }
+
+    private Goal validationGoalId(Long goalId) {
+        return goalRepository.findById(goalId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 미션입니다")
+        );
     }
 
     public Page<Goal> goalList(Pageable pageable) {
