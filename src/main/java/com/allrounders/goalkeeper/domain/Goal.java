@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Goal {
 
     // cur_people 컬럼 값 구할 때 사용
     @OneToMany(mappedBy = "goal")
-    private List<MemberGoal> memberGoalList;
+    private List<MemberGoal> member = new ArrayList<>();
 
     @Column(nullable = false)
     private int likeCount;
@@ -59,24 +60,28 @@ public class Goal {
     public void addLikeCount(int count) {
         this.likeCount = count;
     }
-    public Goal(Long goalId, String title, String content, Integer maxPeople, LocalDate startDate, LocalDate endDate) {
-        this.goalId = goalId;
-        this.title = title;
-        this.content = content;
-        this.maxPeople = maxPeople;
-        this.complete = complete;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 
-    //    @Column(nullable = false)
-//    private String imgPath;
+//    @Column(nullable = false)
+    private String imgPath;
 
     // 매핑 편의 메소드 ----------------------------------------
 
-    public void addMemberGoal(MemberGoal memberGoal) {
-        memberGoalList.add(memberGoal);
-        memberGoal.setGoal(this);
+//    public void addMemberGoal(MemberGoal memberGoal) {
+//        memberGoalList.add(memberGoal);
+//        memberGoal.setGoal(this);
+//    }
+
+    public void setGoalId(Long goalId) {
+        this.goalId = goalId;
+    }
+
+    public void setMember(List<MemberGoal> list) {
+        for(MemberGoal memberGoal : list) {
+            if(!this.member.contains(memberGoal)) {
+                this.member.add(memberGoal);
+                memberGoal.setGoal(this);
+            }
+        }
     }
     
     public void addHashTag(Hashtag hashtag) {

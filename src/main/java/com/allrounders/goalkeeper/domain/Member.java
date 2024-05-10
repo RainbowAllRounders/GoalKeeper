@@ -37,6 +37,9 @@ public class Member {
     @Column(length = 255)
     private String imgPath;
 
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 
     public void updateMember(String nickname, String password) {
         if (nickname != null && !nickname.isEmpty()) {
