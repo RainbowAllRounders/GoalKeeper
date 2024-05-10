@@ -24,8 +24,8 @@ public class GoalListDTO {
     @NotNull
     private Integer maxPeople;
 
-    @NotNull
-    private List<MemberGoalDTO> memberGoalDTOList;
+//    @NotNull
+//    private List<MemberGoalDTO> memberGoalDTOList;
 
     @NotNull
     private List<LikesDTO> likeDTOList;
