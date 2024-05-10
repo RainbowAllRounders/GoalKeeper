@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -42,7 +41,7 @@ public class GoalAddDTO {
     private String hashtagDTOs;
 
 //    @NotBlank
-//    private String imgPath;
+    private String imgPath;
 
     public List<Hashtag> parseHashtags() {
         List<Hashtag> hashtagList = new ArrayList<>();
