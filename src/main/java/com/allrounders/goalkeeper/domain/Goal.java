@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Goal {
 
     // cur_people 컬럼 값 구할 때 사용
     @OneToMany(mappedBy = "goal")
-    private List<MemberGoal> memberGoalList;
+    private List<MemberGoal> member = new ArrayList<>();
 
     // like_count 컬럼 값 구할 때 사용
     @OneToMany(mappedBy = "goal")
@@ -58,13 +59,26 @@ public class Goal {
     private List<Hashtag> hashtagList;
 
 //    @Column(nullable = false)
-//    private String imgPath;
+    private String imgPath;
 
     // 매핑 편의 메소드 ----------------------------------------
 
-    public void addMemberGoal(MemberGoal memberGoal) {
-        memberGoalList.add(memberGoal);
-        memberGoal.setGoal(this);
+//    public void addMemberGoal(MemberGoal memberGoal) {
+//        memberGoalList.add(memberGoal);
+//        memberGoal.setGoal(this);
+//    }
+
+    public void setGoalId(Long goalId) {
+        this.goalId = goalId;
+    }
+
+    public void setMember(List<MemberGoal> list) {
+        for(MemberGoal memberGoal : list) {
+            if(!this.member.contains(memberGoal)) {
+                this.member.add(memberGoal);
+                memberGoal.setGoal(this);
+            }
+        }
     }
 
     public void addLike(Likes like) {
