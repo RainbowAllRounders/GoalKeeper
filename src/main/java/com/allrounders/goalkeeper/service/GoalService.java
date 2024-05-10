@@ -1,12 +1,11 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.dto.goal.GoalAddDTO;
+import com.allrounders.goalkeeper.domain.MemberGoal;
+import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.LikesRepository;
-import com.allrounders.goalkeeper.domain.MemberGoal;
-import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.MemberGoalRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -41,13 +40,6 @@ public class GoalService {
         memberGoalRepository.save(memberGoal);
     }
 
-    @Transactional(readOnly = true)
-    public Goal validationGoalId(Long goalId) {
-        return goalRepository.findById(goalId).orElseThrow(
-                () -> new IllegalArgumentException("존재하지 않는 미션입니다")
-        );
-    }
-
     public Page<Goal> goalList(Pageable pageable) {
         Page<Goal> goalPage = goalRepository.findAllOrderByGoalIdDesc(pageable);
         return goalPage;
@@ -71,12 +63,11 @@ public class GoalService {
      */
     @Transactional(readOnly = true)
     public Goal validationGoalId(Long goalId) {
-
         return goalRepository
-                .findById(goalId)
-                .orElseThrow(
-                        () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
-                );
+            .findById(goalId)
+            .orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
+            );
     }
 
 }
