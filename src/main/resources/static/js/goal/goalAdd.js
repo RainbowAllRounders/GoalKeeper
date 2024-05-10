@@ -214,7 +214,13 @@ window.addEventListener('load', function () {
             return;
         }
 
-        let formData = new FormData(document.querySelector(form));
+        let formData = new FormData();
+        formData.append('title', goalTitle);
+        formData.append('authCount', goalTimesValue);
+        formData.append('content', goalDescription);
+        formData.append('startDate', startDate);
+        formData.append('endDate', endDate);
+        formData.append('maxPeople', goalPeopleValue);
 
         // AJAX 요청
         $.ajax({
