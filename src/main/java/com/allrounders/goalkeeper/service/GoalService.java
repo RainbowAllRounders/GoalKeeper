@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -36,7 +37,8 @@ public class GoalService {
         memberGoalRepository.save(memberGoal);
     }
 
-    private Goal validationGoalId(Long goalId) {
+    @Transactional(readOnly = true)
+    public Goal validationGoalId(Long goalId) {
         return goalRepository.findById(goalId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다")
         );
