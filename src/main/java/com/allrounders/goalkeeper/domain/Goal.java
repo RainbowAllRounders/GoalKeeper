@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"memberGoalList", "hashtagList"})
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,8 @@ public class Goal {
     @OneToMany(mappedBy = "goal")
     private List<MemberGoal> memberGoalList;
 
-    // like_count 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "goal")
-    private List<Likes> likeList;
+    @Column(nullable = false)
+    private int likeCount;
 
     @ColumnDefault("0")
     private Integer authCount;
@@ -57,7 +56,20 @@ public class Goal {
     @OneToMany(mappedBy = "goal")
     private List<Hashtag> hashtagList;
 
-//    @Column(nullable = false)
+    public void addLikeCount(int count) {
+        this.likeCount = count;
+    }
+    public Goal(Long goalId, String title, String content, Integer maxPeople, LocalDate startDate, LocalDate endDate) {
+        this.goalId = goalId;
+        this.title = title;
+        this.content = content;
+        this.maxPeople = maxPeople;
+        this.complete = complete;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    //    @Column(nullable = false)
 //    private String imgPath;
 
     // 매핑 편의 메소드 ----------------------------------------
@@ -66,12 +78,7 @@ public class Goal {
         memberGoalList.add(memberGoal);
         memberGoal.setGoal(this);
     }
-
-    public void addLike(Likes like) {
-        likeList.add(like);
-        like.setGoal(this);
-    }
-
+    
     public void addHashTag(Hashtag hashtag) {
         hashtagList.add(hashtag);
         hashtag.setGoal(this);
