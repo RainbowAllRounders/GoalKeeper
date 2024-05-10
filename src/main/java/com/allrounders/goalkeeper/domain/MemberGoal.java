@@ -45,16 +45,30 @@ public class MemberGoal {
     @ColumnDefault("false")
     private Boolean isChecked;
 
+    // 성공 확인 여부
+    @ColumnDefault("false")
+    private Boolean isSuccess;
+
     // is_success 컬럼 값 구할 때 사용
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "authImgId")
     private AuthImg authImg;
 
+    public MemberGoal(Long memberId, Long goalId, Boolean role,
+                      LocalDate startAlarmDate, LocalDate endAlarmDate, Boolean isChecked) {
+
+        this.member.setMemberId(memberId);
+        this.goal.setGoalId(goalId);
+        this.role = role;
+        this.startAlarmDate = startAlarmDate;
+        this.endAlarmDate = endAlarmDate;
+        this.isChecked = isChecked;
+    }
+
     // 매핑 편의 메소드 ----------------------------------------
 
     public void setGoal(Goal goal) {
         this.goal = goal;
-        goal.getMemberGoalList().add(this);
     }
 
 }
