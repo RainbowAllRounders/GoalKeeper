@@ -52,6 +52,14 @@ public class GoalController {
         }
     }
 
+    @GetMapping("/detail/{goalId}")
+    public String goalDetailPage(@PathVariable Long goalId, Model model) {
+
+        model.addAttribute("goalDetail", goalService.getGoalDetail(goalId));
+
+        return "";
+    }
+
 //    @GetMapping("/list")
 //    public String goalList(Pageable pageable,
 //                           BindingResult bindingResult,
