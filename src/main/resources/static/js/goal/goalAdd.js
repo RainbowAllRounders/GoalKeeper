@@ -22,6 +22,16 @@ const goalPeople = goalPeopleInput.querySelector('input');
 // 등록 버튼
 const goalAddBtn = document.getElementById('goalAddBtn');
 
+const goalAddDTO = {
+    title: [[${title}]],
+    authCount: [[${authCount}]],
+    content: [[${content}]],
+    hashtagDTOs: [[${hashtagDTOs}]],
+    startDate: [[${startDate}]],
+    endDate: [[${endDate}]],
+    maxPeople: [[${maxPeople}]]
+}
+
 // 현재 날짜 yyyy-mm-dd 형식 리턴 함수
 function calcDate() {
     // 오늘 날짜
@@ -35,6 +45,12 @@ function calcDate() {
     // yyyy-mm-dd
     const yyyy_mm_dd = `${year}-${month}-${day}`;
     return yyyy_mm_dd;
+}
+
+// 미션 등록 함수
+async function addGoal(goalAddDTO) {
+    const response = await axios.post(`/goal/add`, goalAddDTO);
+    return response.data;
 }
 
 window.addEventListener('load', function () {
@@ -146,47 +162,6 @@ window.addEventListener('load', function () {
         }
     });
 
-    // // 등록 버튼 눌렀을 때
-    // goalAddBtn.addEventListener('click', function () {
-    //     const goalTitle = goalTitleInput.querySelector('input').value.trim();
-    //     const goalTimesValue = goalTimes.value.trim();
-    //     const goalDescription = goalDescriptionText.value.trim();
-    //     const startDate = startDateInput.value.trim();
-    //     const endDate = endDateInput.value.trim();
-    //     const goalPeopleValue = goalPeople.value.trim();
-    //
-    //     // 필수 입력값이 하나라도 입력되지 않았을 경우
-    //     if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
-    //         swal({
-    //             title: '입력 오류',
-    //             text: '모든 입력값을 입력해주세요.',
-    //             type: 'error',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //
-    //     // GoalController에서 발생한 오류 확인
-    //     } else if("*{fail}" === '미션 등록 오류') {
-    //         swal({
-    //             title: '미션 등록 오류',
-    //             text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
-    //             type: 'error',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //
-    //     // 미션 등록 성공
-    //     } else if("*{success}" === '미션 등록 성공') {
-    //         swal({
-    //             title: '미션 등록 완료',
-    //             text: '미션 등록이 성공적으로 완료되었습니다.',
-    //             type: 'success',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //     }
-    // });
-
     // 등록 버튼 눌렀을 때
     goalAddBtn.addEventListener('click', function () {
         const goalTitle = goalTitleInput.querySelector('input').value.trim();
@@ -196,73 +171,63 @@ window.addEventListener('load', function () {
         const endDate = endDateInput.value.trim();
         const goalPeopleValue = goalPeople.value.trim();
 
-        // 필수 입력값이 하나라도 입력되지 않았을 경우
-        if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
+        addGoal(goalAddDTO).then(result => {
+            if(!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
+                swal({
+                    title: '입력 오류',
+                    text: '모든 입력값을 입력해주세요.',
+                    type: 'error',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#FF5065'
+                });
+            } else {
+                swal({
+                    title: '미션 등록 완료',
+                    text: '미션 등록이 성공적으로 완료되었습니다.',
+                    type: 'success',
+                    confirmButtonText: '확인',
+                    confirmButtonColor: '#FF5065'
+                });
+            }
+
+        }).catch(e => {
             swal({
-                title: '입력 오류',
-                text: '모든 입력값을 입력해주세요.',
+                title: '미션 등록 오류',
+                text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
                 type: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
+        });
 
-        } else {
-            // AJAX 요청을 통해 미션 등록을 시도합니다.
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/goal/add", true);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        console.log("성공@@@@@@@@@@")
-                        
-                        // 미션 등록 성공
-                        swal({
-                            title: '미션 등록 완료',
-                            text: '미션 등록이 성공적으로 완료되었습니다.',
-                            type: 'success',
-                            confirmButtonText: '확인',
-                            confirmButtonColor: '#FF5065'
-                        }).then(() => {
-                            window.location.href = "/goal/list"; // 확인 버튼을 클릭했을 때 페이지 이동
-                        });
-                    } else {
-
-                        console.log("실패@@@@@@@@@@")
-                        // 미션 등록 실패
-                        swal({
-                            title: '미션 등록 오류',
-                            text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
-                            type: 'error',
-                            confirmButtonText: '확인',
-                            confirmButtonColor: '#FF5065'
-                        });
-                    }
-                } else {
-                    console.log("오류@@@@@@@@@@")
-                    // 서버 오류
-                    swal({
-                        title: '서버 오류',
-                        text: '서버와의 통신 중 오류가 발생했습니다.',
-                        type: 'error',
-                        confirmButtonText: '확인',
-                        confirmButtonColor: '#FF5065'
-                    });
-                }
-            };
-
-            // 요청을 보냅니다.
-            xhr.send(JSON.stringify({
-                goalTitle: goalTitle,
-                goalTimes: goalTimesValue,
-                goalDescription: goalDescription,
-                startDate: startDate,
-                endDate: endDate,
-                goalPeople: goalPeopleValue
-            }));
-        }
+        // // 필수 입력값이 하나라도 입력되지 않았을 경우
+        // if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
+        //     swal({
+        //         title: '입력 오류',
+        //         text: '모든 입력값을 입력해주세요.',
+        //         type: 'error',
+        //         confirmButtonText: '확인',
+        //         confirmButtonColor: '#FF5065'
+        //     });
+        //
+        // } else if("*{fail}" === '미션 등록 오류') {
+        //     swal({
+        //         title: '미션 등록 오류',
+        //         text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
+        //         type: 'error',
+        //         confirmButtonText: '확인',
+        //         confirmButtonColor: '#FF5065'
+        //     });
+        //
+        // // 미션 등록 성공
+        // } else if("*{success}" === '미션 등록 성공') {
+        //     swal({
+        //         title: '미션 등록 완료',
+        //         text: '미션 등록이 성공적으로 완료되었습니다.',
+        //         type: 'success',
+        //         confirmButtonText: '확인',
+        //         confirmButtonColor: '#FF5065'
+        //     });
+        // }
     });
-
 });
