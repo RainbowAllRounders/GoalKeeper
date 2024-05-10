@@ -2,15 +2,15 @@ package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.service.GoalService;
+import io.swagger.annotations.ApiOperation;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/goal")
@@ -19,16 +19,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GoalController {
     private final GoalService goalService;
 
+    @ApiOperation(value = "GoalAdd GET", notes = "GET 방식으로 미션 등록창 가져오기")
     @GetMapping("/add")
     public String addGoalGet(Model model) {
         model.addAttribute("goalAddDTO", new GoalAddDTO());
         return "goal/goalAdd";
     }
 
+    @ApiOperation(value = "GoalAdd POST", notes = "POST 방식으로 미션 등록")
     @PostMapping("/add")
-    public String addGoal(@ModelAttribute GoalAddDTO goalAddDTO,
+    public String addGoal(@Valid @RequestBody GoalAddDTO goalAddDTO,
+                          HttpSession session,
                           BindingResult bindingResult,
                           Model model) {
+
+        log.info(goalAddDTO);
 
         if(bindingResult.hasErrors()) {
             log.info("미션 등록 오류");
@@ -37,7 +42,7 @@ public class GoalController {
         }
 
         try {
-            goalService.goalAdd(goalAddDTO);
+            goalService.goalAdd(goalAddDTO, session);
             log.info("미션 등록 성공");
             model.addAttribute("success", "미션 등록 성공");
             return "redirect:/goal/list";
