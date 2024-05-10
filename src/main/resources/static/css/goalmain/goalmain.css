@@ -404,27 +404,31 @@
     overflow: visible;
 }
 
-.rankpage>.dansang_group>.rankpeopleprofile>._1st{
+.rankpage>.dansang_group>.rankpeopleprofile>.peopleprofile{
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    overflow: visible;
+}
+
+.rankpage>.dansang_group>.rankpeopleprofile>.peopleprofile>._1st{
     position: relative;
     top: -80px;
     margin: 0px 60px;
-    background: url(../../images/header/profile.png) no-repeat;
-    background-size: contain;
     width: 180px;
     height: 180px;
     border-radius: 50%;
 }
-.rankpage>.dansang_group>.rankpeopleprofile>._2st{
-    background: url(../../images/header/profile.png) no-repeat;
-    background-size: contain;
+.rankpage>.dansang_group>.rankpeopleprofile>.peopleprofile>._2nd{
     width: 150px;
     height: 150px;
     border-radius: 50%;
 }
 
-.rankpage>.dansang_group>.rankpeopleprofile>._3st{
-    background: url(../../images/header/profile.png) no-repeat;
-    background-size: contain;
+.rankpage>.dansang_group>.rankpeopleprofile>.peopleprofile>._3rd{
     width: 150px;
     height: 150px;
     border-radius: 50%;
