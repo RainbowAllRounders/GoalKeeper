@@ -22,7 +22,7 @@ public class MyPageInfoDTO {
 
     private Integer rank_point;
 
-    private Integer rankinkg;
+    private Integer ranking;
 
 
     public static MyPageInfoDTO fromMember(Member member) {
@@ -32,7 +32,7 @@ public class MyPageInfoDTO {
                 .password(member.getPassword())
                 .cur_point(member.getCurPoint())
                 .rank_point(member.getRankPoint())
-                .rankinkg(member.getRanking())
+                .ranking(member.getRanking())
                 .build();
     }
 
