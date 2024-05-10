@@ -26,4 +26,8 @@ public class Hashtag {
         this.goal = goal;
         goal.addHashTag(this);
     }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
 }
