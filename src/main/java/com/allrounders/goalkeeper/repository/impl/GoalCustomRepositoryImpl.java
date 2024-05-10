@@ -1,6 +1,7 @@
-package com.allrounders.goalkeeper.repository;
+package com.allrounders.goalkeeper.repository.impl;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.repository.GoalCustomRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -18,7 +19,7 @@ import static com.allrounders.goalkeeper.domain.QMemberGoal.memberGoal;
 
 @Repository
 @AllArgsConstructor
-public class GoalCustomRepositoryImpl implements GoalCustomRepository{
+public class GoalCustomRepositoryImpl implements GoalCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 

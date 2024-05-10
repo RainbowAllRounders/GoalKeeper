@@ -1,17 +1,17 @@
 package com.allrounders.goalkeeper.dto;
 
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HashtagDTO {
+public class RankDTO {
+    private int ranking;
+    private int rank_point;
+    private String nicName;
+    private String imgPath;
 
-    @NotBlank
-    private String tagName;
 }

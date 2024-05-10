@@ -21,7 +21,7 @@ public class GoalRepositoryTests {
     @Test
     public void testInsert() {
 
-        String startDateString = "2024-05-09";
+        String startDateString = "2024-05-30";
         String endDateString = "2024-06-08";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
@@ -36,6 +36,7 @@ public class GoalRepositoryTests {
                     .complete("모집 중")
                     .startDate(startDate)
                     .endDate(endDate)
+                    .imgPath("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.utoimage.com%2F%3Fm%3Dgoods.free%26mode%3Dview%26idx%3D22250682&psig=AOvVaw3uQV0G_bqyBvBPpc1ftysY&ust=1715399628887000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPCa0t6XgoYDFQAAAAAdAAAAABAD")
                     .build();
 
             Goal result = goalRepository.save(goal);

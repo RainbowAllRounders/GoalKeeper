@@ -10,8 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -29,13 +29,7 @@ public class GoalAddDTO {
     private Integer maxPeople;
 
     @NotNull
-    private List<MemberGoalDTO> memberGoalDTOList;
-
-    @NotNull
-    private List<LikesDTO> likeDTOList;
-
-    @NotBlank
-    private String complete;
+    private Integer authCount;
 
     @NotNull
     private LocalDate startDate;
@@ -43,25 +37,36 @@ public class GoalAddDTO {
     @NotNull
     private LocalDate endDate;
 
-    @NotNull
-    private LocalDate createDate;
+//    private List<HashtagDTO> hashtagDTOList;
+    private String hashtagDTOs;
 
-    private List<HashtagDTO> hashtagDTOList;
+//    @NotBlank
+    private String imgPath;
+
+    public List<Hashtag> parseHashtags() {
+        List<Hashtag> hashtagList = new ArrayList<>();
+        if (hashtagDTOs != null && !hashtagDTOs.isEmpty()) {
+            String[] hashtagArray = hashtagDTOs.split("\\s*#\\s*"); // 쉼표로 구분된 해시태그 문자열을 배열로 분할
+            for (String tag : hashtagArray) {
+                Hashtag hashtag = new Hashtag();
+                hashtag.setTagName(tag.trim()); // 태그의 공백을 제거하여 저장
+                hashtagList.add(hashtag);
+            }
+        }
+        return hashtagList;
+    }
 
     public static Goal dtoToEntity(GoalAddDTO goalAddDTO) {
 
-        List<Hashtag> hashtagList = goalAddDTO.getHashtagDTOList().stream()
-                .map(HashtagDTO::dtoToEntity)
-                .collect(Collectors.toList());
+        List<Hashtag> hashtagList = goalAddDTO.parseHashtags();
 
         Goal goal = Goal.builder()
                 .title(goalAddDTO.getTitle())
                 .content(goalAddDTO.getContent())
                 .maxPeople(goalAddDTO.getMaxPeople())
-                .complete(goalAddDTO.getComplete())
+                .authCount(goalAddDTO.getAuthCount())
                 .startDate(goalAddDTO.getStartDate())
                 .endDate(goalAddDTO.getEndDate())
-                .createDate(goalAddDTO.getCreateDate())
                 .hashtagList(hashtagList)
                 .build();
 

@@ -203,27 +203,33 @@
 		<div class="rank_t"></div>
 		<div class="dansang_group">
 			<div class="rankpeopleprofile">
-				<div class="_2st"></div>
-				<div class="_1st"></div>
-				<div class="_3st"></div>
+				<div class="peopleprofile" th:each="item : ${rankpeople}" th:if="${item.ranking == 2}">
+					<div class="_2nd" th:style="'background: url(' + ${item.imgPath} + ') center / contain'"></div>
+				</div>
+				<div class="peopleprofile" th:each="item : ${rankpeople}" th:if="${item.ranking == 1}">
+					<div class="_1st" th:style="'background: url(' + ${item.imgPath} + ') center / contain'"></div>
+				</div>
+				<div class="peopleprofile" th:each="item : ${rankpeople}" th:if="${item.ranking == 3}">
+					<div class="_3rd" th:style="'background: url(' + ${item.imgPath} + ') center / contain'"></div>
+				</div>
 			</div>
 			<div class="dansang"></div>
 			<div class="rankpeoples">
-				<div class="rankpeople">
-					<div class="nicname">zl존 조원진</div>
-					<div class="point">20493 point</div>
+				<div class="rankpeople" th:each="item : ${rankpeople}" th:if="${item.ranking == 1}">
+					<div class="nicname" th:text="${item.nicName}"></div>
+					<div class="point" th:text="${item.rank_point}"></div>
 				</div>
-				<div class="rankpeople">
-					<div class="nicname">삐진 권재원</div>
-					<div class="point">43024 point</div>
+				<div class="rankpeople" th:each="item : ${rankpeople}" th:if="${item.ranking == 2}">
+					<div class="nicname" th:text="${item.nicName}"></div>
+					<div class="point" th:text="${item.rank_point}"></div>
 				</div>
-				<div class="rankpeople">
-					<div class="nicname">카넬로</div>
-					<div class="point">9480 point</div>
+				<div class="rankpeople" th:each="item : ${rankpeople}" th:if="${item.ranking == 3}">
+					<div class="nicname" th:text="${item.nicName}"></div>
+					<div class="point" th:text="${item.rank_point}"></div>
 				</div>
+
 			</div>
 		</div>
-
 	</div>
 </div>
 <!--<div class="upbtn" id="upbtn"></div>-->

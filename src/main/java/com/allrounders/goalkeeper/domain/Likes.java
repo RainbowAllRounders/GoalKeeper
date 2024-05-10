@@ -10,7 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = {"goal", "member"})
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,24 @@ public class Likes {
     @ColumnDefault("false")
     private Boolean isLiked;
 
-    // 매핑 편의 메소드 ----------------------------------------
-
-    public void setGoal(Goal goal) {
+    public Likes(Member member, Goal goal, boolean likedStatus) {
+        this.member = member;
         this.goal = goal;
-        goal.getLikeList().add(this);
+        this.isLiked = likedStatus;
     }
+
+    /**
+     * 좋아요 true -> false
+     *      false -> true
+     */
+    public void changeLikeStatus(Boolean isLiked) {
+        if(isLiked == true) this.isLiked = false;
+        else this.isLiked = true;
+    }
+    // 매핑 편의 메소드 ----------------------------------------
+//
+//    public void setGoal(Goal goal) {
+//        this.goal = goal;
+//        goal.getLikeList().add(this);
+//    }
 }
