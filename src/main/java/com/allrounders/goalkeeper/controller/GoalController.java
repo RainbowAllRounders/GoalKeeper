@@ -4,7 +4,6 @@ import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.service.GoalService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 public class GoalController {
     private final GoalService goalService;
 
-    @ApiOperation(value = "GoalAdd GET", notes = "GET 방식으로 미션 등록창 가져오기")
     @GetMapping("/add")
     public String addGoalGet(Model model) {
         model.addAttribute("goalAddDTO", new GoalAddDTO());
@@ -28,7 +26,7 @@ public class GoalController {
 
     @ApiOperation(value = "GoalAdd POST", notes = "POST 방식으로 미션 등록")
     @PostMapping("/add")
-    public String addGoal(@Valid @RequestBody GoalAddDTO goalAddDTO,
+    public String addGoal(@ModelAttribute GoalAddDTO goalAddDTO,
                           HttpSession session,
                           BindingResult bindingResult,
                           Model model) {
