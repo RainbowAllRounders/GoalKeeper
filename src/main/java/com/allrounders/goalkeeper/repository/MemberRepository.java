@@ -19,4 +19,6 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
     boolean existsByEmail(String email);
 //    //DB에 Nickname값이 존재하는지 확인
 //    boolean existsByNickname(String nickname);
+
+    Member findByMemberId(Long memberId);
 }
