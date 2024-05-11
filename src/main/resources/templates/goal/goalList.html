@@ -40,15 +40,15 @@
 
                     <div class="leftContainer">
                         <div class="categoryList">
-                            <div class="timesTag tags" th:text="${goal.authCount}">회 인증</div>
-                            <div class="statusTag tags recruiting"  th:text="${goal.complete}"></div>
+                            <div class="timesTag tags" th:text="${goal.authCount} + '회 인증'"></div>
+                            <div class="statusTag tags"  th:text="${goal.complete}"></div>
                         </div>
                         <div class="goalTitle" th:text="${goal.title}"></div>
 
-                        <div class="hashtagList" th:each="hashtag : ${goal.hashtagDTOList}">
-                            <div class="hashtag tags" th:text="${hashtag.tagName}"></div>
-                            <div class="hashtag tags" th:text="${hashtag.tagName}"></div>
-                            <div class="hashtag tags" th:text="${hashtag.tagName}"></div>
+                        <div class="hashtagList">
+                            <div class="hashtag tags">태그1</div>
+                            <div class="hashtag tags">태그2</div>
+                            <div class="hashtag tags">태그3</div>
                         </div>
                     </div>
 
