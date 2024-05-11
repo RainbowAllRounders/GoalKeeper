@@ -105,66 +105,112 @@ updateButton.addEventListener('click', function () {
 
 
 // 4. 회원 탈퇴 - 아직 미완성
-$().ready(function () {
-    $(document).ready(function () {
-        $("#promptStart").click(async function () {
-            const { value: password } = await Swal.fire({
-                title: "본인 확인",
-                html: "고객님의 소중한 개인정보 보호를 위해서<br> 본인확인을 진행합니다.",
-                input: "password",
-                inputPlaceholder: "비밀번호를 입력하세요",
-                confirmButtonColor: "#FFBB00",
-            });
+const unregisterBtn = document.querySelector(".unregister_btn ");
+unregisterBtn.addEventListener('click', async function () {
+    const { value: password } = await Swal.fire({
+        title: "본인 확인",
+        html: "고객님의 소중한 개인정보 보호를 위해서<br> 본인확인을 진행합니다.",
+        input: "password",
+        inputPlaceholder: "비밀번호를 입력하세요",
+        confirmButtonColor: "#FFBB00"
+    });
 
-            if (password) {
-                // TODO: 입력 비밀번호와 DB 정보 일치하는지 확인 후
+    if (password) {
+        fetch('/member/verifyPassword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ password: password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isValid) {
                 showConfirmStart();
-            }
-
-            // TODO: 비밀번호가 일치하지 않는 경우 예외 처리
-            else {
+            } else {
                 notMatchAlert();
             }
-        });
-
-        function showConfirmStart() {
-            Swal.fire({
-                title: "정말 탈퇴 하시겠어요?",
-                text: "탈퇴 버튼 선택시, 계정은 삭제되며 복구되지 않습니다.",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#FFBB00",
-                cancelButtonColor: "#2A9AD9",
-                confirmButtonText: "탈퇴",
-                cancelButtonText: "취소",
-                reverseButtons: false,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        confirmButtonColor: "#FF5065",
-                        title: "탈퇴 처리가 완료되었습니다.",
-                        text: "다시 돌아오실거죠?",
-                        icon: "success",
-                    });
-                    // TODO: DB에서 member 정보 삭제 처리
+        })
+            .catch(() => {
+                Swal.fire("오류", "서버 오류가 발생했습니다.", "error");
+            });
+    } else {
+        Swal.fire("경고", "비밀번호를 입력해주세요.", "warning");
+    }
+});
+// $().ready(function () {
+//     $(document).ready(function () {
+//         $("#promptStart").click(async function () {
+//             const { value: password } = await Swal.fire({
+//                 title: "본인 확인",
+//                 html: "고객님의 소중한 개인정보 보호를 위해서<br> 본인확인을 진행합니다.",
+//                 input: "password",
+//                 inputPlaceholder: "비밀번호를 입력하세요",
+//                 confirmButtonColor: "#FFBB00",
+//             });
+//
+//             if (password) {
+//                 // TODO: 입력 비밀번호와 DB 정보 일치하는지 확인 후
+//                 showConfirmStart();
+//             }
+//
+//             // TODO: 비밀번호가 일치하지 않는 경우 예외 처리
+//             else {
+//                 notMatchAlert();
+//             }
+//         });
+//
+function showConfirmStart() {
+    Swal.fire({
+        title: "정말 탈퇴 하시겠어요?",
+        text: "탈퇴 버튼 선택시, 계정은 삭제되며 복구되지 않습니다.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#FFBB00",
+        cancelButtonColor: "#2A9AD9",
+        confirmButtonText: "탈퇴",
+        cancelButtonText: "취소",
+        reverseButtons: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('/member/unregister', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/main/GoalMain';
+                } else {
+                    throw new Error();
+                }
+            })
+            .catch(error => {
+                Swal.fire("오류", "탈퇴 처리 중 오류가 발생했습니다: " + error.message, "error")
             });
-        }
 
-        function notMatchAlert() {
-            Swal.fire({
-                icon: "error",
-                title: "비밀번호가 일치하지 않습니다.",
-                text: "5초 후 창이 자동으로 닫힙니다.",
-                timer: 5000,
-                timerProgressBar: true, // 타이머 진행 상태를 보여주는 프로그레스 바 활성화
-                didOpen: () => {
-                    Swal.showLoading(); // 로딩 애니메이션 표시
-                },
-            });
+
+
+            // TODO: DB에서 member 정보 삭제 처리
         }
     });
-});
+}
+
+function notMatchAlert() {
+    Swal.fire({
+        icon: "error",
+        title: "비밀번호가 일치하지 않습니다.",
+        text: "5초 후 창이 자동으로 닫힙니다.",
+        timer: 5000,
+        timerProgressBar: true, // 타이머 진행 상태를 보여주는 프로그레스 바 활성화
+        didOpen: () => {
+            Swal.showLoading(); // 로딩 애니메이션 표시
+        },
+    });
+}
+//     });
+// });
 
 
 // 5. 내 랭크 100위 이상일 경우 99+ 처리
