@@ -37,7 +37,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                 .select(goal.goalId, goal.title, goal.maxPeople,
                         goal.curPeople, goal.likeCount, goal.authCount,
                         goal.complete, goal.startDate, goal.endDate,
-                        goal.hashtagList, goal.imgPath)
+                        goal.imgPath)
                 .from(goal)
                 .orderBy(goal.goalId.desc())
                 .offset(pageable.getOffset())
@@ -57,7 +57,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                     dto.setComplete(tuple.get(goal.complete));
                     dto.setStartDate(tuple.get(goal.startDate));
                     dto.setEndDate(tuple.get(goal.endDate));
-                    dto.setHashtagDTOList(HashtagDTO.fromEntities(tuple.get(goal.hashtagList)));
+//                    dto.setHashtagDTOList(HashtagDTO.fromEntities(tuple.get(goal.hashtagList)));
                     dto.setImgPath(tuple.get(goal.imgPath));
                     return dto;
                 })
