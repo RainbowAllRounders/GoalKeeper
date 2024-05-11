@@ -1,6 +1,7 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Member;
+import com.allrounders.goalkeeper.dto.MemberLoginDTO;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
@@ -28,6 +29,17 @@ public class MemberService {
         Member member = request.toEntity();
         memberRepository.save(member);
     }
+    //로그인 메서드(예비)
+//    public boolean login(MemberLoginDTO loginDTO) {
+//        Member member = memberRepository.findByEmailAndPassword(loginDTO.getEmail(), loginDTO.getPassword());
+//        return member != null;
+//    }
+public boolean login(MemberLoginDTO memberLoginDTO) {
+    String email = memberLoginDTO.getEmail();
+    String password = memberLoginDTO.getPassword();
+    return memberRepository.existsByEmailAndPassword(email, password);
+}
+
 
     //    //Repository에서 정의한 메서드 구현
     //    //DB에 존재하면 true, 아닐경우 false를 반환

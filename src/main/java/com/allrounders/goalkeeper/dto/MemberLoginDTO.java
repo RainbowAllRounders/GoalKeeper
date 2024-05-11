@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MemberSignUpDTO {
+public class MemberLoginDTO {
 
 
     @NotBlank(message = "이메일 주소를 입력해주세요.")
@@ -20,16 +20,12 @@ public class MemberSignUpDTO {
     @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;
 
-    @NotBlank(message = "닉네임을 입력해주세요.")
-    private String nickname;
-
     private int ranking = 0; // Add this line with default value
 
     public Member toEntity() {
         return Member.builder()
                 .email(this.getEmail())
                 .password(this.getPassword())
-                .nickname(this.getNickname())
                 .ranking(this.getRanking()) // Include ranking field
                 .build();
     }
