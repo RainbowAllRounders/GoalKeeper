@@ -1,53 +1,47 @@
-document.getElementById('upbtn').addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 부드러운 스크롤 효과
-    });
-});
-
 document.addEventListener('DOMContentLoaded', function() {
-    // 탭
-    // 모든 탭 요소를 가져옴
-    const tabs = document.querySelectorAll('.navtabs .tab');
 
-    // 각 탭에 클릭 이벤트 리스너를 추가
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            // 모든 탭의 특정 클래스를 초기화
-            tabs.forEach(t => {
-                const icon = t.children[0];
-                const text = t.children[1];
-                icon.className = icon.className.replace('_pink', ''); // '_pink' 접미사 제거
-                text.className = text.className.replace('pink', ''); // 'pink' 클래스 제거
-            });
-
-            // 클릭된 탭에만 특정 클래스를 추가
-            const icon = this.children[0];
-            const text = this.children[1];
-            icon.className += '_pink'; // 아이콘에 '_pink' 추가
-            text.className += 'pink'; // 텍스트에 'pink' 추가
+    document.getElementById('upbtn').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // 스크롤 효과
         });
     });
 
-    // 메세지
-    const messageCom = document.querySelector('.messagecom');
-    const message = messageCom.querySelector('.message');
-    const redDot = messageCom.querySelector('.reddot');
-    const messageBox = document.querySelector('.messagebox');
+    // --------------------------------------- 탭 --------------------------------------
+    // 모든 탭 요소를 가져옴
+    // 현재 URL을 기반으로 활성 탭 설정
+    const currentPath = window.location.pathname;
+    const tabs = document.querySelectorAll('.tab'); // 모든 탭 선택
 
-    messageCom.addEventListener('click', function() {
-        // message 요소에 'message_open' 클래스를 토글
-        const isOpen = message.classList.toggle('message_open');
-
-        // reddot 요소의 표시 상태를 토글
-        redDot.style.display = isOpen ? 'none' : 'block';
-
-        // messageBox 요소의 표시 상태를 토글
-        messageBox.style.display = isOpen ? 'block' : 'none';
+    tabs.forEach(tab => {
+        // 링크가 현재 경로와 일치하는지 확인
+        const path = tab.getAttribute('data-path');
+        if (path === currentPath) {
+            tab.classList.add('active'); // active 클래스 추가
+        } else {
+            tab.classList.remove('active'); // 다른 탭에서 active 클래스 제거
+        }
     });
 
+    // --------------------------------------- 메세지 --------------------------------------
+    // const messageCom = document.querySelector('.messagecom');
+    // const message = messageCom.querySelector('.message');
+    // const redDot = messageCom.querySelector('.reddot');
+    // const messageBox = document.querySelector('.messagebox');
+    //
+    // messageCom.addEventListener('click', function() {
+    //     // message 요소에 'message_open' 클래스를 토글
+    //     const isOpen = message.classList.toggle('message_open');
+    //
+    //     // reddot 요소의 표시 상태를 토글
+    //     redDot.style.display = isOpen ? 'none' : 'block';
+    //
+    //     // messageBox 요소의 표시 상태를 토글
+    //     messageBox.style.display = isOpen ? 'block' : 'none';
+    // });
 
-    //프로필
+
+    // --------------------------------------- 프로필 --------------------------------------
     const loginBtnContainer = document.querySelector('.loginbtn');
     const dropdown = document.querySelector('.dropdown');
 
