@@ -76,4 +76,7 @@ public class Member {
         this.ranking = ranking;
     }
 
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 }
