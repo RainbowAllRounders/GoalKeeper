@@ -60,11 +60,4 @@ window.addEventListener('load', function() {
 
     // 더보기 버튼 --------------------
 
-    // 초기에는 더보기 버튼을 숨김
-    seeMoreBtn.style.display = "none";
-
-    // 8개 이상이면 더보기 버튼 보이게
-    if (goalList.length >= 8) {
-        seeMoreBtn.style.display = "block";
-    }
 });
