@@ -1,6 +1,7 @@
 package com.allrounders.goalkeeper.controller;
 
 
+import com.allrounders.goalkeeper.service.GoalService;
 import com.allrounders.goalkeeper.service.RankService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     private final RankService rankService;
+    private final GoalService goalService;
 
     @GetMapping("/Intro")
     public String Intro() {
@@ -22,6 +24,7 @@ public class MainController {
     @GetMapping("/")
     public String main(Model model) {
         model.addAttribute("rankpeople", rankService.findTop3Ranker());
+        model.addAttribute("Top3Goal", goalService.getTop3Goal());
         return "main/GoalMain";
     }
 }
