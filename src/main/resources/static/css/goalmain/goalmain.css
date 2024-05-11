@@ -69,7 +69,6 @@
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid red; */
 }
 
 .hotgoal>.hotgoal_top>.hotgoallogo{
@@ -107,6 +106,7 @@
     background-color: #FFFFFF;
     background-color: inherit;
     box-shadow: 4px 4px 8px 4px  #AAAAAA;
+    flex-shrink: 0;
 }
 
 /* Top3미션카드-카드들-카드영역-상단------------------------------------*/
