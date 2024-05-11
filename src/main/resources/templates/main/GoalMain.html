@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>main</title>
 	<link rel="stylesheet" th:href="@{/css/goalmain/goalmain.css}">
-	<link rel="stylesheet" th:href="@{/css/header.css}">
-	<link rel="stylesheet" th:href="@{/css/footer.css}">
-	<link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
-<body>
-<!--<div class="header" id="header">-->
-<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
-<!--</div>-->
+<body layout:fragment="content">
+
+
 <div class="container">
 	<!-- banner -->
 	<div class="banner">
@@ -134,10 +130,6 @@
 		</div>
 	</div>
 </div>
-<!--<div class="upbtn" id="upbtn"></div>-->
-
-<th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
 <script th:src="@{/js/main/main.js}"></script>
-<script th:src="@{/js/main/header.js}"></script>
 </body>
 </html>
