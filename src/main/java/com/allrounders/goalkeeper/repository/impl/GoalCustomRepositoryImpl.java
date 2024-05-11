@@ -1,8 +1,12 @@
 package com.allrounders.goalkeeper.repository.impl;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.dto.GoalListDTO;
+import com.allrounders.goalkeeper.dto.HashtagDTO;
+import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.repository.GoalCustomRepository;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
@@ -15,6 +19,7 @@ import java.util.List;
 
 import static com.allrounders.goalkeeper.domain.QGoal.goal;
 import static com.allrounders.goalkeeper.domain.QHashtag.hashtag;
+import static com.allrounders.goalkeeper.domain.QMember.member;
 import static com.allrounders.goalkeeper.domain.QMemberGoal.memberGoal;
 
 @Repository
@@ -43,6 +48,53 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
         long total = query.fetchCount();
 
         return new PageImpl<>(content, pageable, total);
+    }
+
+    //좋아요순으로 카드3개
+    @Override
+    public List<Top3GoalDTO> searchTop3Goal() {
+        // 먼저 Goal의 기본 정보와 함께 기본적인 집계 데이터를 가져옵니다.
+        List<Top3GoalDTO> goals = jpaQueryFactory
+                .select(Projections.fields(Top3GoalDTO.class,
+                        goal.goalId,
+                        goal.title,
+                        goal.authCount,
+                        goal.maxPeople,
+                        goal.member.size().as("curPeople"),
+                        goal.likeCount,
+                        goal.complete,
+                        goal.startDate,
+                        goal.endDate,
+                        goal.imgPath
+                ))
+                .from(goal)
+                .orderBy(goal.likeCount.desc())
+                .offset(0)
+                .limit(3)
+                .fetch();
+
+        //방장구하기 -> 나중에 true로 변경해야함 memberGoal.role.eq(true)
+        goals.forEach(g -> {
+            String roomManager = jpaQueryFactory
+                    .select(member.nickname)
+                    .from(memberGoal)
+                    .join(memberGoal.member, member)
+                    .where(memberGoal.role.eq(false).and(memberGoal.goal.goalId.eq(g.getGoalId())))
+                    .fetchFirst();
+            g.setRoomManager(roomManager);
+        });
+
+        // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정합니다.
+        goals.forEach(g -> {
+            List<HashtagDTO> hashtags = jpaQueryFactory
+                    .select(Projections.constructor(HashtagDTO.class, hashtag.tagName))
+                    .from(hashtag)
+                    .where(hashtag.goal.goalId.eq(g.getGoalId()))
+                    .fetch();
+            g.setHashtagDTOList(hashtags);
+        });
+
+        return goals;
     }
 
 //    @Override
