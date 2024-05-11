@@ -34,6 +34,17 @@ public class Likes {
     }
 
     /**
+     * 좋아요 클릭
+     */
+    public static Likes insertLike(Member member, Goal goal, Boolean isLiked) {
+        return Likes.builder()
+                .member(member)
+                .goal(goal)
+                .isLiked(true)
+                .build();
+    }
+
+    /**
      * 좋아요 true -> false
      *      false -> true
      */
