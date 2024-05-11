@@ -103,29 +103,24 @@
 }
 
 /*클릭했을때*/
-.header>.navtabs>.tab1>.penicon_pink{
+.header>.navtabs>.tab1>.penicon_pink,
+.header>.navtabs>.tab2>.fireicon_pink,
+.header>.navtabs>.tab3>.gameicon_pink {
     width: 20px;
     height: 20px;
     margin: 8px;
-    background: url(../images/header/Penicon_pink.png);
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.header>.navtabs>.tab1>.penicon_pink{
+    background: url(../images/header/Penicon_pink.png);
 }
 .header>.navtabs>.tab2>.fireicon_pink{
-    width: 20px;
-    height: 20px;
-    margin: 8px;
     background: url(../images/header/Fireicon_pink.png);
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 .header>.navtabs>.tab3>.gameicon_pink{
-    width: 20px;
-    height: 20px;
-    margin: 8px;
     background: url(../images/header/Gameicon_pink.png);
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .header>.navtabs>.tab>.pink{

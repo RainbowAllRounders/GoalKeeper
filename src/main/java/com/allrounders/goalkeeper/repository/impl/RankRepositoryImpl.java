@@ -1,6 +1,7 @@
-package com.allrounders.goalkeeper.repository;
+package com.allrounders.goalkeeper.repository.impl;
 
 import com.allrounders.goalkeeper.dto.RankDTO;
+import com.allrounders.goalkeeper.repository.RankRepositoryCustom;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import static com.allrounders.goalkeeper.domain.QMember.member;
 
 @Repository
 @AllArgsConstructor
-public class RankRepositoryImpl implements RankRepositoryCustom{
+public class RankRepositoryImpl implements RankRepositoryCustom {
 
     @Autowired
     private JPAQueryFactory queryFactory;

@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 @Entity
 @Getter
@@ -37,9 +42,20 @@ public class Member {
     @Column(length = 255)
     private String imgPath;
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<AuthImg> authImgSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<MemberGoal> memberGoalList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Likes> likesList = new ArrayList<>();
+
+
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
     }
+
 
     public void updateMember(String nickname, String password) {
         if (nickname != null && !nickname.isEmpty()) {

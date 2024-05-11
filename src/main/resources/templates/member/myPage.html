@@ -60,12 +60,10 @@
                 <div class="shadow my_rank">
                     <p>RANK</p>
                     <div class="rank_icon"><p><span th:text="${member.ranking}"></span></p></div>
-                    <!-- TODO: 100위부터는 99+ 로 처리할 것 -->
                 </div>
 
 
-                <div class="shadow game_banner">
-                    <!-- TODO: 클릭이벤트 미니게임메인 페이지 이동 -->
+                <div class="shadow game_banner" onclick="window.location.href='/game/game_main'">
                     <div class="left_area">
                         <h4>포인트가 부족해.. <span class="ghost_icon"></span></h4>
                         <h2 class="sure">역시 그럴땐 미니게임!</h2>
@@ -75,8 +73,7 @@
 
 
                 <p class="mission_title">내 미션<span class="flame_icon"></span></p>
-                <button class="full_btn">전체 보기</button>
-                <!-- TODO: 내미션보러가기 페이지 이동 -->
+                <button class="full_btn"><a href="/member/myGoalList">전체 보기</a></button>
                 <div class="shadow first_mission">
                     <p class="mymission_title">최애곡 1번 이상 공유</p>
                 </div>
@@ -140,6 +137,8 @@
         </div>
     
     <script th:src="@{/js/member/myPage.js}"></script>
+    <script th:src="@{/js/main/header.js}"></script>
+
 
 </body>
 </html>
