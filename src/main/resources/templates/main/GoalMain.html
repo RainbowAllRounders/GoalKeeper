@@ -11,7 +11,7 @@
 </head>
 <body>
 <!--<div class="header" id="header">-->
-	<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
+<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
 <!--</div>-->
 <div class="container">
 	<!-- banner -->
@@ -30,43 +30,46 @@
 			</div>
 		</div>
 		<div class="hotgoal_bottom">
-			<div class="goalcard_1">
-				<!-- cardTop -->
+			<div th:each="goal : ${Top3Goal}" class="goalcard">
 				<div class="cardtop">
-					<!-- cardTop_Left -->
 					<div class="cardtopL">
 						<div class="cardex">
 							<div class="authcount">
-								<p>1회 인증</p>
+								<p th:text="${goal.authCount} + '회 인증'"></p>
 							</div>
 							<div class="status">
-								<p>진행중</p>
+								<p th:text="${goal.complete}"></p>
 							</div>
 						</div>
-						<div class="goaltitle"><p>매일 모각코</p></div>
+						<div class="goaltitle" th:onclick="'location.href=\'/goal/detail/' + ${goal.goalId} + '\''">
+							<p th:text="${goal.title}"></p>
+						</div>
 						<div class="hashtags">
-							<div class="hashtag"><p># JAVA</p></div>
-							<div class="hashtag"><p># 취준생</p></div>
-							<div class="hashtag"><p># 개발자</p></div>
+							<div th:each="hashtag : ${goal.hashtagDTOList}" class="hashtag">
+								<p th:text="'# ' + ${hashtag.tagName}"></p>
+							</div>
 						</div>
 					</div>
-					<!-- cardTop_Right -->
 					<div class="cardtopR">
 						<div class="like_F"></div>
-						<div class="likecount"><p>999+</p></div>
+						<div class="likecount">
+							<p th:text="${goal.likeCount}"></p>
+						</div>
 					</div>
 				</div>
-				<div class="goalimg"></div>
+				<div class="goalimg" th:style="'background: url(' + ${goal.imgPath} + ') center / contain'"></div>
 				<div class="progress"></div>
 				<div class="cardbottom">
 					<div class="cardbottomL">
 						<div class="king">
 							<div class="cardicon"></div>
-							<div class="king_t"><p>디자인천재혤</p></div>
+							<div class="king_t"><p th:text="${goal.roomManager}"></p></div>
 						</div>
 						<div class="pnum">
 							<div class="cardicon"></div>
-							<div class="pnum_t"><p><span>9</span>/<span>20</span></p></div>
+							<div class="pnum_t">
+								<p><span th:text="${goal.curPeople}"></span>/<span th:text="${goal.maxPeople}"></span></p>
+							</div>
 						</div>
 					</div>
 					<div class="cardbottomR">
@@ -76,117 +79,15 @@
 						</div>
 						<div class="term">
 							<div class="cardicon"></div>
-							<div class="term_t"><p><span>2024.04.24</span>-<span>2024.04.28</span></p></div>
+							<div class="term_t">
+								<p><span th:text="${#strings.replace(goal.startDate, '-', '.')}"></span>-<span th:text="${#strings.replace(goal.endDate, '-', '.')}"></span></p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="goalcard_1">
-				<!-- cardTop -->
-				<div class="cardtop">
-					<!-- cardTop_Left -->
-					<div class="cardtopL">
-						<div class="cardex">
-							<div class="authcount">
-								<p>1회 인증</p>
-							</div>
-							<div class="status">
-								<p>진행중</p>
-							</div>
-						</div>
-						<div class="goaltitle"><p>매일 모각코</p></div>
-						<div class="hashtags">
-							<div class="hashtag"><p># JAVA</p></div>
-							<div class="hashtag"><p># 취준생</p></div>
-							<div class="hashtag"><p># 개발자</p></div>
-						</div>
-					</div>
-					<!-- cardTop_Right -->
-					<div class="cardtopR">
-<!--					like_T이면 빨간하트-->
-						<div class="like_F"></div>
-						<div class="likecount"><p>999+</p></div>
-					</div>
-				</div>
-				<div class="goalimg"></div>
-				<div class="progress"></div>
-				<div class="cardbottom">
-					<div class="cardbottomL">
-						<div class="king">
-							<div class="cardicon"></div>
-							<div class="king_t"><p>디자인천재혤</p></div>
-						</div>
-						<div class="pnum">
-							<div class="cardicon"></div>
-							<div class="pnum_t"><p><span>9</span>/<span>20</span></p></div>
-						</div>
-					</div>
-					<div class="cardbottomR">
-						<div class="point">
-							<div class="cardicon"></div>
-							<div class="point_t"><p>참여 -300 / 달성 +500</p></div>
-						</div>
-						<div class="term">
-							<div class="cardicon"></div>
-							<div class="term_t"><p><span>2024.04.24</span>-<span>2024.04.28</span></p></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="goalcard_1">
-				<!-- cardTop -->
-				<div class="cardtop">
-					<!-- cardTop_Left -->
-					<div class="cardtopL">
-						<div class="cardex">
-							<div class="authcount">
-								<p>1회 인증</p>
-							</div>
-							<div class="status">
-								<p>진행중</p>
-							</div>
-						</div>
-						<div class="goaltitle"><p>매일 모각코</p></div>
-						<div class="hashtags">
-							<div class="hashtag"><p># JAVA</p></div>
-							<div class="hashtag"><p># 취준생</p></div>
-							<div class="hashtag"><p># 개발자</p></div>
-						</div>
-					</div>
-					<!-- cardTop_Right -->
-					<div class="cardtopR">
-						<div class="like_F"></div>
-						<div class="likecount"><p>999+</p></div>
-					</div>
-				</div>
-				<div class="goalimg"></div>
-				<div class="progress"></div>
-				<div class="cardbottom">
-					<div class="cardbottomL">
-						<div class="king">
-							<div class="cardicon"></div>
-							<div class="king_t"><p>디자인천재혤</p></div>
-						</div>
-						<div class="pnum">
-							<div class="cardicon"></div>
-							<div class="pnum_t"><p><span>9</span>/<span>20</span></p></div>
-						</div>
-					</div>
-					<div class="cardbottomR">
-						<div class="point">
-							<div class="cardicon"></div>
-							<div class="point_t"><p>참여 -300 / 달성 +500</p></div>
-						</div>
-						<div class="term">
-							<div class="cardicon"></div>
-							<div class="term_t"><p><span>2024.04.24</span>-<span>2024.04.28</span></p></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 		</div>
-		<div class="goalmission">
+		<div class="goalmission" th:onclick="'location.href=\'/goal/list\''">
 			<p>미션 전체 보기</p>
 		</div>
 	</div>
