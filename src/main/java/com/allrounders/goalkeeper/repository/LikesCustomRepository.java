@@ -13,5 +13,5 @@ public interface LikesCustomRepository {
 
     int getGoalLikeCount(Long goalId);
 
-    List<Likes> findByGoalId(Long goalId);
+    Boolean findByLikesId_MemberIdAndGoalId(Long memberId, Long goalId);
 }

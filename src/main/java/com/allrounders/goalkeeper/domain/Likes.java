@@ -27,12 +27,6 @@ public class Likes {
     @ColumnDefault("false")
     private Boolean isLiked;
 
-    public Likes(Member member, Goal goal, boolean likedStatus) {
-        this.member = member;
-        this.goal = goal;
-        this.isLiked = likedStatus;
-    }
-
     /**
      * 좋아요 true -> false
      *      false -> true
@@ -40,6 +34,14 @@ public class Likes {
     public void changeLikeStatus(Boolean isLiked) {
         if(isLiked == true) this.isLiked = false;
         else this.isLiked = true;
+    }
+
+    public static Likes insertLike(Member member, Goal goal, Boolean isLiked) {
+        return Likes.builder()
+                .member(member)
+                .goal(goal)
+                .isLiked(true)
+                .build();
     }
     // 매핑 편의 메소드 ----------------------------------------
 //

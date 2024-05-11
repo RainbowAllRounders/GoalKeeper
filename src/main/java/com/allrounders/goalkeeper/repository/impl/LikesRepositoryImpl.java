@@ -2,10 +2,10 @@ package com.allrounders.goalkeeper.repository.impl;
 
 import com.allrounders.goalkeeper.domain.Likes;
 import com.allrounders.goalkeeper.repository.LikesCustomRepository;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 import java.util.Optional;
 
 import static com.allrounders.goalkeeper.domain.QLikes.likes;
@@ -22,8 +22,7 @@ public class LikesRepositoryImpl implements LikesCustomRepository {
     public Optional<Likes> exist(Long memberId, Long goalId) {
 
                 return Optional.ofNullable(query.selectFrom(likes)
-                        .where(likes.member.memberId.eq(memberId),
-                                likes.goal.goalId.eq(goalId))
+                        .where(memberIdGoalIdEq(memberId, goalId))
                         .fetchFirst());
     }
 
@@ -35,15 +34,45 @@ public class LikesRepositoryImpl implements LikesCustomRepository {
         return query
                 .select(likes.count())
                 .from(likes)
-                .where(likes.goal.goalId.eq(goalId).and(likes.isLiked.eq(true)))
+                .where(goalLikesIsTrue(goalId, true))
                 .fetchOne().intValue();
     }
 
+    /**
+     * 자신의 좋아요 확인
+     */
     @Override
-    public List<Likes> findByGoalId(Long goalId) {
-        return query
-                .selectFrom(likes)
-                .where(likes.goal.goalId.eq(goalId))
-                .fetch();
+    public Boolean findByLikesId_MemberIdAndGoalId(Long memberId, Long goalId) {
+
+         return query.select(likes.isLiked)
+                .from(likes)
+                .where(memberIdGoalIdEq(memberId, goalId))
+                .fetchOne();
+    }
+
+    /**
+     * 좋아요 테이블에 memberId, goalId 있는지 확인
+     */
+    private BooleanExpression memberIdGoalIdEq(Long memberId, Long goalId) {
+        return memberIdEq(memberId).and(goalIdEq(goalId));
+    }
+
+    /**
+     * 미션에 좋아요 눌렀는지 확인
+     */
+    private BooleanExpression goalLikesIsTrue(Long goalId, boolean isLikes) {
+        return goalIdEq(goalId).and(likesEq(isLikes));
+    }
+
+    private BooleanExpression memberIdEq(Long memberId) {
+        return likes.member.memberId.eq(memberId);
+    }
+
+    private BooleanExpression goalIdEq(Long goalId) {
+        return likes.goal.goalId.eq(goalId);
+    }
+
+    private BooleanExpression likesEq(boolean isLikes) {
+        return likes.isLiked.eq(isLikes);
     }
 }

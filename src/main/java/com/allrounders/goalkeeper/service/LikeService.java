@@ -24,19 +24,22 @@ public class LikeService {
      * 처음 누르면               isLiked -> true
      */
     @Transactional(readOnly = false)
-    public void addCountLike(Long memberId, Long goalId) {
+    public boolean activeLikes(Long memberId, Long goalId) {
+
         Member member = existMember(memberId);
         Goal goal = existGoal(goalId);
 
-        likesRepository.exist(memberId, goalId).ifPresentOrElse(
+                likesRepository.exist(member.getMemberId(), goal.getGoalId()).
+                        ifPresentOrElse(
                 likes -> {
                     if (likes.getIsLiked() == true) likes.changeLikeStatus(likes.getIsLiked());
-                    else if (likes.getIsLiked() == false) likes.changeLikeStatus(likes.getIsLiked());
+                    if (likes.getIsLiked() == false) likes.changeLikeStatus(likes.getIsLiked());
                 },
                 () -> {
-                    Likes likes = new Likes(member, goal, true);
-                    likesRepository.save(likes);
+                    likesRepository.save(Likes.insertLike(member, goal, true));
                 });
+
+        return likesRepository.findByLikesId_MemberIdAndGoalId(member.getMemberId(), goal.getGoalId());
     }
 
     /**
