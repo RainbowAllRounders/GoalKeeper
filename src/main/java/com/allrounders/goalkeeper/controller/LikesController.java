@@ -16,11 +16,11 @@ public class LikesController {
     /**
      * 좋아요 클릭
      */
-    @PostMapping("/like/{goalId}/{memberId}")
-    public String addCountLike(@PathVariable Long memberId, @PathVariable Long goalId, Model model) {
-        likeService.addCountLike(memberId, goalId);
+    @PostMapping("/like/goal/{goalId}/member/{memberId}")
+    public String activeLike(@PathVariable Long memberId, @PathVariable Long goalId, Model model) {
+        boolean likeStatus = likeService.activeLikes(memberId, goalId);
 
+        model.addAttribute("likesStatus", likeStatus);
         return "redirect:/";
     }
-
 }
