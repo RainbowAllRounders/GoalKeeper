@@ -1,7 +1,6 @@
 package com.allrounders.goalkeeper.dto;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.domain.Hashtag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -10,14 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoalAddDTO {
+    private Long goalId;
 
     @NotBlank
     private String title;
@@ -43,22 +41,7 @@ public class GoalAddDTO {
 //    @NotBlank
     private String imgPath;
 
-    public List<Hashtag> parseHashtags() {
-        List<Hashtag> hashtagList = new ArrayList<>();
-        if (hashtagDTOs != null && !hashtagDTOs.isEmpty()) {
-            String[] hashtagArray = hashtagDTOs.split("\\s*#\\s*"); // 쉼표로 구분된 해시태그 문자열을 배열로 분할
-            for (String tag : hashtagArray) {
-                Hashtag hashtag = new Hashtag();
-                hashtag.setTagName(tag.trim()); // 태그의 공백을 제거하여 저장
-                hashtagList.add(hashtag);
-            }
-        }
-        return hashtagList;
-    }
-
     public static Goal dtoToEntity(GoalAddDTO goalAddDTO) {
-
-        List<Hashtag> hashtagList = goalAddDTO.parseHashtags();
 
         Goal goal = Goal.builder()
                 .title(goalAddDTO.getTitle())
@@ -67,7 +50,6 @@ public class GoalAddDTO {
                 .authCount(goalAddDTO.getAuthCount())
                 .startDate(goalAddDTO.getStartDate())
                 .endDate(goalAddDTO.getEndDate())
-                .hashtagList(hashtagList)
                 .build();
 
         return goal;
