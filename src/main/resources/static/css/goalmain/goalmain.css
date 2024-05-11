@@ -55,10 +55,15 @@
     align-items: center;
     justify-content: center;
 }
+.hotgoal>p{
+    font-size: 12px;
+    color: #B0B0B0;
+    margin-bottom: 36px;
+}
 
 /* Top3미션카드-로고 ------------------------------------*/
 .hotgoal>.hotgoal_top{
-    margin: 36px 0px 44px 0px;
+    margin: 36px 0px 4px 0px;
     width: 100%;
     display: flex;
     flex-flow: row;
@@ -385,6 +390,7 @@
     100% {margin-top: 40px;} /* 마지막 위치 */
 }
 
+/*순위페이지*/
 .rankpage{
     width: 100%;
     height: 100vh;
@@ -399,9 +405,17 @@
     background: url(../../images/main/ranklogo_gray.png) no-repeat;
     background-size: cover;
     margin: 60px;
-    margin-bottom: 30px;
+    margin-bottom: 4px;
     width: 800px;
     height: 150px;
+}
+.explain{
+    position: relative;
+    top:-15px;
+    font-size: 12px;
+    color: #464646;
+    background-color: transparent;
+    margin-bottom: 18px;
 }
 
 .rankpage>.dansang_group{
