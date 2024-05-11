@@ -28,15 +28,15 @@
 <!--	        &lt;!&ndash; 클릭하면 reddot속성없앰 &ndash;&gt;-->
 <!--            <div class="reddot"></div>-->
 <!--        </div>-->
-        <!-- class에 profile속성 추가하면 profile로 변경 -->
-        <div onclick="window.location.href = '/member/login'" class="loginbtn">
+        <!-- loginbtn : profile -->
+        <div onclick="location.href = '/member/login'" class="loginbtn">
             <p>로그인</p>
         </div>
 
         <div class="dropdown">
-            <div class="drop">마이페이지</div>
-            <div class="drop">내 미션</div>
-            <div class="drop">로그아웃</div>
+            <div class="drop" onclick="location.href = '/member/mypage'">마이페이지</div>
+            <div class="drop" onclick="location.href = '/'">내 미션</div>
+            <div class="drop" onclick="location.href = '/logout'">로그아웃</div>
         </div>
 <!--        <div class="messagebox">-->
 <!--            <div class="alarmElem">-&#45;&#45;미션이 시작됩니다.</div>-->
