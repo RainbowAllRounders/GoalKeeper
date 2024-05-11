@@ -1,4 +1,4 @@
-package com.allrounders.goalkeeper.dto;
+package com.allrounders.goalkeeper.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,16 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberDTO {
-
-    private Long member_id;
+public class LoginDTO {
 
     private String email;
-
     private String password;
 
-    private String nickname;
-
-    private Integer cur_point;
 
 }

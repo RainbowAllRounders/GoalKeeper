@@ -1,6 +1,6 @@
 package com.allrounders.goalkeeper.repository;
 
-import com.allrounders.goalkeeper.dto.RankDTO;
+import com.allrounders.goalkeeper.dto.member.RankDTO;
 
 import java.util.List;
 

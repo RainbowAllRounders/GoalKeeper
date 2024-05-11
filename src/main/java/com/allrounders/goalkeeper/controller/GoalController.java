@@ -1,6 +1,6 @@
 package com.allrounders.goalkeeper.controller;
 
-import com.allrounders.goalkeeper.dto.GoalAddDTO;
+import com.allrounders.goalkeeper.dto.goal.GoalAddDTO;
 import com.allrounders.goalkeeper.service.GoalService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;

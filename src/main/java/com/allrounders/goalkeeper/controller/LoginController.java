@@ -1,17 +1,13 @@
 package com.allrounders.goalkeeper.controller;
 
-import com.allrounders.goalkeeper.dto.LoginDTO;
-import com.allrounders.goalkeeper.dto.MemberDTO;
-import jakarta.servlet.http.HttpServletRequest;
+import com.allrounders.goalkeeper.dto.member.LoginDTO;
+import com.allrounders.goalkeeper.dto.member.MemberDTO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class LoginController {

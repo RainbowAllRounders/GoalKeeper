@@ -1,6 +1,6 @@
 package com.allrounders.goalkeeper.service;
 
-import com.allrounders.goalkeeper.dto.RankDTO;
+import com.allrounders.goalkeeper.dto.member.RankDTO;
 import com.allrounders.goalkeeper.repository.RankRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;

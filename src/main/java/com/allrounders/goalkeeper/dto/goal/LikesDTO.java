@@ -1,4 +1,4 @@
-package com.allrounders.goalkeeper.dto;
+package com.allrounders.goalkeeper.dto.goal;
 
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Likes;

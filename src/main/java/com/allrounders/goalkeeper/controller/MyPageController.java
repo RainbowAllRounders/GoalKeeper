@@ -1,8 +1,8 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.dto.MyPageInfoDTO;
-import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.dto.member.MyPageInfoDTO;
+import com.allrounders.goalkeeper.dto.member.MyPageModifyDTO;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

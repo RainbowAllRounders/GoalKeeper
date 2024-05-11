@@ -1,4 +1,4 @@
-package com.allrounders.goalkeeper.dto;
+package com.allrounders.goalkeeper.dto.member;
 
 import com.allrounders.goalkeeper.domain.Member;
 import lombok.AllArgsConstructor;

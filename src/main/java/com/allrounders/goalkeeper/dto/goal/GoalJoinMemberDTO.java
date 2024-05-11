@@ -1,6 +1,7 @@
-package com.allrounders.goalkeeper.dto;
+package com.allrounders.goalkeeper.dto.goal;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HashtagDTO {
+public class GoalJoinMemberDTO {
+
+    @NotNull
+    private Long memberId;
 
     @NotBlank
-    private String tagName;
+    private String nickname;
 }

@@ -1,8 +1,8 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
-import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.dto.member.MemberSignUpDTO;
+import com.allrounders.goalkeeper.dto.member.MyPageModifyDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

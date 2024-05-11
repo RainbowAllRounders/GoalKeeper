@@ -1,6 +1,6 @@
 package com.allrounders.goalkeeper.controller;
 
-import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
+import com.allrounders.goalkeeper.dto.member.MemberSignUpDTO;
 import com.allrounders.goalkeeper.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

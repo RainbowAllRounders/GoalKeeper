@@ -2,7 +2,7 @@ package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.MemberGoal;
-import com.allrounders.goalkeeper.dto.GoalAddDTO;
+import com.allrounders.goalkeeper.dto.goal.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.LikesRepository;

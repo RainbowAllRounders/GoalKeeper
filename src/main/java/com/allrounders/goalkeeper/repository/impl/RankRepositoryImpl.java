@@ -1,6 +1,6 @@
 package com.allrounders.goalkeeper.repository.impl;
 
-import com.allrounders.goalkeeper.dto.RankDTO;
+import com.allrounders.goalkeeper.dto.member.RankDTO;
 import com.allrounders.goalkeeper.repository.RankRepositoryCustom;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Comparator;
 import java.util.List;
 
 import static com.allrounders.goalkeeper.domain.QMember.member;
