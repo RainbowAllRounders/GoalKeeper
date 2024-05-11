@@ -7,6 +7,12 @@ const searchBox = document.querySelector('#searchBox');
 const searchContent = searchBox.querySelector('input');
 const magnifier = document.querySelector('#magnifier');
 
+// goal 목록
+const goalList = document.querySelectorAll(".goalCard");
+
+// 더보기 버튼
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+
 window.addEventListener('load', function() {
 
     // 필터 선택 시 효과 --------------------
@@ -37,4 +43,14 @@ window.addEventListener('load', function() {
     }
 
     magnifier.addEventListener('click', searchGoals);
+
+    // 더보기 버튼 --------------------
+
+    // 초기에는 더보기 버튼을 숨김
+    seeMoreBtn.style.display = "none";
+
+    // 8개 이상이면 더보기 버튼 보이게
+    if (goalList.length >= 8) {
+        seeMoreBtn.style.display = "block";
+    }
 });
