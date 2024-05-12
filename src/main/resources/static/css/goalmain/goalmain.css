@@ -14,6 +14,7 @@
     justify-content: flex-start;
 }
 
+/* 배너 ------------------------------------*/
 .banner{
     width: 100%;
     display: flex;
@@ -46,6 +47,7 @@
     padding-bottom: 56px;
 }
 
+/* Top3미션카드 ------------------------------------*/
 .hotgoal{
     width: 85%;
     display: flex;
@@ -54,6 +56,7 @@
     justify-content: center;
 }
 
+/* Top3미션카드-로고 ------------------------------------*/
 .hotgoal>.hotgoal_top{
     margin: 36px 0px 44px 0px;
     width: 100%;
@@ -73,6 +76,7 @@
     /* border: 1px solid blue; */
 }
 
+/* Top3미션카드-카드들 ------------------------------------*/
 .hotgoal_bottom{
     margin-bottom: 44px;
     width: 85%;
@@ -84,9 +88,11 @@
     /* border: 1px solid red; */
 }
 
-.hotgoal_bottom>.goalcard_1{
+/* Top3미션카드-카드들-카드영역 ------------------------------------*/
+.hotgoal_bottom>.goalcard{
     margin: 16px;
     margin-bottom: 32px;
+    padding: 0px;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -98,9 +104,11 @@
     box-shadow: 4px 4px 8px 4px  #AAAAAA;
 }
 
-
-.hotgoal_bottom>.goalcard_1>.cardtop{
+/* Top3미션카드-카드들-카드영역-상단------------------------------------*/
+.hotgoal_bottom>.goalcard>.cardtop{
     margin: 20px 12px 4px 12px;
+    width: 269px;
+    height: 108px;
     display: flex;
     flex-flow: row;
     align-items: flex-start;
@@ -108,7 +116,7 @@
 }
 
 
-.hotgoal_bottom>.goalcard_1>.cardtop>.cardtopL{
+.hotgoal_bottom>.goalcard>.cardtop>.cardtopL{
     display: flex;
     flex-flow: column;
     align-items: flex-start;
@@ -159,6 +167,9 @@
 
 .cardtopL>.goaltitle{
     padding: 4px;
+}
+.cardtopL>.goaltitle:hover{
+    cursor: pointer;
 }
 
 .cardtopL>.goaltitle>p{
@@ -228,14 +239,16 @@
     font-size: 12px;
 }
 
-.hotgoal_bottom>.goalcard_1>.goalimg{
-    background: url(../../images/main/goalimg.png) no-repeat;
-    background-size: contain;
+/* Top3미션카드-카드들-카드영역-이미지------------------------------------*/
+.hotgoal_bottom>.goalcard>.goalimg{
+    /*background: url(../../images/main/goalimg.png) no-repeat;*/
+    /*background-size: contain;*/
     height: 194px;
-    width: 100%;
+    width: 294px;
 }
 
-.hotgoal_bottom>.goalcard_1>.progress{
+/* Top3미션카드-카드들-카드영역-프로그래스------------------------------------*/
+.hotgoal_bottom>.goalcard>.progress{
     margin: 12px 0px;
     background: url(../../images/main/progress.png) no-repeat;
     background-size: contain;
@@ -243,9 +256,10 @@
     width: 95%;
 }
 
-.hotgoal_bottom>.goalcard_1>.cardbottom{
+/* Top3미션카드-카드들-카드영역-bottom(미션정보들)------------------------------------*/
+.hotgoal_bottom>.goalcard>.cardbottom{
     box-sizing: border-box;
-    width: 100%;
+    width: 294px;
     padding: 0px 12px;
     margin-bottom: 16px;
     display: flex;
@@ -255,8 +269,9 @@
     background-color: transparent;
 }
 
-.hotgoal_bottom>.goalcard_1>.cardbottom>*{
+.hotgoal_bottom>.goalcard>.cardbottom>*{
     font-size: 10px;
+    color: #444444;
 }
 
 .cardbottomL{
@@ -276,6 +291,7 @@
     justify-content: flex-start;
     margin-bottom: 6px;
 }
+
 .king>.cardicon{
     background: url(../../images/main/Crown.png) no-repeat center / contain;
     width: 16px;
@@ -302,6 +318,9 @@
 
 .cardicon{
     margin-right: 8px;
+}
+.term>.term_t{
+    padding-top: 2px;
 }
 
 .hotgoal>.goalmission{
