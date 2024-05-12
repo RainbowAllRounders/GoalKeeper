@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -34,27 +34,27 @@
         <!-- goalList들 -->
 
         <div id="goalListContainer">
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+            <div th:each="goal : ${goalList}" class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
 
                 <div class="cardHeader">
 
                     <div class="leftContainer">
                         <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags recruiting">모집 중</div>
+                            <div class="timesTag tags" th:text="${goal.authCount} + '회 인증'"></div>
+                            <div class="statusTag tags"  th:text="${goal.complete}"></div>
                         </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+                        <div class="goalTitle" th:text="${goal.title}"></div>
 
                         <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
+                            <div class="hashtag tags">태그1</div>
+                            <div class="hashtag tags">태그2</div>
+                            <div class="hashtag tags">태그3</div>
                         </div>
                     </div>
 
                     <div class="rightContainer">
                         <img class="heart" th:src="@{/images/grayHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
+                        <div class="likeCount" th:text="${goal.likeCount}"></div>
                     </div>
                 </div>
 
@@ -76,281 +76,281 @@
                     <div>
                         <div class="peopleCountBox">
                             <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
+                            <p th:text="${goal.curPeople}"></p>/<p th:text="${goal.maxPeople}"></p>
                         </div>
                         <div class="periodBox">
                             <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
+                            <p th:text="${goal.startDate}"></p> ~ <p th:text="${goal.endDate}"></p>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+<!--            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">-->
 
-                <div class="cardHeader">
+<!--                <div class="cardHeader">-->
 
-                    <div class="leftContainer">
-                        <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags proceeding">진행 중</div>
-                        </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+<!--                    <div class="leftContainer">-->
+<!--                        <div class="categoryList">-->
+<!--                            <div class="timesTag tags">1회 인증</div>-->
+<!--                            <div class="statusTag tags proceeding">진행 중</div>-->
+<!--                        </div>-->
+<!--                        <div class="goalTitle">매일 만 보 이상 걷기</div>-->
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
-                        </div>
-                    </div>
+<!--                        <div class="hashtagList">-->
+<!--                            <div class="hashtag tags">#달리기요</div>-->
+<!--                            <div class="hashtag tags">#한강이요</div>-->
+<!--                            <div class="hashtag tags">#다이어트</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
-                    </div>
-                </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">-->
+<!--                        <div class="likeCount">999+</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="imgWrapper"></div>
+<!--                <div class="imgWrapper"></div>-->
 
-                <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
-                    <div>
-                        <div class="nicknameBox">
-                            <img th:src="@{/images/crown.png}" alt="왕관">
-                            닉네임닉넴
-                        </div>
-                        <div class="pointBox">
-                            <img th:src="@{/images/point.png}" alt="포인트">
-                            <div>참여 -500</div>/
-                            <div>달성 +1000</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="peopleCountBox">
-                            <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
-                        </div>
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="cardFooter">-->
+<!--                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">-->
+<!--                    <div>-->
+<!--                        <div class="nicknameBox">-->
+<!--                            <img th:src="@{/images/crown.png}" alt="왕관">-->
+<!--                            닉네임닉넴-->
+<!--                        </div>-->
+<!--                        <div class="pointBox">-->
+<!--                            <img th:src="@{/images/point.png}" alt="포인트">-->
+<!--                            <div>참여 -500</div>/-->
+<!--                            <div>달성 +1000</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <div class="peopleCountBox">-->
+<!--                            <img th:src="@{/images/group-person.png}" alt="사람들">-->
+<!--                            9/20-->
+<!--                        </div>-->
+<!--                        <div class="periodBox">-->
+<!--                            <img th:src="@{/images/alarm.png}" alt="기간">-->
+<!--                            2024. 04. 24 ~ 2024. 04. 28-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+<!--            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">-->
 
-                <div class="cardHeader">
+<!--                <div class="cardHeader">-->
 
-                    <div class="leftContainer">
-                        <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags complete">완료</div>
-                        </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+<!--                    <div class="leftContainer">-->
+<!--                        <div class="categoryList">-->
+<!--                            <div class="timesTag tags">1회 인증</div>-->
+<!--                            <div class="statusTag tags complete">완료</div>-->
+<!--                        </div>-->
+<!--                        <div class="goalTitle">매일 만 보 이상 걷기</div>-->
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
-                        </div>
-                    </div>
+<!--                        <div class="hashtagList">-->
+<!--                            <div class="hashtag tags">#달리기요</div>-->
+<!--                            <div class="hashtag tags">#한강이요</div>-->
+<!--                            <div class="hashtag tags">#다이어트</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
-                    </div>
-                </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">-->
+<!--                        <div class="likeCount">999+</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="imgWrapper"></div>
+<!--                <div class="imgWrapper"></div>-->
 
-                <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
-                    <div>
-                        <div class="nicknameBox">
-                            <img th:src="@{/images/crown.png}" alt="왕관">
-                            닉네임닉넴
-                        </div>
-                        <div class="pointBox">
-                            <img th:src="@{/images/point.png}" alt="포인트">
-                            <div>참여 -500</div>/
-                            <div>달성 +1000</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="peopleCountBox">
-                            <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
-                        </div>
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="cardFooter">-->
+<!--                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">-->
+<!--                    <div>-->
+<!--                        <div class="nicknameBox">-->
+<!--                            <img th:src="@{/images/crown.png}" alt="왕관">-->
+<!--                            닉네임닉넴-->
+<!--                        </div>-->
+<!--                        <div class="pointBox">-->
+<!--                            <img th:src="@{/images/point.png}" alt="포인트">-->
+<!--                            <div>참여 -500</div>/-->
+<!--                            <div>달성 +1000</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <div class="peopleCountBox">-->
+<!--                            <img th:src="@{/images/group-person.png}" alt="사람들">-->
+<!--                            9/20-->
+<!--                        </div>-->
+<!--                        <div class="periodBox">-->
+<!--                            <img th:src="@{/images/alarm.png}" alt="기간">-->
+<!--                            2024. 04. 24 ~ 2024. 04. 28-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+<!--            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">-->
 
-                <div class="cardHeader">
+<!--                <div class="cardHeader">-->
 
-                    <div class="leftContainer">
-                        <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags">모집 중</div>
-                        </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+<!--                    <div class="leftContainer">-->
+<!--                        <div class="categoryList">-->
+<!--                            <div class="timesTag tags">1회 인증</div>-->
+<!--                            <div class="statusTag tags">모집 중</div>-->
+<!--                        </div>-->
+<!--                        <div class="goalTitle">매일 만 보 이상 걷기</div>-->
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
-                        </div>
-                    </div>
+<!--                        <div class="hashtagList">-->
+<!--                            <div class="hashtag tags">#달리기요</div>-->
+<!--                            <div class="hashtag tags">#한강이요</div>-->
+<!--                            <div class="hashtag tags">#다이어트</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
-                    </div>
-                </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">-->
+<!--                        <div class="likeCount">999+</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="imgWrapper"></div>
+<!--                <div class="imgWrapper"></div>-->
 
-                <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
-                    <div>
-                        <div class="nicknameBox">
-                            <img th:src="@{/images/crown.png}" alt="왕관">
-                            닉네임닉넴
-                        </div>
-                        <div class="pointBox">
-                            <img th:src="@{/images/point.png}" alt="포인트">
-                            <div>참여 -500</div>/
-                            <div>달성 +1000</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="peopleCountBox">
-                            <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
-                        </div>
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="cardFooter">-->
+<!--                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">-->
+<!--                    <div>-->
+<!--                        <div class="nicknameBox">-->
+<!--                            <img th:src="@{/images/crown.png}" alt="왕관">-->
+<!--                            닉네임닉넴-->
+<!--                        </div>-->
+<!--                        <div class="pointBox">-->
+<!--                            <img th:src="@{/images/point.png}" alt="포인트">-->
+<!--                            <div>참여 -500</div>/-->
+<!--                            <div>달성 +1000</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <div class="peopleCountBox">-->
+<!--                            <img th:src="@{/images/group-person.png}" alt="사람들">-->
+<!--                            9/20-->
+<!--                        </div>-->
+<!--                        <div class="periodBox">-->
+<!--                            <img th:src="@{/images/alarm.png}" alt="기간">-->
+<!--                            2024. 04. 24 ~ 2024. 04. 28-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+<!--            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">-->
 
-                <div class="cardHeader">
+<!--                <div class="cardHeader">-->
 
-                    <div class="leftContainer">
-                        <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags">모집 중</div>
-                        </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+<!--                    <div class="leftContainer">-->
+<!--                        <div class="categoryList">-->
+<!--                            <div class="timesTag tags">1회 인증</div>-->
+<!--                            <div class="statusTag tags">모집 중</div>-->
+<!--                        </div>-->
+<!--                        <div class="goalTitle">매일 만 보 이상 걷기</div>-->
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
-                        </div>
-                    </div>
+<!--                        <div class="hashtagList">-->
+<!--                            <div class="hashtag tags">#달리기요</div>-->
+<!--                            <div class="hashtag tags">#한강이요</div>-->
+<!--                            <div class="hashtag tags">#다이어트</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
-                    </div>
-                </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">-->
+<!--                        <div class="likeCount">999+</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="imgWrapper"></div>
+<!--                <div class="imgWrapper"></div>-->
 
-                <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
-                    <div>
-                        <div class="nicknameBox">
-                            <img th:src="@{/images/crown.png}" alt="왕관">
-                            닉네임닉넴
-                        </div>
-                        <div class="pointBox">
-                            <img th:src="@{/images/point.png}" alt="포인트">
-                            <div>참여 -500</div>/
-                            <div>달성 +1000</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="peopleCountBox">
-                            <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
-                        </div>
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="cardFooter">-->
+<!--                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">-->
+<!--                    <div>-->
+<!--                        <div class="nicknameBox">-->
+<!--                            <img th:src="@{/images/crown.png}" alt="왕관">-->
+<!--                            닉네임닉넴-->
+<!--                        </div>-->
+<!--                        <div class="pointBox">-->
+<!--                            <img th:src="@{/images/point.png}" alt="포인트">-->
+<!--                            <div>참여 -500</div>/-->
+<!--                            <div>달성 +1000</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <div class="peopleCountBox">-->
+<!--                            <img th:src="@{/images/group-person.png}" alt="사람들">-->
+<!--                            9/20-->
+<!--                        </div>-->
+<!--                        <div class="periodBox">-->
+<!--                            <img th:src="@{/images/alarm.png}" alt="기간">-->
+<!--                            2024. 04. 24 ~ 2024. 04. 28-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
 
-            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+<!--            <div class="goalCard shadowBox" onclick="location.href='goalDetail.html'">-->
 
-                <div class="cardHeader">
+<!--                <div class="cardHeader">-->
 
-                    <div class="leftContainer">
-                        <div class="categoryList">
-                            <div class="timesTag tags">1회 인증</div>
-                            <div class="statusTag tags">모집 중</div>
-                        </div>
-                        <div class="goalTitle">매일 만 보 이상 걷기</div>
+<!--                    <div class="leftContainer">-->
+<!--                        <div class="categoryList">-->
+<!--                            <div class="timesTag tags">1회 인증</div>-->
+<!--                            <div class="statusTag tags">모집 중</div>-->
+<!--                        </div>-->
+<!--                        <div class="goalTitle">매일 만 보 이상 걷기</div>-->
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">#달리기요</div>
-                            <div class="hashtag tags">#한강이요</div>
-                            <div class="hashtag tags">#다이어트</div>
-                        </div>
-                    </div>
+<!--                        <div class="hashtagList">-->
+<!--                            <div class="hashtag tags">#달리기요</div>-->
+<!--                            <div class="hashtag tags">#한강이요</div>-->
+<!--                            <div class="hashtag tags">#다이어트</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">
-                        <div class="likeCount">999+</div>
-                    </div>
-                </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="@{/images/redHeart.png}" alt="하트">-->
+<!--                        <div class="likeCount">999+</div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="imgWrapper"></div>
+<!--                <div class="imgWrapper"></div>-->
 
-                <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
-                    <div>
-                        <div class="nicknameBox">
-                            <img th:src="@{/images/crown.png}" alt="왕관">
-                            닉네임닉넴
-                        </div>
-                        <div class="pointBox">
-                            <img th:src="@{/images/point.png}" alt="포인트">
-                            <div>참여 -500</div>/
-                            <div>달성 +1000</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="peopleCountBox">
-                            <img th:src="@{/images/group-person.png}" alt="사람들">
-                            9/20
-                        </div>
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">
-                            2024. 04. 24 ~ 2024. 04. 28
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="cardFooter">-->
+<!--                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">-->
+<!--                    <div>-->
+<!--                        <div class="nicknameBox">-->
+<!--                            <img th:src="@{/images/crown.png}" alt="왕관">-->
+<!--                            닉네임닉넴-->
+<!--                        </div>-->
+<!--                        <div class="pointBox">-->
+<!--                            <img th:src="@{/images/point.png}" alt="포인트">-->
+<!--                            <div>참여 -500</div>/-->
+<!--                            <div>달성 +1000</div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <div class="peopleCountBox">-->
+<!--                            <img th:src="@{/images/group-person.png}" alt="사람들">-->
+<!--                            9/20-->
+<!--                        </div>-->
+<!--                        <div class="periodBox">-->
+<!--                            <img th:src="@{/images/alarm.png}" alt="기간">-->
+<!--                            2024. 04. 24 ~ 2024. 04. 28-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            </div>
+<!--            </div>-->
         </div>
 
         <div id="seeMoreBtn">더보기</div>

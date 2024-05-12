@@ -7,7 +7,27 @@ const searchBox = document.querySelector('#searchBox');
 const searchContent = searchBox.querySelector('input');
 const magnifier = document.querySelector('#magnifier');
 
+// goal 목록
+const goalList = document.querySelectorAll(".goalCard");
+
+// 더보기 버튼
+const seeMoreBtn = document.getElementById("seeMoreBtn");
+
 window.addEventListener('load', function() {
+
+    //
+    goalList.forEach(function(goal) {
+        let statusTag = goal.querySelector(".statusTag");
+        let status = statusTag.textContent.trim();
+
+        if (status === "모집 중") {
+            statusTag.classList.add("recruiting");
+        } else if (status === "진행 중") {
+            statusTag.classList.add("proceeding");
+        } else if (status === "완료") {
+            statusTag.classList.add("complete");
+        }
+    });
 
     // 필터 선택 시 효과 --------------------
     filters.forEach(function(filter) {
@@ -37,4 +57,7 @@ window.addEventListener('load', function() {
     }
 
     magnifier.addEventListener('click', searchGoals);
+
+    // 더보기 버튼 --------------------
+
 });

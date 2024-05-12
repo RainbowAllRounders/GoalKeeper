@@ -1,15 +1,20 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
+import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.service.GoalService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/goal")
@@ -52,6 +57,15 @@ public class GoalController {
         }
     }
 
+    @GetMapping("/list")
+    public String goalList(Model model, Pageable pageable) {
+        Page<GoalListDTO> goalPage = goalService.goalList(pageable);
+        List<GoalListDTO> goalList = goalPage.getContent();
+        log.info(goalList);
+        model.addAttribute("goalList", goalList);
+        return "goal/goalList";
+    }
+
     @GetMapping("/detail/{goalId}")
     public String goalDetailPage(@PathVariable Long goalId, Model model) {
 
@@ -59,19 +73,4 @@ public class GoalController {
 
         return "";
     }
-
-//    @GetMapping("/list")
-//    public String goalList(Pageable pageable,
-//                           BindingResult bindingResult,
-//                           Model model) {
-//
-//        if(bindingResult.hasErrors()) {
-//            log.info("미션 목록 조회 오류");
-//            model.addAttribute("fail", "미션 목록 조회 오류");
-//            return "redirect:/";
-//        }
-//        Page<Goal> goalList = goalService.goalList(pageable);
-//        model.addAttribute("goalList", goalList);
-//        return "goal/goalList";
-//    }
 }

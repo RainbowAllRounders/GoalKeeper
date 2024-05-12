@@ -7,8 +7,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -30,9 +28,8 @@ public class Goal {
     @ColumnDefault("1")
     private Integer maxPeople;
 
-    // cur_people 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "goal")
-    private List<MemberGoal> member = new ArrayList<>();
+    @ColumnDefault("1")
+    private Integer curPeople;
 
     @Column(nullable = false)
     private int likeCount;
@@ -54,15 +51,19 @@ public class Goal {
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate createDate;
 
-    @OneToMany(mappedBy = "goal")
-    private List<Hashtag> hashtagList;
+//    @OneToMany(mappedBy = "goal")
+//    private List<Hashtag> hashtagList;
+
+    //    @Column(nullable = false)
+    private String imgPath;
 
     public void addLikeCount(int count) {
         this.likeCount = count;
     }
 
-//    @Column(nullable = false)
-    private String imgPath;
+    public void addCurPeople(int count) {
+        this.curPeople = count;
+    }
 
     // 매핑 편의 메소드 ----------------------------------------
 
@@ -74,18 +75,9 @@ public class Goal {
     public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
-
-    public void setMember(List<MemberGoal> list) {
-        for(MemberGoal memberGoal : list) {
-            if(!this.member.contains(memberGoal)) {
-                this.member.add(memberGoal);
-                memberGoal.setGoal(this);
-            }
-        }
-    }
     
-    public void addHashTag(Hashtag hashtag) {
-        hashtagList.add(hashtag);
-        hashtag.setGoal(this);
-    }
+//    public void addHashTag(Hashtag hashtag) {
+//        hashtagList.add(hashtag);
+//        hashtag.setGoal(this);
+//    }
 }
