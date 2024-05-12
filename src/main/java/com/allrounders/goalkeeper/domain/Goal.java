@@ -85,7 +85,7 @@ public class Goal {
     }
     
     public void addHashTag(Hashtag hashtag) {
+        hashtag.addGoal(this);
         hashtagList.add(hashtag);
-        hashtag.setGoal(this);
     }
 }
