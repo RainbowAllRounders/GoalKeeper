@@ -34,7 +34,7 @@ public class LikeService {
                     if (likes.getIsLiked() == false) likes.changeLikeStatus(likes.getIsLiked());
                 },
                 () -> {
-                    likesRepository.save(Likes.insertLike(member, goal, true));
+                    likesRepository.save(Likes.insertLike(member, goal));
                 });
         return likesRepository.findByLikesId_MemberIdAndGoalId(member.getMemberId(), goal.getGoalId());
     }
