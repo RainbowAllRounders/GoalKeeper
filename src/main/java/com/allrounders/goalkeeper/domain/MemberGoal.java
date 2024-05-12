@@ -19,11 +19,9 @@ public class MemberGoal {
     private Long memberGoalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)
     private Goal goal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
     @ColumnDefault("true")

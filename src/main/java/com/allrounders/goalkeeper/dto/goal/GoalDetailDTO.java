@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class GoalDetailDTO {
 
+    private String goalCreator;
     private String title;
     private String content;
     private int likeCount;
@@ -36,10 +37,13 @@ public class GoalDetailDTO {
                 .collect(Collectors.toList());
 
         return GoalDetailDTO.builder()
+                .goalCreator(goalCreator)
                 .title(goal.getTitle())
                 .content(goal.getContent())
                 .likeCount(goal.getLikeCount())
                 .maxPeople(goal.getMaxPeople())
+                .curPeople(goal.getCurPeople())
+                .authCount(goal.getAuthCount())
                 .startDate(goal.getStartDate())
                 .endDate(goal.getEndDate())
                 .complete(goal.getComplete())
