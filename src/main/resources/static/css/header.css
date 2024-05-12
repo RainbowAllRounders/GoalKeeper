@@ -133,6 +133,7 @@
 
 /* 위 오 아 왼 */
 .header>.navprofile{
+    position: relative;
     background-color: transparent;
     display: flex;
     flex-flow: row;
@@ -141,6 +142,7 @@
     margin: 0px 60px 0px 92px;
     width: 140px;
     height: 44px;
+    overflow: visible;
     /* border: 1px solid red; */
 }
 
@@ -182,8 +184,8 @@
 
 .header>.navprofile>.profile{
     margin-left: 20px;
-    width: 28px;
-    height: 28px;
+    width: 36px;
+    height: 36px;
     border-radius: 50px;
     background: url(../images/header/profile.png);
     background-size: contain;
@@ -225,12 +227,11 @@
 .header>.navprofile>.dropdown{
     z-index: 2000;
     position: absolute;
-    top: 70px;
-    left: 1360px;
+    top: 50px;
+    left: 25px;
     width: fit-content;
     padding: 16px;
     border-radius: 10px;
-    display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: space-around;

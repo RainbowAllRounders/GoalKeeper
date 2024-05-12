@@ -1,5 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // ------------로그인-------------
+    function checkLoginStatus() {
+        // 여기서 로그인 상태를 검사하고, 로그인 상태에 따라 클래스를 변경
+        var loginBtn = document.querySelector('.loginbtn');
+
+        // 로그인 상태라고 가정하고 'profile' 클래스를 바로 추가
+        // -> 후에 로그인 상태일때만 바꾸기
+        // loginBtn.classList.remove('loginbtn');
+        // loginBtn.classList.add('profile');
+
+        // 'profile' 클래스가 있는지 확인
+        if (loginBtn.classList.contains('profile')) {
+            // 'p' 태그를 찾아 삭제
+            var pTag = loginBtn.querySelector('p');
+            if (pTag) {
+                pTag.remove();
+            }
+            // onclick도 삭제
+            loginBtn.removeAttribute('onclick');
+        }
+    }
+
+    // 페이지 로드 시 실행
+    window.onload = checkLoginStatus;
+
+    //------------------------- upbtn --------------------------------------------
     document.getElementById('upbtn').addEventListener('click', function() {
         window.scrollTo({
             top: 0,
@@ -46,17 +72,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdown = document.querySelector('.dropdown');
 
     // loginBtnContainer 클릭 이벤트 리스너
-    loginBtnContainer.addEventListener('click', function() {
-        // 'profile' 클래스가 있으면 드롭다운 토글, 없으면 'profile'로 변환
-        if (loginBtnContainer.classList.contains('profile')) {
-            // 드롭다운 보이기/숨기기 토글
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        } else {
-            // 클래스 'loginbtn'을 'profile'로 교체하고, 내용을 제거
-            loginBtnContainer.classList.replace('loginbtn', 'profile');
-            loginBtnContainer.innerHTML = ''; // 내부 HTML 제거
+    loginBtnContainer.addEventListener('click', function(event) {
+        // 이벤트 버블링 방지
+        event.stopPropagation();
 
-            // 이벤트 리스너를 추가하는 부분을 여기서 제거
+        // 'profile' 클래스가 있을 때만 드롭다운 토글
+        if (loginBtnContainer.classList.contains('profile')) {
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+
+    // 전체 문서에 클릭 이벤트 리스너 추가하여 드롭다운 비활성화
+    document.addEventListener('click', function() {
+        if (dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
         }
     });
 });
