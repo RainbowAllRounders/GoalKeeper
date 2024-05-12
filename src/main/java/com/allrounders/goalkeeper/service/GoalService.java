@@ -6,6 +6,7 @@ import com.allrounders.goalkeeper.domain.MemberGoal;
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
+import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.*;
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -97,6 +99,11 @@ public class GoalService {
             .orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
             );
+    }
+
+    public List<Top3GoalDTO> getTop3Goal() {
+        List<Top3GoalDTO> Top3Goal = goalRepository.searchTop3Goal();
+        return Top3Goal;
     }
 
 }
