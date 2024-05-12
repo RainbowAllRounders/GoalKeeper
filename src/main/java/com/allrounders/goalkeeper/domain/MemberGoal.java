@@ -63,6 +63,19 @@ public class MemberGoal {
         this.isChecked = isChecked;
     }
 
+    /**
+     * 등록된 미션이 참가하기
+     */
+    public static MemberGoal joinGoal(Member member, Goal goal) {
+        return MemberGoal.builder()
+                .member(member)
+                .goal(goal)
+                .role(false)
+                .startAlarmDate(goal.getStartDate())
+                .endAlarmDate(goal.getEndDate())
+                .build();
+    }
+
     // 매핑 편의 메소드 ----------------------------------------
 
     public void setGoal(Goal goal) {

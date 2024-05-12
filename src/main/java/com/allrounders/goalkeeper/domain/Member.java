@@ -57,6 +57,14 @@ public class Member {
     }
 
 
+    public void addPoint() {
+        this.curPoint += 500;
+    }
+
+    public void minusPoint() {
+        this.curPoint -= 500;
+    }
+
     public void updateMember(String nickname, String password) {
         if (nickname != null && !nickname.isEmpty()) {
             this.nickname = nickname;

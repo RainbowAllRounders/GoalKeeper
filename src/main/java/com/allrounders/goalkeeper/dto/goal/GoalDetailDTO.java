@@ -1,6 +1,7 @@
 package com.allrounders.goalkeeper.dto.goal;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.dto.HashtagDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +42,7 @@ public class GoalDetailDTO {
                 .title(goal.getTitle())
                 .content(goal.getContent())
                 .likeCount(goal.getLikeCount())
+                .hashtagList(hashtagList)
                 .maxPeople(goal.getMaxPeople())
                 .curPeople(goal.getCurPeople())
                 .authCount(goal.getAuthCount())
