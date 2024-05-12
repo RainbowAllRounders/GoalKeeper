@@ -1,5 +1,6 @@
 package com.allrounders.goalkeeper.controller;
 
+import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.MemberLoginDTO;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
@@ -50,29 +51,35 @@ public class MemberController {
         return "/member/login.html"; // 로그인 페이지 경로
     }
 
+    @PostMapping("/member/login")
+    public String login(MemberLoginDTO memberLoginDTO,HttpSession session, RedirectAttributes redirectAttributes) {
+        boolean isLogin = memberService.login(memberLoginDTO);
+        String email = memberLoginDTO.getEmail();
+        Long memberId = memberService.findMemberIdByEmail(email);
+
+        if (isLogin) {
+            session.setAttribute("member_id", memberId);
+            return "/main/GoalMain";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
+            return "/member/login";
+        }
+
+    }
+
 //    @PostMapping("/member/login")
-//    public String login(@RequestParam MemberLoginDTO memberLoginDTO){
-//        ResponseEntity<?> response = memberService.login(memberLoginDTO);
-//
-//        if (response.getStatusCode().is2xxSuccessful()) {
-//            return "main/GoalMain";
+//    public String login(MemberLoginDTO memberLoginDTO,HttpSession session, RedirectAttributes redirectAttributes) {
+//        boolean isLogin = memberService.login(memberLoginDTO);
+//        if (isLogin) {
+//            session.setAttribute("member_id", memberLoginDTO.getEmail());
+//            System.out.println("========================");
+//            System.out.println(session.getAttribute("member_id"));
+//            return "/main/GoalMain";
 //        } else {
-//            return "member/login";
+//            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
+//            return "redirect:/member/login";
 //        }
 //    }
-@PostMapping("/member/login")
-public String login(MemberLoginDTO memberLoginDTO,HttpSession session, RedirectAttributes redirectAttributes) {
-    boolean isLogin = memberService.login(memberLoginDTO);
-    if (isLogin) {
-        session.setAttribute("member_id", memberLoginDTO.getEmail());
-        System.out.println("========================");
-        System.out.println(session.getAttribute("member_id"));
-        return "/main/GoalMain";
-    } else {
-        redirectAttributes.addFlashAttribute("error", "Invalid email or password");
-        return "redirect:/member/login";
-    }
-}
 
 
 //    @PostMapping("/member/login")
