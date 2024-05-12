@@ -38,7 +38,9 @@ public class GoalAddDTO {
     @NotNull
     private LocalDate endDate;
 
+
     private String hashtagDTOs;
+  
     private List<HashtagDTO> hashtagDTOList;
 
 //    @NotBlank
@@ -61,6 +63,7 @@ public class GoalAddDTO {
 
         return goal;
     }
+
 
     public void changeList(String hashtagDTOs) {
         HashtagDTO hashtagDTO = new HashtagDTO();

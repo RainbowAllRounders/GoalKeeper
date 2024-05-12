@@ -55,7 +55,7 @@ public class Goal {
     @OneToMany(mappedBy = "goal")
     private List<Hashtag> hashtagList;
 
-    //    @Column(nullable = false)
+    @Column(nullable = false)
     private String imgPath;
 
     /**
@@ -82,13 +82,6 @@ public class Goal {
     public void addCurPeople(int count) {
         this.curPeople = count;
     }
-
-    // 매핑 편의 메소드 ----------------------------------------
-//    public void addMemberGoal(MemberGoal memberGoal) {
-//        memberGoalList.add(memberGoal);
-//        memberGoal.setGoal(this);
-
-//    }
 
     public void setGoalId(Long goalId) {
         this.goalId = goalId;
