@@ -7,8 +7,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +28,7 @@ public class Goal {
     @ColumnDefault("1")
     private Integer maxPeople;
 
+    @ColumnDefault("1")
     private Integer curPeople;
 
     @Column(nullable = false)
@@ -52,8 +51,11 @@ public class Goal {
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate createDate;
 
-    @OneToMany(mappedBy = "goal")
-    private List<Hashtag> hashtagList;
+//    @OneToMany(mappedBy = "goal")
+//    private List<Hashtag> hashtagList;
+
+    //    @Column(nullable = false)
+    private String imgPath;
 
     /**
      * 좋아요 추가
@@ -77,8 +79,11 @@ public class Goal {
     }
 
 //    @Column(nullable = false)
-
     private String imgPath;
+  
+    public void addCurPeople(int count) {
+        this.curPeople = count;
+    }
 
     // 매핑 편의 메소드 ----------------------------------------
 //    public void addMemberGoal(MemberGoal memberGoal) {
@@ -90,7 +95,7 @@ public class Goal {
     public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
-
+  
     /**
      * 연관관계 편의 메서드
      */

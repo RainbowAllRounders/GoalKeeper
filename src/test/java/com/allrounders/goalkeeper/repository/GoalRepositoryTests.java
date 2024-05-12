@@ -1,6 +1,8 @@
 package com.allrounders.goalkeeper.repository;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.dto.RankDTO;
+import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -42,6 +45,16 @@ public class GoalRepositoryTests {
             Goal result = goalRepository.save(goal);
             log.info("goalId: " + result.getGoalId());
         });
+    }
+
+    @Autowired
+    private GoalRepository goalRepositoryImpl;
+
+    @Test
+    public void testTop3Goal() {
+        List<Top3GoalDTO> result = goalRepositoryImpl.searchTop3Goal();
+        log.info("@@@@@@"+result);
+
     }
 
 }

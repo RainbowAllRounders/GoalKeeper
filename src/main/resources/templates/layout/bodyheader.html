@@ -2,37 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <!-- navbar -> header, header삭제 -->
 <div class="header" th:fragment="bodyheader">
-    <div class="navlogo"></div>
+    <div class="navlogo" onclick="location.href= '/'"></div>
     <div class="navtabs">
-        <div class="tab tab1">
+        <div class="tab tab1" onclick="location.href= '/goal/add'">
 			<!-- tab1 클릭하면 class="penicon_pink"-->
             <div class="penicon"></div>
 			<!-- tab1 클릭하면 class="pink"-->
-            <p>미션 등록하기</p>
+            <a href="/goal/add" style="font-size: 12px; text-decoration: none">
+                <p>미션 등록하기</p>
+            </a>
         </div>
 
-        <div class="tab tab2">
+        <div class="tab tab2" onclick="location.href= '/goal/list'">
             <div class="fireicon"></div>
-            <a href="/goal/add" style="font-size: 12px; text-decoration: none">
+            <a href="/goal/list" style="font-size: 12px; text-decoration: none">
                 <p>미션 참여하기</p>
             </a>
         </div>
 
-        <div class="tab tab3">
+        <div class="tab tab3" onclick="location.href= '/game'">
             <div class="gameicon"></div>
             <p>미니게임</p>
         </div>
     </div>
     <div class="navprofile">
-		<!--로그인후 -> messagecom -->
-        <div>
-			<!-- 클릭하면 message_open -->
-            <div class="message"></div>
-	        <!-- 클릭하면 reddot속성없앰 -->
-            <div class="reddot"></div>
-        </div>
+<!--		&lt;!&ndash;로그인후 -> messagecom &ndash;&gt;-->
+<!--        <div>-->
+<!--			&lt;!&ndash; 클릭하면 message_open &ndash;&gt;-->
+<!--            <div class="message"></div>-->
+<!--	        &lt;!&ndash; 클릭하면 reddot속성없앰 &ndash;&gt;-->
+<!--            <div class="reddot"></div>-->
+<!--        </div>-->
         <!-- class에 profile속성 추가하면 profile로 변경 -->
-        <div onclick="window.location.href = '/logout'" class="loginbtn">
+        <div onclick="window.location.href = '/member/login'" class="loginbtn">
             <p>로그인</p>
         </div>
 
@@ -41,11 +43,11 @@
             <div class="drop">내 미션</div>
             <div class="drop">로그아웃</div>
         </div>
-        <div class="messagebox">
-            <div class="alarmElem">---미션이 시작됩니다.</div>
-            <div class="alarmElem">---미션이 종료됩니다.</div>
-            <div class="alarmElem">---미션이 시작됩니다.</div>
-        </div>
+<!--        <div class="messagebox">-->
+<!--            <div class="alarmElem">-&#45;&#45;미션이 시작됩니다.</div>-->
+<!--            <div class="alarmElem">-&#45;&#45;미션이 종료됩니다.</div>-->
+<!--            <div class="alarmElem">-&#45;&#45;미션이 시작됩니다.</div>-->
+<!--        </div>-->
     </div>
 	<div class="line"></div>
 	<div class="upbtn" id="upbtn" th:style = " 'background: url(/images/header/upbtn.png) no-repeat center / contain' "></div>

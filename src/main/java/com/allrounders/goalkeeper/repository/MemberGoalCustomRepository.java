@@ -13,4 +13,7 @@ public interface MemberGoalCustomRepository {
     int joinedPeople(Long goalId);
 
     String findByMemberNickName_goalId(Long goalId);
+
+    Integer curPeopleByGoalId(Long goalId);
+
 }
