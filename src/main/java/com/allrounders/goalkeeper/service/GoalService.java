@@ -1,14 +1,22 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.domain.Hashtag;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
+
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
+
+import com.allrounders.goalkeeper.repository.GoalRepository;
+import com.allrounders.goalkeeper.repository.HashtagRepository;
+import com.allrounders.goalkeeper.repository.LikesRepository;
+import com.allrounders.goalkeeper.repository.MemberGoalRepository;
 import com.allrounders.goalkeeper.repository.*;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -86,7 +94,15 @@ public class GoalService {
         Goal goal = validationGoalId(goalId);
         goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
 
-        return GoalDetailDTO.fromEntity(goalRepository.save(goal));
+        List<Hashtag> findHashtagList = hashtagRepository.findByHashtagList_GoalId(goalId);
+        for (Hashtag hashtag : findHashtagList) {
+            goal.addHashTag(hashtag);
+        }
+
+        memberGoalRepository.joinedPeople(goal.getGoalId());
+        String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
+
+        return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName);
     }
 
     /**

@@ -76,8 +76,9 @@ public class Goal {
         this.goalId = goalId;
     }
     
-//    public void addHashTag(Hashtag hashtag) {
-//        hashtagList.add(hashtag);
-//        hashtag.setGoal(this);
-//    }
+
+    public void addHashTag(Hashtag hashtag) {
+        hashtag.addGoal(this);
+        hashtagList.add(hashtag);
+    }
 }

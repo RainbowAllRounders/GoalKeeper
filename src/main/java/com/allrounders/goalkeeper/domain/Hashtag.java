@@ -24,10 +24,9 @@ public class Hashtag {
     @Column(length = 8, nullable = false)
     private String tagName;
 
-//    public void setGoal(Goal goal) {
-//        this.goal = goal;
-//        goal.addHashTag(this);
-//    }
+    public void addGoal(Goal goal) {
+        this.goal = goal;
+    }
 
     public void setTagName(String tagName) {
         this.tagName = tagName;
