@@ -2,13 +2,21 @@ package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Hashtag;
+import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
+
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
+import com.allrounders.goalkeeper.dto.GoalListDTO;
+import com.allrounders.goalkeeper.dto.HashtagDTO;
+import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
+
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.HashtagRepository;
 import com.allrounders.goalkeeper.repository.LikesRepository;
 import com.allrounders.goalkeeper.repository.MemberGoalRepository;
+import com.allrounders.goalkeeper.repository.*;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,7 +35,13 @@ public class GoalService {
     private final LikesRepository likesRepository;
     private final MemberGoalRepository memberGoalRepository;
     private final HashtagRepository hashtagRepository;
+    private final MemberRepository memberRepository;
 
+    /**
+     * 미션 작성
+     * @param goalAddDTO
+     * @param session
+     */
     public void goalAdd(GoalAddDTO goalAddDTO, HttpSession session) {
 
         Long memberId = (Long)session.getAttribute("memberId");
@@ -40,13 +54,34 @@ public class GoalService {
         LocalDate startAlarmDate = findGoal.getStartDate();
         LocalDate endAlarmDate = findGoal.getEndDate();
 
+        // 해시태그 저장 ----------------------------------------
+        String hashtagDTOs = goalAddDTO.getHashtagDTOs();
+
+        if (hashtagDTOs != null && !hashtagDTOs.isEmpty()) {
+            String[] hashtagArray = hashtagDTOs.split("\\s*#\\s*"); // 쉼표로 구분된 해시태그 문자열을 배열로 분할
+            for (String tag : hashtagArray) {
+                HashtagDTO hashtagDTO = new HashtagDTO();
+                hashtagDTO.setGoalId(goalId);
+                hashtagDTO.setTagName(tag.trim()); // 태그의 공백을 제거하여 저장
+                hashtagRepository.save(HashtagDTO.dtoToEntity(hashtagDTO));
+            }
+        }
+
         MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
+
+        Member member = memberRepository.findByMemberId(memberId);
+        member.updateCurPointAddGoal();
+        memberRepository.save(member);
     }
 
-    public Page<Goal> goalList(Pageable pageable) {
-        Page<Goal> goalPage = goalRepository.findAllOrderByGoalIdDesc(pageable);
-        return goalPage;
+    /**
+     * 미션 목록
+     * @param pageable
+     * @return Page<GoalListDTO>
+     */
+    public Page<GoalListDTO> goalList(Pageable pageable) {
+        return goalRepository.findAllOrderByGoalIdDesc(pageable);
     }
 
     /**
@@ -80,6 +115,11 @@ public class GoalService {
             .orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
             );
+    }
+
+    public List<Top3GoalDTO> getTop3Goal() {
+        List<Top3GoalDTO> Top3Goal = goalRepository.searchTop3Goal();
+        return Top3Goal;
     }
 
 }
