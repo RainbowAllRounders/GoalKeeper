@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -49,11 +51,9 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Likes> likesList = new ArrayList<>();
 
-
     public boolean checkPassword(String password) {
         return this.password.equals(password);
     }
-
 
     public void addPoint() {
         this.curPoint += 500;

@@ -10,8 +10,6 @@ public interface MemberGoalCustomRepository {
 
     Boolean isJoin(Long memberId, Long goalId);
 
-    int joinedPeople(Long goalId);
-
     String findByMemberNickName_goalId(Long goalId);
 
     Integer curPeopleByGoalId(Long goalId);
