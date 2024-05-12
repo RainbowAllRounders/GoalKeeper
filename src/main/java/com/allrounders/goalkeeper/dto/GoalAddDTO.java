@@ -1,6 +1,7 @@
 package com.allrounders.goalkeeper.dto;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.domain.Hashtag;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -35,24 +38,41 @@ public class GoalAddDTO {
     @NotNull
     private LocalDate endDate;
 
-//    private List<HashtagDTO> hashtagDTOList;
-    private String hashtagDTOs;
+    private String hashtag;
+
+    private List<HashtagDTO> hashtags;
 
 //    @NotBlank
     private String imgPath;
 
-    public static Goal dtoToEntity(GoalAddDTO goalAddDTO) {
+    public Goal toEntity() {
+
+        changeList(hashtag);
+        List<Hashtag> hashtagList = this.hashtags.stream().map(HashtagDTO::toEntity).collect(Collectors.toList());
 
         Goal goal = Goal.builder()
-                .title(goalAddDTO.getTitle())
-                .content(goalAddDTO.getContent())
-                .maxPeople(goalAddDTO.getMaxPeople())
-                .authCount(goalAddDTO.getAuthCount())
-                .startDate(goalAddDTO.getStartDate())
-                .endDate(goalAddDTO.getEndDate())
+                .title(this.getTitle())
+                .content(this.getContent())
+                .maxPeople(this.getMaxPeople())
+                .authCount(this.getAuthCount())
+                .hashtagList(hashtagList)
+                .startDate(this.getStartDate())
+                .endDate(this.getEndDate())
                 .build();
 
         return goal;
+    }
+
+    /**
+     * hashtag 덩어리를 List<HashtagDTO>에 담아주기
+     */
+    public void changeList(String hashtag) {
+        String[] split = hashtag.split("\\s*#\\s*");
+
+        for (String tagName : split) {
+            HashtagDTO hashtagDTO = HashtagDTO.builder().tagName(tagName).build();
+            this.hashtags.add(hashtagDTO);
+        }
     }
 
 }
