@@ -52,15 +52,17 @@ public class MemberGoal {
     @JoinColumn(name = "authImgId")
     private AuthImg authImg;
 
-    public MemberGoal(Long memberId, Long goalId, Boolean role,
+    public MemberGoal(Member member, Goal goal, Boolean role,
                       LocalDate startAlarmDate, LocalDate endAlarmDate, Boolean isChecked) {
 
-        this.member.setMemberId(memberId);
-        this.goal.setGoalId(goalId);
-        this.role = role;
-        this.startAlarmDate = startAlarmDate;
-        this.endAlarmDate = endAlarmDate;
-        this.isChecked = isChecked;
+        MemberGoal memberGoal = MemberGoal.builder()
+                .member(member)
+                .goal(goal)
+                .role(role)
+                .startAlarmDate(startAlarmDate)
+                .endAlarmDate(endAlarmDate)
+                .isChecked(isChecked)
+                .build();
     }
 
     /**
