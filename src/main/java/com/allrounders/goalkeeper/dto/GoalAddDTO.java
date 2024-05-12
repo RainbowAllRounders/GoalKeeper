@@ -38,17 +38,18 @@ public class GoalAddDTO {
     @NotNull
     private LocalDate endDate;
 
-    private String hashtag;
 
-    private List<HashtagDTO> hashtags;
+    private String hashtagDTOs;
+  
+    private List<HashtagDTO> hashtagDTOList;
 
 //    @NotBlank
     private String imgPath;
 
-    public Goal toEntity() {
+    public Goal dtoToEntity() {
 
-        changeList(hashtag);
-        List<Hashtag> hashtagList = this.hashtags.stream().map(HashtagDTO::toEntity).collect(Collectors.toList());
+        changeList(hashtagDTOs);
+        List<Hashtag> hashtagList = this.hashtagDTOList.stream().map(HashtagDTO::dtoToEntity).collect(Collectors.toList());
 
         Goal goal = Goal.builder()
                 .title(this.getTitle())
@@ -63,16 +64,14 @@ public class GoalAddDTO {
         return goal;
     }
 
-    /**
-     * hashtag 덩어리를 List<HashtagDTO>에 담아주기
-     */
-    public void changeList(String hashtag) {
-        String[] split = hashtag.split("\\s*#\\s*");
 
-        for (String tagName : split) {
-            HashtagDTO hashtagDTO = HashtagDTO.builder().tagName(tagName).build();
-            this.hashtags.add(hashtagDTO);
+    public void changeList(String hashtagDTOs) {
+        HashtagDTO hashtagDTO = new HashtagDTO();
+        String[] split = hashtagDTOs.split("\\s*#\\s*");
+
+        for(String tagName : split) {
+            HashtagDTO hash = hashtagDTO.builder().tagName(tagName).build();
+            hashtagDTOList.add(hash);
         }
     }
-
 }

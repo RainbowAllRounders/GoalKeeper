@@ -78,7 +78,7 @@ public class Goal {
     public void minusCurPeople() {
         this.curPeople--;
     }
-
+  
     public void addCurPeople(int count) {
         this.curPeople = count;
     }
