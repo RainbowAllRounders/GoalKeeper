@@ -82,7 +82,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                         goal.title,
                         goal.authCount,
                         goal.maxPeople,
-                        goal.member.size().as("curPeople"),
+                        goal.curPeople,
                         goal.likeCount,
                         goal.complete,
                         goal.startDate,

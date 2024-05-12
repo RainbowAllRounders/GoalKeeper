@@ -38,17 +38,6 @@ public class MemberGoalRepositoryImpl implements MemberGoalCustomRepository {
     }
 
     /**
-     * 현재 참여 인원
-     */
-    @Override
-    public int joinedPeople(Long goalId) {
-        return query.select(memberGoal.memberGoalId.count())
-                .from(memberGoal)
-                .where(goalIdEq(goalId))
-                .fetchOne().intValue();
-    }
-
-    /**
      * 미션 생성자 닉네임 조회
      */
     @Override
@@ -57,6 +46,17 @@ public class MemberGoalRepositoryImpl implements MemberGoalCustomRepository {
                 .from(memberGoal)
                 .where(goalIdEqMemberRoleEq(goalId))
                 .fetchOne();
+    }
+
+    /**
+     * 현재 참여 인원
+     */
+    @Override
+    public Integer curPeopleByGoalId(Long goalId) {
+        return query.select(memberGoal.count())
+                .from(memberGoal)
+                .where(goalIdEq(goalId))
+                .fetchOne().intValue();
     }
 
     /**

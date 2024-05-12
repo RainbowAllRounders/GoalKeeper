@@ -1,7 +1,9 @@
 package com.allrounders.goalkeeper.dto;
 
+import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Hashtag;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HashtagDTO {
-    private Long goalId;
+//    private Long goalId;
+    @NotNull
+    private Goal goal;
 
     @NotBlank
     private String tagName;
@@ -32,11 +36,11 @@ public class HashtagDTO {
                 .collect(Collectors.toList());
     }
 
-    public static Hashtag dtoToEntity(HashtagDTO hashtagDTO) {
+    public Hashtag dtoToEntity() {
 
         Hashtag hashtag = Hashtag.builder()
-                .goalId(hashtagDTO.getGoalId())
-                .tagName(hashtagDTO.getTagName())
+                .goal(this.getGoal())
+                .tagName(this.getTagName())
                 .build();
 
         return hashtag;
