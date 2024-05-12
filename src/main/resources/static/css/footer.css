@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
 .footer{
+    background-color: #F1F1F1;
     position: relative;
     transform: translateY(0%);
     /*margin: 16px 0px 0px 0px;*/
