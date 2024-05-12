@@ -7,8 +7,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -30,9 +28,8 @@ public class Goal {
     @ColumnDefault("1")
     private Integer maxPeople;
 
-    // cur_people 컬럼 값 구할 때 사용
-    @OneToMany(mappedBy = "goal")
-    private List<MemberGoal> member = new ArrayList<>();
+    @ColumnDefault("1")
+    private Integer curPeople;
 
     @Column(nullable = false)
     private int likeCount;
@@ -54,38 +51,56 @@ public class Goal {
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate createDate;
 
-    @OneToMany(mappedBy = "goal")
-    private List<Hashtag> hashtagList;
+//    @OneToMany(mappedBy = "goal")
+//    private List<Hashtag> hashtagList;
 
+    //    @Column(nullable = false)
+    private String imgPath;
+
+    /**
+     * 좋아요 추가
+     */
     public void addLikeCount(int count) {
         this.likeCount = count;
     }
 
+    /**
+     * 참여인원 추가
+     */
+    public void addCurPeople() {
+        this.curPeople++;
+    }
+
+    /**
+     * 참여인원 차감
+     */
+    public void minusCurPeople() {
+        this.curPeople--;
+    }
+
 //    @Column(nullable = false)
     private String imgPath;
+  
+    public void addCurPeople(int count) {
+        this.curPeople = count;
+    }
 
     // 매핑 편의 메소드 ----------------------------------------
-
 //    public void addMemberGoal(MemberGoal memberGoal) {
 //        memberGoalList.add(memberGoal);
 //        memberGoal.setGoal(this);
+
 //    }
 
     public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
-
-    public void setMember(List<MemberGoal> list) {
-        for(MemberGoal memberGoal : list) {
-            if(!this.member.contains(memberGoal)) {
-                this.member.add(memberGoal);
-                memberGoal.setGoal(this);
-            }
-        }
-    }
-    
+  
+    /**
+     * 연관관계 편의 메서드
+     */
     public void addHashTag(Hashtag hashtag) {
+        hashtag.addGoal(this);
         hashtagList.add(hashtag);
-        hashtag.setGoal(this);
     }
 }

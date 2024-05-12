@@ -36,7 +36,7 @@ public class Likes {
     /**
      * 좋아요 클릭
      */
-    public static Likes insertLike(Member member, Goal goal, Boolean isLiked) {
+    public static Likes insertLike(Member member, Goal goal) {
         return Likes.builder()
                 .member(member)
                 .goal(goal)
