@@ -17,6 +17,7 @@
     padding: 20px 16px;
     overflow: visible;
     z-index: 1500;
+    flex-shrink: 0;
 }
 
 .header>.navlogo{
@@ -24,9 +25,9 @@
     background: url(../images/header/GoalKeeperLogo.png);
     background-size: contain;
     background-repeat: no-repeat;
-    /* border: 1px solid red; */
     width: 200px;
     height: 44px;
+    flex-shrink: 0;
 }
 
 .header>.navtabs{
@@ -37,6 +38,7 @@
     justify-content: space-between;
     /* border: 1px solid red; */
     height: 44px;
+    flex-shrink: 0;
 }
 
 .header>.navtabs>.tab{
@@ -49,6 +51,32 @@
     width: 120px;
     height: 30px;
     /* border: 1px solid red; */
+    flex-shrink: 0;
+}
+
+/*클릭했을때*/
+
+.header>.navtabs>.active>.penicon{
+    background: url(../images/header/Penicon_pink.png) !important;
+}
+.header>.navtabs>.active>.fireicon{
+    background: url(../images/header/Fireicon_pink.png) !important;
+}
+.header>.navtabs>.active>.gameicon{
+    background: url(../images/header/Gameicon_pink.png) !important;
+}
+.header>.navtabs>.active>.penicon,
+.header>.navtabs>.active>.fireicon,
+.header>.navtabs>.active>.gameicon {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 8px !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+
+.active>p{
+    color: #ff5065;
 }
 
 .header>.navtabs>.tab>.penicon{
@@ -102,30 +130,6 @@
     color: #ff5065;
 }
 
-/*클릭했을때*/
-
-.header>.navtabs>.tab1>.penicon_pink{
-    background: url(../images/header/Penicon_pink.png);
-}
-.header>.navtabs>.tab2>.fireicon_pink{
-    background: url(../images/header/Fireicon_pink.png);
-}
-.header>.navtabs>.tab3>.gameicon_pink{
-    background: url(../images/header/Gameicon_pink.png);
-}
-.header>.navtabs>.tab1>.penicon_pink,
-.header>.navtabs>.tab2>.fireicon_pink,
-.header>.navtabs>.tab3>.gameicon_pink {
-    width: 20px;
-    height: 20px;
-    margin: 8px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.header>.navtabs>.tab>.pink{
-    color: #ff5065;
-}
 
 /* 위 오 아 왼 */
 .header>.navprofile{
@@ -140,41 +144,41 @@
     /* border: 1px solid red; */
 }
 
-.header>.navprofile>.messagecom{
-    display: flex;
-    flex-flow: row;
-    align-items: start;
-    justify-content: space-between;
-    background-color: transparent;
-}
+/*.header>.navprofile>.messagecom{*/
+/*    display: flex;*/
+/*    flex-flow: row;*/
+/*    align-items: start;*/
+/*    justify-content: space-between;*/
+/*    background-color: transparent;*/
+/*}*/
 
-.header>.navprofile>.messagecom:hover{
-    cursor: pointer;
-}
+/*.header>.navprofile>.messagecom:hover{*/
+/*    cursor: pointer;*/
+/*}*/
 
-.header>.navprofile>.messagecom>.message{
-    width: 24px;
-    height: 24px;
-    background: url(../images/header/Alarmicon.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
+/*.header>.navprofile>.messagecom>.message{*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    background: url(../images/header/Alarmicon.png);*/
+/*    background-size: contain;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
 
-.header>.navprofile>.messagecom>.message_open{
-    width: 24px;
-    height: 24px;
-    background: url(../images/header/Alarmopen.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
+/*.header>.navprofile>.messagecom>.message_open{*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    background: url(../images/header/Alarmopen.png);*/
+/*    background-size: contain;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
 
-.header>.navprofile>.messagecom>.reddot{
-    width: 4px;
-    height: 4px;
-    background: url(../images/header/reddoticon.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
+/*.header>.navprofile>.messagecom>.reddot{*/
+/*    width: 4px;*/
+/*    height: 4px;*/
+/*    background: url(../images/header/reddoticon.png);*/
+/*    background-size: contain;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
 
 .header>.navprofile>.profile{
     margin-left: 20px;
@@ -184,6 +188,7 @@
     background: url(../images/header/profile.png);
     background-size: contain;
     background-repeat: no-repeat;
+    flex-shrink: 0;
 }
 
 .header>.navprofile>.loginbtn{
@@ -199,6 +204,7 @@
     justify-content: center;
 
     background-color: transparent;
+    flex-shrink: 0;
 }
 
 .header>.navprofile>.loginbtn>p{

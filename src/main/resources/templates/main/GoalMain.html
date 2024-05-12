@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/layout}">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>main</title>
 	<link rel="stylesheet" th:href="@{/css/goalmain/goalmain.css}">
-	<link rel="stylesheet" th:href="@{/css/header.css}">
-	<link rel="stylesheet" th:href="@{/css/footer.css}">
-	<link rel="stylesheet" th:href="@{/css/default.css}">
 </head>
-<body>
-<!--<div class="header" id="header">-->
-<th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
-<!--</div>-->
+<body layout:fragment="content">
+
+
 <div class="container">
 	<!-- banner -->
 	<div class="banner">
@@ -26,9 +22,9 @@
 	<!-- 핫한 미션 -->
 	<div class="hotgoal" id="hotgoal">
 		<div class="hotgoal_top">
-			<div class="hotgoallogo">
-			</div>
+			<div class="hotgoallogo"></div>
 		</div>
+		<p>미션제목을 클릭하면 해당 미션으로 이동합니다</p>
 		<div class="hotgoal_bottom">
 			<div th:each="goal : ${Top3Goal}" class="goalcard">
 				<div class="cardtop">
@@ -102,6 +98,7 @@
 	<!-- 순위 -->
 	<div class="rankpage" id="rankpage">
 		<div class="rank_t"></div>
+		<p class="explain">순위는 매일 자정 업데이트됩니다</p>
 		<div class="dansang_group">
 			<div class="rankpeopleprofile">
 				<div class="peopleprofile" th:each="item : ${rankpeople}" th:if="${item.ranking == 2}">
@@ -133,10 +130,6 @@
 		</div>
 	</div>
 </div>
-<!--<div class="upbtn" id="upbtn"></div>-->
-
-<th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
 <script th:src="@{/js/main/main.js}"></script>
-<script th:src="@{/js/main/header.js}"></script>
 </body>
 </html>
