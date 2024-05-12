@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -51,8 +52,8 @@ public class Goal {
     @CreationTimestamp  // 값이 입력될 때 자동으로 현재 시간이 들어감
     private LocalDate createDate;
 
-//    @OneToMany(mappedBy = "goal")
-//    private List<Hashtag> hashtagList;
+    @OneToMany(mappedBy = "goal")
+    private List<Hashtag> hashtagList;
 
     //    @Column(nullable = false)
     private String imgPath;
@@ -77,9 +78,6 @@ public class Goal {
     public void minusCurPeople() {
         this.curPeople--;
     }
-
-//    @Column(nullable = false)
-    private String imgPath;
   
     public void addCurPeople(int count) {
         this.curPeople = count;

@@ -4,19 +4,12 @@ import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Hashtag;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
-
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
-
-import com.allrounders.goalkeeper.repository.GoalRepository;
-import com.allrounders.goalkeeper.repository.HashtagRepository;
-import com.allrounders.goalkeeper.repository.LikesRepository;
-import com.allrounders.goalkeeper.repository.MemberGoalRepository;
 import com.allrounders.goalkeeper.repository.*;
-
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -46,7 +39,8 @@ public class GoalService {
 
         Long memberId = (Long)session.getAttribute("memberId");
 
-        Goal goal = GoalAddDTO.dtoToEntity(goalAddDTO);
+        // Goal에 생성한 미션 저장 ----------------------------------------
+        Goal goal = goalAddDTO.dtoToEntity();
         Long goalId = goalRepository.save(goal).getGoalId();
 
         Goal findGoal = validationGoalId(goalId);
@@ -54,22 +48,18 @@ public class GoalService {
         LocalDate startAlarmDate = findGoal.getStartDate();
         LocalDate endAlarmDate = findGoal.getEndDate();
 
-        // 해시태그 저장 ----------------------------------------
-        String hashtagDTOs = goalAddDTO.getHashtagDTOs();
-
-        if (hashtagDTOs != null && !hashtagDTOs.isEmpty()) {
-            String[] hashtagArray = hashtagDTOs.split("\\s*#\\s*"); // 쉼표로 구분된 해시태그 문자열을 배열로 분할
-            for (String tag : hashtagArray) {
-                HashtagDTO hashtagDTO = new HashtagDTO();
-                hashtagDTO.setGoalId(goalId);
-                hashtagDTO.setTagName(tag.trim()); // 태그의 공백을 제거하여 저장
-                hashtagRepository.save(HashtagDTO.dtoToEntity(hashtagDTO));
-            }
+        // Hashtag에 해시태그들 저장 ----------------------------------------
+        List<HashtagDTO> hashtagDTOList = goalAddDTO.getHashtagDTOList();
+        for(HashtagDTO hashtagDTO:hashtagDTOList) {
+            Hashtag hashtag = hashtagDTO.dtoToEntity();
+            hashtagRepository.save(hashtag);
         }
 
+        // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
         MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
 
+        // 미션 생성한 사람의 포인트 차감 ----------------------------------------
         Member member = memberRepository.findByMemberId(memberId);
         member.updateCurPointAddGoal();
         memberRepository.save(member);

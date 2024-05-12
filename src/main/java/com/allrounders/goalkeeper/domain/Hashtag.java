@@ -15,9 +15,12 @@ public class Hashtag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)
-//    private Goal goal;
+    // 재원
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)
+    private Goal goal;
+    
+    // 혜리
     @Column(nullable = false)
     private Long goalId;
 
