@@ -39,41 +39,41 @@
       </div>
       <div class="track">
 
-        <div class="snail" id="snail5">@y</div>
-      </div>
-      <div id="bat_start_btn">START</div>
-    </div>
-    <!-- 포인트 배팅 모달 -->
-    <div class="battingModal">
-      <div class="modal_title">
-        <h2>당신의 달팽이에게 배팅하세요</h2>
-      </div>
-      <div class="modal_content">
-        <!-- 수정 영역 -->
-        <div class="num_area">
-          <div class="num_">
-            <div class="num1">1번</div>
-            <input class="num1" type="radio" name="num_check" />
+            <div class="snail" id="snail5">@y</div>
           </div>
-          <div class="num_">
-            <div class="num2">2번</div>
-            <input class="num2" type="radio" name="num_check" />
-          </div>
-          <div class="num_">
-            <div class="num3">3번</div>
-            <input class="num3" type="radio" name="num_check" />
-          </div>
-          <div class="num_">
-            <div class="num4">4번</div>
-            <input class="num4" type="radio" name="num_check" />
-          </div>
-          <div class="num_">
-            <div class="num5">5번</div>
-            <input class="num5" type="radio" name="num_check" />
-          </div>
+          <div id="bat_start_btn">START</div>
         </div>
-        <div class="bat_point">
-          <div class="bat_">
+              <!-- 포인트 배팅 모달 -->
+      <div class="battingModal">
+        <div class="modal_title">
+          <h2>당신의 달팽이에게 배팅하세요</h2>
+        </div>
+        <div class="modal_content">
+          <!-- 수정 영역 -->
+          <div class="num_area">
+            <div class="num_">
+              <div class="num1">1번</div>
+              <input class="num1" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num2">2번</div>
+              <input class="num2" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num3">3번</div>
+              <input class="num3" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num4">4번</div>
+              <input class="num4" type="radio" name="num_check" />
+            </div>
+            <div class="num_">
+              <div class="num5">5번</div>
+              <input class="num5" type="radio" name="num_check" />
+            </div>
+          </div>
+          <div class="bat_point">
+            <div class="bat_">
             <div class="P100">100P</div>
             <input class="P100" type="radio" name="point_check" value="100" />
           </div>
@@ -89,7 +89,7 @@
             <div class="P3000">3000P</div>
             <input class="P3000" type="radio" name="point_check" value="3000"/>
           </div>
-        </div>
+          </div>
 
         <!-- 저장/취소 버튼 -->
         <div class="actions">
@@ -105,6 +105,6 @@
   <p id="result"></p>
 </div>
 <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
-<script th:src="@{/js/game/bat_game.css}"></script>
+<script th:src="@{/js/game/bat_game.js}"></script>
 </body>
 </html>
