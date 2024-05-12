@@ -6,7 +6,6 @@ import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
-import com.allrounders.goalkeeper.dto.HashtagDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.*;
@@ -40,29 +39,23 @@ public class GoalService {
         Long memberId = (Long)session.getAttribute("memberId");
 
         // Goal에 생성한 미션 저장 ----------------------------------------
-        Goal goal = goalAddDTO.dtoToEntity();
-        Long goalId = goalRepository.save(goal).getGoalId();
-
-        Goal findGoal = validationGoalId(goalId);
-
-        LocalDate startAlarmDate = findGoal.getStartDate();
-        LocalDate endAlarmDate = findGoal.getEndDate();
+        Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
-        List<HashtagDTO> hashtagDTOList = goalAddDTO.getHashtagDTOList();
-        for(HashtagDTO hashtagDTO:hashtagDTOList) {
-            Hashtag hashtag = hashtagDTO.dtoToEntity();
-            hashtagRepository.save(hashtag);
-        }
-
-        // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
-        MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startAlarmDate, endAlarmDate, false);
-        memberGoalRepository.save(memberGoal);
+        goalAddDTO.getHashtagDTOList().forEach(hashtagDTO ->
+                hashtagRepository.save(hashtagDTO.dtoToEntity()));
 
         // 미션 생성한 사람의 포인트 차감 ----------------------------------------
         Member member = memberRepository.findByMemberId(memberId);
         member.updateCurPointAddGoal();
         memberRepository.save(member);
+
+        LocalDate startAlarmDate = goal.getStartDate();
+        LocalDate endAlarmDate = goal.getEndDate();
+
+        // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
+        MemberGoal memberGoal = new MemberGoal(member, goal, true, startAlarmDate, endAlarmDate, false);
+        memberGoalRepository.save(memberGoal);
     }
 
     /**
