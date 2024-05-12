@@ -89,7 +89,7 @@ public class GoalService {
             goal.addHashTag(hashtag);
         }
 
-        memberGoalRepository.joinedPeople(goal.getGoalId());
+        memberGoalRepository.curPeopleByGoalId(goal.getGoalId());
         String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
 
         return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName);
