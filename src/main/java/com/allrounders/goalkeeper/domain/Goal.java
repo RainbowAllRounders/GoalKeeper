@@ -57,26 +57,48 @@ public class Goal {
     //    @Column(nullable = false)
     private String imgPath;
 
+    /**
+     * 좋아요 추가
+     */
     public void addLikeCount(int count) {
         this.likeCount = count;
     }
 
+    /**
+     * 참여인원 추가
+     */
+    public void addCurPeople() {
+        this.curPeople++;
+    }
+
+    /**
+     * 참여인원 차감
+     */
+    public void minusCurPeople() {
+        this.curPeople--;
+    }
+
+//    @Column(nullable = false)
+    private String imgPath;
+  
     public void addCurPeople(int count) {
         this.curPeople = count;
     }
 
     // 매핑 편의 메소드 ----------------------------------------
-
 //    public void addMemberGoal(MemberGoal memberGoal) {
 //        memberGoalList.add(memberGoal);
 //        memberGoal.setGoal(this);
+
 //    }
 
     public void setGoalId(Long goalId) {
         this.goalId = goalId;
     }
-    
-
+  
+    /**
+     * 연관관계 편의 메서드
+     */
     public void addHashTag(Hashtag hashtag) {
         hashtag.addGoal(this);
         hashtagList.add(hashtag);

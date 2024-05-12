@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -56,6 +54,14 @@ public class Member {
         return this.password.equals(password);
     }
 
+
+    public void addPoint() {
+        this.curPoint += 500;
+    }
+
+    public void minusPoint() {
+        this.curPoint -= 500;
+    }
 
     public void updateMember(String nickname, String password) {
         if (nickname != null && !nickname.isEmpty()) {

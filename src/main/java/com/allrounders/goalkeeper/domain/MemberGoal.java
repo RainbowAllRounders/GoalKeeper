@@ -19,11 +19,9 @@ public class MemberGoal {
     private Long memberGoalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "goalId")   // foreign key (goal_id) references Goal (goal_id)
     private Goal goal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
     private Member member;
 
     @ColumnDefault("true")
@@ -63,6 +61,19 @@ public class MemberGoal {
         this.startAlarmDate = startAlarmDate;
         this.endAlarmDate = endAlarmDate;
         this.isChecked = isChecked;
+    }
+
+    /**
+     * 등록된 미션이 참가하기
+     */
+    public static MemberGoal joinGoal(Member member, Goal goal) {
+        return MemberGoal.builder()
+                .member(member)
+                .goal(goal)
+                .role(false)
+                .startAlarmDate(goal.getStartDate())
+                .endAlarmDate(goal.getEndDate())
+                .build();
     }
 
     // 매핑 편의 메소드 ----------------------------------------
