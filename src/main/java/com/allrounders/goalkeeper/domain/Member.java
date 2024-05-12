@@ -79,4 +79,9 @@ public class Member {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
+
+    public void updateCurPointAddGoal() {
+        if(this.curPoint >= 500) this.curPoint -= 500;
+        else throw new IllegalStateException();
+    }
 }

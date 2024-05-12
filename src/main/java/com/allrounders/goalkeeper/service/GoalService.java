@@ -1,15 +1,13 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
-import com.allrounders.goalkeeper.repository.GoalRepository;
-import com.allrounders.goalkeeper.repository.HashtagRepository;
-import com.allrounders.goalkeeper.repository.LikesRepository;
-import com.allrounders.goalkeeper.repository.MemberGoalRepository;
+import com.allrounders.goalkeeper.repository.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,6 +25,7 @@ public class GoalService {
     private final LikesRepository likesRepository;
     private final MemberGoalRepository memberGoalRepository;
     private final HashtagRepository hashtagRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 미션 작성
@@ -60,6 +59,10 @@ public class GoalService {
 
         MemberGoal memberGoal = new MemberGoal(memberId, goalId, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
+
+        Member member = memberRepository.findByMemberId(memberId);
+        member.updateCurPointAddGoal();
+        memberRepository.save(member);
     }
 
     /**
