@@ -21,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class GoalService {
 
     private final GoalRepository goalRepository;
@@ -34,6 +35,7 @@ public class GoalService {
      * @param goalAddDTO
      * @param session
      */
+    @Transactional(readOnly = false)
     public void goalAdd(GoalAddDTO goalAddDTO, HttpSession session) {
 
         Long memberId = (Long)session.getAttribute("memberId");
@@ -42,8 +44,9 @@ public class GoalService {
         Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
-        goalAddDTO.getHashtagDTOList().forEach(hashtagDTO ->
-                hashtagRepository.save(hashtagDTO.dtoToEntity()));
+        List<Hashtag> hashtagList = goal.getHashtagList();
+        hashtagList.forEach(hashtag -> hashtag.addGoal(goal));
+        hashtagRepository.saveAll(hashtagList);
 
         // 미션 생성한 사람의 포인트 차감 ----------------------------------------
         Member member = memberRepository.findByMemberId(memberId);

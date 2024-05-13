@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HashtagDTO {
-//    private Long goalId;
+
     @NotNull
     private Goal goal;
 
@@ -39,7 +39,6 @@ public class HashtagDTO {
     public Hashtag dtoToEntity() {
 
         Hashtag hashtag = Hashtag.builder()
-                .goal(this.getGoal())
                 .tagName(this.getTagName())
                 .build();
 
