@@ -1,9 +1,5 @@
-@font-face {
-    font-family: 'jalnan';
-    src: url(../font/JalnanGothic/JalnanGothicTTF.ttf);
-}
+
 *{
-    font-family: 'jalnan';
     margin: 0px;
     text-decoration: none;
 }
@@ -17,6 +13,21 @@ h1{
 }
 h2{
     font-size: 20px;
+}
+#header{
+    width: 190px;
+    padding: 20px 16px;
+    display: flex;
+    align-items: center;
+}
+#header > a{
+    width: 190px;
+    height: 44px;
+    margin: 0 32px;
+}
+img{
+    width: 232px;
+    height: 55px;
 }
 #content{
     margin-top: 150px;
@@ -53,6 +64,7 @@ h2{
     margin: 10px;
     padding-left: 20px;
     background-color: #FAFFC8;
+    outline: none;
 }
 #signup_btn{
     border: none;
