@@ -38,7 +38,7 @@ public class GoalService {
     @Transactional(readOnly = false)
     public void goalAdd(GoalAddDTO goalAddDTO, HttpSession session) {
 
-        Long memberId = (Long)session.getAttribute("memberId");
+        Long memberId = (Long)session.getAttribute("member_id");
 
         // Goal에 생성한 미션 저장 ----------------------------------------
         Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
@@ -51,13 +51,13 @@ public class GoalService {
         // 미션 생성한 사람의 포인트 차감 ----------------------------------------
         Member member = memberRepository.findByMemberId(memberId);
         member.updateCurPointAddGoal();
-        memberRepository.save(member);
+        Member savedMember = memberRepository.save(member);
 
         LocalDate startAlarmDate = goal.getStartDate();
         LocalDate endAlarmDate = goal.getEndDate();
 
         // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
-        MemberGoal memberGoal = new MemberGoal(member, goal, true, startAlarmDate, endAlarmDate, false);
+        MemberGoal memberGoal = MemberGoal.test(savedMember, goal, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
     }
 

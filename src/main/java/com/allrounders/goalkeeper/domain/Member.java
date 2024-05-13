@@ -33,7 +33,7 @@ public class Member {
     @ColumnDefault("1000")
     private Integer curPoint;
 
-    @Column
+    @ColumnDefault("0")
     private Integer rankPoint;
 
     @Column(nullable = false)

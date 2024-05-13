@@ -19,9 +19,11 @@ public class MemberGoal {
     private Long memberGoalId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "goal_id")
     private Goal goal;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ColumnDefault("true")
@@ -52,10 +54,10 @@ public class MemberGoal {
     @JoinColumn(name = "authImgId")
     private AuthImg authImg;
 
-    public MemberGoal(Member member, Goal goal, Boolean role,
+    public static MemberGoal test(Member member, Goal goal, Boolean role,
                       LocalDate startAlarmDate, LocalDate endAlarmDate, Boolean isChecked) {
 
-        MemberGoal memberGoal = MemberGoal.builder()
+        return MemberGoal.builder()
                 .member(member)
                 .goal(goal)
                 .role(role)

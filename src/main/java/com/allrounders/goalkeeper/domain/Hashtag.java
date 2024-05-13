@@ -24,7 +24,6 @@ public class Hashtag {
 
     public void addGoal(Goal goal) {
         this.goal = goal;
-        goal.getHashtagList().add(this);
     }
 
     public void setTagName(String tagName) {
