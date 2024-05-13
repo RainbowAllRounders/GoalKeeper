@@ -1,9 +1,7 @@
 package com.allrounders.goalkeeper.dto;
 
-import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Hashtag;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +15,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HashtagDTO {
-
-    @NotNull
-    private Goal goal;
 
     @NotBlank
     private String tagName;
