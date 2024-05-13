@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GoalAddDTO {
-    private Long goalId;
 
     @NotBlank
     private String title;
@@ -31,7 +30,7 @@ public class GoalAddDTO {
     private Integer authCount;
 
     @NotNull
-    private String complete;
+    private String complete = "모집 중";
 
     @NotNull
     private LocalDate startDate;
@@ -47,20 +46,21 @@ public class GoalAddDTO {
 //    private String imgPath;
 
     public Goal dtoToEntity() {
+
         changeList(hashtagDTOs);
         List<Hashtag> hashtagList = this.hashtagDTOList.stream()
                 .map(HashtagDTO::dtoToEntity)
                 .collect(Collectors.toList());
-
+        System.out.println(this.toString());
         return Goal.builder()
-                .title(this.getTitle())
-                .content(this.getContent())
-                .maxPeople(this.getMaxPeople())
-                .authCount(this.getAuthCount())
+                .title(this.title)
+                .content(this.content)
+                .maxPeople(this.maxPeople)
+                .authCount(this.authCount)
                 .hashtagList(hashtagList)
-                .complete("모집 중")
-                .startDate(this.getStartDate())
-                .endDate(this.getEndDate())
+                .complete(this.complete)
+                .startDate(this.startDate)
+                .endDate(this.endDate)
                 .build();
     }
 
