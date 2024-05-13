@@ -2,21 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <!-- navbar -> header, header삭제 -->
 <div class="header" th:fragment="bodyheader">
-    <div class="navlogo" data-path="/" onclick="location.href= '/'"></div>
+    <div class="navlogo" onclick="location.href= '/main'"></div>
     <div class="navtabs">
 <!--	    링크가 일치하면 active class추가-->
         <div class="tab tab1" data-path="/goal/add" onclick="location.href= '/goal/add'">
             <div class="penicon"></div>
+	        <p>미션 등록하기</p>
         </div>
 
         <div class="tab tab2" data-path="/goal/list" onclick="location.href= '/goal/list'">
             <div class="fireicon"></div>
-            <a href="/goal/list" style="font-size: 12px; text-decoration: none">
-                <p>미션 참여하기</p>
-            </a>
+	        <p>미션 참여하기</p>
         </div>
 
-        <div class="tab tab3" data-path="/game" onclick="location.href= '/game'">
+        <div class="tab tab3" data-path="/game/game_main" onclick="location.href= '/game/game_main'">
             <div class="gameicon"></div>
             <p>미니게임</p>
         </div>
