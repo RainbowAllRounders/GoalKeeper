@@ -30,7 +30,7 @@ public class Goal {
     private Integer maxPeople;
 
     @ColumnDefault("1")
-    private Integer curPeople;
+    private int curPeople;
 
     @Column(nullable = false)
     private int likeCount;
