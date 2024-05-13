@@ -6,7 +6,7 @@ const goalTimesInput = document.getElementById('goalTimesInput');
 const goalTimes = goalTimesInput.querySelector('input');
 
 // 해시 태그
-let hashtagInput = document.querySelector("#goalHashTagInput input[type='text']");
+let hashtagInput = document.getElementById('hashtagInput');
 
 // 미션 설명
 const goalDescriptionText = document.getElementById('goalDescriptionText');
@@ -146,64 +146,21 @@ window.addEventListener('load', function () {
         }
     });
 
-    // // 등록 버튼 눌렀을 때
-    // goalAddBtn.addEventListener('click', function () {
-    //     const goalTitle = goalTitleInput.querySelector('input').value.trim();
-    //     const goalTimesValue = goalTimes.value.trim();
-    //     const goalDescription = goalDescriptionText.value.trim();
-    //     const startDate = startDateInput.value.trim();
-    //     const endDate = endDateInput.value.trim();
-    //     const goalPeopleValue = goalPeople.value.trim();
-    //
-    //     // 필수 입력값이 하나라도 입력되지 않았을 경우
-    //     if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
-    //         swal({
-    //             title: '입력 오류',
-    //             text: '모든 입력값을 입력해주세요.',
-    //             type: 'error',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //
-    //     // GoalController에서 발생한 오류 확인
-    //     } else if("*{fail}" === '미션 등록 오류') {
-    //         swal({
-    //             title: '미션 등록 오류',
-    //             text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
-    //             type: 'error',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //
-    //     // 미션 등록 성공
-    //     } else if("*{success}" === '미션 등록 성공') {
-    //         swal({
-    //             title: '미션 등록 완료',
-    //             text: '미션 등록이 성공적으로 완료되었습니다.',
-    //             type: 'success',
-    //             confirmButtonText: '확인',
-    //             confirmButtonColor: '#FF5065'
-    //         });
-    //     }
-    // });
-
     // 등록 버튼 눌렀을 때
     goalAddBtn.addEventListener('click', function (e) {
         // e.preventDefault();
 
-        // 필수 입력값 검사
         const goalTitle = goalTitleInput.querySelector('input').value.trim();
         const goalTimesValue = goalTimes.value.trim();
         const goalDescription = goalDescriptionText.value.trim();
+        const hashtags = hashtagInput.value.trim();
         const startDate = startDateInput.value.trim();
         const endDate = endDateInput.value.trim();
         const goalPeopleValue = goalPeople.value.trim();
 
-        console.log("submit 클릭@@@@@@@@@")
-
+        // 필수 입력값 검사------------------------------------------
         // 필수 입력값 하나라도 누락 시
         if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
-            console.log("입력 덜 했음@@@@@@@@@")
             swal({
                 title: '입력 오류',
                 text: '모든 입력값을 입력해주세요.',
@@ -218,6 +175,7 @@ window.addEventListener('load', function () {
         formData.append('title', goalTitle);
         formData.append('authCount', goalTimesValue);
         formData.append('content', goalDescription);
+        formData.append('hashtagDTOs', hashtags);
         formData.append('startDate', startDate);
         formData.append('endDate', endDate);
         formData.append('maxPeople', goalPeopleValue);
@@ -230,7 +188,6 @@ window.addEventListener('load', function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log("미션 등록 성공")
 
                 swal({
                     title: '미션 등록 완료',
