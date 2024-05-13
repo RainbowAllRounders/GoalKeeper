@@ -23,14 +23,14 @@ public class MemberSignUpDTO {
     @NotBlank(message = "닉네임을 입력해주세요.")
     private String nickname;
 
-    private int ranking = 0; // Add this line with default value
+    private int ranking = 999; // Add this line with default value
 
     public Member toEntity() {
         return Member.builder()
                 .email(this.getEmail())
                 .password(this.getPassword())
                 .nickname(this.getNickname())
-                .ranking(this.getRanking()) // Include ranking field
+                .ranking(this.getRanking())
                 .build();
     }
 }
