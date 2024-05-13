@@ -8,7 +8,7 @@
     text-decoration: none;
 }
 #container{
-    background-image: url('../../images/Join\ -\ 재원.png');
+    background: url(../../images/Join_back.png);
     background-size: cover;
     height: 100vh;
 }

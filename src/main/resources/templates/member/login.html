@@ -12,7 +12,7 @@
 <form action="/member/login" method="post">
     <div id="container">
         <nav id="header">
-            <a href=""><img src="../../static/images/헤더 로고.png"></a>
+            <a href=""><img th:src="@{/images/헤더 로고.png}"></a>
         </nav>
         <div id="content">
             <div id="login_box">
@@ -32,15 +32,6 @@
         </div>
     </div>
 </form>
-
-<script>
-    function storeEmail() {
-        var email = document.getElementById('email').value;
-        sessionStorage.setItem('email', email);
-    }
-</script>
-
-<!--<p th:if="${error}" th:text="${error}"></p>-->
 
 </body>
 </html>

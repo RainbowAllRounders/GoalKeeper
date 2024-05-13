@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,11 +24,7 @@ public class MemberService {
         Member member = request.toEntity();
         memberRepository.save(member);
     }
-    //로그인 메서드(예비)
-//    public boolean login(MemberLoginDTO loginDTO) {
-//        Member member = memberRepository.findByEmailAndPassword(loginDTO.getEmail(), loginDTO.getPassword());
-//        return member != null;
-//    }
+
     public boolean login(MemberLoginDTO memberLoginDTO) {
         String email = memberLoginDTO.getEmail();
         String password = memberLoginDTO.getPassword();
