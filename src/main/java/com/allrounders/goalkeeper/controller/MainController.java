@@ -16,12 +16,12 @@ public class MainController {
     private final RankService rankService;
     private final GoalService goalService;
 
-    @GetMapping("/Intro")
+    @GetMapping("/")
     public String Intro() {
         return "main/Intro";
     }
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String main(Model model) {
         model.addAttribute("rankpeople", rankService.findTop3Ranker());
         model.addAttribute("Top3Goal", goalService.getTop3Goal());
