@@ -1,12 +1,4 @@
-*{
-    margin-top: 0px;
-    background-color: #F1F1F1;
-    overflow-y: scroll;
-}
-
-
 .container{
-    margin-top: 84px;
     /*margin-bottom: 64px;*/
     display: flex;
     flex-flow: column;
@@ -16,6 +8,7 @@
 
 /* 배너 ------------------------------------*/
 .banner{
+    margin-top: 84px;
     width: 100%;
     display: flex;
     flex-flow: column;
