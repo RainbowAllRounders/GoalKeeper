@@ -14,4 +14,8 @@ public class GameController {
     public String gameMain() {
         return "/game/game_main";
     }
+    @GetMapping("/game/bat_game")
+    public String batGame() {
+        return "/game/bat_game";
+    }
 }

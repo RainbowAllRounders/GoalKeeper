@@ -1,15 +1,11 @@
-@font-face {
-    font-family: 'jalnan';
-    src: url(../font/JalnanGothic/JalnanGothicTTF.ttf);
-}
+
 *{
-    font-family: 'jalnan';
     margin: 0px;
     text-decoration: none;
 }
 #container{
     background: url(../../images/Login_Back.png);
-    height: 110vh;
+    height: 102vh;
     background-size: cover;
 }
 h1{
@@ -42,8 +38,19 @@ padding: 0px;
 border: none;
 }
 #header{
-width: 100%;
-height: 80px;
+    width: 190px;
+    padding: 20px 16px;
+    display: flex;
+    align-items: center;
+}
+#header > a{
+    width: 190px;
+    height: 44px;
+    margin: 0 32px;
+}
+img{
+    width: 232px;
+    height: 55px;
 }
 #signup_btn{
 color: #2A9AD9;
@@ -68,6 +75,7 @@ left: 35%;
     padding-left: 20px;
     font-size: 15px;
     background-color: #FAFFC8;
+    outline: none;
 }
 #password{
     margin-bottom: 50px;
