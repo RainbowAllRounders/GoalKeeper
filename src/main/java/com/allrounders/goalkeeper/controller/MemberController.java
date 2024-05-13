@@ -1,9 +1,7 @@
 package com.allrounders.goalkeeper.controller;
 
-import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.MemberLoginDTO;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
-import com.allrounders.goalkeeper.repository.MemberRepository;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,8 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
-
 
     @GetMapping("/member/join")
     public String signUp(Model model){
@@ -59,7 +55,7 @@ public class MemberController {
 
         if (isLogin) {
             session.setAttribute("member_id", memberId);
-            return "/main/GoalMain";
+            return "redirect:/main";
         } else {
             redirectAttributes.addFlashAttribute("error", "Invalid email or password");
             return "/member/login";
@@ -67,42 +63,5 @@ public class MemberController {
 
     }
 
-//    @PostMapping("/member/login")
-//    public String login(MemberLoginDTO memberLoginDTO,HttpSession session, RedirectAttributes redirectAttributes) {
-//        boolean isLogin = memberService.login(memberLoginDTO);
-//        if (isLogin) {
-//            session.setAttribute("member_id", memberLoginDTO.getEmail());
-//            System.out.println("========================");
-//            System.out.println(session.getAttribute("member_id"));
-//            return "/main/GoalMain";
-//        } else {
-//            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
-//            return "redirect:/member/login";
-//        }
-//    }
-
-
-//    @PostMapping("/member/login")
-//    public @ResponseBody String login(@ModelAttribute MemberDTO memberDTO){
-//        boolean isLogin = memberService.login(memberDTO.getEmail(), memberDTO.getPassword());
-//        if(isLogin) {
-//            return "redirect:/main/GoalMain";
-//        }else {
-//            return "redirect:/member/login";
-//        }
-//    }
-
-    @GetMapping("/main/GoalMain")
-    public String main(Model model){
-
-        return "/main/GoalMain";
-    }
-
-//    @PostMapping("/join")
-//    public @ResponseBody String emailCheck(@RequestParam("email") String email){
-//        System.out.println("email = " + email);
-////        String checkResult = memberService.emailCheck(email);
-//        return "체크완료";
-//    }
 
 }
