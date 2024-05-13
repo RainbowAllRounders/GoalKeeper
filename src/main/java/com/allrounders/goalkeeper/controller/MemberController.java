@@ -28,13 +28,17 @@ public class MemberController {
 
     @PostMapping("/member/join")
     public String signUp(MemberSignUpDTO request, RedirectAttributes redirectAttributes){
-        memberService.signUp(request);
+        boolean signUpSuccess = memberService.signUp(request);
+
+        if (!signUpSuccess) {
+            redirectAttributes.addFlashAttribute("error", "이미 존재하는 이메일 혹은 닉네임 입니다.");
+            return "redirect:/member/join";
+        }
         return "redirect:/member/login";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
-
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
@@ -48,20 +52,14 @@ public class MemberController {
     }
 
     @PostMapping("/member/login")
-    public String login(MemberLoginDTO memberLoginDTO,HttpSession session, RedirectAttributes redirectAttributes) {
-        boolean isLogin = memberService.login(memberLoginDTO);
-        String email = memberLoginDTO.getEmail();
-        Long memberId = memberService.findMemberIdByEmail(email);
-
+    public String login(MemberLoginDTO memberLoginDTO, RedirectAttributes redirectAttributes) {
+        boolean isLogin = memberService.loginAndSession(memberLoginDTO);
         if (isLogin) {
-            session.setAttribute("member_id", memberId);
             return "redirect:/main";
         } else {
-            redirectAttributes.addFlashAttribute("error", "Invalid email or password");
-            return "/member/login";
+            redirectAttributes.addFlashAttribute("error", "이메일 혹은 비밀번호가 일치하지 않습니다.");
+            return "redirect:/member/login";
         }
-
     }
-
 
 }

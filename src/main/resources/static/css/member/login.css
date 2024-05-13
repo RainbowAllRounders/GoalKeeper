@@ -37,6 +37,20 @@ border-radius: 25px;
 padding: 0px;
 border: none;
 }
+#input_box{
+    height: 210px;
+}
+#error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 600px;
+    height: 20px;
+    padding: 0;
+font-size: 12px;
+    color: #FF5065;
+}
 #header{
     width: 190px;
     padding: 20px 16px;
@@ -78,5 +92,6 @@ left: 35%;
     outline: none;
 }
 #password{
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
+    margin: 0;
 }
