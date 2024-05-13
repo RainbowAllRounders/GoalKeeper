@@ -17,7 +17,6 @@ h2{
     width: 100%;
     height: 100px;
     font-family: 'jalnan';
-    background-color: chartreuse;
 }
 
 #container{
@@ -91,7 +90,7 @@ background-color: rgba(90, 200, 250,0.7);
     align-items: center;
 }
 #ox_img{
-    background: url(../../images/Group\ 18.png);
+    background: url(../../images/OX_game.png);
     width: 280px;
     height: 150px;
     background-size: cover;
