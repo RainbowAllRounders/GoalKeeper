@@ -62,6 +62,29 @@ public class GoalService {
     }
 
     /**
+     * 해시 태그를 갖고 있는 goalList
+     * @param goalId
+     * @return
+     */
+//    public GoalListDTO getGoalWithHashtags(Long goalId) {
+//        Goal goal = goalRepository.findById(goalId)
+//                .orElseThrow(() -> new RuntimeException("해당 ID의 미션을 찾을 수 없습니다: " + goalId));
+//
+//        List<Hashtag> hashtags = hashtagRepository.findByGoal(goal);
+//        List<HashtagDTO> hashtagDTOList = new ArrayList<>();
+//
+//        for (Hashtag hashtag : hashtags) {
+//            hashtagDTOList.add(HashtagDTO.fromEntity(hashtag));
+//        }
+//
+//        for (HashtagDTO hashtagDTO : hashtagDTOList) {
+//            goal.addHashTag(hashtagDTO.dtoToEntity());
+//        }
+//
+//        return GoalListDTO.fromEntity(goal);
+//    }
+
+    /**
      * 미션 목록
      * @param pageable
      * @return Page<GoalListDTO>

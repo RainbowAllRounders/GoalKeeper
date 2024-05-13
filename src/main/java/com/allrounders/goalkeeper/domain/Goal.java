@@ -58,6 +58,9 @@ public class Goal {
 //    @Column(nullable = false)
     private String imgPath;
 
+//    @OneToMany(mappedBy = "goal")
+//    private List<MemberGoal> memberGoalList;
+
     /**
      * 좋아요 추가
      */
@@ -79,19 +82,12 @@ public class Goal {
         this.curPeople--;
     }
   
-    public void addCurPeople(int count) {
-        this.curPeople = count;
-    }
-
-    public void setGoalId(Long goalId) {
-        this.goalId = goalId;
-    }
-  
     /**
      * 연관관계 편의 메서드
      */
-    public void addHashTag(Hashtag hashtag) {
+    public Goal addHashTag(Hashtag hashtag) {
         hashtag.addGoal(this);
         hashtagList.add(hashtag);
+        return this;
     }
 }
