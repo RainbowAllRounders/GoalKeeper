@@ -5,11 +5,14 @@ import com.allrounders.goalkeeper.dto.MemberLoginDTO;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.List;
 
@@ -20,9 +23,20 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void signUp(MemberSignUpDTO request) {
-        Member member = request.toEntity();
-        memberRepository.save(member);
+    public boolean signUp(MemberSignUpDTO request) {
+        String email = request.getEmail();
+        String nickname = request.getNickname();
+
+        boolean emailExists = memberRepository.existsByEmail(email);
+        boolean nicknameExists = memberRepository.existsByNickname(nickname);
+
+        if (emailExists || nicknameExists) {
+            return false; // 이메일 또는 닉네임이 이미 존재하면 false 반환
+        } else {
+            Member member = request.toEntity();
+            memberRepository.save(member);
+            return true; // 회원 가입 성공 시 true 반환
+        }
     }
 
     public boolean login(MemberLoginDTO memberLoginDTO) {
@@ -30,8 +44,18 @@ public class MemberService {
         String password = memberLoginDTO.getPassword();
         return memberRepository.existsByEmailAndPassword(email, password);
     }
-
-
+    public boolean loginAndSession(MemberLoginDTO memberLoginDTO) {
+        boolean isLogin = login(memberLoginDTO);
+        if (isLogin) {
+            Long memberId = findMemberIdByEmail(memberLoginDTO.getEmail());
+            // 현재 요청에 대한 세션 가져오기
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true); // true로 해서 세션이 없으면 생성
+            session.setAttribute("member_id", memberId);
+            return true;
+        }
+        return false;
+    }
     // email로 memberId 조회
     public Long findMemberIdByEmail(String email) {
         Member member = memberRepository.findByEmail(email);

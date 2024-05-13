@@ -25,7 +25,7 @@
                 <input type="text" class="addr_password" id="signup_addr" name="email" placeholder="이메일 주소"></input>
                 <input type="text" class="addr_password" id="signup_nickname" name="nickname" placeholder="닉네임"></input>
                 <input type="password" class="addr_password" id="signup_password" name="password" placeholder="비밀번호"></input>
-                <!--                <input type="password" class="addr_password" id="signup_password_check" name="passwordCheck" placeholder="비밀번호 확인"></input>-->
+                <div id="error"th:if="${error}" th:text="${error}"></div>
                 <button type="submit" id="signup_btn" style="color: white">회원가입</button>
             </div>
         </form>

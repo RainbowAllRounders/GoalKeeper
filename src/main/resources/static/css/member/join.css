@@ -45,6 +45,17 @@ h2{
     align-items: center;
     border-radius: 25px;
 }
+#error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 600px;
+    height: 20px;
+    padding: 0;
+    font-size: 12px;
+    color: #FF5065;
+}
 .addr_password{
     border: none;
     width: 350px;
