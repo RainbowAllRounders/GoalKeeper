@@ -138,28 +138,8 @@ unregisterBtn.addEventListener('click', async function () {
         Swal.fire("경고", "비밀번호를 입력해주세요.", "warning");
     }
 });
-// $().ready(function () {
-//     $(document).ready(function () {
-//         $("#promptStart").click(async function () {
-//             const { value: password } = await Swal.fire({
-//                 title: "본인 확인",
-//                 html: "고객님의 소중한 개인정보 보호를 위해서<br> 본인확인을 진행합니다.",
-//                 input: "password",
-//                 inputPlaceholder: "비밀번호를 입력하세요",
-//                 confirmButtonColor: "#FFBB00",
-//             });
-//
-//             if (password) {
-//                 // TODO: 입력 비밀번호와 DB 정보 일치하는지 확인 후
-//                 showConfirmStart();
-//             }
-//
-//             // TODO: 비밀번호가 일치하지 않는 경우 예외 처리
-//             else {
-//                 notMatchAlert();
-//             }
-//         });
-//
+
+
 function showConfirmStart() {
     Swal.fire({
         title: "정말 탈퇴 하시겠어요?",
@@ -181,7 +161,7 @@ function showConfirmStart() {
             })
             .then(response => {
                 if (response.ok) {
-                    window.location.href = '/main/GoalMain';
+                    window.location.href = '/Intro';
                 } else {
                     throw new Error();
                 }
@@ -189,10 +169,6 @@ function showConfirmStart() {
             .catch(error => {
                 Swal.fire("오류", "탈퇴 처리 중 오류가 발생했습니다: " + error.message, "error")
             });
-
-
-
-            // TODO: DB에서 member 정보 삭제 처리
         }
     });
 }
@@ -203,14 +179,12 @@ function notMatchAlert() {
         title: "비밀번호가 일치하지 않습니다.",
         text: "5초 후 창이 자동으로 닫힙니다.",
         timer: 5000,
-        timerProgressBar: true, // 타이머 진행 상태를 보여주는 프로그레스 바 활성화
+        timerProgressBar: true,
         didOpen: () => {
-            Swal.showLoading(); // 로딩 애니메이션 표시
+            Swal.showLoading();
         },
     });
 }
-//     });
-// });
 
 
 // 5. 내 랭크 100위 이상일 경우 99+ 처리

@@ -6,8 +6,6 @@ import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.hibernate.sql.ast.SqlTreeCreationLogger.LOGGER;
 
 @Service
 @RequiredArgsConstructor
@@ -34,28 +30,28 @@ public class MemberService {
 //        Member member = memberRepository.findByEmailAndPassword(loginDTO.getEmail(), loginDTO.getPassword());
 //        return member != null;
 //    }
-public boolean login(MemberLoginDTO memberLoginDTO) {
-    String email = memberLoginDTO.getEmail();
-    String password = memberLoginDTO.getPassword();
-    return memberRepository.existsByEmailAndPassword(email, password);
-}
-
-
-    //    //Repository에서 정의한 메서드 구현
-    //    //DB에 존재하면 true, 아닐경우 false를 반환
-    //    public boolean existByEmail(String email) {
-    //        return memberRepository.existsByEmail(email);
-    //    }
-
-
-    // 회원 정보 조회
-    public Member myInfo(String email) {
-        return memberRepository.findByEmail(email);
+    public boolean login(MemberLoginDTO memberLoginDTO) {
+        String email = memberLoginDTO.getEmail();
+        String password = memberLoginDTO.getPassword();
+        return memberRepository.existsByEmailAndPassword(email, password);
     }
 
-    // 회원 정보 수정
-    public ResponseEntity<?> updateMyInfo(String email, MyPageModifyDTO modifyDTO) {
+
+    // email로 memberId 조회
+    public Long findMemberIdByEmail(String email) {
         Member member = memberRepository.findByEmail(email);
+        return member.getMemberId();
+    }
+
+    // 회원 정보 조회
+    public Member myInfo(Long memberId) {
+        return memberRepository.findById(memberId).orElse(null);
+    }
+
+
+    // 회원 정보 수정
+    public ResponseEntity<?> updateMyInfo(Long memberId, MyPageModifyDTO modifyDTO) {
+        Member member = memberRepository.findById(memberId).get();
 
         try {
             member.updateMember(modifyDTO.getNickname(), modifyDTO.getPassword());
@@ -79,26 +75,17 @@ public boolean login(MemberLoginDTO memberLoginDTO) {
     }
 
     // 탈퇴하기 위한 비밀번호 확인
-    public boolean verifyPassword(String email, String password) {
-        Member member = memberRepository.findByEmail(email);
-//        Long memberId = memberRepository.findIdByEmail(email);
+    public boolean verifyPassword(Long memberId, String password) {
+        Member member = memberRepository.findById(memberId).get();
         return member != null && member.getPassword().equals(password);
     }
 
     // 회원 탈퇴
     @Transactional(readOnly = false)
-    public void unregister(String email) {
-        System.out.println("@@@@@@@@@@@@@@@1111@@@@@@@@@@@@@@");
+    public void unregister(Long memberId) {
+        Member member = memberRepository.findById(memberId).get();
 
-            System.out.println("@@@@@@@@@@@@@@@2222@@@@@@@@@@@@@@");
-
-            Member member = memberRepository.findByEmail(email);
-            System.out.println("@@@@@@@@@@@@@@@@MemberID:" + member.getMemberId());
-
-
-                memberRepository.deleteById(member.getMemberId());
-                System.out.println("@@@@@@@@@@@@@@@@@33333@@@@@@@@@@@@");
-
+        memberRepository.deleteById(member.getMemberId());
     }
 
 }
