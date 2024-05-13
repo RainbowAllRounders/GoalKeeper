@@ -45,10 +45,10 @@
                         </div>
                         <div class="goalTitle" th:text="${goal.title}"></div>
 
-                        <div class="hashtagList">
-                            <div class="hashtag tags">태그1</div>
-                            <div class="hashtag tags">태그2</div>
-                            <div class="hashtag tags">태그3</div>
+                        <div class="hashtagList" th:each="hashtagDTO : ${goal.hashtagDTOList}" >
+                            <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
+                            <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
+                            <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
                         </div>
                     </div>
 
