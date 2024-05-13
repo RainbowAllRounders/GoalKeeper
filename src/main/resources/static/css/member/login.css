@@ -8,7 +8,7 @@
     text-decoration: none;
 }
 #container{
-    background-image: url('../../images/Login\ -\ 재원.png');
+    background: url(../../images/Login_Back.png);
     height: 110vh;
     background-size: cover;
 }
