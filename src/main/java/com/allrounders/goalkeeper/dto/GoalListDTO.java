@@ -1,6 +1,7 @@
 package com.allrounders.goalkeeper.dto;
 
 import com.allrounders.goalkeeper.domain.Goal;
+import com.allrounders.goalkeeper.domain.MemberGoal;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -44,7 +46,9 @@ public class GoalListDTO {
     @NotNull
     private LocalDate endDate;
 
-    private List<HashtagDTO> hashtagDTOList;
+    private List<HashtagDTO> hashtagDTOList = new ArrayList<>();
+
+//    private List<MemberGoal> memberGoalList;
 
     private String imgPath;
 
