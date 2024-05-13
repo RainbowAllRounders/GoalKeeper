@@ -55,7 +55,7 @@ public class Goal {
     @OneToMany(mappedBy = "goal")
     private List<Hashtag> hashtagList;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String imgPath;
 
     /**
