@@ -1,5 +1,6 @@
 package com.allrounders.goalkeeper.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import lombok.*;
@@ -18,10 +19,12 @@ public class MemberGoal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberGoalId;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "goal_id")
     private Goal goal;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
