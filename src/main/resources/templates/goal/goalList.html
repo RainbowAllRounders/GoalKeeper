@@ -47,8 +47,6 @@
 
                         <div class="hashtagList" th:each="hashtagDTO : ${goal.hashtagDTOList}" >
                             <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
-                            <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
-                            <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
                         </div>
                     </div>
 
@@ -66,6 +64,9 @@
                         <div class="nicknameBox">
                             <img th:src="@{/images/crown.png}" alt="왕관">
                             닉네임닉넴
+<!--                            <span th:each="membergoal : ${goal.memberGoalList}">-->
+<!--                                <p th:if="${membergoal.getRole()} == 1"  th:text="${membergoal.getMember().getNickname()}"></p>-->
+<!--                            </span>-->
                         </div>
                         <div class="pointBox">
                             <img th:src="@{/images/point.png}" alt="포인트">
