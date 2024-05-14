@@ -22,6 +22,7 @@ public class GoalDetailDTO {
     private String content;
     private int likeCount;
     private boolean isLiked;
+    private boolean isJoin;
     private int maxPeople;
     private int curPeople;
     private int authCount;
@@ -30,7 +31,7 @@ public class GoalDetailDTO {
     private LocalDate endDate;
     private String complete;
 
-    public static GoalDetailDTO fromEntity(Goal goal, String goalCreator, boolean isLiked) {
+    public static GoalDetailDTO fromEntity(Goal goal, String goalCreator, boolean isLiked, boolean isJoin) {
 
         List<HashtagDTO> hashtagList = goal.getHashtagList().stream().map(
                         hashtag -> HashtagDTO.builder()
@@ -43,6 +44,7 @@ public class GoalDetailDTO {
                 .title(goal.getTitle())
                 .content(goal.getContent())
                 .likeCount(goal.getLikeCount())
+                .isJoin(isJoin)
                 .isLiked(isLiked)
                 .hashtagList(hashtagList)
                 .maxPeople(goal.getMaxPeople())
