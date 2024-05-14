@@ -20,11 +20,11 @@ public class PageResponseDTO<E> {
 //    private boolean prev;       // 앞에 이동할 부분이 있는지
     private boolean next;       // 뒤에 이동할 부분이 있는지
 
-    private List<E> content;    // 이 페이지에 보여줄 row 리스트
+    private List<E> dtoList;    // 이 페이지에 보여줄 row 리스트
 
     // Builder 패턴을 사용해 객체를 생성하는 메서드
     @Builder(builderMethodName = "withAll") // 메서드 이름을 withAll로
-    public PageResponseDTO(PageRequestDTO pageRequestDTO, List<E> content, int total){
+    public PageResponseDTO(PageRequestDTO pageRequestDTO, List<E> dtoList, int total){
         if(total <= 0){
             return;
         }
@@ -33,7 +33,7 @@ public class PageResponseDTO<E> {
         this.size = pageRequestDTO.getSize();
 
         this.total = total;
-        this.content = content;
+        this.dtoList = dtoList;
 
         this.end = (int)(Math.ceil(this.page / 10.0)) * 10; // 현재 페이지 범위의 끝 페이지 번호 계산
 
