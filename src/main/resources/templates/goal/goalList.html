@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +13,7 @@
 </head>
 
 <body>
+<body layout:fragment="content">
     <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     <div id="goalListWrapper">
 
@@ -34,7 +36,7 @@
         <!-- goalList들 -->
 
         <div id="goalListContainer">
-            <div th:each="goal : ${goalList}" class="goalCard shadowBox" onclick="location.href='goalDetail.html'">
+            <div th:each="goal : ${goalList}" class="goalCard shadowBox">
 
                 <div class="cardHeader">
 
@@ -43,7 +45,7 @@
                             <div class="timesTag tags" th:text="${goal.authCount} + '회 인증'"></div>
                             <div class="statusTag tags"  th:text="${goal.complete}"></div>
                         </div>
-                        <div class="goalTitle" th:text="${goal.title}"></div>
+                        <div class="goalTitle" th:text="${goal.title}" th:onclick="'location.href=\'/goal/detail/' + ${goal.goalId} + '\''" style="cursor: pointer"></div>
 
                         <div class="hashtagList" th:each="hashtagDTO : ${goal.hashtagDTOList}" >
                             <div class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
