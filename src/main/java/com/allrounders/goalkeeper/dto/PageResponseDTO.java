@@ -17,7 +17,7 @@ public class PageResponseDTO<E> {
     private int start;          // 현재 페이지에서 page 시작숫자
     private int end;            // 현재 페이지에서 page 끝숫자
 
-//    private boolean prev;       // 앞에 이동할 부분이 있는지
+    private boolean prev;       // 앞에 이동할 부분이 있는지
     private boolean next;       // 뒤에 이동할 부분이 있는지
 
     private List<E> dtoList;    // 이 페이지에 보여줄 row 리스트
@@ -35,15 +35,15 @@ public class PageResponseDTO<E> {
         this.total = total;
         this.dtoList = dtoList;
 
-        this.end = (int)(Math.ceil(this.page / 10.0)) * 10; // 현재 페이지 범위의 끝 페이지 번호 계산
+        this.end = (int)(Math.ceil(this.page / 5.0)) * 5; // 현재 페이지 범위의 끝 페이지 번호 계산
 
-        this.start = this.end - 9;  // 현재 페이지 범위의 시작 페이지 번호 계산
+        this.start = this.end - 4;  // 현재 페이지 범위의 시작 페이지 번호 계산
 
         int last = (int)(Math.ceil((total/(double)size)));  // 마지막 페이지 번호 계산
 
         this.end = end > last ? last : end; // 현재 페이지 범위의 끝 페이지 번호가 마지막 페이지를 초과하는 경우 보정
 
-//        this.prev = this.start > 1; // 이전 페이지로 이동 가능 여부 설정
+        this.prev = this.start > 1; // 이전 페이지로 이동 가능 여부 설정
 
         this.next = total > this.end * this.size;   // 다음 페이지로 이동 가능 여부 설정
     }
