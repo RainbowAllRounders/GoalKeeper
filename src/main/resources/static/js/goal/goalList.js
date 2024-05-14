@@ -32,6 +32,7 @@ window.addEventListener('load', function() {
         }
     });
 
+    // 페이지 변경 시 효과 적용
     pagination.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -57,13 +58,13 @@ window.addEventListener('load', function() {
             currentUrl += '?page=' + num;
         }
 
-        // 현재 활성화된 페이지 번호에 active 클래스를 제거합니다.
+        // 현재 활성화된 페이지 번호에 active 클래스를 제거
         const activeItem = pagination.querySelector('.page-item.active');
         if (activeItem) {
             activeItem.classList.remove('active');
         }
 
-        // 클릭한 페이지 번호에 active 클래스를 추가합니다.
+        // 클릭한 페이지 번호에 active 클래스를 추가
         target.closest('.page-item').classList.add('active');
 
         // 새로운 URL로 이동
