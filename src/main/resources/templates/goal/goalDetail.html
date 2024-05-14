@@ -26,8 +26,8 @@
 
 
     <div id="like">
-        <img id="like_img"  src="/images/grayHeart.png">
-        <div class="like_count">&nbsp;&nbsp;&nbsp;&nbsp;0</div>
+        <img class="like_img" th:src="${goalDetail.isLiked() == true} ? '/images/redHeart.png' : '/images/grayHeart.png'">
+        <div class="like_count" th:text="${goalDetail.likeCount}"></div>
     </div>
 
     <div class="main">
@@ -71,9 +71,9 @@
             </div>
         </div>
 
-        <span class="hashtag" th:each="hashtag : ${goalDetail.hashtagList}">
-            <span th:text="${hashtag.tagName}">#호랑이</span>
-        </span>
+        <div class="hashtag">
+            <p th:each="hashtag : ${goalDetail.hashtagList}" th:text="'#' + ${hashtag.tagName}">#호랑이</p>
+        </div>
 
     </div>
 
@@ -83,10 +83,6 @@
         </label>
         <input type="file" name="file" id="file">
     </div>
-
-<!--    <tr th:each="hashtag : ${goalDetail.hashtagList}">-->
-<!--        <td th:text="${hashtag.tagName}">tagName</td>-->
-<!--    </tr>-->
 
     <div class="auth_imgs">
         <div class="prev_next_btn">

@@ -6,7 +6,7 @@ const condition = document.getElementById('join');
  * 좋아요
  */
 const like = document.querySelector('#like');
-let likeImg = like.querySelector("#like_img");
+let likeImg = like.querySelector(".like_img");
 let likeCount = like.querySelector(".like_count");
 
 like.addEventListener('click', function () {

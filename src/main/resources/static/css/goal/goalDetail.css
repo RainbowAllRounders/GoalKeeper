@@ -19,6 +19,10 @@ button:hover {
 }
 
 #like {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 78%;
     top: 12%;
@@ -151,19 +155,22 @@ button:hover {
 }
 
 .hashtag {
+    width: 600px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 165px;
-    height: 35px;
-    border: 1px solid #000000;
-    font-size: 20px;
-    border-radius: 25px;
-    margin-top: 1%;
     margin-left: 10%;
 }
 
-.hashtag > span {
+.hashtag > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    margin-left: 10px;
+    width: 120px;
+    height: 35px;
+    font-size: 20px;
+    border: 1px solid #000000;
+    border-radius: 25px;
     flex-direction: row;
     margin-top: 2%;
 }

@@ -114,26 +114,43 @@ public class GoalService {
      * 미션 시작일, 미션 종료일, 모집 상태
      */
     @Transactional
-    public GoalDetailDTO getGoalDetail(Long goalId) {
-        Goal goal = validationGoalId(goalId);
+    public GoalDetailDTO getGoalDetail(HttpSession session) {
+
+        Member member = validationMemberId(session);
+        Goal goal = validationGoalId(session);
+        Long goalId = goal.getGoalId();
 
         List<Hashtag> findHashtagList = hashtagRepository.findByHashtagList_GoalId(goalId);
         findHashtagList.forEach(hashtag -> hashtag.addGoal(goal));
+        goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
+        Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(member.getMemberId(), goalId);
 
-        memberGoalRepository.curPeopleByGoalId(goal.getGoalId());
+        memberGoalRepository.curPeopleByGoalId(goalId);
         String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
 
-        return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName);
+        return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName, isLiked);
+    }
+
+    /**
+     * 존재하는 멤버인지 확인
+     */
+    @Transactional(readOnly = true)
+    public Member validationMemberId(HttpSession session) {
+        Long memberId = (Long) session.getAttribute("member_id");
+
+        return memberRepository.findById(memberId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 멤버입니다")
+        );
     }
 
     /**
      * 존재하는 미션인지 확인
      */
     @Transactional(readOnly = true)
-    public Goal validationGoalId(Long goalId) {
-        return goalRepository
-            .findById(goalId)
-            .orElseThrow(
+    public Goal validationGoalId(HttpSession session) {
+        Long goalId = (Long) session.getAttribute("goalId");
+
+        return goalRepository.findById(goalId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
             );
     }
