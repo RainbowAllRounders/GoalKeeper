@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
 	<title>main</title>
 	<link rel="stylesheet" th:href="@{/css/goalmain/goalmain.css}">
@@ -130,6 +130,11 @@
 		</div>
 	</div>
 </div>
+<!-- 모델 값을 자바스크립트로 넘기기 -->
+<script th:inline="javascript">
+	var memberId = /*[[${member_id}]]*/ 'default';
+	var memberProfile = "/"+/*[[${memberProfile}]]*/ 'default';
+</script>
 <script th:src="@{/js/main/main.js}"></script>
 </body>
 </html>

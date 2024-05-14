@@ -1,17 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ------------로그인-------------
+    // ------------로그인시에 프로필이랑 messaggecom보이게하기----------------------
     function checkLoginStatus() {
-        // 여기서 로그인 상태를 검사하고, 로그인 상태에 따라 클래스를 변경
-        var loginBtn = document.querySelector('.loginbtn');
+        var loginBtn = document.querySelector('.loginbtn'); // 로그인 버튼
+        var message = document.querySelector('.messagecom_Disabled'); // 메시지
 
-        // 로그인 상태라고 가정하고 'profile' 클래스를 바로 추가
-        // -> 후에 로그인 상태일때만 바꾸기
-        // loginBtn.classList.remove('loginbtn');
-        // loginBtn.classList.add('profile');
+        var MemberID = sessionStorage.getItem("member_id"); // 세션 스토리지에 있는 member_id 값 불러오기
+        var MemberProfile = sessionStorage.getItem("member_profile"); // 세션 스토리지에 있는 member_profile 값 불러오기
+
+        // MemberID가 존재하지 않고 model로 받아온 memberId가 존재할 때 -> sessionStorage에 memberId 값 저장
+        if (!MemberID && typeof memberId !== 'undefined' && memberId !== 'default') {
+            MemberID = memberId;  // 전역 변수로 접근
+            MemberProfile = memberProfile;
+            if (MemberID) {
+                sessionStorage.setItem("member_id", MemberID);
+                console.log("id session저장");
+                sessionStorage.setItem("member_profile", MemberProfile);
+                console.log("profile session저장");
+            }
+        }
+        console.log("sessionStorage_memberId : ", MemberID);
+        console.log("sessionStorage_memberProfile : ", MemberProfile);
+
+        // 로그인 버튼 <-> 프로필 전환, messagecom 나오게
+        if (sessionStorage.getItem("member_id") !== null) {
+            // 로그인 버튼 없애고 프로필 나오게
+            loginBtn.classList.remove('loginbtn');
+            loginBtn.classList.add('profile');
+            // 메시지 창
+            message.classList.remove('messagecom_Disabled');
+            message.classList.add('messagecom');
+        } else {
+            loginBtn.classList.remove('profile');
+            loginBtn.classList.add('loginbtn');
+            message.classList.remove('messagecom');
+            message.classList.add('messagecom_Disabled');
+        }
 
         // 'profile' 클래스가 있는지 확인
         if (loginBtn.classList.contains('profile')) {
+            // 프로필 사진 sessionStorage에 저장된 member_profile 값으로 사진 변경
+            var storedProfile = sessionStorage.getItem("member_profile");
+            loginBtn.style.backgroundImage = 'url(' + storedProfile + ')';
+            loginBtn.style.backgroundSize = 'cover';
+            loginBtn.style.backgroundPosition = 'center';
+
             // 'p' 태그를 찾아 삭제
             var pTag = loginBtn.querySelector('p');
             if (pTag) {
@@ -26,9 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.onload = checkLoginStatus;
 
     //------------------------- upbtn --------------------------------------------
-    document.getElementById('upbtn').addEventListener('click', function() {
+    document.getElementById('upbtn').addEventListener('click', function () {
         window.scrollTo({
-            top: 0,
+            top     : 0,
             behavior: 'smooth' // 스크롤 효과
         });
     });
@@ -49,30 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --------------------------------------- 메세지 --------------------------------------
-    // const messageCom = document.querySelector('.messagecom');
-    // const message = messageCom.querySelector('.message');
-    // const redDot = messageCom.querySelector('.reddot');
-    // const messageBox = document.querySelector('.messagebox');
-    //
-    // messageCom.addEventListener('click', function() {
-    //     // message 요소에 'message_open' 클래스를 토글
-    //     const isOpen = message.classList.toggle('message_open');
-    //
-    //     // reddot 요소의 표시 상태를 토글
-    //     redDot.style.display = isOpen ? 'none' : 'block';
-    //
-    //     // messageBox 요소의 표시 상태를 토글
-    //     messageBox.style.display = isOpen ? 'block' : 'none';
-    // });
-
 
     // --------------------------------------- 프로필 --------------------------------------
     const loginBtnContainer = document.querySelector('.loginbtn');
     const dropdown = document.querySelector('.dropdown');
 
     // loginBtnContainer 클릭 이벤트 리스너
-    loginBtnContainer.addEventListener('click', function(event) {
+    loginBtnContainer.addEventListener('click', function (event) {
         // 이벤트 버블링 방지
         event.stopPropagation();
 
@@ -82,10 +98,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 전체 문서에 클릭 이벤트 리스너 추가하여 드롭다운 비활성화
-    document.addEventListener('click', function() {
+    //
+    // <div className="messagecom_Disabled">
+    //     <!-- 클릭하면 message_open -->
+    //     <div className="message"></div>
+    //     <!-- 클릭하면 reddot속성없앰 -->
+    //     <div className="reddot"></div>
+    // </div>
+
+    // <div className="messagebox">
+    //     <div className="alarmElem">---미션이 시작됩니다.</div>
+    //     <div className="alarmElem">---미션이 종료됩니다.</div>
+    //     <div className="alarmElem">---미션이 시작됩니다.</div>
+    // </div>
+    // --------------------------------------- 메세지 --------------------------------------
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     const messageCom = document.querySelector('.messagecom_Disabled');
+    //     const message = document.querySelector('.message');
+    //     const redDot = document.querySelector('.reddot');
+    //     const messageBox = document.querySelector('.messagebox');
+    //
+    //     messageCom.addEventListener('click', function (event) {
+    //
+    //         // 이벤트 버블링 방지
+    //         event.stopPropagation();
+    //
+    //         // 'messagecom' 클래스가 있을 때만 드롭다운 토글
+    //         if (messageCom.classList.contains('messagecom')) {
+    //             // reddot 요소의 표시 상태를 토글
+    //             redDot.style.display = isOpen ? 'none' : 'block';
+    //
+    //             // messageBox 요소의 표시 상태를 토글
+    //             messageBox.style.display = isOpen ? 'block' : 'none';
+    //         }
+    //         // message 요소에 'message_open' 클래스를 토글
+    //         const isOpen = message.classList.toggle('message_open');
+    //
+    //
+    //     });
+    // });
+
+
+
+    // 전체 문서에 클릭 이벤트 리스너 추가하여 드롭다운, messagebox 비활성화----------------------
+    document.addEventListener('click', function () {
         if (dropdown.style.display === 'block') {
             dropdown.style.display = 'none';
         }
     });
+
+
+    // --------------------------------------- 로그아웃시 sessionStorage삭제 --------------------------------------
+    var logoutbtn = document.getElementById("logout")
+    // 로그아웃
+    logoutbtn.addEventListener('click', function () {
+        // sessionStorage에서 member_id 삭제
+        sessionStorage.removeItem("member_id");
+        // 로그아웃 후 리디렉션할 페이지로 이동
+        window.location.href = "/main";
+    });
+
 });
