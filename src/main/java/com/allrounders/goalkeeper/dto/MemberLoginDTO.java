@@ -20,13 +20,11 @@ public class MemberLoginDTO {
     @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;
 
-    private int ranking = 0; // Add this line with default value
 
     public Member toEntity() {
         return Member.builder()
                 .email(this.getEmail())
                 .password(this.getPassword())
-                .ranking(this.getRanking()) // Include ranking field
                 .build();
     }
 }
