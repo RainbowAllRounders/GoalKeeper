@@ -23,6 +23,7 @@ body {
     height: 100px;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 84px;
 }
 
 /* 필터 ---------------------------------------- */
@@ -30,7 +31,7 @@ body {
     display: flex;
 }
 
-.filter {
+.filter .filter:not(.clickedFilter) {
     width: 70px;
     height: 40px;
     border-radius: 50px;
@@ -98,7 +99,7 @@ body {
     margin: 0 17px 40px 17px;
 }
 
-/* 실패한 goalCard ---------------------------------------- */
+/* 실패한 goalCard, goalList와 다른 부분 ---------------------------------------- */
 .fail {
     opacity: 0.5;
 }
@@ -131,6 +132,8 @@ body {
 
 .categoryList, .hashtagList {
     display: flex;
+    width: 220px;
+    height: 20px;
 }
 
 .tags {
@@ -152,6 +155,7 @@ body {
 
 .statusTag {
     width: 55px;
+    background-color: black;
     color: white;
 }
 
@@ -180,14 +184,14 @@ body {
     margin-bottom: 5px;
 }
 
-/* goalCard 이미지 부분 ---------------------------------------- */
+/* goalCard 이미지 부분, goalList와 다른 부분 ---------------------------------------- */
 .imgWrapper {
     height: 180px;
     background-image: url(../../images/스껄.jpg);
     background-size: cover;
 }
 
-/* 실패한 goalCard 이미지 부분 ---------------------------------------- */
+/* 실패한 goalCard 이미지 부분, goalList와 다른 부분 ---------------------------------------- */
 .failImgWrapper {
     height: 180px;
     position: relative;
@@ -268,4 +272,48 @@ body {
     border-radius: 50px;
     background-color: black;
     color: white;
+}
+
+/* 페이지네이션 ---------------------------------------- */
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+}
+
+.page-link {
+    width: 15px;
+    position: relative;
+    display: block;
+    text-align: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    color: #444444;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.page-link:hover {
+    text-decoration: none;
+    background-color: #B0B0B0;
+    border-color: #B0B0B0;
+    color: white;
+}
+
+.page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.page-item:not(:first-child) .page-link {
+    margin-left: -1px;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: black;
+    background-color: #ffc933;
+    border-color: #ffc933;
 }
