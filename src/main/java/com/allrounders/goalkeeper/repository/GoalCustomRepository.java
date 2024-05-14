@@ -13,9 +13,7 @@ public interface GoalCustomRepository {
 
     void applyPagination(Pageable pageable, JPAQuery<Goal> query);
 
-    Page<GoalListDTO> findAllOrderByGoalIdDesc(Pageable pageable);
-
-//    Page<Goal> searchAll(String[] types, String keyword, Pageable pageable);
+    Page<GoalListDTO> listAll(Pageable pageable);
 
     List<Top3GoalDTO> searchTop3Goal();
 }

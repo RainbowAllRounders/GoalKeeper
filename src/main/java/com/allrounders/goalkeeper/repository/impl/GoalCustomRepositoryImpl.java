@@ -3,11 +3,8 @@ package com.allrounders.goalkeeper.repository.impl;
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
-import com.allrounders.goalkeeper.repository.GoalCustomRepository;
-import com.querydsl.core.QueryResults;
-import com.querydsl.core.Tuple;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
-import com.querydsl.core.BooleanBuilder;
+import com.allrounders.goalkeeper.repository.GoalCustomRepository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -37,41 +34,49 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
     }
 
     @Override
-    public Page<GoalListDTO> findAllOrderByGoalIdDesc(Pageable pageable) {
-        // 페이지네이션 적용한 쿼리
-        QueryResults<Tuple> queryResults = jpaQueryFactory
-                .select(goal.goalId, goal.title, goal.maxPeople,
-                        goal.curPeople, goal.likeCount, goal.authCount,
-                        goal.complete, goal.startDate, goal.endDate,
-                        goal.imgPath)
+    public Page<GoalListDTO> listAll(Pageable pageable) {
+
+        JPAQuery<Goal> query = jpaQueryFactory
+                .select(goal)
                 .from(goal)
                 .orderBy(goal.goalId.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetchResults();
+                .offset(0)
+                .limit(8);
 
-        List<Tuple> tuples = queryResults.getResults();
-        List<GoalListDTO> goalListDTOs = tuples.stream()
-                .map(tuple -> {
-                    GoalListDTO dto = new GoalListDTO();
-                    dto.setGoalId(tuple.get(goal.goalId));
-                    dto.setTitle(tuple.get(goal.title));
-                    dto.setMaxPeople(tuple.get(goal.maxPeople));
-                    dto.setCurPeople(tuple.get(goal.curPeople));
-                    dto.setLikeCount(tuple.get(goal.likeCount));
-                    dto.setAuthCount(tuple.get(goal.authCount));
-                    dto.setComplete(tuple.get(goal.complete));
-                    dto.setStartDate(tuple.get(goal.startDate));
-                    dto.setEndDate(tuple.get(goal.endDate));
-//                    dto.setHashtagDTOList(HashtagDTO.fromEntities(tuple.get(goal.hashtagList)));
-                    dto.setImgPath(tuple.get(goal.imgPath));
-                    return dto;
-                })
+        // 쿼리 결과를 GoalListDTO로 변환
+        List<GoalListDTO> goals = query.fetch().stream()
+                .map(GoalListDTO::fromEntity)
                 .collect(Collectors.toList());
 
-        return new PageImpl<>(goalListDTOs, pageable, queryResults.getTotal());
+        // 미션 작성자
+        goals.forEach(g -> {
+            String writer = jpaQueryFactory
+                    .select(memberGoal.member.nickname)
+                    .from(memberGoal)
+                    .where(memberGoal.role.eq(true)
+                    .and(memberGoal.goal.goalId.eq(g.getGoalId())))
+                    .fetchOne();
+            g.setWriter(writer);
+        });
+
+        // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정
+        goals.forEach(g -> {
+            List<HashtagDTO> hashtags = jpaQueryFactory
+                    .select(Projections.constructor(HashtagDTO.class, hashtag.tagName))
+                    .from(hashtag)
+                    .where(hashtag.goal.goalId.eq(g.getGoalId()))
+                    .fetch();
+            g.setHashtagDTOList(hashtags);
+        });
+
+        // ORDER BY goalId DESC limit 1, 8;
+        this.applyPagination(pageable, query);
+
+        long count = query.fetchCount();
+
+        return new PageImpl<>(goals, pageable, count);
     }
-    
+
     //좋아요순으로 카드3개
     @Override
     public List<Top3GoalDTO> searchTop3Goal() {
