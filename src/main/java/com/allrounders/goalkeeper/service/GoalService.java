@@ -113,14 +113,12 @@ public class GoalService {
      * 전체 참가인원, 현재 참가인원
      * 미션 시작일, 미션 종료일, 모집 상태
      */
+    @Transactional
     public GoalDetailDTO getGoalDetail(Long goalId) {
         Goal goal = validationGoalId(goalId);
-        goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
 
         List<Hashtag> findHashtagList = hashtagRepository.findByHashtagList_GoalId(goalId);
-        for (Hashtag hashtag : findHashtagList) {
-            goal.addHashTag(hashtag);
-        }
+        findHashtagList.forEach(hashtag -> hashtag.addGoal(goal));
 
         memberGoalRepository.curPeopleByGoalId(goal.getGoalId());
         String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
