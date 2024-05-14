@@ -152,9 +152,10 @@ public class GoalService {
         Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(member.getMemberId(), goalId);
 
         memberGoalRepository.curPeopleByGoalId(goalId);
+        Boolean isJoin = memberGoalRepository.isJoin(member.getMemberId(), goal.getGoalId());
         String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
 
-        return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName, isLiked);
+        return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName, isLiked, isJoin);
     }
 
     /**

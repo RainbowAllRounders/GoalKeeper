@@ -3,6 +3,7 @@ package com.allrounders.goalkeeper.service;
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
+import com.allrounders.goalkeeper.dto.JoinGoalDto;
 import com.allrounders.goalkeeper.dto.MyGoalProgressDTO;
 import com.allrounders.goalkeeper.repository.AuthImgRepository;
 import com.allrounders.goalkeeper.repository.GoalRepository;
@@ -27,7 +28,7 @@ public class MemberGoalService {
     /**
      * 등록된 미션 참가하기
      */
-    public boolean joinGoal(HttpSession session) {
+    public JoinGoalDto joinGoal(HttpSession session) {
         Member member = existMember(session);
         Goal goal = existGoal(session);
 
@@ -51,7 +52,7 @@ public class MemberGoalService {
                         }
                 );
 
-        return memberGoalRepository.isJoin(member.getMemberId(), goal.getGoalId());
+        return JoinGoalDto.makeDto(memberGoalRepository.isJoin(member.getMemberId(), goal.getGoalId()));
     }
 
     /**
@@ -101,7 +102,7 @@ public class MemberGoalService {
      * 존재하는 회원인지 확인
      */
     private Member existMember(HttpSession session) {
-        Long memberId = (Long) session.getAttribute("memberId");
+        Long memberId = (Long) session.getAttribute("member_id");
         return memberRepository.findById(memberId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 회원입니다.")
         );
