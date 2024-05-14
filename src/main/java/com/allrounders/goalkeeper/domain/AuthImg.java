@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class AuthImg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer authImgId;
+    private Long authImgId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberId")   // foreign key (member_id) references Member (member_id)
