@@ -1,7 +1,6 @@
 package com.allrounders.goalkeeper.dto;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.domain.MemberGoal;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -48,9 +47,10 @@ public class GoalListDTO {
 
     private List<HashtagDTO> hashtagDTOList = new ArrayList<>();
 
-//    private List<MemberGoal> memberGoalList;
-
     private String imgPath;
+
+    @NotNull
+    private String writer;
 
     public static GoalListDTO fromEntity(Goal goal) {
         return GoalListDTO.builder()

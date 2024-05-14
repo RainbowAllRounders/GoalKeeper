@@ -2,19 +2,17 @@ package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
+import com.allrounders.goalkeeper.dto.PageRequestDTO;
+import com.allrounders.goalkeeper.dto.PageResponseDTO;
 import com.allrounders.goalkeeper.service.GoalService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/goal")
@@ -57,11 +55,17 @@ public class GoalController {
         }
     }
 
+    /**
+     * 페이지네이션으로 goal 목록 최신순으로 8개씩 가져오기
+     * @param model
+     * @param pageRequestDTO
+     * @return
+     */
     @GetMapping("/list")
-    public String goalList(Model model, Pageable pageable) {
-        Page<GoalListDTO> goalPage = goalService.goalList(pageable);
-        List<GoalListDTO> goalList = goalPage.getContent();
-        log.info(goalList);
+    public String goalList(Model model, PageRequestDTO pageRequestDTO) {
+
+        PageResponseDTO<GoalListDTO> goalList = goalService.goalList(pageRequestDTO);
+
         model.addAttribute("goalList", goalList);
         return "goal/goalList";
     }
