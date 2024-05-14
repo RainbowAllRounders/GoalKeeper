@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>미션 상세페이지</title>
-    <link rel="stylesheet" href="../../static/css/default.css">
-    <link rel="stylesheet" href="../../static/css/goal/goalDetail.css">
+
+    <link rel="stylesheet"
+          th:href="@{/css/default.css}"
+          href="../../static/css/default.css">
+    <link rel="stylesheet"
+          th:href="@{/css/goal/goalDetail.css}"
+          href="../../static/css/goal/goalDetail.css">
+
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body>
+<body layout:fragment="content">
 
 <div id="container">
 
-    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
 
     <div id="like">
-        <img src="../../static/images/redHeart.png" alt="좋아요" class="like_img">
-        <div class="like_count">&nbsp;999+</div>
+        <img id="like_img"  src="/images/grayHeart.png">
+        <div class="like_count">&nbsp;&nbsp;&nbsp;&nbsp;0</div>
     </div>
 
     <div class="main">
 
-        <div class="auth_count">100회 인증</div>
+        <div class="auth_count" th:text="${goalDetail.authCount + '회 인증'}"></div>
 
-        <p class="title">평일 AM 04:00 미라클 모닝🥖</p>
+        <p class="title" th:text="${goalDetail.title}">평일 AM 04:00 미라클 모닝🥖</p>
 
-        <div class="content">
+        <div class="content" th:text="${goalDetail.content}">
             평일 미라클 모닝 인증 미션이고, 인증은 매일 해야 합니다.<br>
             일어난 시간에 캡쳐하거나, 시계 사진으로 인증하시면 됩니다.
         </div>
@@ -40,18 +48,18 @@
         </div>
 
         <div class="main_img">
-            <img src="../../static/images/main_img.png" alt="새벽4시사진">
+            <img src="/static/images/main_img.png" alt="새벽4시사진">
 
             <ul class="goal_info">
                 <li>
-                    <img src="../../static/images/crown.png" class="info_li_img">
-                    <span>&nbsp;&nbsp;&nbsp;카넬로</span>
+                    <img src="/images/crown.png" class="info_li_img">
+                    <span th:text="${goalDetail.goalCreator}">&nbsp;&nbsp;&nbsp;카넬로</span>
                 </li>
-                <li><img src="../../static/images/alarm.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
-                <li><img src="../../static/images/point.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;참여 -500 / 달성 +1000</span></li>
-                <li><img src="../../static/images/group-person.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;9/20</span></li>
-                <li><img src="../../static/images/userPro.png" class="info_li_img"><span></span>&nbsp;&nbsp;&nbsp;내 진행률</span></li>
-                <li><img src="../../static/images/eclipse.png" class="info_li_img"></li>
+                <li><img src="/images/alarm.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
+                <li><img src="/images/alarm.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
+                <li><img src="/images/point.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;참여 -500 / 달성 +1000</span></li>
+                <li><img src="/images/group-person.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;9/20</span></li>
+                <li><img src="/images/userPro.png" class="info_li_img"><span></span>&nbsp;&nbsp;&nbsp;내 진행률</span></li>
                 <li class="cur_count">50</li>
                 <li class="total_count">of 100</li>
             </ul>
@@ -63,9 +71,9 @@
             </div>
         </div>
 
-        <div class="hashtag">
-            <span>#호랑이</span>
-        </div>
+        <span class="hashtag" th:each="hashtag : ${goalDetail.hashtagList}">
+            <span th:text="${hashtag.tagName}">#호랑이</span>
+        </span>
 
     </div>
 
@@ -76,11 +84,14 @@
         <input type="file" name="file" id="file">
     </div>
 
+<!--    <tr th:each="hashtag : ${goalDetail.hashtagList}">-->
+<!--        <td th:text="${hashtag.tagName}">tagName</td>-->
+<!--    </tr>-->
 
     <div class="auth_imgs">
         <div class="prev_next_btn">
-            <img src="../../static/images/grey_prev.png" class="prev_btn">
-            <img src="../../static/images/grey_next.png" class="next_btn">
+            <img src="/images/grey_prev.png" class="prev_btn">
+            <img src="/images/grey_next.png" class="next_btn">
         </div>
 
         <div class="auth_img">
@@ -90,6 +101,6 @@
 
 </div>
 
-<script src="../../static/js/goal/goalDetail.js"></script>
+<script src="/js/goal/goalDetail.js"></script>
 </body>
 </html>
