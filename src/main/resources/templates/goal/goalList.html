@@ -1,30 +1,28 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 목록</title>
-    <link rel="stylesheet" th:href="@{/css/default.css}">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <link rel="stylesheet" th:href="@{/css/goal/goalList.css}">
 </head>
 
 <body layout:fragment="content">
-    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     <div id="goalListWrapper">
 
         <!-- 필터와 검색창 -->
 
         <div id="goalListHeader">
-            <div id="filterList">
-                <div class="filter">전체</div>
-                <div class="filter">모집</div>
-                <div class="filter">진행</div>
-                <div class="filter">완료</div>
-            </div>
+            <form th:action="@{goal/list}" method="get" id="filterForm">
+                <input type="hidden" id="textInput" name="type">
+                <div id="filterList">
+                    <div id="r" class="filter">모집</div>
+                    <div id="p" class="filter">진행</div>
+                    <div id="c" class="filter">완료</div>
+                </div>
+            </form>
 
             <div id="searchBox">
                 <input type="text">

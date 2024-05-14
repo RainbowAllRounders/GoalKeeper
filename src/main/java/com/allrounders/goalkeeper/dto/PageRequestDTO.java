@@ -8,6 +8,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -20,7 +23,7 @@ public class PageRequestDTO {
     @Builder.Default
     private int size = 8;  // 페이지 당 데이터 개수, 기본값 8
 
-    private String type;    // 검색의 종류 t 제목, c 내용, w 작성자, tc 제목+내용, tw 제목+작성자, twc 제목+작성자+내용
+    private String type;    // 필터 종류. 전체(모집 중+진행 중+완료)/모집 중/진행 중/완료
 
     private String keyword; // 검색 키워드
 
@@ -54,6 +57,17 @@ public class PageRequestDTO {
             StringBuilder builder = new StringBuilder();
             builder.append("page=" + this.page);
             builder.append("&size=" + this.size);
+
+            if(type != null & type.length() > 0) {
+                builder.append("&type=" + type);
+            }
+
+            if(keyword != null) {
+                try {
+                    builder.append("&keyword=" + URLEncoder.encode(keyword, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {}
+            }
+
             link = builder().toString();
         }
         return link;

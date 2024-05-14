@@ -5,6 +5,7 @@ import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.repository.GoalCustomRepository;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -34,12 +35,38 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
     }
 
     @Override
-    public Page<GoalListDTO> listAll(Pageable pageable) {
+    public Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable) {
 
         JPAQuery<Goal> query = jpaQueryFactory
                 .select(goal)
-                .from(goal)
-                .orderBy(goal.goalId.desc())
+                .from(goal);
+
+
+        if(types != null){
+            // 각 타입에 대한 조건을 OR 조건으로 묶어서 한 번에 처리
+            BooleanBuilder whereClause = new BooleanBuilder();
+            for (String type : types) {
+                switch (type) {
+                    case "r":
+                        whereClause.or(goal.complete.eq("모집 중"));
+                        break;
+                    case "p":
+                        whereClause.or(goal.complete.eq("진행 중"));
+                        break;
+                    case "c":
+                        whereClause.or(goal.complete.eq("완료"));
+                        break;
+                }
+            }
+            // WHERE 절에 추가
+            query.where(whereClause);
+        }
+
+        query.orderBy(goal.goalId.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize());
+
+        query.orderBy(goal.goalId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
@@ -55,8 +82,9 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                     .from(memberGoal)
                     .where(memberGoal.role.eq(true)
                     .and(memberGoal.goal.goalId.eq(g.getGoalId())))
-                    .fetchOne();
+                    .fetchFirst();
             g.setWriter(writer);
+
         });
 
         // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정

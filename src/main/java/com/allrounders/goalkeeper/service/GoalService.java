@@ -92,9 +92,35 @@ public class GoalService {
      */
     public PageResponseDTO<GoalListDTO> goalList(PageRequestDTO pageRequestDTO) {
 
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
         Pageable pageable = pageRequestDTO.getPageable("goalId");
 
-        Page<GoalListDTO> result = goalRepository.listAll(pageable);
+        Page<GoalListDTO> result = goalRepository.listAll(types, keyword, pageable);
+
+        List<GoalListDTO> dtoList = result.getContent().stream()
+                .map(goal -> modelMapper.map(goal, GoalListDTO.class))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<GoalListDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(dtoList)
+                .total((int)result.getTotalElements())
+                .build();
+    }
+
+    /**
+     * 내 미션 목록 페이지네이션
+     * @param pageRequestDTO
+     * @return
+     */
+    public PageResponseDTO<GoalListDTO> myList(PageRequestDTO pageRequestDTO) {
+
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("goalId");
+
+        Page<GoalListDTO> result = goalRepository.listAll(types, keyword, pageable);
 
         List<GoalListDTO> dtoList = result.getContent().stream()
                 .map(goal -> modelMapper.map(goal, GoalListDTO.class))

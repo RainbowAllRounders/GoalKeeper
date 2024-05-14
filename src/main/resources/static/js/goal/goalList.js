@@ -54,15 +54,24 @@ window.addEventListener('load', function() {
             // 페이지 번호가 이미 포함되어 있는 경우, 해당 부분을 새로 클릭된 페이지 번호로 교체
             currentUrl = currentUrl.replace(/page=\d+/g, 'page=' + num);
         } else {
-            // 페이지 번호가 포함되어 있지 않은 경우, URL에 페이지 번호 추가
-            currentUrl += '?page=' + num;
+            if (currentUrl.includes('?')) {
+                if (currentUrl.includes('&page=')) {
+                    // URL에 page가 포함되어 있는 경우
+                    currentUrl = currentUrl.replace(/page=\d+/g, 'page=' + num);
+                } else {
+                    // URL에 이미 다른 파라미터가 있는 경우
+                    currentUrl += '&page=' + num;
+                }
+            } else {
+                // URL에 파라미터가 없는 경우
+                currentUrl += '?page=' + num;
+            }
         }
 
         // 현재 활성화된 페이지 번호에 active 클래스를 제거
-        const activeItem = pagination.querySelector('.page-item.active');
-        if (activeItem) {
-            activeItem.classList.remove('active');
-        }
+        pagination.querySelectorAll('.page-item').forEach(function(item) {
+            item.classList.remove('active');
+        });
 
         // 클릭한 페이지 번호에 active 클래스를 추가
         target.closest('.page-item').classList.add('active');
@@ -73,21 +82,64 @@ window.addEventListener('load', function() {
 
     // 필터 선택 시 효과 --------------------
     filters.forEach(function(filter) {
+        // 현재 URL에 해당 필터가 적용되어 있는지 확인
+        const currentUrl = window.location.href;
+        const filterType = filter.id;
+
+        if (currentUrl.includes('type=' + filterType)) {
+            // URL에 해당 필터가 적용되어 있는 경우
+            filter.classList.add('clickedFilter');
+        }
+
         filter.addEventListener('click', function() {
-
-            // 모든 필터 색 초기화
+            // 클릭된 필터에 clickedFilter 클래스 추가
             filters.forEach(function(f) {
-                f.style.border = '1px solid #B0B0B0';
-                f.style.backgroundColor = 'transparent';
-                f.style.color = '#B0B0B0';
+                f.classList.remove('clickedFilter');
             });
+            filter.classList.add('clickedFilter');
 
-            // 선택된 필터에 대한 스타일 변경
-            filter.style.border = 'none';
-            filter.style.backgroundColor = '#FFC933';
-            filter.style.color = 'black';
+            // 클릭된 필터에 해당하는 페이지로 이동
+            const type = filter.id;
+            const formObj = document.querySelector('#filterForm');
+            formObj.action = '/goal/list';
+            formObj.querySelector('#textInput').value = type;
+            formObj.submit();
         })
     });
+
+    document.querySelector('#r').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+
+        const formObj = document.querySelector('#filterForm');
+
+        formObj.action = '/goal/list';
+        formObj.querySelector('#textInput').value = 'r';
+        formObj.submit();
+    });
+
+    document.querySelector('#p').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+
+        const formObj = document.querySelector('#filterForm');
+
+        formObj.action = '/goal/list';
+        formObj.querySelector('#textInput').value = 'p';
+        formObj.submit();
+    });
+
+    document.querySelector('#c').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        e.preventDefault();
+
+        const formObj = document.querySelector('#filterForm');
+
+        formObj.action = '/goal/list';
+        formObj.querySelector('#textInput').value = 'c';
+        formObj.submit();
+    });
+
 
     // 검색 --------------------
     window.searchGoals = () => {
@@ -99,5 +151,4 @@ window.addEventListener('load', function() {
     }
 
     magnifier.addEventListener('click', searchGoals);
-
 });

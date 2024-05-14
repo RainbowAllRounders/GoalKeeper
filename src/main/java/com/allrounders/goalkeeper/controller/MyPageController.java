@@ -20,14 +20,14 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/myPage")
 @RequiredArgsConstructor
 public class MyPageController {
 
     private final MemberService memberService;
     private final MemberGoalService memberGoalService;
 
-    @GetMapping("/myPage")
+    @GetMapping("")
     public String myPage(HttpSession session, Model model) {
 
         Member member = memberService.myInfo(session);
@@ -40,7 +40,6 @@ public class MyPageController {
 
         return "/member/myPage";
     }
-
 
     @ResponseBody
     @PutMapping("/updateMyInfo")

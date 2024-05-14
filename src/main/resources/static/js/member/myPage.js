@@ -59,7 +59,7 @@ updateButton.addEventListener('click', function () {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/member/updateMyInfo',
+                url: '/myPage/updateMyInfo',
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify({nickname: nickname, password: password}),
@@ -116,7 +116,7 @@ unregisterBtn.addEventListener('click', async function () {
     });
 
     if (password) {
-        fetch('/member/verifyPassword', {
+        fetch('/myPage/verifyPassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ function showConfirmStart() {
         reverseButtons: false,
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch('/member/unregister', {
+            fetch('/myPage/unregister', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
