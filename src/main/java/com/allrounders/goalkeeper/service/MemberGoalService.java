@@ -8,12 +8,12 @@ import com.allrounders.goalkeeper.repository.AuthImgRepository;
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.MemberGoalRepository;
 import com.allrounders.goalkeeper.repository.MemberRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +27,9 @@ public class MemberGoalService {
     /**
      * 등록된 미션 참가하기
      */
-    public boolean joinGoal(Long memberId, Long goalId) {
-        Member member = existMember(memberId);
-        Goal goal = existGoal(goalId);
+    public boolean joinGoal(HttpSession session) {
+        Member member = existMember(session);
+        Goal goal = existGoal(session);
 
         memberGoalRepository.exist(member.getMemberId(), goal.getGoalId())
                 .ifPresentOrElse(
@@ -89,8 +89,8 @@ public class MemberGoalService {
     /**
      * 존재하는 미션인지 확인
      */
-    private Goal existGoal(Long goalId) {
-
+    private Goal existGoal(HttpSession session) {
+        Long goalId = (Long) session.getAttribute("goalId");
         return goalRepository.findById(goalId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
         );
@@ -100,7 +100,8 @@ public class MemberGoalService {
     /**
      * 존재하는 회원인지 확인
      */
-    private Member existMember(Long memberId) {
+    private Member existMember(HttpSession session) {
+        Long memberId = (Long) session.getAttribute("memberId");
         return memberRepository.findById(memberId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 회원입니다.")
         );
