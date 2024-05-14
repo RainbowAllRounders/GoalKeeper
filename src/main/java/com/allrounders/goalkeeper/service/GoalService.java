@@ -110,6 +110,30 @@ public class GoalService {
     }
 
     /**
+     * 내 미션 목록 페이지네이션
+     * @param pageRequestDTO
+     * @return
+     */
+    public PageResponseDTO<GoalListDTO> myList(PageRequestDTO pageRequestDTO) {
+
+        String[] types = pageRequestDTO.getTypes();
+        String keyword = pageRequestDTO.getKeyword();
+        Pageable pageable = pageRequestDTO.getPageable("goalId");
+
+        Page<GoalListDTO> result = goalRepository.listAll(types, keyword, pageable);
+
+        List<GoalListDTO> dtoList = result.getContent().stream()
+                .map(goal -> modelMapper.map(goal, GoalListDTO.class))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<GoalListDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(dtoList)
+                .total((int)result.getTotalElements())
+                .build();
+    }
+
+    /**
      * -- 미션 상세페이지 조회 --
      * 제목, 본문, 인증 횟수
      * 전체 참가인원, 현재 참가인원
