@@ -3,6 +3,7 @@ package com.allrounders.goalkeeper.repository.impl;
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.dto.GoalListDTO;
 import com.allrounders.goalkeeper.dto.HashtagDTO;
+import com.allrounders.goalkeeper.dto.MyGoalListDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import com.allrounders.goalkeeper.repository.GoalCustomRepository;
 import com.querydsl.core.BooleanBuilder;
@@ -29,22 +30,36 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
+    /**
+     * 정렬 및 페이지네이션 적용
+     * @param pageable
+     * @param query
+     */
     public void applyPagination(Pageable pageable, JPAQuery<Goal> query) {
-        query.offset(pageable.getOffset())
+        query.orderBy(goal.goalId.desc())
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
     }
 
-    @Override
-    public Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable) {
-
-        JPAQuery<Goal> query = jpaQueryFactory
+    /**
+     * goal에서 select from
+     * @return JPAQuery
+     */
+    private JPAQuery<Goal> selectFromGoal() {
+        return jpaQueryFactory
                 .select(goal)
                 .from(goal);
+    }
 
-
+    /**
+     * type 3가지에 따라 where절 추가
+     * @param types
+     * @param query
+     */
+    private BooleanBuilder typeFilter(String[] types, JPAQuery<Goal> query) {
+        // 각 타입에 대한 조건을 OR 조건으로 묶어서 한 번에 처리
+        BooleanBuilder whereClause = new BooleanBuilder();
         if(types != null){
-            // 각 타입에 대한 조건을 OR 조건으로 묶어서 한 번에 처리
-            BooleanBuilder whereClause = new BooleanBuilder();
             for (String type : types) {
                 switch (type) {
                     case "r":
@@ -58,17 +73,25 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                         break;
                 }
             }
-            // WHERE 절에 추가
-            query.where(whereClause);
         }
+        return whereClause;
+    }
 
-        query.orderBy(goal.goalId.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize());
+    /**
+     * 미션 목록 페이지
+     * @param types
+     * @param keyword
+     * @param pageable
+     * @return page
+     */
+    @Override
+    public Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable) {
 
-        query.orderBy(goal.goalId.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize());
+        JPAQuery<Goal> query = selectFromGoal();
+
+        query.where(typeFilter(types, query));
+
+        this.applyPagination(pageable, query);
 
         // 쿼리 결과를 GoalListDTO로 변환
         List<GoalListDTO> goals = query.fetch().stream()
@@ -97,7 +120,65 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
             g.setHashtagDTOList(hashtags);
         });
 
+        long count = query.fetchCount();
+
+        return new PageImpl<>(goals, pageable, count);
+    }
+
+    /**
+     * 내 참여 미션 목록 페이지
+     * @param types
+     * @param keyword
+     * @param pageable
+     * @return page
+     */
+    @Override
+    public Page<MyGoalListDTO> myListAll(Long sessionId, String[] types, String keyword, Pageable pageable) {
+
+        JPAQuery<Goal> query = selectFromGoal();
+
+        query.innerJoin(memberGoal).on(memberGoal.goal.eq(goal))
+                .where(typeFilter(types, query)
+                .and(memberGoal.member.memberId.eq(sessionId)));
+
         this.applyPagination(pageable, query);
+
+        // 쿼리 결과를 MyGoalListDTO로 변환
+        List<MyGoalListDTO> goals = query.fetch().stream()
+                .map(MyGoalListDTO::fromEntity)
+                .collect(Collectors.toList());
+
+        // 미션 작성자
+        goals.forEach(g -> {
+            String writer = jpaQueryFactory
+                    .select(memberGoal.member.nickname)
+                    .from(memberGoal)
+                    .where(memberGoal.role.eq(true)
+                            .and(memberGoal.goal.goalId.eq(g.getGoalId())))
+                    .fetchFirst();
+            g.setWriter(writer);
+        });
+
+        // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정
+        goals.forEach(g -> {
+            List<HashtagDTO> hashtags = jpaQueryFactory
+                    .select(Projections.constructor(HashtagDTO.class, hashtag.tagName))
+                    .from(hashtag)
+                    .where(hashtag.goal.goalId.eq(g.getGoalId()))
+                    .fetch();
+            g.setHashtagDTOList(hashtags);
+        });
+
+        // 미션마다 나의 성공 여부
+        goals.forEach(g -> {
+            Boolean isSuccess = jpaQueryFactory
+                    .select(memberGoal.isSuccess)
+                    .from(memberGoal)
+                    .where(memberGoal.goal.goalId.eq(g.getGoalId())
+                            .and(memberGoal.member.memberId.eq(sessionId)))
+                    .fetchOne();
+            g.setIsSuccess(isSuccess);
+        });
 
         long count = query.fetchCount();
 
@@ -150,41 +231,4 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
 
         return goals;
     }
-
-  // 검색
-//    @Override
-//    public Page<Goal> searchAll(String[] types, String keyword, Pageable pageable) {
-//
-//        JPAQuery<Goal> query = jpaQueryFactory.selectFrom(goal);
-//
-//        if((types != null && types.length > 0) && keyword != null) {
-//
-//            BooleanBuilder booleanBuilder = new BooleanBuilder();
-//
-//            for(String type : types) {
-//                switch (type) {
-//                    case "title":
-//                        booleanBuilder.or(goal.title.contains(keyword));
-//                        break;
-//                    case "nickname":
-//                        // 미션 작성자의 닉네임
-//                        booleanBuilder.or(memberGoal.member.nickname.contains(keyword));
-//                        break;
-//                    case "tagName":
-//                        // 미션의 태그 이름
-//                        booleanBuilder.or(hashtag.tagName.contains(keyword));
-//                        break;
-//                }
-//            }
-//            query.where(booleanBuilder);
-//        }
-//
-//        this.applyPagination(pageable, query);
-//
-//        List<Goal> list = query.fetch();
-//
-//        Long count = query.fetchCount();
-//
-//        return new PageImpl<>(list, pageable, count);
-//    }
 }
