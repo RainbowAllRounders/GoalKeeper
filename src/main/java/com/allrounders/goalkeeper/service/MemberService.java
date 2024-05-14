@@ -47,7 +47,7 @@ public class MemberService {
     public boolean loginAndSession(MemberLoginDTO memberLoginDTO) {
         boolean isLogin = login(memberLoginDTO);
         if (isLogin) {
-            Long memberId = findMemberIdByEmail(memberLoginDTO.getEmail());
+            Long memberId = memberRepository.findMemberIdByEmail(memberLoginDTO.getEmail());
             // 현재 요청에 대한 세션 가져오기
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true); // true로 해서 세션이 없으면 생성
@@ -56,21 +56,25 @@ public class MemberService {
         }
         return false;
     }
-    // email로 memberId 조회
-    public Long findMemberIdByEmail(String email) {
-        Member member = memberRepository.findByEmail(email);
-        return member.getMemberId();
+
+
+    // 존재하는 회원인지 확인
+    private Member validationMemberId(Long memberId) {
+        return memberRepository.findById(memberId).orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 회원입니다.")
+        );
     }
 
     // 회원 정보 조회
-    public Member myInfo(Long memberId) {
-        return memberRepository.findById(memberId).orElse(null);
-    }
+    public Member myInfo(HttpSession session) {
+        Long memberId = (Long) session.getAttribute("member_id");
 
+        return validationMemberId(memberId);
+    }
 
     // 회원 정보 수정
     public ResponseEntity<?> updateMyInfo(Long memberId, MyPageModifyDTO modifyDTO) {
-        Member member = memberRepository.findById(memberId).get();
+        Member member = validationMemberId(memberId);
 
         try {
             member.updateMember(modifyDTO.getNickname(), modifyDTO.getPassword());
@@ -80,6 +84,7 @@ public class MemberService {
             return ResponseEntity.badRequest().build();
         }
     }
+
 
     // 매일 자정 ranking 계산
     @Scheduled(cron = "0 0 0 * * *")
@@ -93,16 +98,18 @@ public class MemberService {
         }
     }
 
+
     // 탈퇴하기 위한 비밀번호 확인
     public boolean verifyPassword(Long memberId, String password) {
-        Member member = memberRepository.findById(memberId).get();
-        return member != null && member.getPassword().equals(password);
+        Member member = validationMemberId(memberId);
+
+        return member.getPassword().equals(password);
     }
 
     // 회원 탈퇴
     @Transactional(readOnly = false)
     public void unregister(Long memberId) {
-        Member member = memberRepository.findById(memberId).get();
+        Member member = validationMemberId(memberId);
 
         memberRepository.deleteById(member.getMemberId());
     }

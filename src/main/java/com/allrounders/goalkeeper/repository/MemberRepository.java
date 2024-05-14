@@ -3,6 +3,7 @@ package com.allrounders.goalkeeper.repository;
 import com.allrounders.goalkeeper.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Member findByEmail(String email);
+    @Query("SELECT m.memberId FROM Member m WHERE m.email = :email")
+    Long findMemberIdByEmail(@Param("email") String email);
 
     Member findByMemberId(Long memberId);
 
