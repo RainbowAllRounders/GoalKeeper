@@ -24,6 +24,8 @@ public class PageRequestDTO {
 
     private String keyword; // 검색 키워드
 
+    private String link;    // 페이지 url
+
     public int getSkip() {
         return (page - 1) * 8;
     }
@@ -44,5 +46,16 @@ public class PageRequestDTO {
         // 페이지 번호는 일반적으로 0부터 시작. 그런데 page 필드는 1부터 시작하므로 1 뺌
         // this.size는 페이지 당 항목 수
         // Sort.by(props).descending(): props 배열에 지정된 속성을 기반으로 Sort 객체를 생성하여 결과 내림차순 정렬
+    }
+
+    public String getLink() {
+
+        if(link == null) {
+            StringBuilder builder = new StringBuilder();
+            builder.append("page=" + this.page);
+            builder.append("&size=" + this.size);
+            link = builder().toString();
+        }
+        return link;
     }
 }
