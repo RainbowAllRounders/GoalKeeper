@@ -20,7 +20,6 @@ public class GoalDetailDTO {
     private String goalCreator;
     private String title;
     private String content;
-    private int likeCount;
     private int maxPeople;
     private int curPeople;
     private int authCount;
@@ -41,7 +40,6 @@ public class GoalDetailDTO {
                 .goalCreator(goalCreator)
                 .title(goal.getTitle())
                 .content(goal.getContent())
-                .likeCount(goal.getLikeCount())
                 .hashtagList(hashtagList)
                 .maxPeople(goal.getMaxPeople())
                 .curPeople(goal.getCurPeople())
