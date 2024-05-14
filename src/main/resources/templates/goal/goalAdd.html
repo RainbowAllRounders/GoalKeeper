@@ -17,7 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body>
 <body layout:fragment="content">
     <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     <form th:action="@{/goal/add}" method="post" th:object="${goalAddDTO}">
