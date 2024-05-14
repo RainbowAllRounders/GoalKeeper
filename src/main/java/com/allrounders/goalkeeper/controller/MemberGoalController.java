@@ -1,11 +1,11 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.service.MemberGoalService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,10 +16,9 @@ public class MemberGoalController {
     /**
      * 미션 참여하기
      */
-    @PostMapping("/join/goal/{goalId}/member/{memberId}")
-    public String joinGoal(@PathVariable Long memberId, @PathVariable Long goalId, Model model) {
-        model.addAttribute("isJoined",memberGoalService.joinGoal(memberId, goalId));
-        return "redirect:/";
+    @GetMapping("/goal/join")
+    public ResponseEntity<Boolean> joinGoal(HttpSession session) {
+        return ResponseEntity.ok(memberGoalService.joinGoal(session));
     }
 
 }
