@@ -43,7 +43,7 @@
 
         <div id="join_quit">
             <div id="join">
-                <span>참여하기</span>
+                <span th:text="${goalDetail.isJoin() == true} ? '참여취소' : '참여하기'"></span>
             </div>
         </div>
 
