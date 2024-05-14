@@ -40,8 +40,8 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                 .select(goal)
                 .from(goal)
                 .orderBy(goal.goalId.desc())
-                .offset(0)
-                .limit(8);
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize());
 
         // 쿼리 결과를 GoalListDTO로 변환
         List<GoalListDTO> goals = query.fetch().stream()
@@ -69,7 +69,6 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
             g.setHashtagDTOList(hashtags);
         });
 
-        // ORDER BY goalId DESC limit 1, 8;
         this.applyPagination(pageable, query);
 
         long count = query.fetchCount();
