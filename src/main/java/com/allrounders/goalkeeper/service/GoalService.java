@@ -4,13 +4,12 @@ import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Hashtag;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
-import com.allrounders.goalkeeper.dto.GoalAddDTO;
-import com.allrounders.goalkeeper.dto.GoalListDTO;
-import com.allrounders.goalkeeper.dto.Top3GoalDTO;
+import com.allrounders.goalkeeper.dto.*;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.*;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class GoalService {
 
+    private final ModelMapper modelMapper;
     private final GoalRepository goalRepository;
     private final LikesRepository likesRepository;
     private final MemberGoalRepository memberGoalRepository;
@@ -85,12 +86,25 @@ public class GoalService {
 //    }
 
     /**
-     * 미션 목록
-     * @param pageable
-     * @return Page<GoalListDTO>
+     * 미션 목록 페이지네이션
+     * @param pageRequestDTO
+     * @return
      */
-    public Page<GoalListDTO> goalList(Pageable pageable) {
-        return goalRepository.findAllOrderByGoalIdDesc(pageable);
+    public PageResponseDTO<GoalListDTO> goalList(PageRequestDTO pageRequestDTO) {
+
+        Pageable pageable = pageRequestDTO.getPageable("goalId");
+
+        Page<GoalListDTO> result = goalRepository.listAll(pageable);
+
+        List<GoalListDTO> dtoList = result.getContent().stream()
+                .map(goal -> modelMapper.map(goal, GoalListDTO.class))
+                .collect(Collectors.toList());
+
+        return PageResponseDTO.<GoalListDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .content(dtoList)
+                .total((int)result.getTotalElements())
+                .build();
     }
 
     /**
