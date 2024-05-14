@@ -102,7 +102,7 @@ public class GoalService {
 
         return PageResponseDTO.<GoalListDTO>withAll()
                 .pageRequestDTO(pageRequestDTO)
-                .content(dtoList)
+                .dtoList(dtoList)
                 .total((int)result.getTotalElements())
                 .build();
     }
