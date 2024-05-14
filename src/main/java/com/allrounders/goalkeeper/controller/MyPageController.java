@@ -1,8 +1,10 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.domain.Member;
+import com.allrounders.goalkeeper.dto.MyGoalProgressDTO;
 import com.allrounders.goalkeeper.dto.MyPageInfoDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.service.MemberGoalService;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -22,6 +25,7 @@ import java.util.Map;
 public class MyPageController {
 
     private final MemberService memberService;
+    private final MemberGoalService memberGoalService;
 
     @GetMapping("/myPage")
     public String myPage(HttpSession session, Model model) {
@@ -29,13 +33,16 @@ public class MyPageController {
         Long memberId = (Long) session.getAttribute("member_id");
 
         if (memberId == null) {
-            return "/member/login";
+            return "redirect:/member/login";
         }
 
         Member member = memberService.myInfo(memberId);
 
-        MyPageInfoDTO dto = MyPageInfoDTO.fromMember(member);
-        model.addAttribute("member", dto);
+        MyPageInfoDTO infoDTO = MyPageInfoDTO.fromMember(member);
+        model.addAttribute("member", infoDTO);
+
+        List<MyGoalProgressDTO> progressList = memberGoalService.myGoalProgress(memberId);
+        model.addAttribute("goalProgressList", progressList);
 
         return "/member/myPage";
     }

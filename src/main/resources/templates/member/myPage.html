@@ -19,152 +19,129 @@
 </head>
 
 <body>
-        <!-- header ------------------------------------------- -->
-        <header>
-            <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
-        </header>
+<!-- header ------------------------------------------- -->
+<header>
+    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
+</header>
 
-        <!-- main content ------------------------------------- -->
-        <main>
-            <section class="container">
-
-
-                <div class="shadow profile">
-                    <div class="img_box"></div>
-                    <h2 class="user_nickname" th:text="${member.nickname}"></h2>
-                    <p class="user_email" th:text="${member.email}"></p>
-                    <button class="modal_open"></button>
-                </div>
+<!-- main content ------------------------------------- -->
+<main>
+    <section class="container">
 
 
-                <div class="point_area">
-                    <p class="point_title">내 포인트<span class="icon"></span></p>
-                </div>
+        <div class="shadow profile">
+            <div class="img_box"></div>
+            <h2 class="user_nickname" th:text="${member.nickname}"></h2>
+            <p class="user_email" th:text="${member.email}"></p>
+            <button class="modal_open"></button>
+        </div>
 
-                <div class="shadow cur_point">
-                    <p>보유 포인트</p>
-                    <div class="point_box">
-                        <div class="coin_icon"></div>
-                        <p><span th:text="${member.cur_point}"></span> </p>
+
+        <div class="point_area">
+            <p class="point_title">내 포인트<span class="icon"></span></p>
+        </div>
+
+        <div class="shadow cur_point">
+            <p>보유 포인트</p>
+            <div class="point_box">
+                <div class="coin_icon"></div>
+                <p><span th:text="${member.cur_point}"></span> </p>
+            </div>
+        </div>
+
+        <div class="shadow rank_point">
+            <p>월간 랭크 포인트</p>
+            <div class="point_box">
+                <div class="crown_icon"></div>
+                <p><span th:text="${member.rank_point}"></span></p>
+            </div>
+        </div>
+
+        <div class="shadow my_rank">
+            <p>RANK</p>
+            <div class="rank_icon"><p><span th:text="${member.ranking}"></span></p></div>
+        </div>
+
+
+        <div class="shadow game_banner" onclick="window.location.href='/game/game_main'">
+            <div class="left_area">
+                <h4>포인트가 부족해.. <span class="ghost_icon"></span></h4>
+                <h2 class="sure">역시 그럴땐 미니게임!</h2>
+            </div>
+            <div class="joystick_icon"></div>
+        </div>
+
+
+        <p class="mission_title">내 미션<span class="flame_icon"></span></p>
+        <button class="full_btn"><a href="/member/myGoalList">전체 보기</a></button>
+
+        <div th:each="progress, stat : ${goalProgressList}"
+             th:if="${stat.index} < 3"
+             th:class="|shadow ${stat.index == 0 ? ' first_mission' : (stat.index == 1 ? ' second_mission' : (stat.count >= 3 ? ' third_mission' : ''))}|">
+            <p class="mymission_title" th:text="${progress.title}"></p>
+            <div class="progress_container">
+                <div class="progress_border"></div>
+                <div class="progress_fill">
+                    <div class="progress_label" th:style="'width:' + (12 + ${progress.width}) + 'px'">
+                        <div class="progress_content" th:if="${progress.width} != 0" th:text="${progress.progressPercentage} + '%'"></div>
                     </div>
-                </div>
-
-                <div class="shadow rank_point">
-                    <p>월간 랭크 포인트</p>
-                    <div class="point_box">
-                        <div class="crown_icon"></div>
-                        <p><span th:text="${member.rank_point}"></span></p>
-                    </div>
-                </div>
-
-                <div class="shadow my_rank">
-                    <p>RANK</p>
-                    <div class="rank_icon"><p><span th:text="${member.ranking}"></span></p></div>
-                </div>
-
-
-                <div class="shadow game_banner" onclick="window.location.href='/game/game_main'">
-                    <div class="left_area">
-                        <h4>포인트가 부족해.. <span class="ghost_icon"></span></h4>
-                        <h2 class="sure">역시 그럴땐 미니게임!</h2>
-                    </div>
-                    <div class="joystick_icon"></div>
-                </div>
-
-
-                <p class="mission_title">내 미션<span class="flame_icon"></span></p>
-                <button class="full_btn"><a href="/member/myGoalList">전체 보기</a></button>
-                <div class="shadow first_mission">
-                    <p class="mymission_title">최애곡 1번 이상 공유</p>
-                    <div class="progress_container">
-                        <div class="progress_border">
-                            <div class="progress_fill">
-                                <div class="progress_label">
-                                    <div class="progress_content">10%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="shadow second_mission">
-                    <p class="mymission_title">하루 양치 3번</p>
-                    <div class="progress_container">
-                        <div class="progress_border">
-                            <div class="progress_fill">
-                                <div class="progress_label">
-                                    <div class="progress_content"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="shadow third_mission">
-                    <p class="mymission_title">주 3회 헬스 인증</p>
-                    <div class="progress_container">
-                        <div class="progress_border">
-                            <div class="progress_fill">
-                                <div class="progress_label">
-                                    <div class="progress_content"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- TODO: 미션추가/완료될때마다 동적 div 생성되도록 -->
-
-                <button class="unregister_btn" id="promptStart">회원 탈퇴</button>
-
-            </section>
-        </main>
-
-        <!-- footer ------------------------------------------- -->
-        <footer>
-            <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
-        </footer>
-
-        <!-- modify modal ------------------------------------- -->
-        <div class="overlay"></div>
-        <div class="modifyModal">
-            <div class="modal_content">
-                <div class="modal_title"><h2>내 정보 수정</h2></div>
-
-                <!-- 수정 영역 -->
-                <div class="info_area">
-                    <div class="modal_left_area">
-                        <div class="profile_img"></div>
-                        <div class="modify_btn">
-                            <input type="file" accept=".jpg, .jpeg, .png" class="fileInput" style="display: none;">
-                        </div>
-                    </div>
-
-                    <div class="modal_right_area">
-                        <div class="info_field modify_nickname">
-                            <label>닉네임</label>
-                            <input type="text" id="nickname" maxlength="6" th:value="${member.nickname}">
-                        </div>
-
-                        <div class="info_field modify_pw">
-                            <label>비밀번호</label>
-                            <input type="password" id="password" maxlength="10" th:value="${member.password}">
-                        </div>
-
-                        <div class="info_field">
-                            <label>이메일 주소</label>
-                            <span th:text="${member.email}"></span>
-                        </div>
-
-                    </div>
-                </div>
-                <!-- 저장/취소 버튼 -->
-                <div class="actions">
-                    <button class="save_btn" id="confirmStart">저장</button>
-                    <button class="cancel_btn">취소</button>
                 </div>
             </div>
         </div>
-    
-    <script th:src="@{/js/member/myPage.js}"></script>
-    <script th:src="@{/js/main/header.js}"></script>
+
+
+        <button class="unregister_btn" id="promptStart">회원 탈퇴</button>
+    </section>
+</main>
+
+<!-- footer ------------------------------------------- -->
+<footer>
+    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
+</footer>
+
+<!-- modify modal ------------------------------------- -->
+<div class="overlay"></div>
+<div class="modifyModal">
+    <div class="modal_content">
+        <div class="modal_title"><h2>내 정보 수정</h2></div>
+
+        <!-- 수정 영역 -->
+        <div class="info_area">
+            <div class="modal_left_area">
+                <div class="profile_img"></div>
+                <div class="modify_btn">
+                    <input type="file" accept=".jpg, .jpeg, .png" class="fileInput" style="display: none;">
+                </div>
+            </div>
+
+            <div class="modal_right_area">
+                <div class="info_field modify_nickname">
+                    <label>닉네임</label>
+                    <input type="text" id="nickname" maxlength="6" th:value="${member.nickname}">
+                </div>
+
+                <div class="info_field modify_pw">
+                    <label>비밀번호</label>
+                    <input type="password" id="password" maxlength="10" th:value="${member.password}">
+                </div>
+
+                <div class="info_field">
+                    <label>이메일 주소</label>
+                    <span th:text="${member.email}"></span>
+                </div>
+
+            </div>
+        </div>
+        <!-- 저장/취소 버튼 -->
+        <div class="actions">
+            <button class="save_btn" id="confirmStart">저장</button>
+            <button class="cancel_btn">취소</button>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/member/myPage.js}"></script>
+<script th:src="@{/js/main/header.js}"></script>
 
 
 </body>
