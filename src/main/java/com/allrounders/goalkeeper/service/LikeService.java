@@ -28,8 +28,8 @@ public class LikeService {
     @Transactional(readOnly = false)
     public LikesResDto activeLikes(HttpSession session) {
         Member member = existMember(session);
-        Goal goal = existGoal(session);
-
+//        Goal goal = existGoal(session);
+        Goal goal = goalRepository.findById(1L).get();
         likesRepository.exist(member.getMemberId(), goal.getGoalId()).ifPresentOrElse(
                 likes -> {
                     if (likes.getIsLiked() == true) likes.changeLikeStatus(likes.getIsLiked());

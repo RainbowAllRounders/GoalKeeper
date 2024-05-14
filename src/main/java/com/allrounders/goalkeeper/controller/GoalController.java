@@ -74,7 +74,7 @@ public class GoalController {
     public String goalDetailPage(@PathVariable Long goalId, HttpSession session, Model model) {
 
         session.setAttribute("goalId", goalId);
-        model.addAttribute("goalDetail", goalService.getGoalDetail(goalId));
+        model.addAttribute("goalDetail", goalService.getGoalDetail(session));
 
         return "goal/goalDetail";
     }
