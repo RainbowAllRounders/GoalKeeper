@@ -1,9 +1,8 @@
 package com.allrounders.goalkeeper.controller;
 
 import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.dto.MyGoalProgressDTO;
-import com.allrounders.goalkeeper.dto.MyPageInfoDTO;
-import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.dto.*;
+import com.allrounders.goalkeeper.service.GoalService;
 import com.allrounders.goalkeeper.service.MemberGoalService;
 import com.allrounders.goalkeeper.service.MemberService;
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +25,7 @@ public class MyPageController {
 
     private final MemberService memberService;
     private final MemberGoalService memberGoalService;
+    private final GoalService goalService;
 
     @GetMapping("")
     public String myPage(HttpSession session, Model model) {
@@ -51,10 +51,14 @@ public class MyPageController {
 
 
     @GetMapping("/myGoalList")
-    public String goToMyGoalList() {
+    public String goToMyGoalList(HttpSession session, Model model, PageRequestDTO pageRequestDTO) {
+
+        Long memberId = (Long) session.getAttribute("member_id");
+        PageResponseDTO<MyGoalListDTO> myGoalList = goalService.myList(memberId, pageRequestDTO);
+
+        model.addAttribute("myGoalList", myGoalList);
         return "/member/myGoalList";
     }
-
 
     @PostMapping("/verifyPassword")
     public ResponseEntity<?> verifyPassword(@RequestBody Map<String, String> request, HttpSession session) {
