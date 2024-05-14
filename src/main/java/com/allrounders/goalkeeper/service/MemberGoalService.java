@@ -3,12 +3,16 @@ package com.allrounders.goalkeeper.service;
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.domain.MemberGoal;
+import com.allrounders.goalkeeper.dto.MyGoalProgressDTO;
+import com.allrounders.goalkeeper.repository.AuthImgRepository;
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.MemberGoalRepository;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,6 +22,7 @@ public class MemberGoalService {
     private final MemberGoalRepository memberGoalRepository;
     private final MemberRepository memberRepository;
     private final GoalRepository goalRepository;
+    private final AuthImgRepository authImgRepository;
 
     /**
      * 등록된 미션 참가하기
@@ -100,4 +105,28 @@ public class MemberGoalService {
                 () -> new IllegalArgumentException("존재하지 않는 회원입니다.")
         );
     }
+
+    /**
+     * 인증 횟수를 이용한 진행률 계산
+     */
+    public List<MyGoalProgressDTO> myGoalProgress(Long memberId) {
+        List<MyGoalProgressDTO> progressList = new ArrayList<>();
+        List<MemberGoal> memberGoalList = memberGoalRepository.findByMember_MemberId(memberId);
+
+        for (MemberGoal memberGoal : memberGoalList) {
+            String title = memberGoal.getGoal().getTitle();
+            Long goalId = memberGoal.getGoal().getGoalId();
+            Long count = authImgRepository.countByMemberIdAndGoalId(memberId, goalId);
+            Integer total = memberGoal.getGoal().getAuthCount();
+
+            int percentage = (int) Math.round((double) count / total * 100);
+            int widthFromPercentage = (int) Math.round(172 * ((double) percentage / 100));
+
+            MyGoalProgressDTO progressDTO = MyGoalProgressDTO.fromEntity(title, percentage, widthFromPercentage);
+            progressList.add(progressDTO);
+        }
+
+        return progressList;
+    }
+
 }
