@@ -1,11 +1,47 @@
+
 // 참여하기 나가기
 const condition = document.getElementById('join');
 
-// 좋아요 이미지
-const likeImg = document.querySelector('.like_img');
+/**
+ * 좋아요
+ */
+const like = document.querySelector('#like');
+let likeImg = like.querySelector("#like_img");
+let likeCount = like.querySelector(".like_count");
 
-window.addEventListener('load', function () {
+like.addEventListener('click', function () {
+    fetch('like').then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(data['liked'])
+            if(data['liked']) {
+                likeImg.src="/images/redHeart.png";
+                // likeImg.src="../../static/images/redHeart.png";
+            } else {
+                likeImg.src="/images/grayHeart.png";
+                // likeImg.src="../../static/images/grayHeart.png";
+            }
+
+            likeCount.textContent = data['likeCount'];
+        })
+});
+
     condition.addEventListener('click', function() {
+
+        fetch('like').then(response => response.json())
+            .then(data => {
+                console.log(data);
+                console.log(data['liked'])
+                if(data['liked']) {
+                    likeImg.src="/images/redHeart.png";
+                    // likeImg.src="../../static/images/redHeart.png";
+                } else {
+                    likeImg.src="/images/grayHeart.png";
+                    // likeImg.src="../../static/images/grayHeart.png";
+                }
+
+                likeCount.textContent = data['likeCount'];
+            })
 
         if(condition.id === 'join') {
 
@@ -34,22 +70,6 @@ window.addEventListener('load', function () {
         }
 
     });
-
-
-// 좋아요 이미지를 클릭할 때마다 실행될 함수 정의
-    likeImg.addEventListener('click', function() {
-        // 현재 이미지의 alt 속성 값이 '좋아요'인 경우
-        if (likeImg.alt === '좋아요') {
-            // 이미지를 grayHeart.png로 변경하고 alt 속성 값을 '좋아요 취소'로 변경
-            likeImg.src = '../../static/images/grayHeart.png';
-            likeImg.alt = '좋아요 취소';
-        } else { // 그렇지 않은 경우 (즉, alt 속성 값이 '좋아요 취소'인 경우)
-            // 이미지를 redHeart.png로 변경하고 alt 속성 값을 '좋아요'로 변경
-            likeImg.src = '../../static/images/redHeart.png';
-            likeImg.alt = '좋아요';
-        }
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const authBtn = document.querySelector('.auth_btn');

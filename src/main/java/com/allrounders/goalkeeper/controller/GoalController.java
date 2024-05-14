@@ -70,11 +70,12 @@ public class GoalController {
         return "goal/goalList";
     }
 
-    @GetMapping("/detail/{goalId}")
-    public String goalDetailPage(@PathVariable Long goalId, Model model) {
+    @GetMapping("/{goalId}")
+    public String goalDetailPage(@PathVariable Long goalId, HttpSession session, Model model) {
 
+        session.setAttribute("goalId", goalId);
         model.addAttribute("goalDetail", goalService.getGoalDetail(goalId));
 
-        return "";
+        return "goal/goalDetail";
     }
 }
