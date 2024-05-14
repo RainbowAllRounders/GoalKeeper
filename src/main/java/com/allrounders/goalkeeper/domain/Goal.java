@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Future;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicInsert
 @ToString(exclude = {"memberGoalList", "hashtagList"})
 public class Goal {
     @Id
@@ -30,7 +32,7 @@ public class Goal {
     private Integer maxPeople;
 
     @ColumnDefault("1")
-    private int curPeople;
+    private Integer curPeople;
 
     @Column(nullable = false)
     private int likeCount;

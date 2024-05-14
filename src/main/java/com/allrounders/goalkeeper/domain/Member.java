@@ -37,7 +37,7 @@ public class Member {
     private Integer rankPoint;
 
     @Column(nullable = false)
-    private int ranking;
+    private Integer ranking;
 
     @Column(length = 255)
     private String imgPath;
