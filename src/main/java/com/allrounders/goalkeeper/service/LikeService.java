@@ -3,7 +3,6 @@ package com.allrounders.goalkeeper.service;
 import com.allrounders.goalkeeper.domain.Goal;
 import com.allrounders.goalkeeper.domain.Likes;
 import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.dto.LikesReqDto;
 import com.allrounders.goalkeeper.dto.LikesResDto;
 import com.allrounders.goalkeeper.repository.GoalRepository;
 import com.allrounders.goalkeeper.repository.LikesRepository;
