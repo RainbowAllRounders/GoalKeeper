@@ -30,18 +30,12 @@ public class MyPageController {
     @GetMapping("/myPage")
     public String myPage(HttpSession session, Model model) {
 
-        Long memberId = (Long) session.getAttribute("member_id");
-
-        if (memberId == null) {
-            return "redirect:/member/login";
-        }
-
-        Member member = memberService.myInfo(memberId);
+        Member member = memberService.myInfo(session);
 
         MyPageInfoDTO infoDTO = MyPageInfoDTO.fromMember(member);
         model.addAttribute("member", infoDTO);
 
-        List<MyGoalProgressDTO> progressList = memberGoalService.myGoalProgress(memberId);
+        List<MyGoalProgressDTO> progressList = memberGoalService.myGoalProgress(member.getMemberId());
         model.addAttribute("goalProgressList", progressList);
 
         return "/member/myPage";
