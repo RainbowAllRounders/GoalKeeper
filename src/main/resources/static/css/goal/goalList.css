@@ -31,7 +31,7 @@ body {
     display: flex;
 }
 
-.filter {
+.filter, .filter:not(.clickedFilter) {
     width: 70px;
     height: 40px;
     border-radius: 50px;
@@ -122,6 +122,8 @@ body {
 
 .categoryList, .hashtagList {
     display: flex;
+    width: 220px;
+    height: 20px;
 }
 
 .tags {
