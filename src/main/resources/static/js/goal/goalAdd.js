@@ -44,10 +44,10 @@ window.addEventListener('load', function () {
         const enteredValue = parseInt(goalTimes.value);
 
         if (enteredValue < 1 || enteredValue > 100) {
-            swal({
+            Swal.fire({
                 title: '입력값 오류',
                 text: '1부터 100까지의 숫자를 입력해주세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -63,10 +63,10 @@ window.addEventListener('load', function () {
         });
 
         if (hashtags.length > 3) {
-            swal({
+            Swal.fire({
                 title: '입력값 오류',
                 text: '최대 3개의 해시태그만 입력할 수 있습니다.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -77,10 +77,10 @@ window.addEventListener('load', function () {
 
     goalDescriptionText.addEventListener('input', function () {
         if (goalDescriptionText.value.length > 100) {
-            swal({
+            Swal.fire({
                 title: '입력값 오류',
                 text: '최대 100자까지 입력할 수 있습니다.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -93,10 +93,10 @@ window.addEventListener('load', function () {
         const selectedStartDate = new Date(startDateInput.value);
 
         if (selectedStartDate <= today) {
-            swal({
+            Swal.fire({
                 title: '입력 날짜 오류',
                 text: '현재 날짜 이후의 시작일을 선택하세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -109,19 +109,19 @@ window.addEventListener('load', function () {
         const selectedStartDate = new Date(startDateInput.value);
         const selectedEndDate = new Date(endDateInput.value);
         if (!startDateInput.value) {
-            swal({
+            Swal.fire({
                 title: '입력 날짜 오류',
                 text: '시작일을 먼저 입력해주세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
             endDateInput.value = '';
         } else if (selectedEndDate <= selectedStartDate) {
-            swal({
+            Swal.fire({
                 title: '입력 날짜 오류',
                 text: '시작일 이후의 날짜를 선택하세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -134,10 +134,10 @@ window.addEventListener('load', function () {
         const enteredValue = parseInt(goalPeople.value);
 
         if (enteredValue < 1 || enteredValue > 100) {
-            swal({
+            Swal.fire({
                 title: '입력값 오류',
                 text: '1부터 100까지의 숫자를 입력해주세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
@@ -161,49 +161,64 @@ window.addEventListener('load', function () {
         // 필수 입력값 검사------------------------------------------
         // 필수 입력값 하나라도 누락 시
         if (!goalTitle || !goalTimesValue || !goalDescription || !startDate || !endDate || !goalPeopleValue) {
-            swal({
+            Swal.fire({
                 title: '입력 오류',
                 text: '모든 입력값을 입력해주세요.',
-                type: 'error',
+                icon: 'error',
                 confirmButtonText: '확인',
                 confirmButtonColor: '#FF5065'
             });
             return;
         }
 
-        let formData = new FormData();
-        formData.append('title', goalTitle);
-        formData.append('authCount', goalTimesValue);
-        formData.append('content', goalDescription);
-        formData.append('hashtagDTOs', hashtags);
-        formData.append('startDate', startDate);
-        formData.append('endDate', endDate);
-        formData.append('maxPeople', goalPeopleValue);
+        Swal.fire({
+            title: '정말 등록하시겠습니까?',
+            text: '등록 이후에는 수정 및 삭제가 불가능합니다.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '등록',
+            confirmButtonColor: '#FF5065',
+            cancelButtonText: '취소',
+            cancelButtonColor: '#2A9AD9'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let formData = new FormData();
+                formData.append('title', goalTitle);
+                formData.append('authCount', goalTimesValue);
+                formData.append('content', goalDescription);
+                formData.append('hashtagDTOs', hashtags);
+                formData.append('startDate', startDate);
+                formData.append('endDate', endDate);
+                formData.append('maxPeople', goalPeopleValue);
 
-        // AJAX 요청
-        $.ajax({
-            type: "POST",
-            url: "/goal/add",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
+                // AJAX 요청
+                $.ajax({
+                    type: "POST",
+                    url: "/goal/add",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
 
-                swal({
-                    title: '미션 등록 완료',
-                    text: '미션 등록이 성공적으로 완료되었습니다.',
-                    type: 'success',
-                    confirmButtonText: '확인',
-                    confirmButtonColor: '#FF5065'
-                });
-            },
-            error: function (xhr, status, error) {
-                swal({
-                    title: '미션 등록 오류',
-                    text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
-                    type: 'error',
-                    confirmButtonText: '확인',
-                    confirmButtonColor: '#FF5065'
+                        Swal.fire({
+                            title: '미션 등록 완료',
+                            text: '미션 등록이 성공적으로 완료되었습니다.',
+                            icon: 'success',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#FF5065'
+                        }).then((result) => {
+                            window.location.href = '/goal/list';
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        swal({
+                            title: '미션 등록 오류',
+                            text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
+                            icon: 'error',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#FF5065'
+                        });
+                    }
                 });
             }
         });
