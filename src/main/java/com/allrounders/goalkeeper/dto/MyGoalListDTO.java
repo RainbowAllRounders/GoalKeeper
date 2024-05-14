@@ -53,7 +53,7 @@ public class MyGoalListDTO {
     private String writer;
 
     @NotNull
-    private Integer memberId;
+    private Boolean isSuccess;
 
     public static MyGoalListDTO fromEntity(Goal goal) {
         return MyGoalListDTO.builder()
