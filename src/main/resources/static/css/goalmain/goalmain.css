@@ -141,26 +141,32 @@
     width: 76px;
 }
 
-.cardtopL>.cardex>.authcount>p{
+.cardtopL>.cardex>.authcount>p,
+.cardtopL>.cardex>.status>p{
     font-size: 10px;
     background-color:transparent;
     color: #FFFFFF;
+}
+
+/* 완료, 모집, 진행*/
+.complete{
+    background-color: #3ADC67;
+}
+.proceeding{
+    background-color: #506CFF;
+}
+.recruiting{
+    background-color: #000000;
 }
 
 .cardtopL>.cardex>.status{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000000;
     border-radius: 44px;
     padding: 5px 0px;
     margin: 4px;
     width: 76px;
-}
-.cardtopL>.cardex>.status>p{
-    font-size: 10px;
-    background-color:transparent;
-    color: #FFFFFF;
 }
 
 .cardtopL>.goaltitle{
