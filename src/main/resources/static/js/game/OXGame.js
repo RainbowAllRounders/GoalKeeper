@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    var MemberID = sessionStorage.getItem("member_id");
+
     // --------------------------- 시작화면에서 시작버튼클릭하면 문제화면으로 넘어감 --------------------------
     var start = document.querySelector('.start'); // 시작화면
     var startbtn = document.querySelector('.startbtn'); // 시작버튼
@@ -131,9 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 퀴즈를 종료하는 함수
     function endQuiz() {
+        var point = correctNum * 100
+        addPoints(point);
         swal({
             title: correctNum + ' 문제 정답!',
-            html: '<span style="font-size: 32px; color: #ffc933; margin-top: 8px">' + (correctNum * 100) + ' Point 획득!</span>',
+            html: '<span style="font-size: 32px; color: #ffc933; margin-top: 8px">' + point + ' Point 획득!</span>',
             imageUrl: '../../images/OXGame/oxlogo.png',
             imageWidth: 200,
             imageHeight: 100,
@@ -142,6 +146,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }).then(function() {
             window.location.href = 'game_main';// 게임 메인 화면으로 리디렉션
         });
+    }
+
+    //포인트 적립
+    function addPoints(points){
+        $.ajax({
+            url: '/game/OXUpdatePoint',
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({point: points}),
+            success: function (){
+                console.log(MemberID + " : " + points + "적립 성공");
+            },
+            error: function (){
+                console.log(MemberID + " : " + points + "적립 실패");
+            }
+        })
     }
 
 });
