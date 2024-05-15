@@ -1,0 +1,175 @@
+.container{
+    padding-top: 170px;
+    padding-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*------------------------------ 배경 -----------------------------------*/
+.main{
+    background: url(../../images/OXGame/OXbackground.png) no-repeat center / contain;
+    width: 750px;
+    height: 650px;
+    flex-shrink: 0;
+    /*display: flex;*/
+    /*flex-flow: column;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+}
+
+/*------------------------------ 시작 -----------------------------------*/
+/*<div class="start">*/
+/*<div class="oxlogo"></div>*/
+/*<div class="startbtn"></div>*/
+/*</div>*/
+
+.start{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.start>.oxlogo{
+    background: url(../../images/OXGame/oxlogo.png) no-repeat center / contain;
+    width: 60%;
+    height: 30%;
+}
+.start>.startbtn{
+    position: relative;
+    top: -30px;
+    background: url(../../images/OXGame/OXstartbtn.png) no-repeat center / contain;
+    width: 80%;
+    height: 15%;
+}
+
+.start>.startbtn:hover{
+    cursor: pointer;
+}
+
+/*------------------------------ 문제 전체 -----------------------------------
+<div class="Q">
+*/
+.Q{
+    box-sizing: border-box;
+    padding: 40px;
+    padding-top: 60px;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+/*------------------------------ 맞은 갯수 -----------------------------------*/
+.Q_count{
+    position: relative;
+    left: 235px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.Q_count>.ball{
+    background: url(../../images/OXGame/ball.png) no-repeat center / contain;
+    width:32px;
+    height: 32px;
+    margin: 4px 4px;
+    opacity: 50%;
+}
+
+/*------------------------------ 문제 -----------------------------------
+<div class="Question">
+    <div class="Q_num"></div>
+    <div class="Q_quest"></div>
+</div>
+*/
+.Question{
+    position: relative;
+    top: -50px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Question>.Q_num{
+    color: #ffc933;
+    font-size: 56px;
+    padding: 20px;
+}
+
+.Question>.Q_quest{
+    color: #464646;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 32px;
+    height: 68px;
+}
+
+
+/*------------------------------ OX선택 -----------------------------------
+<div class="C_answer">
+    <div class="O"></div>
+    <div class="X"></div>
+</div>
+*/
+.C_answer{
+    position: relative;
+    top: -50px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.C_answer>.O,
+.C_answer>.X{
+    width:220px;
+    height: 220px;
+    margin: 24px 44px;
+}
+.C_answer>.O,
+.C_answer>.X:hover{
+    cursor: pointer;
+}
+
+.C_answer>.O{
+    background: url(../../images/OXGame/O.png) no-repeat center / contain;
+}
+.C_answer>.X{
+    background: url(../../images/OXGame/X.png) no-repeat center / contain;
+}
+
+
+/*------------------------------ 시간제한 -----------------------------------
+<div class="Q_progress"></div>
+*/
+
+.Q_progress{
+    width:100%;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0; /* 백그라운드 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    overflow: hidden; /* 둥근 모서리 적용을 위해 필요 */
+    height: 20px; /* 높이 설정 */
+    margin: 20px 0; /* 위아래 마진 설정 */
+}
+
+/* 실제 진행을 나타내는 부분 */
+.progress {
+    height: 100%; /* 부모의 높이에 맞춤 */
+    width: 0; /* 초기 너비 */
+    background-color: #ffc933; /* 진행 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    transition: width 1s linear; /* 애니메이션 설정 */
+}

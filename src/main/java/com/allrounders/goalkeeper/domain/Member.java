@@ -89,6 +89,11 @@ public class Member {
         if(this.curPoint >= 500) this.curPoint -= 500;
         else throw new IllegalStateException();
     }
+
+    public void updatePointOXGame(Integer point) {
+        this.curPoint += point;
+        this.rankPoint += point;
+}
     // Member 엔티티를 업데이트하는 메서드
     public void updateWithDTO(UpdatePointDTO updatePointDTO) {
         if (updatePointDTO.isWin()) {
