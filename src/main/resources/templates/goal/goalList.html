@@ -42,7 +42,7 @@
                             <div class="timesTag tags" th:text="${goal.authCount} + '회 인증'"></div>
                             <div class="statusTag tags"  th:text="${goal.complete}"></div>
                         </div>
-                        <div class="goalTitle" th:text="${goal.title}" th:onclick="'location.href=\'/goal/detail/' + ${goal.goalId} + '\''" style="cursor: pointer"></div>
+                        <div class="goalTitle" th:text="${goal.title}" th:onclick="'location.href=\'/goal/' + ${goal.goalId} + '\''" style="cursor: pointer"></div>
 
                         <div class="hashtagList">
                             <div  th:each="hashtagDTO : ${goal.hashtagDTOList}" class="hashtag tags" th:text="${hashtagDTO.tagName}"></div>
