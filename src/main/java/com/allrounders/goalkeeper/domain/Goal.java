@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
-@ToString(exclude = {"memberGoalList", "hashtagList"})
+@ToString(exclude = {"hashtagList"})
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,9 +59,6 @@ public class Goal {
 
 //    @Column(nullable = false)
     private String imgPath;
-
-//    @OneToMany(mappedBy = "goal")
-//    private List<MemberGoal> memberGoalList;
 
     /**
      * 좋아요 추가
