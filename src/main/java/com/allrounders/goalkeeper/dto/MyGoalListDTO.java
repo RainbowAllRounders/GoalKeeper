@@ -53,6 +53,9 @@ public class MyGoalListDTO {
     private String writer;
 
     @NotNull
+    private Boolean isLiked;
+
+    @NotNull
     private Boolean isSuccess;
 
     public static MyGoalListDTO fromEntity(Goal goal) {

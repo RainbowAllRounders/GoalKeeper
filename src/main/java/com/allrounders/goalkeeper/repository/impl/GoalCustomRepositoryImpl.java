@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import static com.allrounders.goalkeeper.domain.QGoal.goal;
 import static com.allrounders.goalkeeper.domain.QHashtag.hashtag;
+import static com.allrounders.goalkeeper.domain.QLikes.likes;
 import static com.allrounders.goalkeeper.domain.QMember.member;
 import static com.allrounders.goalkeeper.domain.QMemberGoal.memberGoal;
 
@@ -85,7 +86,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
      * @return page
      */
     @Override
-    public Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable) {
+    public Page<GoalListDTO> listAll(Long memberId, String[] types, String keyword, Pageable pageable) {
 
         JPAQuery<Goal> query = selectFromGoal();
 
@@ -108,6 +109,13 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                     .fetchFirst();
             g.setWriter(writer);
 
+            // 로그인한 member의 좋아요 여부 확인
+            Boolean isLiked = jpaQueryFactory
+                    .selectFrom(likes)
+                    .where(likes.member.memberId.eq(memberId)
+                            .and(likes.goal.goalId.eq(g.getGoalId())))
+                    .fetchFirst() != null;
+            g.setIsLiked(isLiked);
         });
 
         // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정
@@ -133,13 +141,13 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
      * @return page
      */
     @Override
-    public Page<MyGoalListDTO> myListAll(Long sessionId, String[] types, String keyword, Pageable pageable) {
+    public Page<MyGoalListDTO> myListAll(Long memberId, String[] types, String keyword, Pageable pageable) {
 
         JPAQuery<Goal> query = selectFromGoal();
 
         query.innerJoin(memberGoal).on(memberGoal.goal.eq(goal))
                 .where(typeFilter(types, query)
-                .and(memberGoal.member.memberId.eq(sessionId)));
+                .and(memberGoal.member.memberId.eq(memberId)));
 
         this.applyPagination(pageable, query);
 
@@ -157,6 +165,14 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                             .and(memberGoal.goal.goalId.eq(g.getGoalId())))
                     .fetchFirst();
             g.setWriter(writer);
+
+            // 로그인한 member의 좋아요 여부 확인
+            Boolean isLiked = jpaQueryFactory
+                    .selectFrom(likes)
+                    .where(likes.member.memberId.eq(memberId)
+                            .and(likes.goal.goalId.eq(g.getGoalId())))
+                    .fetchFirst() != null;
+            g.setIsLiked(isLiked);
         });
 
         // 각 Goal에 대해 연관된 Hashtags를 조회하여 설정
@@ -175,7 +191,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                     .select(memberGoal.isSuccess)
                     .from(memberGoal)
                     .where(memberGoal.goal.goalId.eq(g.getGoalId())
-                            .and(memberGoal.member.memberId.eq(sessionId)))
+                            .and(memberGoal.member.memberId.eq(memberId)))
                     .fetchOne();
             g.setIsSuccess(isSuccess);
         });

@@ -55,13 +55,14 @@
                     <img src="/images/crown.png" class="info_li_img">
                     <span th:text="${goalDetail.goalCreator}">&nbsp;&nbsp;&nbsp;카넬로</span>
                 </li>
-                <li><img src="/images/alarm.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
-                <li><img src="/images/alarm.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
+                <li><img src="/images/alarm.png" class="info_li_img"><span th:text="'&nbsp;&nbsp;&nbsp;' + ${goalDetail.startDate} + ' - ' + ${goalDetail.endDate}"  >&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
                 <li><img src="/images/point.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;참여 -500 / 달성 +1000</span></li>
-                <li><img src="/images/group-person.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;9/20</span></li>
-                <li><img src="/images/userPro.png" class="info_li_img"><span></span>&nbsp;&nbsp;&nbsp;내 진행률</span></li>
-                <li class="cur_count">50</li>
-                <li class="total_count">of 100</li>
+                <li><img src="/images/group-person.png" class="info_li_img"><span th:text="'&nbsp;&nbsp;&nbsp;' + ${goalDetail.curPeople} + '/' + ${goalDetail.maxPeople}">&nbsp;&nbsp;&nbsp;9/20</span></li>
+                <li><img src="/images/userPro.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;내 진행률</span></li>
+                <div class="auth">
+                    <li class="cur_count">50</li>
+                    <li class="total_count" th:text="${'of ' + goalDetail.authCount}">of 100</li>
+                </div>
             </ul>
         </div>
 

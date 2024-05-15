@@ -9,11 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UpdatePointDTO {
-
-    private boolean win;
-    private Long memberId;
-    private int curPoint; // 변경된 필드명
-    private int resultPointWin;
-    private int resultPointLose;
+public class OXGamePointDTO {
+    private int point;
 }

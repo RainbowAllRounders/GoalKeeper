@@ -1,9 +1,11 @@
 package com.allrounders.goalkeeper.domain;
 
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.dto.UpdatePointDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,11 +15,11 @@ import java.util.Set;
 
 @Entity
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@DynamicInsert
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,5 +92,18 @@ public class Member {
     public void updateCurPointAddGoal() {
         if(this.curPoint >= 500) this.curPoint -= 500;
         else throw new IllegalStateException();
+    }
+
+    public void updatePointOXGame(Integer point) {
+        this.curPoint += point;
+        this.rankPoint += point;
+}
+    // Member 엔티티를 업데이트하는 메서드
+    public void updateWithDTO(UpdatePointDTO updatePointDTO) {
+        if (updatePointDTO.isWin()) {
+            this.curPoint += updatePointDTO.getResultPointWin();
+        } else {
+            this.curPoint -= updatePointDTO.getResultPointLose();
+        }
     }
 }

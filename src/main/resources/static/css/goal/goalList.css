@@ -189,11 +189,55 @@ body {
     font-size: 10px;
 }
 
-.progressBar {
-    width: 260px;
-    margin-bottom: 5px;
+
+/* 프로그래스바 ---------------------------------------- */
+.progressWrap, .progressBar {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.progressWrap {
+    width: 260px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.progressBar {
+    width: 258px;
+    height: 17px;
+    background-color: white;
+}
+
+.recruit {
+    border: 1px solid black;
+}
+
+.proceed, .end {
+    background: linear-gradient(to right, #FFFF9C 0%, #FB5BB1 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    color: white;
+}
+
+.proceedValue {
+    color: #FF5065;
+}
+
+.progressBarValue {
+    width: 255px;
+    height: 13px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: "Nanum Gothic";
+}
+
+/* card 하단 ---------------------------------------- */
 .cardFooter > div {
     display: flex;
     flex-direction: row;

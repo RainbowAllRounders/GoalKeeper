@@ -4,9 +4,11 @@ import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.MemberLoginDTO;
 import com.allrounders.goalkeeper.dto.MemberSignUpDTO;
 import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
+import com.allrounders.goalkeeper.dto.OXGamePointDTO;
 import com.allrounders.goalkeeper.repository.MemberRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.List;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -130,6 +133,17 @@ public class MemberService {
         return memberRepository.findImgPathById(memberId);
     }
 
+    //OXGame으로 번 포인트 Update
+    public void updateOXPoint(Long memberId, OXGamePointDTO pointDTO) {
+        Member member = validationMemberId(memberId);
+
+        try {
+            member.updatePointOXGame(pointDTO.getPoint());
+            memberRepository.save(member);
+        } catch (IllegalStateException e) {
+           log.info("포인트적립오류");
+        }
+    }
 }
 
 

@@ -210,7 +210,7 @@
     margin-left: 12px;
 }
 
-.cardtopR>.like_F{
+.cardtopR>.like{
     background: url(../../images/main/Heart.png) no-repeat;
     background-size: contain;
     width: 24px;
@@ -229,7 +229,7 @@
 .cardtopR>.like_T:hover{
     cursor: pointer;
 }
-.cardtopR>.like_F:hover{
+.cardtopR>.like:hover{
     cursor: pointer;
 }
 
@@ -237,9 +237,6 @@
 
 .cardtopR>.likecount{
     margin: 2px;
-}
-
-.cardtopR>.likecount>p{
     font-size: 12px;
 }
 

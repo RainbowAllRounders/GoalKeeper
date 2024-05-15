@@ -14,7 +14,7 @@ public interface GoalCustomRepository {
 
     void applyPagination(Pageable pageable, JPAQuery<Goal> query);
 
-    Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable);
+    Page<GoalListDTO> listAll(Long memberId, String[] types, String keyword, Pageable pageable);
 
     Page<MyGoalListDTO> myListAll(Long memberId, String[] types, String keyword, Pageable pageable);
 

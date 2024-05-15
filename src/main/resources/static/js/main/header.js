@@ -98,47 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    //
-    // <div className="messagecom_Disabled">
-    //     <!-- 클릭하면 message_open -->
-    //     <div className="message"></div>
-    //     <!-- 클릭하면 reddot속성없앰 -->
-    //     <div className="reddot"></div>
-    // </div>
-
-    // <div className="messagebox">
-    //     <div className="alarmElem">---미션이 시작됩니다.</div>
-    //     <div className="alarmElem">---미션이 종료됩니다.</div>
-    //     <div className="alarmElem">---미션이 시작됩니다.</div>
-    // </div>
-    // --------------------------------------- 메세지 --------------------------------------
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     const messageCom = document.querySelector('.messagecom_Disabled');
-    //     const message = document.querySelector('.message');
-    //     const redDot = document.querySelector('.reddot');
-    //     const messageBox = document.querySelector('.messagebox');
-    //
-    //     messageCom.addEventListener('click', function (event) {
-    //
-    //         // 이벤트 버블링 방지
-    //         event.stopPropagation();
-    //
-    //         // 'messagecom' 클래스가 있을 때만 드롭다운 토글
-    //         if (messageCom.classList.contains('messagecom')) {
-    //             // reddot 요소의 표시 상태를 토글
-    //             redDot.style.display = isOpen ? 'none' : 'block';
-    //
-    //             // messageBox 요소의 표시 상태를 토글
-    //             messageBox.style.display = isOpen ? 'block' : 'none';
-    //         }
-    //         // message 요소에 'message_open' 클래스를 토글
-    //         const isOpen = message.classList.toggle('message_open');
-    //
-    //
-    //     });
-    // });
-
-
 
     // 전체 문서에 클릭 이벤트 리스너 추가하여 드롭다운, messagebox 비활성화----------------------
     document.addEventListener('click', function () {
@@ -146,6 +105,42 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdown.style.display = 'none';
         }
     });
+
+
+    // --------------------------------------- 비로그인시에 미션등록, 미니게임 못들어가게 --------------------------------------
+
+    const goalAddBtn = document.getElementById("addtab");
+    const gameBtn = document.getElementById("gametab");
+
+    function checkLoginAndRedirect(e) {
+        const memberId = sessionStorage.getItem('member_id');
+
+        if (!memberId) {
+            e.preventDefault(); // 기본 동작 방지
+            Swal.fire({
+                title: '로그인이 필요합니다',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#FFC933',
+                cancelButtonColor: '#2A9AD9',
+                confirmButtonText: '로그인 페이지로 이동',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/member/login'; // 로그인 페이지로
+                } else {
+                    console.log("이동 취소됨");
+                }
+            });
+        }
+        else{ //로그인상태일때
+            const path = e.currentTarget.getAttribute('data-path');
+            window.location.href = path;
+        }
+    }
+
+    goalAddBtn.addEventListener('click', checkLoginAndRedirect);
+    gameBtn.addEventListener('click', checkLoginAndRedirect);
 
 
     // --------------------------------------- 로그아웃시 sessionStorage삭제 --------------------------------------
