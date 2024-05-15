@@ -1,5 +1,6 @@
 package com.allrounders.goalkeeper.domain;
 
+import com.allrounders.goalkeeper.dto.MyPageModifyDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -64,16 +65,19 @@ public class Member {
         this.curPoint -= 500;
     }
 
-    public void updateMember(String nickname, String password) {
-        if (nickname != null && !nickname.isEmpty()) {
-            this.nickname = nickname;
+    public void updateMember(MyPageModifyDTO modifyDTO) {
+        if (modifyDTO.getNickname() != null && !modifyDTO.getNickname().isEmpty()) {
+            this.nickname = modifyDTO.getNickname();
         }
-        if (password != null && !password.isEmpty()) {
-            this.password = password;
+        if (modifyDTO.getPassword() != null && !modifyDTO.getPassword().isEmpty()) {
+            this.password = modifyDTO.getPassword();
+        }
+        if (modifyDTO.getImgPath() != null && !modifyDTO.getImgPath().isEmpty()) {
+            this.imgPath = modifyDTO.getImgPath();
         }
 
         if (this.curPoint >= 500) {
-            this.curPoint -= 500;
+            minusPoint();
         } else {
             throw new IllegalStateException();
         }

@@ -88,7 +88,7 @@ public class MemberService {
         Member member = validationMemberId(memberId);
 
         try {
-            member.updateMember(modifyDTO.getNickname(), modifyDTO.getPassword());
+            member.updateMember(modifyDTO);
             memberRepository.save(member);
             return ResponseEntity.ok().build();
         } catch (IllegalStateException e) {

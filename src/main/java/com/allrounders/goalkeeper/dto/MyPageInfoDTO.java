@@ -24,11 +24,14 @@ public class MyPageInfoDTO {
 
     private Integer ranking;
 
+    private String imgPath;
+
 
     public static MyPageInfoDTO fromMember(Member member) {
         return MyPageInfoDTO.builder()
                 .email(member.getEmail())
                 .nickname(member.getNickname())
+                .imgPath(member.getImgPath())
                 .password(member.getPassword())
                 .cur_point(member.getCurPoint())
                 .rank_point(member.getRankPoint())

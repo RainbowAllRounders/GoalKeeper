@@ -58,7 +58,7 @@ a {
 .img_box {
     width: 100px;
     height: 100px;
-    background: url("../../images/mySon.jpg") no-repeat center;
+    background: no-repeat center;
     background-size: cover;
     border-radius: 50%;
     border: none;

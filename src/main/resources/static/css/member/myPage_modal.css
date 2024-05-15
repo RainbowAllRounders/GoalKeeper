@@ -100,7 +100,7 @@
 .profile_img {
     width: 160px;
     height: 160px;
-    background: url(../../images/mySon.jpg) no-repeat center;
+    background: no-repeat center;
     background-size: cover;
     border-radius: 50%;
     border: 0.1px solid #b0b0b0;

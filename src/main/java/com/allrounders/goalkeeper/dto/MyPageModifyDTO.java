@@ -14,4 +14,6 @@ public class MyPageModifyDTO {
     private String nickname;
 
     private String password;
+
+    private String imgPath;
 }
