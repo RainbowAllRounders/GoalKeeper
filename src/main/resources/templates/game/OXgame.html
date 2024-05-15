@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+	<title>main</title>
+	<link rel="stylesheet" th:href="@{/css/game/OXGame.css}">
+	<!-- SweetAlert2 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+</head>
+<body layout:fragment="content">
+<div class="container">
+	<div class="main">
+		<!-- 시작할때만 보임 : start-->
+		<div class="start">
+			<div class="oxlogo"></div>
+			<div class="startbtn"></div>
+		</div>
+		<!--  -->
+		<div class="Q" style="display: none;">
+			<!-- 맞춘문제 -->
+			<div class="Q_count">
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+			</div>
+			<!-- 문제영역 -->
+			<div class="Question">
+				<div class="Q_num"></div>
+				<div class="Q_quest"></div>
+			</div>
+			<!-- ox선택영역 -->
+			<div class="C_answer">
+				<div class="O"></div>
+				<div class="X"></div>
+			</div>
+			<!-- 시간 -->
+			<div class="Q_progress">
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 모델 값을 자바스크립트로 넘기기 -->
+<script th:inline="javascript">
+	var Questions = [[${Questions}]];
+	console.log(Questions);
+</script>
+<script th:src="@{/js/game/OXGame.js}"></script>
+</body>
+</html>
