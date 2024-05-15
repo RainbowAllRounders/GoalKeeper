@@ -114,6 +114,11 @@ public class MemberService {
         memberRepository.deleteById(member.getMemberId());
     }
 
+    //프로필이미지 조회
+    public String searchProfile(Long memberId) {
+        return memberRepository.findImgPathById(memberId);
+    }
+
 }
 
 
