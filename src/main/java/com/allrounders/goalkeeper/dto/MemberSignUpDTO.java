@@ -25,12 +25,18 @@ public class MemberSignUpDTO {
 
     private int ranking = 999; // Add this line with default value
 
+    private String imgPath = "Flame.svg";
+
+    private Integer rankPoint = 0;
+
     public Member toEntity() {
         return Member.builder()
                 .email(this.getEmail())
                 .password(this.getPassword())
                 .nickname(this.getNickname())
                 .ranking(this.getRanking())
+                .imgPath(this.getImgPath())
+                .rankPoint(this.getRankPoint())
                 .build();
     }
 }

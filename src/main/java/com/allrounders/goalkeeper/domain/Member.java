@@ -41,10 +41,11 @@ public class Member {
     private Integer rankPoint;
 
     @Column(nullable = false)
+//    @ColumnDefault("999")
     private Integer ranking;
 
-    @Column(length = 255)
-    private String imgPath;
+    @Column(length = 255, nullable = false)
+    private String imgPath = "Flame.svg";
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<AuthImg> authImgSet = new HashSet<>();
