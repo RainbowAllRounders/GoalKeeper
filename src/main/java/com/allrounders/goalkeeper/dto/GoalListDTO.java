@@ -52,6 +52,9 @@ public class GoalListDTO {
     @NotNull
     private String writer;
 
+    @NotNull
+    private Boolean isLiked;
+
     public static GoalListDTO fromEntity(Goal goal) {
         return GoalListDTO.builder()
                 .goalId(goal.getGoalId())
