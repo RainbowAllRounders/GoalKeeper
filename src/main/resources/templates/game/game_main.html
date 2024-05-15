@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미니게임 메인페이지</title>
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <link rel="stylesheet" th:href="@{/css/game/game_main.css}">
-    <link rel="stylesheet" th:href="@{/css/default.css}">
-
 </head>
-<body>
+<body layout:fragment="content">
 <div id="container">
     <div id="header">
-        <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
     </div>
     <div id="game_banner">
         <h1>Let's Play</h1>
@@ -54,6 +51,5 @@
         </div>
     </div>
 </div>
-<th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
 </body>
 </html>

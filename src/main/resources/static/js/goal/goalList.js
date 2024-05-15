@@ -16,19 +16,34 @@ const goalList = document.querySelectorAll(".goalCard");
 // 페이지네이션
 const pagination = document.querySelector(".pagination");
 
+// 좋아요 누르기
+const rightContainer = document.querySelectorAll(".rightContainer");
+const hearts = document.querySelectorAll(".heart");
+const likeCount = document.querySelectorAll('.likeCount');
+
 window.addEventListener('load', function() {
 
     // 모집 중/진행 중/완료 태그 색 변경
     goalList.forEach(function(goal) {
         let statusTag = goal.querySelector(".statusTag");
         let status = statusTag.textContent.trim();
+        let progressWrap = goal.querySelector('.progressWrap');
+        let progressBarValue = goal.querySelector('.progressBarValue');
 
         if (status === "모집 중") {
             statusTag.classList.add("recruiting");
+            progressWrap.classList.add("recruit");
+            progressBarValue.innerHTML = "모 집 중";
         } else if (status === "진행 중") {
             statusTag.classList.add("proceeding");
+            progressWrap.classList.add("proceed");
+            progressBarValue.classList.add("proceedValue");
+            progressBarValue.innerHTML = "진 행 중";
         } else if (status === "완료") {
             statusTag.classList.add("complete");
+            progressWrap.classList.add("end");
+            progressBarValue.classList.add("end");
+            progressBarValue.innerHTML = "100%";
         }
     });
 
@@ -140,6 +155,45 @@ window.addEventListener('load', function() {
         formObj.submit();
     });
 
+    rightContainer.forEach(function (container, index) {
+        container.addEventListener('click', function () {
+            // 현재 클릭된 카드의 좋아요 상태
+            const isLiked = hearts[index].getAttribute('src') === '/images/redHeart.png';
+
+            // 현재 클릭된 카드의 좋아요 개수
+            let currentLikeCount = parseInt(likeCount[index].textContent);
+
+            // 좋아요 상태를 서버에 전송하여 변경
+            fetch('/goal/like', {
+                method: 'GET',
+                credentials: 'same-origin' // 세션 쿠키를 함께 보냄
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // 좋아요 상태 변경 및 좋아요 개수 업데이트
+                        if (isLiked) {
+                            // 이미 좋아요를 누른 상태이면 grayHeart로 변경하고 좋아요 수 감소
+                            hearts[index].setAttribute('src', '/images/grayHeart.png');
+                            currentLikeCount--;
+                        } else {
+                            // 좋아요를 누르지 않은 상태이면 redHeart로 변경하고 좋아요 수 증가
+                            hearts[index].setAttribute('src', '/images/redHeart.png');
+                            currentLikeCount++;
+                        }
+
+                        // 좋아요 개수 업데이트
+                        likeCount[index].textContent = currentLikeCount;
+                    } else {
+                        // 좋아요 상태 변경에 실패한 경우
+                        console.error('Failed to update like status');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error occurred while updating like status:', error);
+                });
+        });
+    });
 
     // 검색 --------------------
     window.searchGoals = () => {

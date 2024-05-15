@@ -60,6 +60,17 @@ public class MemberService {
         return false;
     }
 
+    public boolean isLoggedIn() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession(false); // 세션이 없으면 null 반환
+
+        if (session != null) {
+            Long memberId = (Long) session.getAttribute("member_id");
+            return memberId != null;
+        }
+        return false;
+    }
+
 
     // 존재하는 회원인지 확인
     private Member validationMemberId(Long memberId) {
