@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GoalKeeper - 한탕게임</title>
-  <link rel="stylesheet" th:href="@{/css/header.css}">
-  <link rel="stylesheet" th:href="@{/css/footer.css}">
   <link rel="stylesheet" th:href="@{/css/game/bat_game.css}">
-  <link rel="stylesheet" th:href="@{/css/default.css}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
-<header>
-  <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
-</header>
+<<body layout:fragment="content">
+
 <div id="container">
   <div id="content">
     <div id="game_list">
@@ -39,41 +34,41 @@
       </div>
       <div class="track">
 
-            <div class="snail" id="snail5">@y</div>
+        <div class="snail" id="snail5">@y</div>
+      </div>
+      <div id="bat_start_btn">START</div>
+    </div>
+    <!-- 포인트 배팅 모달 -->
+    <div class="battingModal">
+      <div class="modal_title">
+        <h2>당신의 달팽이에게 배팅하세요</h2>
+      </div>
+      <div class="modal_content">
+        <!-- 수정 영역 -->
+        <div class="num_area">
+          <div class="num_">
+            <div class="num1">1번</div>
+            <input class="num1" type="radio" name="num_check"/>
           </div>
-          <div id="bat_start_btn">START</div>
-        </div>
-              <!-- 포인트 배팅 모달 -->
-      <div class="battingModal">
-        <div class="modal_title">
-          <h2>당신의 달팽이에게 배팅하세요</h2>
-        </div>
-        <div class="modal_content">
-          <!-- 수정 영역 -->
-          <div class="num_area">
-            <div class="num_">
-              <div class="num1">1번</div>
-              <input class="num1" type="radio" name="num_check" />
-            </div>
-            <div class="num_">
-              <div class="num2">2번</div>
-              <input class="num2" type="radio" name="num_check" />
-            </div>
-            <div class="num_">
-              <div class="num3">3번</div>
-              <input class="num3" type="radio" name="num_check" />
-            </div>
-            <div class="num_">
-              <div class="num4">4번</div>
-              <input class="num4" type="radio" name="num_check" />
-            </div>
-            <div class="num_">
-              <div class="num5">5번</div>
-              <input class="num5" type="radio" name="num_check" />
-            </div>
+          <div class="num_">
+            <div class="num2">2번</div>
+            <input class="num2" type="radio" name="num_check" />
           </div>
-          <div class="bat_point">
-            <div class="bat_">
+          <div class="num_">
+            <div class="num3">3번</div>
+            <input class="num3" type="radio" name="num_check" />
+          </div>
+          <div class="num_">
+            <div class="num4">4번</div>
+            <input class="num4" type="radio" name="num_check" />
+          </div>
+          <div class="num_">
+            <div class="num5">5번</div>
+            <input class="num5" type="radio" name="num_check" />
+          </div>
+        </div>
+        <div class="bat_point">
+          <div class="bat_">
             <div class="P100">100P</div>
             <input class="P100" type="radio" name="point_check" value="100" />
           </div>
@@ -89,7 +84,7 @@
             <div class="P3000">3000P</div>
             <input class="P3000" type="radio" name="point_check" value="3000"/>
           </div>
-          </div>
+        </div>
 
         <!-- 저장/취소 버튼 -->
         <div class="actions">
@@ -104,7 +99,6 @@
   </footer>
   <p id="result"></p>
 </div>
-<th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
 <script th:src="@{/js/game/bat_game.js}"></script>
 </body>
 </html>
