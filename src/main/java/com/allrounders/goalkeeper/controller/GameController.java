@@ -48,6 +48,7 @@ public class GameController {
     public void OXUpdatePoint(@RequestBody OXGamePointDTO pointDTO, HttpSession session) {
         Long memberId = (Long) session.getAttribute("member_id");
         memberService.updateOXPoint(memberId, pointDTO);
+    }
       
     @ResponseBody
     @PostMapping("/update-point")
