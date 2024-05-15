@@ -86,4 +86,9 @@ public class Member {
         if(this.curPoint >= 500) this.curPoint -= 500;
         else throw new IllegalStateException();
     }
+
+    public void updatePointOXGame(Integer point) {
+        this.curPoint += point;
+        this.rankPoint += point;
+    }
 }

@@ -1,11 +1,13 @@
 package com.allrounders.goalkeeper.controller;
 
+import com.allrounders.goalkeeper.dto.OXGamePointDTO;
+import com.allrounders.goalkeeper.service.MemberService;
 import com.allrounders.goalkeeper.service.OXGameService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/game")
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GameController {
 
     private final OXGameService oxGameService;
+    private final MemberService memberService;
 
     @GetMapping("/game_main")
     public String gameMain() {
@@ -27,5 +30,12 @@ public class GameController {
     public String OXGame(Model model) {
         model.addAttribute("Questions", oxGameService.fimdRandom5Q());
         return "game/OXgame";
+    }
+
+    @ResponseBody
+    @PutMapping("/OXUpdatePoint")
+    public void OXUpdatePoint(@RequestBody OXGamePointDTO pointDTO, HttpSession session) {
+        Long memberId = (Long) session.getAttribute("member_id");
+        memberService.updateOXPoint(memberId, pointDTO);
     }
 }
