@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - My Page</title>
-    <link rel="stylesheet" th:href="@{/css/default.css}">
     <link rel="stylesheet" th:href="@{/css/member/myPage.css}">
     <link rel="stylesheet" th:href="@{/css/member/myPage_modal.css}">
-    <link rel="stylesheet" th:href="@{/css/header.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
 
 
     <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css}">
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 </head>
 
-<body>
+<body layout:fragment="content">
 <!-- header ------------------------------------------- -->
-<header>
-    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>
-</header>
 
 <!-- main content ------------------------------------- -->
 <main>
@@ -30,7 +26,7 @@
 
 
         <div class="shadow profile">
-            <div class="img_box"></div>
+            <img class="img_box profile_value" th:src="|/view/${member.imgPath}|">
             <h2 class="user_nickname" th:text="${member.nickname}"></h2>
             <p class="user_email" th:text="${member.email}"></p>
             <button class="modal_open"></button>
@@ -95,9 +91,6 @@
 </main>
 
 <!-- footer ------------------------------------------- -->
-<footer>
-    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>
-</footer>
 
 <!-- modify modal ------------------------------------- -->
 <div class="overlay"></div>
@@ -108,9 +101,9 @@
         <!-- 수정 영역 -->
         <div class="info_area">
             <div class="modal_left_area">
-                <div class="profile_img"></div>
+                <img class="profile_img profile_value" th:src="|/view/${member.imgPath}|">
                 <div class="modify_btn">
-                    <input type="file" accept=".jpg, .jpeg, .png" class="fileInput" style="display: none;">
+                    <input type="file" name="files" accept=".jpg, .jpeg, .png" class="fileInput" style="display: none;">
                 </div>
             </div>
 
