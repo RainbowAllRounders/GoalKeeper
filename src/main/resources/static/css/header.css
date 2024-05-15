@@ -146,50 +146,58 @@
     /* border: 1px solid red; */
 }
 
-/*.header>.navprofile>.messagecom{*/
-/*    display: flex;*/
-/*    flex-flow: row;*/
-/*    align-items: start;*/
-/*    justify-content: space-between;*/
-/*    background-color: transparent;*/
-/*}*/
+.header>.navprofile>.messagecom{
+    display: flex;
+    flex-flow: row;
+    align-items: start;
+    justify-content: space-between;
+    background-color: transparent;
+    position: relative;
+    flex-shrink: 0;
+}
 
-/*.header>.navprofile>.messagecom:hover{*/
-/*    cursor: pointer;*/
-/*}*/
+.header>.navprofile>.messagecom:hover{
+    cursor: pointer;
+}
 
-/*.header>.navprofile>.messagecom>.message{*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*    background: url(../images/header/Alarmicon.png);*/
-/*    background-size: contain;*/
-/*    background-repeat: no-repeat;*/
-/*}*/
+.header>.navprofile>.messagecom>.message{
+    width: 24px;
+    height: 24px;
+    background: url(../images/header/Alarmicon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
-/*.header>.navprofile>.messagecom>.message_open{*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*    background: url(../images/header/Alarmopen.png);*/
-/*    background-size: contain;*/
-/*    background-repeat: no-repeat;*/
-/*}*/
+.header>.navprofile>.messagecom>.message_open{
+    width: 24px;
+    height: 24px;
+    background: url(../images/header/Alarmopen.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
-/*.header>.navprofile>.messagecom>.reddot{*/
-/*    width: 4px;*/
-/*    height: 4px;*/
-/*    background: url(../images/header/reddoticon.png);*/
-/*    background-size: contain;*/
-/*    background-repeat: no-repeat;*/
-/*}*/
+.messagebox {
+    display: none;
+}
+.message_open .messagebox {
+    display: block;
+}
+
+.header>.navprofile>.messagecom>.reddot{
+    position: absolute;
+    left: 24px;
+    width: 4px;
+    height: 4px;
+    background: url(../images/header/reddoticon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 .header>.navprofile>.profile{
-    margin-left: 20px;
+    margin-left: 28px;
     width: 36px;
     height: 36px;
     border-radius: 50px;
-    background: url(../images/header/profile.png);
-    background-size: contain;
-    background-repeat: no-repeat;
     flex-shrink: 0;
 }
 
@@ -228,7 +236,7 @@
     z-index: 2000;
     position: absolute;
     top: 50px;
-    left: 25px;
+    left: 42px;
     width: fit-content;
     padding: 16px;
     border-radius: 10px;
