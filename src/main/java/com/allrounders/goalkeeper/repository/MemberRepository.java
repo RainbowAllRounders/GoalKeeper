@@ -26,4 +26,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT m, ROW_NUMBER() OVER (ORDER BY m.rankPoint DESC, m.nickname ASC) AS rank_row_number FROM Member m")
     List<Member> findAllOrderedByRankPoints();
 
+    @Query("SELECT m.imgPath FROM Member m where m.memberId = :memberId")
+    String findImgPathById(Long memberId);
+
 }
