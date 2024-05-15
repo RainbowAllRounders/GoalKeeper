@@ -27,6 +27,29 @@ const observerUp = new IntersectionObserver((entries) => {
 observerDown.observe(rankPage);
 observerUp.observe(rankArrow);
 
+
+//goalcard 상태
+//모집, 진행, 종료
+// goal 목록
+const goalList = document.querySelectorAll(".goalcard");
+
+goalList.forEach(function(goal) {
+    let statusTag = goal.querySelector(".status");
+    let status = statusTag.textContent.trim();
+
+    if (status === "모집 중") {
+        statusTag.classList.add("recruiting");
+    } else if (status === "진행 중") {
+        statusTag.classList.add("proceeding");
+    } else if (status === "완료") {
+        statusTag.classList.add("complete");
+    }
+});
+
+
+
+
+
 // 좋아요
 const likeIcons = document.querySelectorAll('.like_F, .like_T');
 
