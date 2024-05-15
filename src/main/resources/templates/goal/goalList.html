@@ -35,7 +35,7 @@
         <div id="goalListContainer">
             <div th:each="goal : ${goalList.dtoList}" class="goalCard shadowBox">
 
-                <div class="cardHeader">
+                <div class="cardHeader" >
 
                     <div class="leftContainer">
                         <div class="categoryList">
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img class="heart" th:src="@{/images/grayHeart.png}" alt="하트">
+                        <img class="heart" th:src="${goal.isLiked == true} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">
                         <div class="likeCount" th:text="${goal.likeCount}"></div>
                     </div>
                 </div>
@@ -58,7 +58,11 @@
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <img class="progressBar" th:src="@{/images/progressBar.png}" alt="프로그래스바">
+                    <div class="progressWrap">
+                        <div class="progressBar">
+                            <div class="progressBarValue"></div>
+                        </div>
+                    </div>
                     <div>
                         <div class="nicknameBox">
                             <img th:src="@{/images/crown.png}" alt="왕관">&nbsp;
