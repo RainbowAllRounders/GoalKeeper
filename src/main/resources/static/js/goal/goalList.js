@@ -27,7 +27,6 @@ window.addEventListener('load', function() {
     goalList.forEach(function(goal) {
         let statusTag = goal.querySelector(".statusTag");
         let status = statusTag.textContent.trim();
-        const isSuccessString = goal.querySelector('.isSuccess').value;
         let progressWrap = goal.querySelector('.progressWrap');
         let progressBarValue = goal.querySelector('.progressBarValue');
 
