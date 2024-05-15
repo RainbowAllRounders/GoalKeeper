@@ -153,7 +153,23 @@
 */
 
 .Q_progress{
-    background: url(../../images/OXGame/timeprogress.png) no-repeat center / contain;
     width:100%;
-    height: 16px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0; /* 백그라운드 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    overflow: hidden; /* 둥근 모서리 적용을 위해 필요 */
+    height: 20px; /* 높이 설정 */
+    margin: 20px 0; /* 위아래 마진 설정 */
+}
+
+/* 실제 진행을 나타내는 부분 */
+.progress {
+    height: 100%; /* 부모의 높이에 맞춤 */
+    width: 0; /* 초기 너비 */
+    background-color: #ffc933; /* 진행 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    transition: width 1s linear; /* 애니메이션 설정 */
 }
