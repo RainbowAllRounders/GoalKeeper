@@ -69,7 +69,7 @@
 
 
         <p class="mission_title">내 미션<span class="flame_icon"></span></p>
-        <button class="full_btn"><a href="/member/myGoalList">전체 보기</a></button>
+        <button class="full_btn"><a href="/myPage/myGoalList">전체 보기</a></button>
 
         <div th:each="progress, stat : ${goalProgressList}"
              th:if="${stat.index} < 3"

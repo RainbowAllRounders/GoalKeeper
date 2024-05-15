@@ -90,13 +90,13 @@ public class GoalService {
      * @param pageRequestDTO
      * @return
      */
-    public PageResponseDTO<GoalListDTO> goalList(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<GoalListDTO> goalList(Long memberId, PageRequestDTO pageRequestDTO) {
 
         String[] types = pageRequestDTO.getTypes();
         String keyword = pageRequestDTO.getKeyword();
         Pageable pageable = pageRequestDTO.getPageable("goalId");
 
-        Page<GoalListDTO> result = goalRepository.listAll(types, keyword, pageable);
+        Page<GoalListDTO> result = goalRepository.listAll(memberId, types, keyword, pageable);
 
         List<GoalListDTO> dtoList = result.getContent().stream()
                 .map(goal -> modelMapper.map(goal, GoalListDTO.class))
@@ -143,16 +143,18 @@ public class GoalService {
     public GoalDetailDTO getGoalDetail(HttpSession session) {
 
         Member member = validationMemberId(session);
+        Long memberId = member.getMemberId();
+
         Goal goal = validationGoalId(session);
         Long goalId = goal.getGoalId();
 
         List<Hashtag> findHashtagList = hashtagRepository.findByHashtagList_GoalId(goalId);
         findHashtagList.forEach(hashtag -> hashtag.addGoal(goal));
         goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
-        Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(member.getMemberId(), goalId);
+        Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(memberId, goalId);
 
         memberGoalRepository.curPeopleByGoalId(goalId);
-        Boolean isJoin = memberGoalRepository.isJoin(member.getMemberId(), goal.getGoalId());
+        Boolean isJoin = memberGoalRepository.isJoin(memberId, goalId);
         String nickName = memberGoalRepository.findByMemberNickName_goalId(goalId);
 
         return GoalDetailDTO.fromEntity(goalRepository.save(goal), nickName, isLiked, isJoin);

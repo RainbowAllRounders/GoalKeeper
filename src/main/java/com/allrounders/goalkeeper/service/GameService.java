@@ -16,19 +16,13 @@ public class GameService {
     @Transactional
     public void updateMemberPoints(UpdatePointDTO updatePointDTO) {
         Long memberId = updatePointDTO.getMemberId();
-        int resultPointWin = updatePointDTO.getResultPointWin();
-        int resultPointLose = updatePointDTO.getResultPointLose();
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("Member not found"));
 
-        // 배팅 포인트 이상일 때 포인트 수정
-        if (member.getCurPoint() > 0) {
-            member.setCurPoint(member.getCurPoint() + resultPointWin);
-        }
-        if (member.getCurPoint() > 0) {
-            member.setCurPoint(member.getCurPoint() - resultPointLose);
-        }
+        // 멤버 엔티티의 updateWithDTO 메서드를 호출하여 업데이트 수행
+        member.updateWithDTO(updatePointDTO);
+
         memberRepository.save(member);
     }
 }

@@ -25,8 +25,12 @@
 			<div class="hotgoallogo"></div>
 		</div>
 		<p>미션제목을 클릭하면 해당 미션으로 이동합니다</p>
+
+		<!--	하단 카드부분	-->
 		<div class="hotgoal_bottom">
 			<div th:each="goal : ${Top3Goal}" class="goalcard">
+
+				<!--	카드상단	-->
 				<div class="cardtop">
 					<div class="cardtopL">
 						<div class="cardex">
@@ -37,7 +41,7 @@
 								<p th:text="${goal.complete}"></p>
 							</div>
 						</div>
-						<div class="goaltitle" th:onclick="'location.href=\'/goal/detail/' + ${goal.goalId} + '\''">
+						<div class="goaltitle" th:onclick="'location.href=\'/goal/' + ${goal.goalId} + '\''">
 							<p th:text="${goal.title}"></p>
 						</div>
 						<div class="hashtags">
@@ -47,14 +51,18 @@
 						</div>
 					</div>
 					<div class="cardtopR">
-						<div class="like_F"></div>
-						<div class="likecount">
-							<p th:text="${goal.likeCount}"></p>
-						</div>
+						<div class="like"></div>
+						<p class="likecount" th:text="${goal.likeCount}"></p>
 					</div>
 				</div>
+
+				<!--	카드 이미지	-->
 				<div class="goalimg" th:style="'background: url(' + ${goal.imgPath} + ') center / contain'"></div>
+
+				<!--	profressbar	-->
 				<div class="progress"></div>
+
+				<!--	카드 하단	-->
 				<div class="cardbottom">
 					<div class="cardbottomL">
 						<div class="king">

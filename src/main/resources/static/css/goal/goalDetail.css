@@ -220,6 +220,17 @@ button:hover {
     margin-top: 3%;
 }
 
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.auth > .total_count {
+    margin-top: 13%;
+}
+
 .auth_img > img:hover {
     cursor: pointer;
 }

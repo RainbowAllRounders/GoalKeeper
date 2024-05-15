@@ -14,15 +14,17 @@ public class HashtagRepositoryTests {
 
     @Autowired
     private HashtagRepository hashtagRepository;
+    @Autowired
+    private GoalRepository goalRepository;
 
     @Test
     public void testInsert() {
-        Long goalId = 1L;
+        Long goalId = 141L;
         String tagName = "태그";
 
         IntStream.rangeClosed(1, 3).forEach(i -> {
             Hashtag hashtag = Hashtag.builder()
-                    .goalId(1L)
+                    .goal(goalRepository.findByGoalId(goalId))
                     .tagName(tagName + i)
                     .build();
 
