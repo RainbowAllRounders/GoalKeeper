@@ -40,7 +40,7 @@ public class Likes {
         return Likes.builder()
                 .member(member)
                 .goal(goal)
-                .isLiked(true)
+                .isLiked(false)
                 .build();
     }
 
