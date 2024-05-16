@@ -88,7 +88,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
      * @return page
      */
     @Override
-    public Page<GoalListDTO> listAll(Long memberId, String[] types, String keyword, Pageable pageable) {
+    public Page<GoalListDTO> listAll(String[] types, String keyword, Pageable pageable) {
 
         JPAQuery<Goal> query = selectFromGoal();
 
@@ -114,8 +114,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
             // 로그인한 member의 좋아요 여부 확인
             Boolean isLiked = jpaQueryFactory
                     .selectFrom(likes)
-                    .where(likes.member.memberId.eq(memberId)
-                            .and(likes.goal.goalId.eq(g.getGoalId())))
+                    .where(likes.goal.goalId.eq(g.getGoalId()))
                     .fetchFirst() != null;
             g.setIsLiked(isLiked);
         });
@@ -171,8 +170,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
             // 로그인한 member의 좋아요 여부 확인
             Boolean isLiked = jpaQueryFactory
                     .selectFrom(likes)
-                    .where(likes.member.memberId.eq(memberId)
-                            .and(likes.goal.goalId.eq(g.getGoalId())))
+                    .where(likes.goal.goalId.eq(g.getGoalId()))
                     .fetchFirst() != null;
             g.setIsLiked(isLiked);
         });
