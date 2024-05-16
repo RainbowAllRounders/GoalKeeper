@@ -8,9 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>미션 상세페이지</title>
 
-    <link rel="stylesheet"
-          th:href="@{/css/default.css}"
-          href="../../static/css/default.css">
+
     <link rel="stylesheet"
           th:href="@{/css/goal/goalDetail.css}"
           href="../../static/css/goal/goalDetail.css">
@@ -18,7 +16,51 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        .modifyModal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 700px;
+            height: 450px;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 1rem;
+
+            box-shadow: 3px 0 4px rgba(0, 0, 0, 0.05), -3px 0 4px rgba(0, 0, 0, 0.05),
+            0 5px 5px rgba(0, 0, 0, 0.1);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1040;
+        }
+        .modal_container {
+            display: flex;
+        }
+        .authImg_upload {
+            width: 160px;
+            height: 160px;
+            background: no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            border: 0.1px solid #b0b0b0;
+            margin: 1em;
+        }
+        .btn_area {
+
+        }
+    </style>
 </head>
 <body layout:fragment="content">
 
@@ -79,10 +121,12 @@
     </div>
 
     <div class="auth_file">
-        <label for="file" class="auth_btn">
+        <!--        <label for="file" class="auth_btn">-->
+        <label class="auth_btn modal_open">
+
             <span>인증하기</span>
         </label>
-        <input type="file" name="file" id="file">
+        <!--        <input type="file" name="file" id="file">-->
     </div>
 
     <div class="auth_imgs">
@@ -95,9 +139,47 @@
 
         </div>
     </div>
-
 </div>
 
+<!-- 인증 사진 업로드 모달 -->
+<div class="overlay"></div>
+<div class="modifyModal">
+    <div class="modal_container">
+        <!--    <img class="authImg_upload" th:src="|/view/${authImg.imgPath}|">-->
+        <img class="authImg_upload" th:src="@{/images/스껄.jpg}">
+
+        <div class="btn_area">
+            <input type="file" name="files" accept=".jpg, .jpeg, .png" class="fileInput">
+            <button class="save_btn" id="confirmStart">등록</button>
+            <button class="cancel_btn">취소</button>
+        </div>
+    </div>
+</div>
+
+
 <script src="/js/goal/goalDetail.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var modal = document.querySelector(".modifyModal");
+        var openBtn = document.querySelector(".modal_open");
+        var closeBtn = document.querySelector(".cancel_btn");
+        var saveBtn = document.querySelector(".save_btn");
+        var overlay = document.querySelector(".overlay");
+
+        openBtn.onclick = function () {
+            modal.style.display = "block";
+            overlay.style.display = "block";
+        };
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        };
+        saveBtn.onclick = function () {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        };
+    });
+</script>
+
 </body>
 </html>
