@@ -150,7 +150,10 @@ public class GoalService {
 
         List<Hashtag> findHashtagList = hashtagRepository.findByHashtagList_GoalId(goalId);
         findHashtagList.forEach(hashtag -> hashtag.addGoal(goal));
+
         goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
+
+        likesRepository.save(Likes.insertLike(member, goal));
         Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(memberId, goalId);
 
         memberGoalRepository.curPeopleByGoalId(goalId);

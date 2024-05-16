@@ -12,10 +12,12 @@ import lombok.NoArgsConstructor;
 public class JoinGoalDto {
 
     private boolean isJoin;
+    private boolean role;
 
-    public static JoinGoalDto makeDto(boolean isJoin) {
+    public static JoinGoalDto makeDto(boolean isJoin, boolean role) {
         return JoinGoalDto.builder()
                 .isJoin(isJoin)
+                .role(role)
                 .build();
     }
 }

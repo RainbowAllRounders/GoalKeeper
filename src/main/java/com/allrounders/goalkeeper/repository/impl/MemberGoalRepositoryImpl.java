@@ -37,6 +37,14 @@ public class MemberGoalRepositoryImpl implements MemberGoalCustomRepository {
                 .fetchOne() != null;
     }
 
+    @Override
+    public Boolean getRole(Long memberId, Long goalId) {
+        return query.select(memberGoal.role)
+                .from(memberGoal)
+                .where(memberIdGoalIdEq(memberId, goalId))
+                .fetchOne();
+    }
+
     /**
      * 미션 생성자 닉네임 조회
      */
