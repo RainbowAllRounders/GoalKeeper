@@ -102,6 +102,9 @@
     box-shadow: 4px 4px 8px 4px  #AAAAAA;
     flex-shrink: 0;
 }
+.hotgoal_bottom>.goalcard:hover{
+    cursor: pointer;
+}
 
 
 /* 좋아요부분
@@ -210,9 +213,6 @@
 
 .cardtopL>.goaltitle{
     padding: 4px;
-}
-.cardtopL>.goaltitle:hover{
-    cursor: pointer;
 }
 
 .cardtopL>.goaltitle>p{
