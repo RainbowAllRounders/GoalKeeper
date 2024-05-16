@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loopedSlides: 9,  // This should match the total number of slides
         spaceBetween: -40,
         autoplay: {
-            delay: 5000,
+            delay: 1500,
             disableOnInteraction: false,
         },
         pagination: {
