@@ -27,8 +27,7 @@ public class LikeService {
     @Transactional(readOnly = false)
     public LikesResDto activeLikes(HttpSession session) {
         Member member = existMember(session);
-//        Goal goal = existGoal(session);
-        Goal goal = goalRepository.findById(1L).get();
+        Goal goal = existGoal(session);
         likesRepository.exist(member.getMemberId(), goal.getGoalId()).ifPresent(
                 likes -> {
                     if (likes.getIsLiked() == true) likes.changeLikeStatus(likes.getIsLiked());
@@ -45,7 +44,7 @@ public class LikeService {
      * 존재하는 미션인지 확인
      */
     private Goal existGoal(HttpSession session) {
-        Long goalId = (Long) session.getAttribute("goal_id");
+        Long goalId = (Long) session.getAttribute("goalId");
         return goalRepository.findById(goalId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 미션입니다.")
         );
