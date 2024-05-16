@@ -43,17 +43,17 @@
 
         <div id="join_quit">
             <div id="join">
-                <span th:text="${goalDetail.isJoin() == true} ? '참여취소' : '참여하기'"></span>
+                <span class="join_status"th:text="${goalDetail.isJoin() == true} ? '참여취소' : '참여하기'"></span>
             </div>
         </div>
 
         <div class="main_img">
-            <img src="/static/images/main_img.png" alt="새벽4시사진">
+            <img src="/images/main_img.png" alt="새벽4시사진">
 
             <ul class="goal_info">
                 <li>
                     <img src="/images/crown.png" class="info_li_img">
-                    <span th:text="${goalDetail.goalCreator}">&nbsp;&nbsp;&nbsp;카넬로</span>
+                    <span th:text="${'&nbsp;&nbsp;&nbsp;' + goalDetail.goalCreator}">카넬로</span>
                 </li>
                 <li><img src="/images/alarm.png" class="info_li_img"><span th:text="'&nbsp;&nbsp;&nbsp;' + ${goalDetail.startDate} + ' - ' + ${goalDetail.endDate}"  >&nbsp;&nbsp;&nbsp;2024.04.24-2024.04.28</span></li>
                 <li><img src="/images/point.png" class="info_li_img"><span>&nbsp;&nbsp;&nbsp;참여 -500 / 달성 +1000</span></li>
