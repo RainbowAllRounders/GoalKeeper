@@ -47,10 +47,10 @@
                         </div>
                     </div>
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="${goal.isLiked} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">
-                        <div class="likeCount" th:text="${goal.likeCount}"></div>
-                    </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="${goal.isLiked} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">-->
+<!--                        <div class="likeCount" th:text="${goal.likeCount}"></div>-->
+<!--                    </div>-->
                 </div>
 
                 <div class="imgWrapper"></div>
@@ -78,10 +78,10 @@
                             <p style="margin-bottom: 0;" th:text="${goal.curPeople}"></p>/<p style="margin-bottom: 0;" th:text="${goal.maxPeople}"></p>
                         </div>
                         <div class="periodBox">
-                        <div class="periodBox">
-                            <img th:src="@{/images/alarm.png}" alt="기간">&nbsp;
-                            <p style="margin-bottom: 0;" th:text="${goal.startDate}"></p> ~ <p style="margin-bottom: 0;" th:text="${goal.endDate}"></p>
-                        </div>
+                            <div class="periodBox">
+                                <img th:src="@{/images/alarm.png}" alt="기간">&nbsp;
+                                <p style="margin-bottom: 0;" th:text="${goal.startDate}"></p> ~ <p style="margin-bottom: 0;" th:text="${goal.endDate}"></p>
+                            </div>
                     </div>
                 </div>
 

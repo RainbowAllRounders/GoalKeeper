@@ -3,8 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 내 미션 목록</title>
     <link rel="stylesheet" th:href="@{/css/member/myGoalList.css}">
 </head>
@@ -51,16 +49,15 @@
                         </div>
                     </div>
 
-                    <div class="rightContainer">
-                        <img class="heart" th:src="${goal.isLiked == true} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">
-                        <div class="likeCount" th:text="${goal.likeCount}"></div>
-                    </div>
+<!--                    <div class="rightContainer">-->
+<!--                        <img class="heart" th:src="${goal.isLiked == true} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">-->
+<!--                        <div class="likeCount" th:text="${goal.likeCount}"></div>-->
+<!--                    </div>-->
                 </div>
 
                 <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
-                    <div class="progressWrap">
                     <div class="progressWrap">
                         <div class="progressBar">
                             <div class="progressBarValue"></div>
@@ -115,7 +112,6 @@
         </div>
     </div>
     <script th:src="@{/js/member/myGoalList.js}"></script>
-    <script th:src="@{/js/main/header.js}"></script>
 </body>
 
 </html>

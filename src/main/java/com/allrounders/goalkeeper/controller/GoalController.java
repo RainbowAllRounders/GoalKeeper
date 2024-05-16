@@ -62,10 +62,9 @@ public class GoalController {
      * @return
      */
     @GetMapping("/list")
-    public String goalList(HttpSession session, Model model, PageRequestDTO pageRequestDTO) {
+    public String goalList(Model model, PageRequestDTO pageRequestDTO) {
 
-        Long memberId = (Long) session.getAttribute("member_id");
-        PageResponseDTO<GoalListDTO> goalList = goalService.goalList(memberId, pageRequestDTO);
+        PageResponseDTO<GoalListDTO> goalList = goalService.goalList(pageRequestDTO);
 
         model.addAttribute("goalList", goalList);
         return "goal/goalList";
