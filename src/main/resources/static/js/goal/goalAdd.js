@@ -175,8 +175,10 @@ window.addEventListener('load', function () {
         const startDate = startDateInput.value.trim();
         const endDate = endDateInput.value.trim();
         const goalPeopleValue = goalPeople.value.trim();
-        const fileInput = document.querySelector("input[name='files']");
-        const files = fileInput.imgPath;
+        const fileInput = document.querySelector("input[name='imgPath']");
+        const files = fileInput.files;
+        console.log(`fileInput={fileIput}`);
+        console.log("files.length=" + files.length);
 
         // 필수 입력값 검사------------------------------------------
         // 필수 입력값 하나라도 누락 시
@@ -211,9 +213,25 @@ window.addEventListener('load', function () {
                 formData.append('startDate', startDate);
                 formData.append('endDate', endDate);
                 formData.append('maxPeople', goalPeopleValue);
-                if (files.length > 0) { formData.append("files", files[0]); }
+                formData.append("files", files[0]);
 
-                const uploadPromise = files.length > 0 ? uploadToServer(formObj) : Promise.resolve([]);
+                // if(files.length > 0){
+                //     const formObj = new FormData();
+                //     formObj.append("files", files[0]);
+                //
+                //     uploadToServer(formObj).then(result=>{
+                //         console.log(result);
+                //     }).catch(e=>{
+                //         console.log(e);
+                //     })
+                // }
+
+
+                if (files.length > 0) { console.log(files[0]);formData.append("imgPath", files[0].name); }
+
+
+                const uploadPromise = files.length > 0 ? uploadToServer(formData) : Promise.resolve([]);
+
 
                 uploadPromise.then(uploadResult => {
                     // AJAX 요청
