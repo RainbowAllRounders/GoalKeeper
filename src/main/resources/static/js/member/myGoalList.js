@@ -52,7 +52,6 @@ window.addEventListener('load', function() {
                 failImg.style.opacity = "1";
 
                 cardHeader.classList.add('fail');
-                container.classList.add('fail');
                 imgWrapper.classList.add('failImgWrapper');
                 imgWrapper.classList.remove('imgWrapper');
                 imgWrapper.appendChild(failImg);
