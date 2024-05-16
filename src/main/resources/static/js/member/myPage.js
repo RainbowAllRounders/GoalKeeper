@@ -19,6 +19,9 @@ saveBtn.onclick = function () {
 };
 
 
+
+
+
 // 2. 파일 서버 업로드 및 제거
 async function uploadToServer(formObj) {
 
@@ -121,6 +124,8 @@ updateButton.addEventListener('click', async () => {
                     }
                 })
                     .then(function () {
+                        sessionStorage.setItem("member_profile", imgPath);
+
                         Swal.fire({
                             confirmButtonColor: "#FFBB00",
                             title: "정보 변경이 완료되었습니다.",
