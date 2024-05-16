@@ -35,14 +35,25 @@ const goalList = document.querySelectorAll(".goalcard");
 
 goalList.forEach(function(goal) {
     let statusTag = goal.querySelector(".status");
+    let progressWrap = goal.querySelector('.progressWrap');
+    let progressBarValue = goal.querySelector('.progressBarValue');
+
     let status = statusTag.textContent.trim();
 
     if (status === "모집 중") {
         statusTag.classList.add("recruiting");
+        progressWrap.classList.add("recruit");
+        progressBarValue.innerHTML = "모 집 중";
     } else if (status === "진행 중") {
         statusTag.classList.add("proceeding");
+        progressWrap.classList.add("proceed");
+        progressBarValue.classList.add("proceedValue");
+        progressBarValue.innerHTML = "진 행 중";
     } else if (status === "완료") {
         statusTag.classList.add("complete");
+        progressWrap.classList.add("end");
+        progressBarValue.classList.add("end");
+        progressBarValue.innerHTML = "미션 종료";
     }
 });
 

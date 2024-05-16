@@ -285,16 +285,10 @@
     /*background-size: contain;*/
     height: 194px;
     width: 294px;
+    margin-bottom: 12px;
 }
 
-/* Top3미션카드-카드들-카드영역-프로그래스------------------------------------*/
-.hotgoal_bottom>.goalcard>.progress{
-    margin: 12px 0px;
-    background: url(../../images/main/progress.png) no-repeat;
-    background-size: contain;
-    height: 22px;
-    width: 95%;
-}
+
 
 /* Top3미션카드-카드들-카드영역-bottom(미션정보들)------------------------------------*/
 .hotgoal_bottom>.goalcard>.cardbottom{
@@ -549,4 +543,60 @@
     font-size: 16px;
     color: #ff5065;
     /* width: 100%; */
+}
+
+/* Top3미션카드-카드들-카드영역-프로그래스------------------------------------*/
+/*.hotgoal_bottom>.goalcard>.progress{*/
+/*    margin: 12px 0px;*/
+/*    background: url(../../images/main/progress.png) no-repeat;*/
+/*    background-size: contain;*/
+/*    height: 22px;*/
+/*    width: 95%;*/
+/*}*/
+
+/*-------------------------------------프로그래스바---------------------------------*/
+.progressWrap, .progressBar {
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progressWrap {
+    width: 280px;
+    height: 18px;
+    margin-bottom: 10px;
+}
+
+.progressBar {
+    width: 278px;
+    height: 14px;
+    background-color: white;
+}
+
+.recruit {
+    border: 1px solid black;
+}
+
+.proceed, .end {
+    background: linear-gradient(to right, #FFFF9C 0%, #FB5BB1 100%);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    color: white;
+}
+
+.proceedValue {
+    color: #FF5065;
+}
+
+.progressBarValue {
+    width: 278px;
+    height: 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: "Nanum Gothic";
 }
