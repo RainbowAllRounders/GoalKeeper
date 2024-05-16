@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //정답여부 스왈창
         swal({
-            title: isCorrect ? '<span style="color: blue;">정답입니다</span>' : '<span style="color: red;">오답입니다</span>',
+            title: isCorrect ? '<span style="color: blue; margin-top: 30px;">정답입니다</span>' : '<span style="color: red; margin-top: 50px;">오답입니다</span>',
             html: '<div style="margin-top: 10px;">' + question.commentary + '</div>',
-            imageUrl: isCorrectAnswer ? '../../images/OXGame/O.png' : '../../images/OXGame/X.png',
+            imageUrl: question.isCorrect ? '../../images/OXGame/O.png' : '../../images/OXGame/X.png',
             imageWidth: 100,
             imageHeight: 100,
             timer: 2000,
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             QNum++;
             if (QNum < Questions.length) { //문제 안끝났으면
                 setQuestion(QNum);
-                startTimer();
+                startTimer(question.isCorrect);
             } else {                       //문제 끝났을때
                 endQuiz();
             }
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 타이머를 시작하는 함수
-    function startTimer() {
+    function startTimer(correct) {
         var timer = 5; // 타이머 설정 (초 단위)
         var elapsed = 0; // 경과시간
 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 swal({
                     title: '<span style="color: #ffc933;">시간초과</span>',
                     text: Questions[QNum].commentary,
-                    imageUrl: '../../images/OXGame/Alarm.png',
+                    imageUrl: correct ? '../../images/OXGame/O.png' : '../../images/OXGame/X.png',
                     imageWidth: 100,
                     imageHeight: 100,
                     timer: 2000,
@@ -150,6 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //포인트 적립
     function addPoints(points){
+
+        // 포인트가 0일 때 요청을 보내지 않도록 조건문 추가
+        if (points === 0) {
+            console.log("포인트가 0이어서 적립하지 않습니다.");
+            return; // 함수 종료
+        }
         $.ajax({
             url: '/game/OXUpdatePoint',
             type: 'PUT',
