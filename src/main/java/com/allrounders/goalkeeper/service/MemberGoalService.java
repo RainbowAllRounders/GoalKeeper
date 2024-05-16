@@ -30,12 +30,16 @@ public class MemberGoalService {
      */
     public JoinGoalDto joinGoal(HttpSession session) {
         Member member = existMember(session);
-        Goal goal = existGoal(session);
+        Long memberId = member.getMemberId();
 
-        memberGoalRepository.exist(member.getMemberId(), goal.getGoalId())
+        Goal goal = existGoal(session);
+        Long goalId = goal.getGoalId();
+
+        memberGoalRepository.exist(memberId, goalId)
                 .ifPresentOrElse(
                         memberGoal ->
                         {
+                            if (memberGoal.getRole()) return;
                             minusPeople(goal);
                             addPoint(member);
                             memberGoalRepository.deleteById(memberGoal.getMemberGoalId());
@@ -51,8 +55,9 @@ public class MemberGoalService {
                             }
                         }
                 );
-
-        return JoinGoalDto.makeDto(memberGoalRepository.isJoin(member.getMemberId(), goal.getGoalId()));
+        Boolean isJoin = memberGoalRepository.isJoin(memberId, goalId);
+        Boolean role = memberGoalRepository.getRole(memberId, goalId);
+        return JoinGoalDto.makeDto(isJoin, role);
     }
 
     /**

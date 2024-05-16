@@ -27,24 +27,44 @@ condition.addEventListener('click', function() {
 
     fetch('join').then(response => response.json())
         .then(data => {
-            if(data['join']) {
-                swal({
-                    title : '참여신청 완료',
-                    text : '골키퍼들과 끝까지 미션을 완수하세요!',
-                    type : 'success',
-                    timer : 1500,
-                    showConfirmButton: false
-                });
-                condition.querySelector('span').textContent = '참여취소'
-            } else {
-                swal({
-                    title : '참여신청 취소',
-                    text : '더 좋은 미션에서 만나요!',
-                    type : 'info',
-                    timer : 1500,
-                    showConfirmButton: false
-                });
-                condition.querySelector('span').textContent = '참여하기'
-            }
+                if (data['join']) {
+                    if(data['role'] === true) {
+                        swal({
+                            title: '참여상태 변경 불가',
+                            text: '미션 생성자는 참여상태를 변경할 수 없습니다!',
+                            type: 'info',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        swal({
+                            title: '참여신청 완료',
+                            text: '골키퍼들과 끝까지 미션을 완수하세요!',
+                            type: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    }
+                    condition.querySelector('span').textContent = '참여취소'
+                } else if(data['join'] === true) {
+                    if(data['role'] === true) {
+                        swal({
+                            title: '참여상태 변경 불가',
+                            text: '미션 생성자는 참여상태를 변경할 수 없습니다!',
+                            type: 'info',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    } else {
+                        swal({
+                            title: '참여신청 취소',
+                            text: '더 좋은 미션에서 만나요!',
+                            type: 'info',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    }
+                    condition.querySelector('span').textContent = '참여하기'
+                }
         })
 });

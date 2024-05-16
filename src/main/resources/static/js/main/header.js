@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ------------로그인시에 프로필이랑 messaggecom보이게하기----------------------
     function checkLoginStatus() {
         var loginBtn = document.querySelector('.loginbtn'); // 로그인 버튼
-        var message = document.querySelector('.messagecom_Disabled'); // 메시지
+        // var message = document.querySelector('.messagecom_Disabled'); // 메시지
 
         var MemberID = sessionStorage.getItem("member_id"); // 세션 스토리지에 있는 member_id 값 불러오기
         var MemberProfile = sessionStorage.getItem("member_profile"); // 세션 스토리지에 있는 member_profile 값 불러오기
@@ -28,20 +28,21 @@ document.addEventListener('DOMContentLoaded', function() {
             loginBtn.classList.remove('loginbtn');
             loginBtn.classList.add('profile');
             // 메시지 창
-            message.classList.remove('messagecom_Disabled');
-            message.classList.add('messagecom');
+            // message.classList.remove('messagecom_Disabled');
+            // message.classList.add('messagecom');
         } else {
             loginBtn.classList.remove('profile');
             loginBtn.classList.add('loginbtn');
-            message.classList.remove('messagecom');
-            message.classList.add('messagecom_Disabled');
+            // message.classList.remove('messagecom');
+            // message.classList.add('messagecom_Disabled');
         }
 
         // 'profile' 클래스가 있는지 확인
         if (loginBtn.classList.contains('profile')) {
             // 프로필 사진 sessionStorage에 저장된 member_profile 값으로 사진 변경
             var storedProfile = sessionStorage.getItem("member_profile");
-            loginBtn.style.backgroundImage = 'url(' + storedProfile + ')';
+            loginBtn.style.backgroundImage = `url('/view/${storedProfile}')`;
+            console.log("Background Image URL:", loginBtn.style.backgroundImage);
             loginBtn.style.backgroundSize = 'cover';
             loginBtn.style.backgroundPosition = 'center';
 

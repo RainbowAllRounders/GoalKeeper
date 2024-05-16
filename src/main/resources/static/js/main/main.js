@@ -51,17 +51,17 @@ goalList.forEach(function(goal) {
 
 
 // 좋아요
-const likeIcons = document.querySelectorAll('.like_F, .like_T');
-
-likeIcons.forEach(icon => {
-    icon.addEventListener('click', function() {
-        // 클래스 토글을 사용하여 하트 이미지 변경
-        if (icon.classList.contains('like_F')) {
-            icon.classList.replace('like_F', 'like_T');
-            // icon.style.backgroundImage = 'url(../../images/main/redHeart.png)';
-        } else {
-            icon.classList.replace('like_T', 'like_F');
-            // icon.style.backgroundImage = 'url(../../images/main/Heart.png)';
-        }
-    });
-});
+// const likeIcons = document.querySelectorAll('.like_F, .like_T');
+//
+// likeIcons.forEach(icon => {
+//     icon.addEventListener('click', function() {
+//         // 클래스 토글을 사용하여 하트 이미지 변경
+//         if (icon.classList.contains('like_F')) {
+//             icon.classList.replace('like_F', 'like_T');
+//             // icon.style.backgroundImage = 'url(../../images/main/redHeart.png)';
+//         } else {
+//             icon.classList.replace('like_T', 'like_F');
+//             // icon.style.backgroundImage = 'url(../../images/main/Heart.png)';
+//         }
+//     });
+// });

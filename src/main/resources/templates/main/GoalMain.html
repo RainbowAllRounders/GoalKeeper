@@ -24,11 +24,15 @@
 		<div class="hotgoal_top">
 			<div class="hotgoallogo"></div>
 		</div>
-		<p>미션제목을 클릭하면 해당 미션으로 이동합니다</p>
+		<p>미션카드을 클릭하면 해당 미션으로 이동합니다</p>
 
 		<!--	하단 카드부분	-->
 		<div class="hotgoal_bottom">
-			<div th:each="goal : ${Top3Goal}" class="goalcard">
+			<div th:each="goal : ${Top3Goal}" class="goalcard"  th:onclick="'location.href=\'/goal/' + ${goal.goalId} + '\''">
+				<div class="likeArea">
+					<div class="like"></div>
+					<div class="likeCount" th:text="${goal.likeCount}"></div>
+				</div>
 
 				<!--	카드상단	-->
 				<div class="cardtop">
@@ -41,7 +45,7 @@
 								<p th:text="${goal.complete}"></p>
 							</div>
 						</div>
-						<div class="goaltitle" th:onclick="'location.href=\'/goal/' + ${goal.goalId} + '\''">
+						<div class="goaltitle">
 							<p th:text="${goal.title}"></p>
 						</div>
 						<div class="hashtags">
@@ -50,10 +54,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="cardtopR">
-						<div class="like"></div>
-						<p class="likecount" th:text="${goal.likeCount}"></p>
-					</div>
+<!--					<div class="cardtopR">-->
+<!--						<div class="like"></div>-->
+<!--						<p class="likecount" th:text="${goal.likeCount}"></p>-->
+<!--					</div>-->
 				</div>
 
 				<!--	카드 이미지	-->
@@ -142,7 +146,7 @@
 <!-- 모델 값을 자바스크립트로 넘기기 -->
 <script th:inline="javascript">
 	var memberId = /*[[${member_id}]]*/ 'default';
-	var memberProfile = "/"+/*[[${memberProfile}]]*/ 'default';
+	var memberProfile = /*[[${memberProfile}]]*/ 'default';
 </script>
 </body>
 </html>

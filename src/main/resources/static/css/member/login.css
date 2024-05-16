@@ -79,6 +79,7 @@ height: 45px;
 text-decoration: none;
 position: relative;
 left: 35%;
+    cursor: pointer;
 }
 .addr_password{
     border: none;
