@@ -1,7 +1,6 @@
 package com.allrounders.goalkeeper.repository;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.dto.RankDTO;
 import com.allrounders.goalkeeper.dto.Top3GoalDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,6 @@ public class GoalRepositoryTests {
                     .complete("모집 중")
                     .startDate(startDate)
                     .endDate(endDate)
-                    .imgPath("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.utoimage.com%2F%3Fm%3Dgoods.free%26mode%3Dview%26idx%3D22250682&psig=AOvVaw3uQV0G_bqyBvBPpc1ftysY&ust=1715399628887000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPCa0t6XgoYDFQAAAAAdAAAAABAD")
                     .build();
 
             Goal result = goalRepository.save(goal);
