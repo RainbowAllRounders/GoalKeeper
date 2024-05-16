@@ -1,9 +1,6 @@
 package com.allrounders.goalkeeper.service;
 
-import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.domain.Hashtag;
-import com.allrounders.goalkeeper.domain.Member;
-import com.allrounders.goalkeeper.domain.MemberGoal;
+import com.allrounders.goalkeeper.domain.*;
 import com.allrounders.goalkeeper.dto.*;
 import com.allrounders.goalkeeper.dto.goal.GoalDetailDTO;
 import com.allrounders.goalkeeper.repository.*;
@@ -60,6 +57,9 @@ public class GoalService {
         // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
         MemberGoal memberGoal = MemberGoal.test(savedMember, goal, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
+
+        // isLiked = false 지정
+        likesRepository.save(Likes.insertLike(member, goal));
     }
 
     /**
