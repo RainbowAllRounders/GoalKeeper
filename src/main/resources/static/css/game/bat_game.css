@@ -34,6 +34,10 @@ body{
     justify-content: center;
     align-items: center;
 }
+#game_list > a{
+    color: black;
+    text-decoration: none;
+}
 #bat_game{
     background-color: #ffc933;
 }
@@ -41,6 +45,7 @@ body{
     background-color: #ffc933;
 }
 #bat_start_btn{
+    cursor: pointer;
     width: 400px;
     height: 120px;
     font-size: 70px;
