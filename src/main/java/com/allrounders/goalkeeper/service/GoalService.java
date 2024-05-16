@@ -153,8 +153,9 @@ public class GoalService {
 
         goal.addLikeCount(likesRepository.getGoalLikeCount(goalId));
 
-        likesRepository.save(Likes.insertLike(member, goal));
         Boolean isLiked = likesRepository.findByLikesId_MemberIdAndGoalId(memberId, goalId);
+        if(isLiked == null) likesRepository.save(Likes.insertLike(member, goal));
+
 
         memberGoalRepository.curPeopleByGoalId(goalId);
         Boolean isJoin = memberGoalRepository.isJoin(memberId, goalId);
