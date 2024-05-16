@@ -51,7 +51,7 @@
 .hotgoal>p{
     font-size: 12px;
     color: #B0B0B0;
-    margin-bottom: 36px;
+    margin-bottom: 80px;
 }
 
 /* Top3미션카드-로고 ------------------------------------*/
@@ -87,6 +87,7 @@
 
 /* Top3미션카드-카드들-카드영역 ------------------------------------*/
 .hotgoal_bottom>.goalcard{
+    position: relative;
     margin: 16px;
     margin-bottom: 32px;
     padding: 0px;
@@ -101,6 +102,44 @@
     box-shadow: 4px 4px 8px 4px  #AAAAAA;
     flex-shrink: 0;
 }
+
+
+/* 좋아요부분
+<div class="likeArea">
+<div class="like"></div>
+<div class="likeCount" th:text="${goal.likeCount}"></div>
+</div>
+*/
+
+.likeArea{
+    position: absolute;
+    top: -54px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+
+    animation: motion 0.8s /* 속도 */
+    linear 0s   /* 처음부터 끝까지 일정 속도로 진행 */
+    infinite alternate; /* 무한 반복 */
+}
+
+@keyframes motion {
+    0% {margin-top: -4px;} /* 처음 위치 */
+    100% {margin-top: 4px;} /* 마지막 위치 */
+}
+
+.likeArea>.like{
+    background: url(../../images/main/redHeart.png) no-repeat center / contain;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.likeArea>.likeCount{
+    font-size: 20px;
+}
+
 
 /* Top3미션카드-카드들-카드영역-상단------------------------------------*/
 .hotgoal_bottom>.goalcard>.cardtop{
@@ -209,7 +248,7 @@
     justify-content: flex-start;
     margin-left: 12px;
 }
-
+/*
 .cardtopR>.like{
     background: url(../../images/main/Heart.png) no-repeat;
     background-size: contain;
@@ -239,7 +278,7 @@
     margin: 2px;
     font-size: 12px;
 }
-
+*/
 /* Top3미션카드-카드들-카드영역-이미지------------------------------------*/
 .hotgoal_bottom>.goalcard>.goalimg{
     /*background: url(../../images/main/goalimg.png) no-repeat;*/
@@ -376,12 +415,12 @@
     background: url(../../images/main/arrow.png) no-repeat;
     background-size: contain;
 
-    animation: motion 0.25s /* 속도 */
+    animation: arrowmotion 0.25s /* 속도 */
     linear 0s   /* 처음부터 끝까지 일정 속도로 진행 */
     infinite alternate; /* 무한 반복 */
 
 }
-@keyframes motion {
+@keyframes arrowmotion {
     0% {margin-top: -40px;} /* 처음 위치 */
     100% {margin-top: 40px;} /* 마지막 위치 */
 }

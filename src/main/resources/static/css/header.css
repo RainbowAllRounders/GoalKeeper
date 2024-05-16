@@ -145,7 +145,7 @@
     overflow: visible;
     /* border: 1px solid red; */
 }
-
+/*
 .header>.navprofile>.messagecom{
     display: flex;
     flex-flow: row;
@@ -192,7 +192,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-
+*/
 .header>.navprofile>.profile{
     margin-left: 28px;
     width: 36px;
@@ -236,7 +236,7 @@
     z-index: 2000;
     position: absolute;
     top: 50px;
-    left: 42px;
+    left: 30px;
     width: fit-content;
     padding: 16px;
     border-radius: 10px;
