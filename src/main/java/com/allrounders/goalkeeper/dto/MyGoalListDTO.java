@@ -48,9 +48,6 @@ public class MyGoalListDTO {
     private List<HashtagDTO> hashtagDTOList = new ArrayList<>();
 
     @NotNull
-    private String imgPath;
-
-    @NotNull
     private String writer;
 
     @NotNull
@@ -71,7 +68,6 @@ public class MyGoalListDTO {
                 .startDate(goal.getStartDate())
                 .endDate(goal.getEndDate())
                 .hashtagDTOList(HashtagDTO.fromEntities(goal.getHashtagList()))
-                .imgPath(goal.getImgPath())
                 .build();
     }
 

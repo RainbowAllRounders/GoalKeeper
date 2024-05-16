@@ -67,7 +67,6 @@ public class GoalListDTO {
                 .startDate(goal.getStartDate())
                 .endDate(goal.getEndDate())
                 .hashtagDTOList(HashtagDTO.fromEntities(goal.getHashtagList()))
-                .imgPath(goal.getImgPath())
                 .build();
     }
 

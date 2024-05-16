@@ -42,9 +42,6 @@ public class GoalAddDTO {
   
     private List<HashtagDTO> hashtagDTOList = new ArrayList<>();    // hashtagDTOs를 HashtagDTO 형태로 변환
 
-    @NotBlank
-    private String imgPath;
-
     public Goal dtoToEntity() {
 
         changeList(hashtagDTOs);
@@ -61,7 +58,6 @@ public class GoalAddDTO {
                 .complete(this.complete)
                 .startDate(this.startDate)
                 .endDate(this.endDate)
-                .imgPath(this.imgPath)
                 .build();
     }
 

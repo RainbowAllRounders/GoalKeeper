@@ -1,6 +1,5 @@
 package com.allrounders.goalkeeper.domain;
 
-import com.allrounders.goalkeeper.dto.GoalAddDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import lombok.*;
@@ -57,18 +56,6 @@ public class Goal {
 
     @OneToMany(mappedBy = "goal")
     private List<Hashtag> hashtagList;
-
-    @Column(nullable = false)
-    private String imgPath;
-
-    /**
-     * 이미지 등록
-     */
-    public void addImg(GoalAddDTO goalAddDTO) {
-        if(goalAddDTO.getImgPath() != null && !goalAddDTO.getImgPath().isEmpty()) {
-            this.imgPath = goalAddDTO.getImgPath();
-        }
-    }
 
     /**
      * 좋아요 추가

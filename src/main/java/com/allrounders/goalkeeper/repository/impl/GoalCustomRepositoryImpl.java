@@ -217,8 +217,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                         goal.likeCount,
                         goal.complete,
                         goal.startDate,
-                        goal.endDate,
-                        goal.imgPath
+                        goal.endDate
                 ))
                 .from(goal)
                 .orderBy(goal.likeCount.desc())

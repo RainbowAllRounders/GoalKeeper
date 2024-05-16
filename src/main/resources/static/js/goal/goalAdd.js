@@ -37,24 +37,6 @@ function calcDate() {
     return yyyy_mm_dd;
 }
 
-// 파일 서버 업로드 및 제거
-async function uploadToServer(formObj) {
-
-    console.log("upload to server......")
-    console.log(formObj)
-
-    const response = await axios({
-        method: 'post',
-        url: '/upload',
-        data: formObj,
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
-
-    return response.data
-}
-
 window.addEventListener('load', function () {
 
     // 인증 횟수 1~100 숫자 제한
@@ -175,8 +157,6 @@ window.addEventListener('load', function () {
         const startDate = startDateInput.value.trim();
         const endDate = endDateInput.value.trim();
         const goalPeopleValue = goalPeople.value.trim();
-        const fileInput = document.querySelector("input[name='files']");
-        const files = fileInput.imgPath;
 
         // 필수 입력값 검사------------------------------------------
         // 필수 입력값 하나라도 누락 시
@@ -201,8 +181,8 @@ window.addEventListener('load', function () {
             cancelButtonText: '취소',
             cancelButtonColor: '#2A9AD9'
         }).then((result) => {
-            if (result.isConfirmed) {
 
+            if (result.isConfirmed) {
                 let formData = new FormData();
                 formData.append('title', goalTitle);
                 formData.append('authCount', goalTimesValue);
@@ -211,47 +191,36 @@ window.addEventListener('load', function () {
                 formData.append('startDate', startDate);
                 formData.append('endDate', endDate);
                 formData.append('maxPeople', goalPeopleValue);
-                if (files.length > 0) { formData.append("files", files[0]); }
 
-                const uploadPromise = files.length > 0 ? uploadToServer(formObj) : Promise.resolve([]);
+                // AJAX 요청
+                $.ajax({
+                    type: "POST",
+                    url: "/goal/add",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
 
-                uploadPromise.then(uploadResult => {
-                    // AJAX 요청
-                    $.ajax({
-                        type: "POST",
-                        url: "/goal/add",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-
-                            Swal.fire({
-                                title: '미션 등록 완료',
-                                text: '미션 등록이 성공적으로 완료되었습니다.',
-                                icon: 'success',
-                                confirmButtonText: '확인',
-                                confirmButtonColor: '#FF5065'
-                            }).then((result) => {
-                                window.location.href = '/goal/list';
-                            });
-                        },
-                        error: function (xhr, status, error) {
-                            swal({
-                                title: '미션 등록 오류',
-                                text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
-                                icon: 'error',
-                                confirmButtonText: '확인',
-                                confirmButtonColor: '#FF5065'
-                            });
-                        }
-                    });
-                }).catch(function(error) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "미션 등록 실패",
-                        text: "다시 시도해 주세요."
-                    });
-                })
+                        Swal.fire({
+                            title: '미션 등록 완료',
+                            text: '미션 등록이 성공적으로 완료되었습니다.',
+                            icon: 'success',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#FF5065'
+                        }).then((result) => {
+                            window.location.href = '/goal/list';
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        swal({
+                            title: '미션 등록 오류',
+                            text: '미션 등록 중 오류가 발생했습니다. 다시 시도해주세요.',
+                            icon: 'error',
+                            confirmButtonText: '확인',
+                            confirmButtonColor: '#FF5065'
+                        });
+                    }
+                });
             }
         });
     });

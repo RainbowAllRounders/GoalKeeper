@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,19 +39,11 @@ public class GoalService {
         Long memberId = (Long) session.getAttribute("member_id");
 
         // Goal에 생성한 미션 저장 ----------------------------------------
-        Goal goal = goalAddDTO.dtoToEntity(); // GoalAddDTO를 Goal 엔터티로 변환
-        goal.addImg(goalAddDTO); // 이미지 경로 저장
-        Goal savedGoal = goalRepository.save(goal); // Goal 저장
+        Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
-        List<Hashtag> hashtagList = new ArrayList<>(); // hashtagList 초기화
-        // goalAddDTO에서 해시태그 가져와서 hashtagList에 추가
-        for (HashtagDTO hashtagDTO : goalAddDTO.getHashtagDTOList()) {
-            Hashtag hashtag = new Hashtag();
-            hashtag.setTagName(hashtagDTO.getTagName()); // HashtagDTO에서 tagName 가져와 설정
-            hashtag.addGoal(savedGoal); // Hashtag에 Goal 설정
-            hashtagList.add(hashtag);
-        }
+        List<Hashtag> hashtagList = goal.getHashtagList();
+        hashtagList.forEach(hashtag -> hashtag.addGoal(goal));
         // Hashtag 저장
         hashtagRepository.saveAll(hashtagList);
 
@@ -61,15 +52,15 @@ public class GoalService {
         member.updateCurPointAddGoal();
         Member savedMember = memberRepository.save(member);
 
-        LocalDate startAlarmDate = savedGoal.getStartDate();
-        LocalDate endAlarmDate = savedGoal.getEndDate();
+        LocalDate startAlarmDate = goal.getStartDate();
+        LocalDate endAlarmDate = goal.getEndDate();
 
         // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
-        MemberGoal memberGoal = MemberGoal.test(savedMember, savedGoal, true, startAlarmDate, endAlarmDate, false);
+        MemberGoal memberGoal = MemberGoal.test(savedMember, goal, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
 
         // isLiked = false 지정
-        likesRepository.save(Likes.insertLike(member, savedGoal));
+        likesRepository.save(Likes.insertLike(member, goal));
     }
 
     /**

@@ -48,14 +48,12 @@
                     </div>
 
                     <div class="rightContainer">
-                        <img class="heart" th:src="${goal.isLiked == true} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">
+                        <img class="heart" th:src="${goal.isLiked} ? '/images/redHeart.png' : '/images/grayHeart.png'" alt="하트">
                         <div class="likeCount" th:text="${goal.likeCount}"></div>
                     </div>
                 </div>
 
-                <div class="imgWrapper">
-                    <img th:src="|/view/${goal.imgPath}|">
-                </div>
+                <div class="imgWrapper"></div>
 
                 <div class="cardFooter">
                     <div class="progressWrap">
