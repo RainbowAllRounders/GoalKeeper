@@ -35,8 +35,6 @@ condition.addEventListener('click', function() {
                     timer : 1500,
                     showConfirmButton: false
                 });
-
-                condition.id = 'quit';
                 condition.querySelector('span').textContent = '참여취소'
             } else {
                 swal({
@@ -46,6 +44,7 @@ condition.addEventListener('click', function() {
                     timer : 1500,
                     showConfirmButton: false
                 });
+                condition.querySelector('span').textContent = '참여하기'
             }
         })
 });
