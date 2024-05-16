@@ -11,7 +11,7 @@ li {
 }
 
 button {
-	all: unset;
+    all: unset;
 }
 
 button:hover {
@@ -208,8 +208,9 @@ button:hover {
 }
 
 .auth_imgs {
-    position: relative;
-    bottom: 40px;
+    /*position: relative;*/
+    /*bottom: 40px;*/
+    margin-bottom: 50px;
 }
 .auth_imgs > .prev_next_btn {
     position: relative;
