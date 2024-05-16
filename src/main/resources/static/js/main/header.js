@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loginBtn.classList.contains('profile')) {
             // 프로필 사진 sessionStorage에 저장된 member_profile 값으로 사진 변경
             var storedProfile = sessionStorage.getItem("member_profile");
-            loginBtn.style.backgroundImage = 'url(' + storedProfile + ')';
+            loginBtn.style.backgroundImage = `url('/view/${storedProfile}')`;
+            console.log("Background Image URL:", loginBtn.style.backgroundImage);
             loginBtn.style.backgroundSize = 'cover';
             loginBtn.style.backgroundPosition = 'center';
 
