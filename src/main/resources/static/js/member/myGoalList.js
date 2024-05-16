@@ -4,19 +4,12 @@ const filters = Array.from(document.querySelectorAll('.filter'));
 
 // 검색 ----------------------------------------
 const searchBox = document.querySelector('#searchBox');
-const searchContent = searchBox.querySelector('input');
-const magnifier = document.querySelector('#magnifier');
 
 // goal 목록
 const goalList = document.querySelectorAll(".goalCard");
 
 // 페이지네이션
 const pagination = document.querySelector(".pagination");
-
-// 좋아요 누르기
-let rightContainer = document.querySelectorAll(".rightContainer");
-let hearts = document.querySelectorAll(".heart");
-let likeCount = document.querySelectorAll('.likeCount');
 
 window.addEventListener('load', function() {
 

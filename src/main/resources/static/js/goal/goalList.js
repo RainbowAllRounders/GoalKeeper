@@ -9,17 +9,8 @@ const magnifier = document.querySelector('#magnifier');
 
 // goal 목록
 const goalList = document.querySelectorAll(".goalCard");
-
-// 더보기 버튼
-// const seeMoreBtn = document.getElementById("seeMoreBtn");
-
 // 페이지네이션
 const pagination = document.querySelector(".pagination");
-
-// 좋아요 누르기
-const rightContainer = document.querySelectorAll(".rightContainer");
-const hearts = document.querySelectorAll(".heart");
-const likeCount = document.querySelectorAll('.likeCount');
 
 window.addEventListener('load', function() {
 
