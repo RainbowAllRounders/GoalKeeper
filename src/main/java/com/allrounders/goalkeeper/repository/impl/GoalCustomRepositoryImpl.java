@@ -62,16 +62,18 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
         BooleanBuilder whereClause = new BooleanBuilder();
         if(types != null){
             for (String type : types) {
-                switch (type) {
-                    case "r":
-                        whereClause.or(goal.complete.eq("모집 중"));
-                        break;
-                    case "p":
-                        whereClause.or(goal.complete.eq("진행 중"));
-                        break;
-                    case "c":
-                        whereClause.or(goal.complete.eq("완료"));
-                        break;
+                if(type != null) {
+                    switch (type) {
+                        case "r":
+                            whereClause.or(goal.complete.eq("모집 중"));
+                            break;
+                        case "p":
+                            whereClause.or(goal.complete.eq("진행 중"));
+                            break;
+                        case "c":
+                            whereClause.or(goal.complete.eq("완료"));
+                            break;
+                    }
                 }
             }
         }

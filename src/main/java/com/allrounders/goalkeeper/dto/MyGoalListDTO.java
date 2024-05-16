@@ -47,6 +47,7 @@ public class MyGoalListDTO {
 
     private List<HashtagDTO> hashtagDTOList = new ArrayList<>();
 
+    @NotNull
     private String imgPath;
 
     @NotNull

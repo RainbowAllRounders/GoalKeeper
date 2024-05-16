@@ -4,13 +4,10 @@
       layout:decorate="~{layout/layout}">
 
 <head>
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoalKeeper - 미션 등록하기</title>
-<!--    <link rel="stylesheet" th:href="@{/css/default.css}">-->
     <link rel="stylesheet" th:href="@{/css/goal/goalAdd.css}">
-<!--    <link rel="stylesheet" th:href="@{/css/header.css}">-->
-<!--    <link rel="stylesheet" th:href="@{/css/footer.css}">-->
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
@@ -18,7 +15,6 @@
 </head>
 
 <body layout:fragment="content">
-<!--    <th:block th:replace="~{layout/bodyheader :: bodyheader}"></th:block>-->
     <form th:action="@{/goal/add}" method="post" th:object="${goalAddDTO}">
         <div id="goalAddWrapper">
             <div class="shadowBox" id="goalAddBox">
@@ -99,17 +95,17 @@
                         </div>
                         <div id="peopleCount">&nbsp; 명</div>
 
-<!--                        <div class="goalAddMenu" id="imgWrapper">-->
-<!--                            <div id="goalAddImg">첨부 이미지</div>-->
-<!--                        </div>-->
-<!--                        <div class="goalInputs" id="goalImgInput">-->
-<!--                            <div id="goalImgWrapper">-->
-<!--                                <input type="file" th:field="*{imgPath}" name="file" accept=".jpg, .jpeg, .png" enctype="multipart/form-data">-->
-<!--                            </div>-->
-<!--                            <div class="goalGuide">-->
-<!--                                20MB 이하의 jpg, jpeg, png 파일만 가능합니다.-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="goalAddMenu" id="imgWrapper">
+                            <div id="goalAddImg">첨부 이미지</div>
+                        </div>
+                        <div class="goalInputs" id="goalImgInput">
+                            <div id="goalImgWrapper">
+                                <input type="file" name="files" th:field="*{imgPath}" accept=".jpg, .jpeg, .png" enctype="multipart/form-data">
+                            </div>
+                            <div class="goalGuide">
+                                20MB 이하의 jpg, jpeg, png 파일만 가능합니다.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button type="button" id="goalAddBtn">등 록</button>
@@ -117,9 +113,8 @@
             </div>
         </div>
     </form>
-<!--    <th:block th:replace="~{layout/bodyfooter :: bodyfooter}"></th:block>-->
     <script th:src="@{/js/goal/goalAdd.js}"></script>
-<!--    <script th:src="@{/js/main/header.js}"></script>-->
+    <script th:src="@{/js/main/header.js}"></script>
 </body>
 
 </html>

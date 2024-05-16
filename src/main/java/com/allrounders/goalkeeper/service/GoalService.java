@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,14 +37,23 @@ public class GoalService {
     @Transactional(readOnly = false)
     public void goalAdd(GoalAddDTO goalAddDTO, HttpSession session) {
 
-        Long memberId = (Long)session.getAttribute("member_id");
+        Long memberId = (Long) session.getAttribute("member_id");
 
         // Goal에 생성한 미션 저장 ----------------------------------------
-        Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
+        Goal goal = goalAddDTO.dtoToEntity(); // GoalAddDTO를 Goal 엔터티로 변환
+        goal.addImg(goalAddDTO); // 이미지 경로 저장
+        Goal savedGoal = goalRepository.save(goal); // Goal 저장
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
-        List<Hashtag> hashtagList = goal.getHashtagList();
-        hashtagList.forEach(hashtag -> hashtag.addGoal(goal));
+        List<Hashtag> hashtagList = new ArrayList<>(); // hashtagList 초기화
+        // goalAddDTO에서 해시태그 가져와서 hashtagList에 추가
+        for (HashtagDTO hashtagDTO : goalAddDTO.getHashtagDTOList()) {
+            Hashtag hashtag = new Hashtag();
+            hashtag.setTagName(hashtagDTO.getTagName()); // HashtagDTO에서 tagName 가져와 설정
+            hashtag.addGoal(savedGoal); // Hashtag에 Goal 설정
+            hashtagList.add(hashtag);
+        }
+        // Hashtag 저장
         hashtagRepository.saveAll(hashtagList);
 
         // 미션 생성한 사람의 포인트 차감 ----------------------------------------
@@ -51,39 +61,16 @@ public class GoalService {
         member.updateCurPointAddGoal();
         Member savedMember = memberRepository.save(member);
 
-        LocalDate startAlarmDate = goal.getStartDate();
-        LocalDate endAlarmDate = goal.getEndDate();
+        LocalDate startAlarmDate = savedGoal.getStartDate();
+        LocalDate endAlarmDate = savedGoal.getEndDate();
 
         // MemberGoal에 미션 생성한 사람 저장 ----------------------------------------
-        MemberGoal memberGoal = MemberGoal.test(savedMember, goal, true, startAlarmDate, endAlarmDate, false);
+        MemberGoal memberGoal = MemberGoal.test(savedMember, savedGoal, true, startAlarmDate, endAlarmDate, false);
         memberGoalRepository.save(memberGoal);
 
         // isLiked = false 지정
-        likesRepository.save(Likes.insertLike(member, goal));
+        likesRepository.save(Likes.insertLike(member, savedGoal));
     }
-
-    /**
-     * 해시 태그를 갖고 있는 goalList
-     * @param goalId
-     * @return
-     */
-//    public GoalListDTO getGoalWithHashtags(Long goalId) {
-//        Goal goal = goalRepository.findById(goalId)
-//                .orElseThrow(() -> new RuntimeException("해당 ID의 미션을 찾을 수 없습니다: " + goalId));
-//
-//        List<Hashtag> hashtags = hashtagRepository.findByGoal(goal);
-//        List<HashtagDTO> hashtagDTOList = new ArrayList<>();
-//
-//        for (Hashtag hashtag : hashtags) {
-//            hashtagDTOList.add(HashtagDTO.fromEntity(hashtag));
-//        }
-//
-//        for (HashtagDTO hashtagDTO : hashtagDTOList) {
-//            goal.addHashTag(hashtagDTO.dtoToEntity());
-//        }
-//
-//        return GoalListDTO.fromEntity(goal);
-//    }
 
     /**
      * 미션 목록 페이지네이션
