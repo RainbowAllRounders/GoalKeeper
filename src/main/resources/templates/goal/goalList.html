@@ -55,7 +55,9 @@
                     </div>
                 </div>
 
-                <div class="imgWrapper"></div>
+                <div class="imgWrapper">
+                    <img th:src="|/view/${goal.imgPath}|">
+                </div>
 
                 <div class="cardFooter">
                     <div class="progressWrap">
@@ -91,7 +93,6 @@
         </div>
 
         </div>
-<!--        <div id="seeMoreBtn" style="cursor: pointer; margin-bottom: 0">더보기</div>-->
         <!-- 페이지네이션 -->
         <div>
             <ul class="pagination flex-wrap">
