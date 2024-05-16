@@ -39,7 +39,9 @@ public class GoalService {
         Long memberId = (Long)session.getAttribute("member_id");
 
         // Goal에 생성한 미션 저장 ----------------------------------------
-        Goal goal = goalRepository.save(goalAddDTO.dtoToEntity());
+        Goal goal = new Goal();
+        goal.addImg(goalAddDTO);
+        goalRepository.save(goalAddDTO.dtoToEntity());
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
         List<Hashtag> hashtagList = goal.getHashtagList();
