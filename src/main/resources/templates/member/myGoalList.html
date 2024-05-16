@@ -57,9 +57,12 @@
                     </div>
                 </div>
 
-                <div class="imgWrapper"></div>
+                <div class="imgWrapper">
+                    <img th:src="|/view/${goal.imgPath}|">
+                </div>
 
                 <div class="cardFooter">
+                    <div class="progressWrap">
                     <div class="progressWrap">
                         <div class="progressBar">
                             <div class="progressBarValue"></div>
