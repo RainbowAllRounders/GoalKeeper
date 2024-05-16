@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
               const winSnail = snail.id.slice(5);
               win = true;
               swal({
-                title: `${winSnail}번 달팽이가 1등으로 도착했습니다! :)`,
+                title: `${winSnail}번 달팽이가 \n 1등으로 도착했습니다! :)`,
                 text: "배팅금액의 포인트 3배를 획득했습니다. :)",
                 type: "success",
                 confirmButtonText: "확인",
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
               win = false;
               swal({
-                title: `${winSnail}번 달팽이가 1등으로 도착했습니다! :)`,
+                title: `${winSnail}번 달팽이가 \n 1등으로 도착했습니다! :)`,
                 text: "아쉽게도 포인트를 획득하지 못했습니다...ㅜㅜ :)",
                 type: "error",
                 confirmButtonText: "확인",
