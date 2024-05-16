@@ -232,7 +232,7 @@ public class GoalCustomRepositoryImpl implements GoalCustomRepository {
                     .select(member.nickname)
                     .from(memberGoal)
                     .join(memberGoal.member, member)
-                    .where(memberGoal.role.eq(false).and(memberGoal.goal.goalId.eq(g.getGoalId())))
+                    .where(memberGoal.role.eq(true).and(memberGoal.goal.goalId.eq(g.getGoalId())))
                     .fetchFirst();
             g.setRoomManager(roomManager);
         });
