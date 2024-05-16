@@ -29,6 +29,10 @@
 		<!--	하단 카드부분	-->
 		<div class="hotgoal_bottom">
 			<div th:each="goal : ${Top3Goal}" class="goalcard">
+				<div class="likeArea">
+					<div class="like"></div>
+					<div class="likeCount" th:text="${goal.likeCount}"></div>
+				</div>
 
 				<!--	카드상단	-->
 				<div class="cardtop">
@@ -50,10 +54,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="cardtopR">
-						<div class="like"></div>
-						<p class="likecount" th:text="${goal.likeCount}"></p>
-					</div>
+<!--					<div class="cardtopR">-->
+<!--						<div class="like"></div>-->
+<!--						<p class="likecount" th:text="${goal.likeCount}"></p>-->
+<!--					</div>-->
 				</div>
 
 				<!--	카드 이미지	-->
