@@ -40,7 +40,7 @@ public class GoalService {
 
         // Goal에 생성한 미션 저장 ----------------------------------------
         Goal goal = new Goal();
-        goal.addImg(goalAddDTO);
+        goal.addImg(goalAddDTO);    // 이미지 경로 저장
         goalRepository.save(goalAddDTO.dtoToEntity());
 
         // Hashtag에 해시태그들 저장 ----------------------------------------
