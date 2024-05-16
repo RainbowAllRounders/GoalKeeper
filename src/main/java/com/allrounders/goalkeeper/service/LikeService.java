@@ -1,7 +1,6 @@
 package com.allrounders.goalkeeper.service;
 
 import com.allrounders.goalkeeper.domain.Goal;
-import com.allrounders.goalkeeper.domain.Likes;
 import com.allrounders.goalkeeper.domain.Member;
 import com.allrounders.goalkeeper.dto.LikesResDto;
 import com.allrounders.goalkeeper.repository.GoalRepository;
@@ -30,13 +29,10 @@ public class LikeService {
         Member member = existMember(session);
 //        Goal goal = existGoal(session);
         Goal goal = goalRepository.findById(1L).get();
-        likesRepository.exist(member.getMemberId(), goal.getGoalId()).ifPresentOrElse(
+        likesRepository.exist(member.getMemberId(), goal.getGoalId()).ifPresent(
                 likes -> {
                     if (likes.getIsLiked() == true) likes.changeLikeStatus(likes.getIsLiked());
                     else if (likes.getIsLiked() == false) likes.changeLikeStatus(likes.getIsLiked());
-                },
-                () -> {
-                    likesRepository.save(Likes.insertLike(member, goal));
                 });
         goal.addLikeCount(likesRepository.getGoalLikeCount(goal.getGoalId()));
         goalRepository.save(goal);
