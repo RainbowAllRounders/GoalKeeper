@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // 로그인 버튼 없애고 프로필 나오게
             loginBtn.classList.remove('loginbtn');
             loginBtn.classList.add('profile');
+            loginBtn.id = 'profileImg';
+
             // 메시지 창
             // message.classList.remove('messagecom_Disabled');
             // message.classList.add('messagecom');
@@ -58,6 +60,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 페이지 로드 시 실행
     window.onload = checkLoginStatus;
+
+
+    // 페이지 로드 시 프로필 이미지 업데이트
+    const headerImg = document.getElementById("profileImg");
+    const savedProfileImgPath = sessionStorage.getItem("member_profile");
+
+    if (savedProfileImgPath && headerImg) {
+      headerImg.src = `/path/to/images/${savedProfileImgPath}`;
+    }
+
 
     //------------------------- upbtn --------------------------------------------
     document.getElementById('upbtn').addEventListener('click', function () {
