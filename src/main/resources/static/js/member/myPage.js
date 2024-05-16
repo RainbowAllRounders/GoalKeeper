@@ -228,7 +228,7 @@ function showConfirmStart() {
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = '/Intro';
+                        window.location.href = '/';
                     } else {
                         throw new Error();
                     }
