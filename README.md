@@ -20,28 +20,28 @@
 
 ## 🛠️ Tools
 <img src="https://img.shields.io/badge/IntelliJ-000000?style=flat&logo=intellijidea&logoColor=white" /> <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat&logo=VisualStudioCode&logoColor=white" /> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /> 
-<img src="https://img.shields.io/badge/Figma-181717?style=flat&logo=Figma&logoColor=red" /> <img src="https://img.shields.io/badge/Notion-181717?style=flat&logo=Notion&logoColor=white" /> 
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white" /> <img src="https://img.shields.io/badge/Notion-181717?style=flat&logo=Notion&logoColor=white" /> 
 
 <br><br>
 
 ## 🗂️ 사용 라이브러리
-.
+<img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jQuery&logoColor=white" /> <img src="https://img.shields.io/badge/Swal2-E6C3A5?style=flat&logo=Swal2&logoColor=black" />
 
 <br><br>
 
 ## 👨‍👩‍👧‍👦 프로젝트 인원 & 역할과 개발내용
 | 이름 | 역할 | 개발내용 |
 |:------:|:------:|:-----:|
-|서혜리||
-|권재원||
-|김가은||
-|김수현||
-|조원진||
+|서혜리|팀장|FE:<br>BE:
+|권재원|팀원|FE:<br>BE:
+|김가은|팀원|FE:<br>BE:
+|김수현|팀원|FE:<br>BE:
+|조원진|팀원|FE:<br>BE:
 
 <br><br>
 
 ## 🧾 사용자 요구 명세서
-.
+![image](https://github.com/RainbowAllRounders/GoalKeeper/assets/141993427/42f632a4-6e40-4dad-a3ea-32fafa5f18a8)
 
 <br><br>
 
@@ -50,8 +50,9 @@
 
 <br><br>
 
-## 💾DB
-.
+## 💾ERD
+![image](https://github.com/RainbowAllRounders/GoalKeeper/assets/141993427/ac0bec3c-2cef-489c-8869-bf8b305fc083)
+
 
 <br><br>
 
